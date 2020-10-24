@@ -13,6 +13,7 @@
 ::-------------------------------------
   rmdir %BUILD_DIR% /s/q
   mkdir %BUILD_DIR%
+  mkdir %BUILD_DIR%\data
   cd    %BUILD_DIR%
 ::-------------------------------------
 :: Generate Makefile using -G <generator>

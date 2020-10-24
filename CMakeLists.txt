@@ -53,7 +53,7 @@
 #--------------------------------------
  set( SOURCES_TARGET
       main.cpp
-     #test.cpp
+      test.cpp
     )
 
  set( SOURCES_CMD

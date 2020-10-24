@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
   //printf("   by Daniel J. Greenhoe \n");
 
   bspline_Sdat();
-  //perform_tests();
+  perform_tests();
   //make_2015ssp_texplots();
   //test_2015larc();
   //make_2015larc_data();
@@ -140,38 +140,38 @@ int make_2015ssp_texplots(void){
  * perform tests
  *---------------------------------------------------------------------------*/
 int perform_tests(void){
-  //test_opair();
-  //test_vectR2();
-  //test_complex();
-  //test_seqR2();
-  //if(test_otriple() !=0) return -1;
-  //if(test_osix()    !=0) return -1;
-  //if(test_vectR6()  !=0) return -1;
-  //if(test_dieC1()  !=0) return -1;
-  //test_conj();
-  //if(test_dft_R1()!=0)            return -1;
-  //if(test_pqtheta()!=0)        return -1;
-  //if(test_larc_metric_R2()!=0) return -1;
-  //if(test_larc_metric_R3()!=0) return -1;
-  //if(test_larc_metric_R6()!=0) return -1;
-  //if(test_circle()        !=0) return -1;
-  //if(test_circle_d1()     !=0) return -1;
-  //if(test_ellipse_d1()    !=0) return -1;
-  ////test_rdie_metric();
-  ////test_correlation();
-  //if(test_halfcircle()    ==0) return -1;
-  //if(test_findt()         ==0) return -1;
-  //if(test_perimeter()     ==0) return -1;
-  //if(test_balloon_metric()==0) return -1;
-  //if(test_mca_metric()    ==0) return -1;
-  //if(test_spinner()    ==0) return -1;
-  //if(test_rdie()    ==0) return -1;
-  //if(test_dna_metric()==0) return -1;
-  //if(test_dnan_metric()==0) return -1;
-  //test_die();
-  //test_rdie();
-  //test_dft_R1();
-  //test_expi();
+  test_opair();
+  test_vectR2();
+  test_complex();
+  test_seqR2();
+  if(test_otriple() !=0) return -1;
+  if(test_osix()    !=0) return -1;
+  if(test_vectR6()  !=0) return -1;
+  if(test_dieC1()  !=0) return -1;
+  test_conj();
+  if(test_dft_R1()!=0)            return -1;
+  if(test_pqtheta()!=0)        return -1;
+  if(test_larc_metric_R2()!=0) return -1;
+  if(test_larc_metric_R3()!=0) return -1;
+  if(test_larc_metric_R6()!=0) return -1;
+  if(test_circle()        !=0) return -1;
+  if(test_circle_d1()     !=0) return -1;
+  if(test_ellipse_d1()    !=0) return -1;
+  //test_rdie_metric();
+  //test_correlation();
+  if(test_halfcircle()    ==0) return -1;
+  if(test_findt()         ==0) return -1;
+  if(test_perimeter()     ==0) return -1;
+  if(test_balloon_metric()==0) return -1;
+  if(test_mca_metric()    ==0) return -1;
+  if(test_spinner()    ==0) return -1;
+  if(test_rdie()    ==0) return -1;
+  if(test_dna_metric()==0) return -1;
+  if(test_dnan_metric()==0) return -1;
+  test_die();
+  test_rdie();
+  test_dft_R1();
+  test_expi();
   return 0;
   }
 
