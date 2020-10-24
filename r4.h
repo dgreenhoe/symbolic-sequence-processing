@@ -52,7 +52,7 @@ class vectR4: public oquad {
     void   operator+=(vectR4 q); 
     void   operator-=(vectR4 q); 
     void   operator*=(double a);
-    vectR4 operator* (double a){vectR4 u(a*get1(),a*get2(),a*get3(),a*get4()); return u;}
+    inline vectR4 operator* (double a){vectR4 u(a*get1(),a*get2(),a*get3(),a*get4()); return u;}
   };
 
 class seqR4 {

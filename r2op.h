@@ -36,7 +36,7 @@ class mat2x2 {
  *=====================================*/
 extern void mag(seqR2 *x, seqR1 *y);
 extern void convolve(seqR2 *x, seqR1 *y, seqR2 *z, int showcount);
-extern void convolve(seqR2 *x, seqR1 *y, seqR2 *z){convolve(x,y,z,1);}
+inline void convolve(seqR2 *x, seqR1 *y, seqR2 *z){convolve(x,y,z,1);}
 
 /*=====================================
  * symbolic operators

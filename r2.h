@@ -42,15 +42,15 @@ class vectR2: public opair {
     void   operator+=(vectR2 q){put(getx()+q.getx(), gety()+q.gety());} //p=p+q
     void   operator-=(vectR2 q){put(getx()-q.getx(), gety()-q.gety());} //p=p-q
     void   operator&=(double phi);     //rotate p by <phi> radians in R^2 plane
-    void   operator*=(double a){put(a*getx(), a*gety());}
-    vectR2 operator* (double a){vectR2 u(a*getx(), a*gety()); return u;}
+    inline void   operator*=(double a){put(a*getx(), a*gety());}
+    inline vectR2 operator* (double a){vectR2 u(a*getx(), a*gety()); return u;}
   };
 
 vectR2  operator-(vectR2 p);               // -p
 vectR2  operator+(vectR2 p, vectR2 q);  // p+q
 vectR2  operator-(vectR2 p, vectR2 q);  // p-q
 vectR2  operator&(vectR2 p,double phi);    // <p> rotated counter-clockwise by <phi>
-double  operator^(vectR2 p,vectR2 q){return p.getx()*q.getx() + p.gety()*q.gety();}   // "dot product" of p and q
+inline double  operator^(vectR2 p,vectR2 q){return p.getx()*q.getx() + p.gety()*q.gety();}   // "dot product" of p and q
 
 /*-------------------------------------------------------------------------
  * class of sequences over R^2
@@ -94,7 +94,7 @@ class seqR2 {
  * functions
  *=====================================*/
 extern double pqtheta(const vectR2 p, const vectR2 q); //return radians between vectors induced by p and q in R^2
-double chordlength(vectR2 p, vectR2 q){
+inline double chordlength(vectR2 p, vectR2 q){
   vectR2  pqd=p-q; // differnce of p and q
   return pqd.norm(); // "length" of difference
   }

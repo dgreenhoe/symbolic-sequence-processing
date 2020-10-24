@@ -24,7 +24,7 @@
 /*=====================================
  * prototypes
  *=====================================*/
-void phistogram(seqR1 *data, const long start, const long end, FILE *ptr);
+void dnan_phistogram(seqR1 *data, const long start, const long end, FILE *ptr);
 
 /*-------------------------------------------------------------------------
  * copy a dnaseq <y> into dnaseq x starting at location <n>
@@ -188,8 +188,8 @@ seqR1 dnanseq::histogram(const long start, const long end, int display, FILE *fp
     if(bin!=0) data.increment(6);
     data.increment(bin);
     }
-  if(display)   phistogram(&data,start,end,stdout);
-  if(fptr!=NULL)phistogram(&data,start,end,fptr  );
+  if(display)   dnan_phistogram(&data,start,end,stdout);
+  if(fptr!=NULL)dnan_phistogram(&data,start,end,fptr  );
   return data;
   }
 
@@ -197,7 +197,7 @@ seqR1 dnanseq::histogram(const long start, const long end, int display, FILE *fp
  * print DNA histogram with data pointed to by <data>
  * to stream pointed to by ptr
  *-------------------------------------------------------------------------*/
-void phistogram(seqR1 *data, const long start, const long end, FILE *ptr){
+void dnan_phistogram(seqR1 *data, const long start, const long end, FILE *ptr){
   long N=end-start+1;
   long bin;
   fprintf(ptr,"\n");

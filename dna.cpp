@@ -647,3 +647,13 @@ int read_fasta_file(const char *filename, char *description, dnaseq *x){
   }
 
 
+/*-------------------------------------------------------------------------
+ * return 1 if in domain
+ * return 0 if not in domain 
+ *-------------------------------------------------------------------------*/
+int dna_domain(const char c){
+  int rval;
+  rval=(dna_dnatoR1(c)>=0)? 1 : 0;
+  return rval;
+  }
+

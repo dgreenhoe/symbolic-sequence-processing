@@ -81,8 +81,8 @@ vectR3  operator-(vectR3 p);               // -p
 vectR3  operator+(vectR3 p, vectR3 q);  // p+q
 vectR3  operator-(vectR3 p, vectR3 q);  // p-q
 vectR3  operator&(vectR3 p,double phi);    // <p> rotated counter-clockwise by <phi>
-vectR3  operator*(vectR3 p,double a){vectR3 pa(p.getx()*a,p.gety()*a,p.getz()*a); return pa;}
-double  operator^(vectR3 p,vectR3 q){return p.getx()*q.getx() + p.gety()*q.gety() + p.getz()*q.getz();}   // "dot product" of p and q
+inline vectR3  operator*(vectR3 p,double a){vectR3 pa(p.getx()*a,p.gety()*a,p.getz()*a); return pa;}
+inline double  operator^(vectR3 p,vectR3 q){return p.getx()*q.getx() + p.gety()*q.gety() + p.getz()*q.getz();}   // "dot product" of p and q
 //double  operator*(vectR3 p,vectR3 q){return p.getx()*q.getx() + p.gety()*q.gety() + p.getz()*q.getz();}   // "dot product" of p and q
 
 /*=====================================

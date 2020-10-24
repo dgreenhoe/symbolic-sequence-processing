@@ -41,7 +41,7 @@ extern int read_fasta_file(const char *filename, char *description, const dnanse
 extern int dnan_domain(const char c);
 extern vectR2 dnan_dnatoR2(const char c);
 extern double dnan_dnatoR1(const char c);
-extern seqR1 dnan_correlation(dnanseq x, dnanseq y, int showcount);//correlation
-seqR1 dnan_correlation(dnanseq x, dnanseq y){return dnan_correlation(x,y,0);}//correlation
+//extern seqR1 dnan_correlation(dnanseq x, dnanseq y, int showcount);//correlation
+//seqR1 dnan_correlation(dnanseq x, dnanseq y){return dnan_correlation(x,y,0);}//correlation
 extern double dnan_metric(const char a, const char b);
 

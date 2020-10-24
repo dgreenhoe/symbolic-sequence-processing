@@ -111,7 +111,7 @@ vectR6 operator-(vectR6 p);            // -p
 vectR6 operator+(vectR6 p, vectR6 q);  // p+q
 vectR6 operator-(vectR6 p, vectR6 q);  // p-q
 vectR6 operator*(const double a, const vectR6 y);
-vectR6 operator*(const vectR6 y, const double a){return a*y;}
+inline vectR6 operator*(const vectR6 y, const double a){return a*y;}
 double operator^(vectR6 p,vectR6 q);   // "dot product" of p and q
 
 /*=====================================

@@ -333,21 +333,21 @@ double pqtheta(const vectR4 p, const vectR4 q){
 /*-------------------------------------------------------------------------
  * compute magnitude of R^1 sequence
  *-------------------------------------------------------------------------*/
-int mag(seqR4 *xR4, seqR1 *ymag){
-  const long Nx=xR4->getN();
-  const long Ny=ymag->getN();
-  long n;
-  int retval=0;
-  vectR4 u;
-  ymag->clear();
-  if(Nx!=Ny){
-    fprintf(stderr,"ERROR using y=mag(xR4): lengths of xR4 (%ld) and ymag (%ld) differ.\n",Nx,Ny);
-    exit(EXIT_FAILURE);
-    }
-  for(n=0;n<Nx;n++){
-    u=xR4->get(n);
-    ymag->put(n,u.mag());
-    }
-  return retval;
-  }
+//int mag(seqR4 *xR4, seqR1 *ymag){
+//  const long Nx=xR4->getN();
+//  const long Ny=ymag->getN();
+//  long n;
+//  int retval=0;
+//  vectR4 u;
+//  ymag->clear();
+//  if(Nx!=Ny){
+//    fprintf(stderr,"ERROR using y=mag(xR4): lengths of xR4 (%ld) and ymag (%ld) differ.\n",Nx,Ny);
+//    exit(EXIT_FAILURE);
+//    }
+//  for(n=0;n<Nx;n++){
+//    u=xR4->get(n);
+//    ymag->put(n,u.mag());
+//    }
+//  return retval;
+//  }
 

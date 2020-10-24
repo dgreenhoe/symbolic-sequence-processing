@@ -21,7 +21,7 @@
 #--------------------------------------
  project( opseq
           VERSION     0
-          DESCRIPTION "Op Sequence Processing"
+          DESCRIPTION "Symbolic Sequence Processing"
          #HOMEPAGE    https://github.com/dgreenhoe/
           LANGUAGES   CXX
         )
@@ -53,7 +53,7 @@
 #--------------------------------------
  set( SOURCES_TARGET
       main.cpp
-      test.cpp
+     #test.cpp
     )
 
  set( SOURCES_CMD
