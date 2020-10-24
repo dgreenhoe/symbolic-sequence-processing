@@ -4,32 +4,32 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<math.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
 
-#include<main.h>
-#include<symseq.h>
-#include<r1.h>
-#include<r2.h>
-#include<r3.h>
-#include<r4.h>
-#include<r6.h>
-#include<c1.h>
-#include<c6.h>
-#include<elliptic.h>
-#include<larc.h>
-#include<mca.h>
-#include<euclid.h>
-#include<die.h>
-#include<realdie.h>
-#include<fairdie.h>
-#include<spinner.h>
-#include<dna.h>
-#include<dnan.h>
-#include<fileplot.h>
+#include "main.h"
+#include "symseq.h"
+#include "r1.h"
+#include "r2.h"
+#include "r3.h"
+#include "r4.h"
+#include "r6.h"
+#include "c1.h"
+#include "c6.h"
+#include "elliptic.h"
+#include "larc.h"
+#include "mca.h"
+#include "euclid.h"
+#include "die.h"
+#include "realdie.h"
+#include "fairdie.h"
+#include "spinner.h"
+#include "dna.h"
+#include "dnan.h"
+#include "fileplot.h"
 
 /*-------------------------------------------------------------------------
  * open plot file <filename> and return pointer to file

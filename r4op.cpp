@@ -5,13 +5,13 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<main.h>
-#include<r1.h>
-#include<r4.h>
-#include<r4op.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "main.h"
+#include "r1.h"
+#include "r4.h"
+#include "r4op.h"
 
 /*=====================================
  * operations

@@ -11,23 +11,23 @@ class oquad {
     oquad(void);
     oquad(double u0, double u1, double u2, double u3);
     oquad(double u);
-    oquad   get(void);
+    oquad  get(void);
     void   list(const char *str1, const char *str2);
-    void   list(void){list("","");}
+    void   list(void) { list("","");}
     void   list(const char *str){list(str,"\n");}
-    void   listn(void){list("","\n");}
-    double get(int n){return x[n];}
-    double get1(void){return x[0];};                      //get component x1
-    double get2(void){return x[1];};                      //get component x2
-    double get3(void){return x[2];};                      //get component x3
-    double get4(void){return x[3];};                      //get component x4
-    void put(double u0, double u1, double u2, double u3){x[0]=u0;x[1]=u1;x[2]=u2;x[3]=u3;}
-    void put(int n,double u){x[n]=u;}
-    void put(double u);
-    void put(oquad u);
+    void   listn(void){ list("","\n"); }
+    double get(int n) { return x[n];   }
+    double get1(void) { return x[0];   };                      //get component x1
+    double get2(void) { return x[1];   };                      //get component x2
+    double get3(void) { return x[2];   };                      //get component x3
+    double get4(void) { return x[3];   };                      //get component x4
+    void   put(double u0, double u1, double u2, double u3){ x[0]=u0; x[1]=u1; x[2]=u2; x[3]=u3; }
+    void   put(int n,double u){ x[n] = u; }
+    void   put(double u);
+    void   put(oquad u);
     double max(void);
     double min(void);
-    void clear(void){put(0);}
+    void   clear(void){ put(0); }
   };
 
 /*-------------------------------------------------------------------------

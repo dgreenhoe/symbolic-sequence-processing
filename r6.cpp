@@ -9,9 +9,9 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
-#include<main.h>
-#include<r1.h>
-#include<r6.h>
+#include "main.h"
+#include "r1.h"
+#include "r6.h"
 
 /*=====================================
  * osix

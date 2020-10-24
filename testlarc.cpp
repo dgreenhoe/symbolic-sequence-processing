@@ -4,27 +4,27 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<math.h>
-#include<time.h>
-#include<main.h>
-#include<symseq.h>
-#include<r1.h>
-#include<r2.h>
-#include<r3.h>
-#include<r4.h>
-#include<r6.h>
-#include<c1.h>
-#include<c4.h>
-#include<c6.h>
-#include<r1op.h>
-#include<r2op.h>
-#include<r6op.h>
-#include<larc.h>
-#include<euclid.h>
-#include<testlarc.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
+#include "main.h"
+#include "symseq.h"
+#include "r1.h"
+#include "r2.h"
+#include "r3.h"
+#include "r4.h"
+#include "r6.h"
+#include "c1.h"
+#include "c4.h"
+#include "c6.h"
+#include "r1op.h"
+#include "r2op.h"
+#include "r6op.h"
+#include "larc.h"
+#include "euclid.h"
+#include "testlarc.h"
 
 /*-------------------------------------------------------------------------
  * test opair operations

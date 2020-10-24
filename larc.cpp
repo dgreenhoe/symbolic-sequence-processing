@@ -21,17 +21,17 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<main.h>
-#include<r1.h>
-#include<r2.h>
-#include<r3.h>
-#include<r4.h>
-#include<r6.h>
-#include<euclid.h>
-#include<larc.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "main.h"
+#include "r1.h"
+#include "r2.h"
+#include "r3.h"
+#include "r4.h"
+#include "r6.h"
+#include "euclid.h"
+#include "larc.h"
 
 /*-------------------------------------------------------------------------
  * path length s of Lagrange arc from a point p at polar coordinate (rp,tp)
@@ -111,6 +111,28 @@ double larc_metric(const vectR2 p, const vectR2 q){
   return d/PI;
   }
 
+/*-------------------------------------------------------------------------
+ * tau function for larc distance function d(p,q)
+ * tau(a,sigma;p,q,r) := 2sigma[ 1/2 d^a(p,r) + 1/2 d^a(r,q) ]^(1/a)
+ * reference:
+ *   Daniel J. Greenhoe (2016)
+ *   "Properties of distance spaces with power triangle inequalities"
+ *   Carpathian Mathematical Publications, volume 8, number 1, pages 51--82
+ *   doi 10.15330/cmp.8.1.51-82,
+ *   http://www.journals.pu.if.ua/index.php/cmp/article/view/483
+ *   https://peerj.com/preprints/2055/
+ *   https://www.researchgate.net/publication/281831459
+ *   section 4: Distance spaces with power triangle inequalities
+ *-------------------------------------------------------------------------*/
+double larc_tau(const double a, const double sigma, const vectR2 p, const vectR2 q, const vectR2 r){
+  double dpr, drq;
+  double tau;
+  dpr = larc_metric(p,r);
+  drq = larc_metric(r,q);
+  tau = 2*sigma*pow((0.5*pow(dpr,a) + 0.5*pow(drq,a)),1.0/a);
+  return tau;
+  }
+ 
 /*-------------------------------------------------------------------------
  * Lagrange metric from <p> to <q> computed numerically with resolution <N>.
  * Note: This function should be viewed as DEPRECATED 

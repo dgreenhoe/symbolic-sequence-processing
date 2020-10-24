@@ -4,34 +4,22 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<math.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
 
-#include<main.h>
-#include<r1.h>
-#include<r2.h>
-#include<r3.h>
-#include<r4.h>
-#include<r6.h>
-//#include<c1.h>
-//#include<c6.h>
-#include<elliptic.h>
-#include<larc.h>
-#include<mca.h>
-#include<euclid.h>
-//#include<die.h>
-//#include<realdie.h>
-//#include<fairdie.h>
-//#include<spinner.h>
-//#include<dna.h>
-//#include<dnan.h>
-//#include<deprecated.h>
-//#include<charseq.h>
-//#include<dspR1.h>
-//#include<fileplot.h>
+#include "main.h"
+#include "r1.h"
+#include "r2.h"
+#include "r3.h"
+#include "r4.h"
+#include "r6.h"
+#include "elliptic.h"
+#include "larc.h"
+#include "mca.h"
+#include "euclid.h"
 
 /*=====================================
  * function prototypes
@@ -148,6 +136,10 @@ int plot_larc_ball(vectR3 p, double r, FILE *fptr){
   double seconds;
   double theta,phi;
   vectR3 q;
+  const double minrq    = 0.0;
+  const double maxrq    = 1.0e6;
+  const double maxerror = 1.0e6;
+  const long int N      = 1000;
 
   time(&time1);
   gmt = gmtime(&time1);
@@ -166,7 +158,8 @@ int plot_larc_ball(vectR3 p, double r, FILE *fptr){
 
   for(phi=PI/2; phi>=-PI/2; phi-=PI/18){
     for(theta=0; theta<2*PI; theta+=2*PI/36){
-      q=larc_findq(p,theta,phi,r,1000);
+    //q = larc_findq( p, theta, phi, r, 1000);
+      q = larc_findq( p, theta, phi, r, minrq, maxrq, maxerror, N );
       fprintf(fptr,"%9.6lf %9.6lf %9.6lf %%=q; p=(%9.6lf,%9.6lf,%9.6lf)\n",q.getx(),q.gety(),q.getz(),p.getx(),p.gety(),p.getz());
       }
     fprintf(fptr,"\n");

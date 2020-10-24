@@ -5,15 +5,15 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<main.h>
-#include<r1.h>
-#include<r2.h>
-#include<r3.h>
-#include<r6.h>
-#include<euclid.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "main.h"
+#include "r1.h"
+#include "r2.h"
+#include "r3.h"
+#include "r6.h"
+#include "euclid.h"
 
 /*-------------------------------------------------------------------------
  * alpha-scaled Euclidean metric from <p> to <q>

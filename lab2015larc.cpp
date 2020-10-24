@@ -4,40 +4,33 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<math.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
 
-#include<main.h>
-#include<symseq.h>
-#include<r1.h>
-#include<r2.h>
-#include<r3.h>
-#include<r4.h>
-#include<r6.h>
-#include<c1.h>
-#include<c4.h>
-#include<c6.h>
-#include<r1op.h>
-#include<r2op.h>
-#include<r3op.h>
-#include<r4op.h>
-#include<r6op.h>
-#include<elliptic.h>
-#include<larc.h>
-#include<mca.h>
-#include<euclid.h>
-//#include<die.h>
-//#include<realdie.h>
-//#include<fairdie.h>
-//#include<spinner.h>
-//#include<dna.h>
-//#include<dnan.h>
-//#include<dft.h>
-#include<fileplot.h>
-#include<lab2015larc.h>
+#include "main.h"
+#include "symseq.h"
+#include "r1.h"
+#include "r2.h"
+#include "r3.h"
+#include "r4.h"
+#include "r6.h"
+#include "c1.h"
+#include "c4.h"
+#include "c6.h"
+#include "r1op.h"
+#include "r2op.h"
+#include "r3op.h"
+#include "r4op.h"
+#include "r6op.h"
+#include "elliptic.h"
+#include "larc.h"
+#include "mca.h"
+#include "euclid.h"
+#include "fileplot.h"
+#include "lab2015larc.h"
 
 /*-------------------------------------------------------------------------
  * generate larc distance data in R^2
@@ -317,3 +310,105 @@ int lab_larc_ball_R3(const double px, const double py, const double pz, const do
   return 0;
 }
 
+/*-------------------------------------------------------------------------
+ * test if larc distance satisfies power triangle inequality 
+ * with parameter <a>
+ * if sigma==0, then set sigma = 0.5*pow(2,1.0/a)
+ *-------------------------------------------------------------------------*/
+int lab_larc_pti(const double a, const double sigma, const double min, const double max, const long N, const char *basefilename){
+  time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
+  double seconds;
+  vectR2 p,q,r;
+  double px,py,qx,qy,rx,ry;
+  double dpq,dqr,dpr;
+  double tau;
+  double s;
+  const double delta = (max-min)/(double)(N-1);
+  int fails=0;
+  char comment[1024];          //comment to be passed to plotting function
+  char buf[1024];          //general purpose buffer
+  long n,count=0;
+  char filename[1024];
+  FILE *lptr; // pointer to log  file
+
+  if(sigma==0.0) s=0.5*pow(2,1.0/a); 
+  else           s=sigma;
+  //----------------------------------------------
+  //open log file
+  //----------------------------------------------
+  printf(         "----------------------------------------------------------------\n");
+  sprintf(comment,"Experiment: test if larc distance satisfies power triangle inequality for (a,sigma)=(%lf,%lf)",a,s); 
+  printf("%s\n",comment);
+  printf(         "----------------------------------------------------------------\n");
+  sprintf(filename,"%s",basefilename);
+  lptr=log_open (filename,time1,comment);
+
+  //----------------------------------------------
+  //sprintf(buf,"Generate fair die sequence...");printofe(lptr,buf,time1);
+  //----------------------------------------------
+  printof(lptr,"power triangle inequality test\n");
+//p.put(1,0.75);           q.put(-0.5,0.25);    r.put(1,1);      
+  p.put(1,0   );           q.put(-0.5,0.2 );    r.put(-0.5,0);   
+  printf("%6.2lf%% complete",(double)count/(double)(N*N*N*N*N*N));
+  count=0;
+  for(px=min;px<=max;px+=delta)
+    for(py=min;py<=max;py+=delta){
+      for(qx=min;qx<=max;qx+=delta)
+        for(qy=min;qy<=max;qy+=delta)
+          for(rx=min;rx<=max;rx+=delta)
+            for(ry=min;ry<=max;ry+=delta){
+              count++;
+              p.put(px,py); q.put(qx,qy); r.put(rx,ry); 
+//  p.put(1,0   );           q.put(-0.5,0.2 );    r.put(-0.5,0);   
+//  p.put(1,1   );           q.put(0.1,0.1 );    r.put(-0.1,-0.1);   
+//p.put(1,1   );           q.put(0.5,0.5 );    r.put(-0.5,-0.5);   
+//p.put(1,1   );           q.put(0.5,0.5 );    r.put(-0.5,-0.5);   
+//p.put(2,0   );           q.put(1  ,0   );    r.put(-1  , 0  );   
+//  p.put(2,0   );           q.put(1  ,0.5 );    r.put(-1  ,-0.5);   
+//p.put(2,0   );           q.put(1  ,0.5 );    r.put(-1  ,0.5);   
+p.put(1,1   );           q.put(0.05  ,0.05 );    r.put(-0.05  ,-0.05);   
+p.put(1,1   );           q.put(0.03  ,0.04 );    r.put(-0.05  ,-0.06);   
+
+//d(( 1.000000, 1.000000),(-0.052632,-0.052632))
+//  = 0.885683929273 !<= 0.857228179493
+//  = 2sigma[1/2( 0.426466)^a+1/2( 0.074432)^a]^(1/a)
+//  = 2sigma[1/2 d^a(( 1.000000, 1.000000),( 0.052632, 0.052632))
+//         + 1/2 d^a(( 0.052632, 0.052632),(-0.052632,-0.052632))]^(1/a)
+//    where (a,sigma)=(0.500000,2.000000)
+
+
+
+              dpq=larc_metric(p,q);  
+              dqr=larc_metric(q,r);  
+              dpr=larc_metric(p,r);  
+              tau=larc_tau(a,s,p,r,q);
+              if(tau-dpr<-0.000000001){
+                sprintf(buf,"\nd((%12.9lf,%12.9lf),(%12.9lf,%12.9lf))\n"
+                            "  = %.12lf !<= %.12lf\n"
+                            "  = 2sigma[1/2(%12.9lf)^a+1/2(%12.9lf)^a]^(1/a)\n"
+                            "  = 2sigma[1/2 d^a((%12.9lf,%12.9lf),(%12.9lf,%12.9lf))\n"
+                            "         + 1/2 d^a((%12.9lf,%12.9lf),(%12.9lf,%12.9lf))]^(1/a)\n"
+                            "    where (a,sigma)=(%lf,%lf)\n",
+                  p.getx(),p.gety(),r.getx(),r.gety(),
+                  dpr,tau,dpq,dqr,
+                  p.getx(),p.gety(),q.getx(),q.gety(),
+                  q.getx(),q.gety(),r.getx(),r.gety(),
+                  a,s
+                  );
+                printof(lptr,buf);
+                fails++;
+                }
+//  printf("p=(%5.2lf,%5.2lf) q=(%5.2lf,%5.2lf) r=(%5.2lf,%5.2lf) count=%ld NNNNNN=%ld\n",px,py,qx,qy,rx,ry,count,N*N*N*N*N*N);
+              }
+          printf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b%6.2lf%% complete",(double)count/(double)(N*N*N*N*N*N)*100.0);
+          }
+  printf("\ncount=%ld NNNNNN=%ld\n",count,N*N*N*N*N*N);
+  sprintf(buf,"number of fails = %d\n",fails); printof(lptr,buf);
+
+  //----------------------------------------------
+  // close log file
+  //----------------------------------------------
+  sprintf(buf,"lab_larc_pti experiment complete"); printofe(lptr,buf,time1);
+  plot_close(lptr,time1);
+  return 0;
+  }

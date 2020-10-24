@@ -4,40 +4,40 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<math.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
 
-#include<main.h>
-#include<symseq.h>
-#include<r1.h>
-#include<r2.h>
-#include<r3.h>
-#include<r4.h>
-#include<r6.h>
-#include<c1.h>
-#include<c4.h>
-#include<c6.h>
-#include<r1op.h>
-#include<r2op.h>
-#include<r3op.h>
-#include<r4op.h>
-#include<r6op.h>
-#include<elliptic.h>
-#include<larc.h>
-#include<mca.h>
-#include<euclid.h>
-#include<die.h>
-#include<realdie.h>
-#include<fairdie.h>
-#include<spinner.h>
-#include<dna.h>
-#include<dnan.h>
-#include<dft.h>
-#include<fileplot.h>
-#include<lab2015ssp.h>
+#include "main.h"
+#include "symseq.h"
+#include "r1.h"
+#include "r2.h"
+#include "r3.h"
+#include "r4.h"
+#include "r6.h"
+#include "c1.h"
+#include "c4.h"
+#include "c6.h"
+#include "r1op.h"
+#include "r2op.h"
+#include "r3op.h"
+#include "r4op.h"
+#include "r6op.h"
+#include "elliptic.h"
+#include "larc.h"
+#include "mca.h"
+#include "euclid.h"
+#include "die.h"
+#include "realdie.h"
+#include "fairdie.h"
+#include "spinner.h"
+#include "dna.h"
+#include "dnan.h"
+#include "dft.h"
+#include "fileplot.h"
+#include "lab2015ssp.h"
 
 /*-------------------------------------------------------------------------
  * generate plot files for fair die sequence
@@ -2357,7 +2357,7 @@ int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *bas
  * map nonstationary die sequence into R^1, C^1, and R^6 and 
  * use DFT to analyze
  *-------------------------------------------------------------------------*/
-int lab_die_nonstat34(const unsigned seed, const long N, const long M, const vx, const char *basefilename){
+int lab_die_nonstat34(const unsigned seed, const long N, const long M, const int vx, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   double seconds;
   const int vA=vx,vB=vx,vD=vx,vE=vx,vF=vx, vC=100-5*vx;

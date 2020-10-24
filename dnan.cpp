@@ -5,21 +5,21 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<math.h>
-#include<main.h>
-#include<symseq.h>
-#include<r1.h>
-#include<r2.h>
-#include<r3.h>
-#include<r4.h>
-#include<r6.h>
-#include<c1.h>
-#include<euclid.h>
-#include<larc.h>
-#include<dnan.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include "main.h"
+#include "symseq.h"
+#include "r1.h"
+#include "r2.h"
+#include "r3.h"
+#include "r4.h"
+#include "r6.h"
+#include "c1.h"
+#include "euclid.h"
+#include "larc.h"
+#include "dnan.h"
 
 /*=====================================
  * prototypes
@@ -234,15 +234,15 @@ void dnanseq::operator=(dnanseq y){
 /*=====================================
  * external operations
  *=====================================*/
-///*-------------------------------------------------------------------------
-// * return 1 if in domain
-// * return 0 if not in domain 
-// *-------------------------------------------------------------------------*/
-//int dnan_domain(const char c){
-//  int rval;
-//  rval=(dnan_dnatoR1(c)>=0)? 1 : 0;
-//  return rval;
-//  }
+/*-------------------------------------------------------------------------
+ * return 1 if in domain
+ * return 0 if not in domain 
+ *-------------------------------------------------------------------------*/
+int dnan_domain(const char c){
+  int rval;
+  rval=(dnan_dnatoR1(c)>=0)? 1 : 0;
+  return rval;
+  }
 
 /*-------------------------------------------------------------------------
  * map gsp face values to R^1

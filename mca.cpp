@@ -22,14 +22,14 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<main.h>
-#include<r1.h>
-#include<r2.h>
-#include<r3.h>
-#include<mca.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "main.h"
+#include "r1.h"
+#include "r2.h"
+#include "r3.h"
+#include "mca.h"
 
 /*-------------------------------------------------------------------------
  * path length s of Mean Circular Arc from a point p at polar coordinate (rp,tp)

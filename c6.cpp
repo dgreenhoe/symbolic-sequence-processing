@@ -5,16 +5,16 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<math.h>
-#include<main.h>
-#include<r1.h>
-#include<r2.h>
-#include<r6.h>
-#include<c1.h>
-#include<c6.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include "main.h"
+#include "r1.h"
+#include "r2.h"
+#include "r6.h"
+#include "c1.h"
+#include "c6.h"
 
 /*=====================================
  * csix

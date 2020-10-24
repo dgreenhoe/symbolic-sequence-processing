@@ -43,4 +43,4 @@ extern double larc_metric(const vectR6 p, const vectR6 q);
 extern int larc_findq(const vectR2 p, const double theta, const double d, const double minrq, const double maxrq, const double maxerror, const long N, vectR2 *q);
 extern vectR3 larc_findq(const vectR3 p, const double theta, const double phi, const double d, const double minrq, const double maxrq, const double maxerror, const long N);
 //extern vectR3 larc_findq(vectR3 p, double theta, double phi, double d, long int N);
-
+extern double larc_tau(const double a, const double sigma, const vectR2 p, const vectR2 q, const vectR2 r);

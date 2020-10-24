@@ -4,13 +4,14 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<main.h>
-#include<test.h>
-#include<lab2015ssp.h>
-#include<lab2015larc.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "main.h"
+#include "test.h"
+#include "bsplines.h"
+#include "lab2015ssp.h"
+#include "lab2015larc.h"
 
 /*-------------------------------------
  * prototypes
@@ -24,15 +25,20 @@ int make_2015ssp_texplots(void);
  * main
  *-------------------------------------*/
 int main(int argc, char *argv[]){
-  printf("This is ssp.exe by Daniel J. Greenhoe \n");
-  printf("  for support of version 0.50 (2016 July 04 Monday) of the text \n");
-  printf("  \"A book concerning symbolic sequence processing\" \n");
-  printf("   by Daniel J. Greenhoe \n");
+  //printf("This is opseq.exe by Daniel J. Greenhoe \n");
+  //printf("  for support of version 0.50 (2016 July 04 Monday) of the text \n");
+  //printf("  \"A book concerning symbolic sequence processing\" \n");
+  //printf("   by Daniel J. Greenhoe \n");
 
-  perform_tests();
-  make_2015ssp_texplots();
-  test_2015larc();
-  make_2015larc_data();
+  bspline_Sdat();
+  //perform_tests();
+  //make_2015ssp_texplots();
+  //test_2015larc();
+  //make_2015larc_data();
+  //lab_larc_pti(0.5, 0, -1, 1, 20, "larc_pti_05");
+  //lab_larc_pti(0.5,   0, -1, 1, 2, "tmp");
+  //lab_larc_pti(2,   0, -1, 1, 2, "tmp");
+    //         |_____________________________p
 
   return 0;
   }

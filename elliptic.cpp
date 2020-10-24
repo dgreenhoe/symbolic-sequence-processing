@@ -9,13 +9,13 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<main.h>
-#include<r1.h>
-#include<r2.h>
-#include<elliptic.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "main.h"
+#include "r1.h"
+#include "r2.h"
+#include "elliptic.h"
 
 /*-------------------------------------------------------------------------
  * normalize a point <p> with respect to the ellipse(a,b,phi,xo,yo).

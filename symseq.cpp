@@ -5,11 +5,11 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<math.h>
-#include<symseq.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include "symseq.h"
 
 /*-------------------------------------------------------------------------
  * constructor initializing symseq to '.'

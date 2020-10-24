@@ -5,22 +5,22 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<main.h>
-#include<symseq.h>
-#include<r1.h>
-#include<r2.h>
-#include<r3.h>
-#include<r4.h>
-#include<r6.h>
-#include<c1.h>
-#include<c6.h>
-#include<euclid.h>
-#include<larc.h>
-#include<die.h>
-#include<fairdie.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "main.h"
+#include "symseq.h"
+#include "r1.h"
+#include "r2.h"
+#include "r3.h"
+#include "r4.h"
+#include "r6.h"
+#include "c1.h"
+#include "c6.h"
+#include "euclid.h"
+#include "larc.h"
+#include "die.h"
+#include "fairdie.h"
 
 /*-------------------------------------------------------------------------
  * display real die metric table

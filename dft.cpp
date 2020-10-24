@@ -5,19 +5,18 @@
 /*=====================================
  * headers
  *=====================================*/
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-#include<main.h>
-#include<r1.h>
-#include<r2.h>
-#include<r4.h>
-#include<r6.h>
-#include<c1.h>
-#include<c4.h>
-#include<c6.h>
-#include<dft.h>
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "main.h"
+#include "r1.h"
+#include "r2.h"
+#include "r4.h"
+#include "r6.h"
+#include "c1.h"
+#include "c4.h"
+#include "c6.h"
+#include "dft.h"
 
 /*-------------------------------------------------------------------------
  * <n>th element of unitary Discrete Fourier Transform (DFT) of seqR1 <x>

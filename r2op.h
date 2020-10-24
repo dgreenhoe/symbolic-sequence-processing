@@ -6,9 +6,9 @@
  *                |_ c d _| 
 
  *============================================================================*/
-/*-------------------------------------------------------------------------
- * 2x2 matrix A 
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// 2x2 matrix A 
+//-----------------------------------------------------------------------------
 class mat2x2 {
   private:
     double a,b,c,d;
@@ -26,8 +26,8 @@ class mat2x2 {
     opair  row2(void){opair q(c,d); return q;}//get row2 of matrix
     vectR2 rov1(void){vectR2 q(a,b); return q;}//get row1 of matrix
     vectR2 rov2(void){vectR2 q(c,d); return q;}//get row2 of matrix
-    void  mat2x2::operator+=(mat2x2 B);       //matrix=matrix+B
-    void  mat2x2::operator-=(mat2x2 B);       //matrix=matrix-B
+    void   operator+=(mat2x2 B);               //matrix=matrix+B
+    void   operator-=(mat2x2 B);               //matrix=matrix-B
   };
 
 
