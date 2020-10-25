@@ -56,12 +56,13 @@ void cfour::put(cfour u){
 /*-------------------------------------------------------------------------
  * return the 4-tuple value
  *-------------------------------------------------------------------------*/
-cfour cfour::get(void){
+cfour cfour::get(void) const
+{
   cfour u;
   int i;
   for(i=0;i<4;i++)u.puti(i,get(i));
   return u;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * print the tuple
@@ -82,12 +83,13 @@ void cfour::list(const char *str1, const char *str2){
 /*-------------------------------------------------------------------------
  * return the 4-tuple value
  *-------------------------------------------------------------------------*/
-vectC4 vectC4::get(void){
+vectC4 vectC4::get(void) const
+{
   vectC4 u;
   int i;
   for(i=0;i<4;i++)u.puti(i,get(i));
   return u;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * conjugate
@@ -152,7 +154,7 @@ void vectC4::operator*=(double a){
 vectC4 operator*(const double a, const vectC4 y){
   vectC4 p;
   int i;
-  for(i=0;i<4;i++)p.puti(i,a*y.get(i));
+  for(i=0; i<4; i++) p.puti( i, a*y.get(i) );
   return p;
   }
 
@@ -319,7 +321,8 @@ double pqtheta(vectC4 p, vectC4 q){
 /*-------------------------------------------------------------------------
  * compute magnitude of C^1 sequence
  *-------------------------------------------------------------------------*/
-int mag(seqC4 *xC4, seqR1 *ymag){
+int mag(seqC4 *xC4, seqR1 *ymag)
+{
   long Nx=xC4->getN();
   long Ny=ymag->getN();
   long N=(Nx<Ny)?Nx:Ny;
@@ -338,7 +341,7 @@ int mag(seqC4 *xC4, seqR1 *ymag){
     ymag->put(n,vmag);
     }
   return retval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * z = x * y where * represents convolution

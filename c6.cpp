@@ -42,39 +42,42 @@ csix::csix(double ur,double ui){
 /*-------------------------------------------------------------------------
  * csix put member functions
  *-------------------------------------------------------------------------*/
-void csix::put(double ur, double ui){
+void csix::put(double ur, double ui)
+{
   int i; 
   complex p(ur,ui);
   for(i=0;i<6;i++)z[i]=p;
-  }
+}
 
-void csix::put(csix u){
+void csix::put(csix u)
+{
   int i; 
   for(i=0;i<6;i++)z[i]=u.get(i);
-  } 
+} 
 
 /*-------------------------------------------------------------------------
  * return the 6-tuple value
  *-------------------------------------------------------------------------*/
-csix csix::get(void){
+csix csix::get(void) const
+{
   csix u;
   int i;
   for(i=0;i<6;i++)u.puti(i,get(i));
   return u;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * print the tuple
  *-------------------------------------------------------------------------*/
-void csix::list(const char *str1, const char *str2){
+void csix::list(const char *str1, const char *str2) const
+{
   int i;
   if(strlen(str1)!=0)printf("%s",str1);
   putchar('(');
   for(i=0;i<5;i++)printf("%+.6lf%+.6lfi,",get(i).real(),get(i).imag());
   printf("%+.6lf%+.6lfi)",get(5).real(),get(5).imag());
   if(strlen(str2)!=0)printf("%s",str2);
-  }
-
+}
 
 /*=====================================
  * vectC6 functions
@@ -82,17 +85,19 @@ void csix::list(const char *str1, const char *str2){
 /*-------------------------------------------------------------------------
  * return the 6-tuple value
  *-------------------------------------------------------------------------*/
-vectC6 vectC6::get(void){
+vectC6 vectC6::get(void) const
+{
   vectC6 u;
   int i;
   for(i=0;i<6;i++)u.puti(i,get(i));
   return u;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * conjugate
  *-------------------------------------------------------------------------*/
-vectC6 vectC6::conj(void){
+vectC6 vectC6::conj(void) const
+{
   complex z,zc;
   vectC6 u;
   int i;
@@ -102,12 +107,13 @@ vectC6 vectC6::conj(void){
     u.puti(i,zc);
     }
   return u;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * magnitude
  *-------------------------------------------------------------------------*/
-double vectC6::mag(void){
+double vectC6::mag(void) const
+{
   int i;
   complex u;
   double sum=0;
@@ -116,7 +122,7 @@ double vectC6::mag(void){
     sum += u.magsq();
     }
   return sqrt(sum);
-  }
+}
 
 /*-------------------------------------------------------------------------
  * operator: +=
@@ -245,7 +251,8 @@ void seqC6::fill(double ur,double ui){
 //  return retval;
 //  }
 
-int seqC6::put(long n, vectC6 u){
+int seqC6::put(long n, vectC6 u)
+{
   int retval=0;
   if(n<N)x[n].put(u);
   else{   
@@ -253,7 +260,7 @@ int seqC6::put(long n, vectC6 u){
     retval=-1;
     }
   return retval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * list contents of sequence

@@ -136,28 +136,32 @@ int seqR2::put(long n, vectR2 xya){
 /*-------------------------------------------------------------------------
  * get a single value from the seqR1 x at location n
  *-------------------------------------------------------------------------*/
-vectR2 seqR2::get(long n){
+vectR2 seqR2::get(const long n) const
+{
   vectR2 xya(0,0);
   if(n<N)xya=xy[n];
   else   fprintf(stderr,"n=%ld larger than seqR1 size N=%ld\n",n,N);
   return xya;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * get a single value from the seqR1 x,y, or z at location n
  *-------------------------------------------------------------------------*/
-double seqR2::getx(long n){
+double seqR2::getx(const long n) const
+{
   double u=0;
   if(n<N)u=xy[n].getx();
   else   fprintf(stderr,"n=%ld larger than x seqR1 size N=%ld\n",n,N);
   return u;
-  }
-double seqR2::gety(long n){
+}
+
+double seqR2::gety(const long n) const
+{
   double u=0;
   if(n<N)u=xy[n].gety();
   else   fprintf(stderr,"n=%ld larger than y seqR1 size N=%ld\n",n,N);
   return u;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * list contents of sequence
@@ -198,15 +202,17 @@ void seqR2::list1(long start, long end){
 /*-------------------------------------------------------------------------
  * return the largest pair of values in the seqR1 as measured by norm()
  *-------------------------------------------------------------------------*/
-double seqR2::norm(long n){
+double seqR2::norm(const long n) const
+{
   vectR2 xya=get(n);
   return xya.norm();
-  }
+}
 
 /*-------------------------------------------------------------------------
  * return the largest pair of values in the seqR1 as measured by norm()
  *-------------------------------------------------------------------------*/
-vectR2 seqR2::max(int verbose){
+vectR2 seqR2::max(const int verbose) const
+{
   long n;
   double maxnorm=0;
   long   maxn=0;
@@ -219,7 +225,7 @@ vectR2 seqR2::max(int verbose){
         printf("max=(%lf,%lf) at n=%ld\n",maxpair.getx(),maxpair.gety(),n);
     }
   return maxpair;
-  }
+}
 
 /*=====================================
  * external operations

@@ -390,7 +390,8 @@ double dnan_metric(const char a, const char b){
  * where d(a,b) is defined above.
  * On success return d(x,y). On error return -1.
  *-------------------------------------------------------------------------*/
-double dnan_metric(dnanseq x, dnanseq y){
+double dnan_metric(dnanseq x, dnanseq y)
+{
   double rval,d;
   long n;
   long N=x.getN();
@@ -405,23 +406,25 @@ double dnan_metric(dnanseq x, dnanseq y){
     else d+=rval;
     }
   return d;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a dna sequence x with 2N offset
  *-------------------------------------------------------------------------*/
-int dnanseq::Rxxo(const seqR1 *rxx, const int showcount){
+int dnanseq::Rxxo(seqR1 *rxx, const int showcount) const
+{
   const long N=getN();
   int rval;
   rval=Rxx(rxx,showcount);
   rxx->add(2*N);
   return rval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a dna sequence x
  *-------------------------------------------------------------------------*/
-int dnanseq::Rxx(const seqR1 *rxx, const int showcount){
+int dnanseq::Rxx(seqR1 *rxx, const int showcount) const
+{
   long m;
   const long N=getN();
   int rval=0;
@@ -436,12 +439,13 @@ int dnanseq::Rxx(const seqR1 *rxx, const int showcount){
     }
   if(showcount)fprintf(stderr,"%8ld .... done.\n",m+N);
   return rval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx(m)
  *-------------------------------------------------------------------------*/
-double dnanseq::Rxx(const long m){
+double dnanseq::Rxx(const long m) const
+{
   const long mm=labs(m);
   const long N=getN();
   long n,nmm;
@@ -455,13 +459,13 @@ double dnanseq::Rxx(const long m){
     sum+=d;
     }
   return -sum;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * read dna seqR1 from file in FASTA format
  * reference: https://www.genomatix.de/online_help/help/sequence_formats.html
  *-------------------------------------------------------------------------*/
-int read_fasta_file(const char *filename, char *description, const dnanseq *x){
+int read_fasta_file(const char *filename, char *description, dnanseq *x){
   FILE *fptr;
   int bufN,i;
   long n;

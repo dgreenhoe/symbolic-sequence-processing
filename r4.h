@@ -12,21 +12,21 @@ class oquad {
     oquad(double u0, double u1, double u2, double u3);
     oquad(double u);
     oquad  get(void);
-    void   list(const char *str1, const char *str2);
-    void   list(void) { list("","");}
-    void   list(const char *str){list(str,"\n");}
-    void   listn(void){ list("","\n"); }
-    double get(int n) { return x[n];   }
-    double get1(void) { return x[0];   };                      //get component x1
-    double get2(void) { return x[1];   };                      //get component x2
-    double get3(void) { return x[2];   };                      //get component x3
-    double get4(void) { return x[3];   };                      //get component x4
+    void   list(const char *str1, const char *str2) const;
+    void   list(void) const { list("","");}
+    void   list(const char *str) const {list(str,"\n");}
+    void   listn(void)const { list("","\n"); }
+    double get(int n) const { return x[n];   }
+    double get1(void) const { return x[0];   };                      //get component x1
+    double get2(void) const { return x[1];   };                      //get component x2
+    double get3(void) const { return x[2];   };                      //get component x3
+    double get4(void) const { return x[3];   };                      //get component x4
     void   put(double u0, double u1, double u2, double u3){ x[0]=u0; x[1]=u1; x[2]=u2; x[3]=u3; }
     void   put(int n,double u){ x[n] = u; }
     void   put(double u);
     void   put(oquad u);
-    double max(void);
-    double min(void);
+    double max(void) const ;
+    double min(void) const ;
     void   clear(void){ put(0); }
   };
 
@@ -45,13 +45,13 @@ class vectR4: public oquad {
     vectR4(double u) : oquad(u){};
     vectR4(void) : oquad(){}; 
     const vectR4 get(void);
-    double get(int i){return oquad::get(i);}
-    double mag(void);
-    double norm(void){return mag();}
-    double r(void)   {return mag();}
-    void   operator+=(vectR4 q); 
-    void   operator-=(vectR4 q); 
-    void   operator*=(double a);
+    double mag(void)  const;
+    double norm(void) const { return mag(); }
+    double r(void)    const { return mag(); }
+    double get(int i) const { return oquad::get(i); }
+    void   operator += (vectR4 q); 
+    void   operator -= (vectR4 q); 
+    void   operator *= (double a);
     inline vectR4 operator* (double a){vectR4 u(a*get1(),a*get2(),a*get3(),a*get4()); return u;}
   };
 

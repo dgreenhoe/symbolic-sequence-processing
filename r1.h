@@ -27,15 +27,15 @@ class seqR1 {
     void   shiftR(long n);               //shift seqR1 n elements to the right
     void   randomize(unsigned seed);     //
     void   randomize(unsigned seed, int min, int max); //
-    double get(long n);                  //get a value from x at location x
-    long   getN(void){return N;}         //get N
-    double first(void){return x[0];}     //get the first value of the sequence
-    double last(void){return x[N-1];}    //get the last value of the sequence
-    double max(const long start,const long end); //maximum value of sequence
-    double max(void){return max(0,N-1);}         //maximum value of sequence
-    double max(int mode);                //return max absolute value in sequence
-    double min(const long start,const long end); //minimum value of sequence
-    double min(void){return min(0,N-1);}         //minimum value of sequence
+    double get(long n) const;            //get a value from x at location x
+    long   getN(void) const {return N;}  //get N
+    double first(void)const {return x[0];}     //get the first value of the sequence
+    double last(void) const { return x[N-1]; }    //get the last value of the sequence
+    double max(const long start,const long end) const; //maximum value of sequence
+    double max(void) const {return max(0,N-1);}         //maximum value of sequence
+    double max(const int mode) const;                //return max absolute value in sequence
+    double min(const long start,const long end) const; //minimum value of sequence
+    double min(void) const {return min(0,N-1);}         //minimum value of sequence
 //    long   gte(const double threshold,const long start, const long end, const char *str1, const char *str2, FILE *fptr);
 //    long   gte(double threshold){return gte(threshold,0,N-1,"","",NULL);} //
 //    long   gte(double threshold, FILE *fptr){return gte(threshold,0,N-1,"","",fptr);} //

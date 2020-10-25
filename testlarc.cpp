@@ -57,7 +57,7 @@ int test_vectR2(void){
   p.put(2,-3); q.put(-5,7);        printf("(%lf,%lf)*(%lf,%lf)=%lf\n",p.getx(),p.gety(),q.getx(),q.gety(),p^q);
   q=p; q&=(PI/2);                  printf("rotate(%lf,%lf)by 90degrees = (%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
   q=p; q&=(PI);                    printf("rotate(%lf,%lf)by 180degrees = (%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
-  p.clear();                       printf("clear operation--> (%lf,%lf)\n",p.getx(),p.gety(),p.norm());
+  p.clear();                       printf("clear operation--> (%lf,%lf)\n",p.getx(),p.gety() );
   return 0;
   }
 
@@ -79,7 +79,7 @@ int test_complex(void){
   p.put(2,-3); q.put(-5,7); s=p*q; printf("(%lf,%lf)*(%lf,%lf)=(%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety(),s.getx(),s.gety());
   q=p; q&=(PI/2);                  printf("rotate(%lf,%lf)by 90degrees = (%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
   q=p; q&=(PI);                    printf("rotate(%lf,%lf)by 180degrees = (%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
-  p.clear();                       printf("clear operation--> (%lf,%lf)\n",p.getx(),p.gety(),p.norm());
+  p.clear();                       printf("clear operation--> (%lf,%lf)\n",p.getx(),p.gety());
   return 0;
   }
 

@@ -41,7 +41,7 @@
 #--------------------------------------
  set( FLAGS_COMPILE
       #-v
-      -fpermissive
+      #-fpermissive
       -Wall
       -Wno-write-strings
       -Wno-return-type

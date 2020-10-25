@@ -14,10 +14,10 @@ class fdieseq: public dieseq {
     fdieseq(const long M,const unsigned seed) : dieseq(M,seed){};
     void operator=(dieseq y);     //x=y
     int metrictbl(void);
-    double Rxx(const long m);
-    int Rxx(const seqR1 *Rxx, const int showcount);
-    int Rxx(const seqR1 *Rxy, const int showcount,const long N, const long M, const long start, const long finish);
-    int Rxxo(const seqR1 *rxx, const int showcount);
+    double Rxx(const long m) const;
+    int Rxx(  seqR1 *Rxx, const int showcount ) const;
+    int Rxx(  seqR1 *Rxy, const int showcount,const long N, const long M, const long start, const long finish) const;
+    int Rxxo( seqR1 *rxx, const int showcount ) const;
     seqR6 dietoR6(void);         //map die face values to R^6
   };
 

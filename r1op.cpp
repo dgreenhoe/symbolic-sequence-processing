@@ -26,7 +26,7 @@ double rms(seqR1 *x, long start, long end){
   long n;
   double xn,sum,avg,rms;
   if(start<0){
-    fprintf(stderr,"\nERROR using y=rms(seqR1 *x,start,end): start = %ld < 0\n and ymag (%ld).\n",start);
+    fprintf(stderr,"\nERROR using y=rms(seqR1 *x,start,end): start = %ld < 0\n",start);
     exit(EXIT_FAILURE);
     }
   if(end>=Nx){
@@ -79,14 +79,14 @@ void convolve(seqR1 *x, seqR1 *y, seqR1 *z, int showcount){
   const long Nx=x->getN();
   const long Ny=y->getN();
   const long Nz=z->getN();
-  long n,m,nm;
+  long n=0,m,nm;
   double u,sum;
   double v;
   if(Nz!=Nx+Ny-1){//check length of *z
     fprintf(stderr,"\nERROR using using convolve(seqR1 *x, seqR1 *y, seqR1 *z): %ld = Nz != Nx+Ny-1 = %ld+%ld-1 = %ld\n",Nz,Nx,Ny,Nx+Ny-1);
     exit(EXIT_FAILURE);
     }
-  if(showcount)fprintf(stderr,"%10ld  ",0);
+  if(showcount)fprintf(stderr,"%10ld  ", n);
   for(n=0;n<Nz;n++){
     if(showcount)fprintf(stderr,"\b\b\b\b\b\b\b\b\b\b\b\b%10ld  ",n);
     sum=0;
@@ -131,10 +131,10 @@ int sin(seqR1 *x, seqR1 *y){
  * into the sequence <*y> = [y_0     ... y_{N-1}] 
  * where N = end-start+1
  *-------------------------------------------------------------------------*/
-void copy(const long start, const long end, const seqR1 *x, const seqR1 *y){
+void copy(const long start, const long end, const seqR1 *x, seqR1 *y){
   long Nx=x->getN();
   long Ny=y->getN();
-  long n,m;
+  long n;
   double xx;
   y->clear();
   if(end>=Nx){
@@ -155,7 +155,7 @@ void copy(const long start, const long end, const seqR1 *x, const seqR1 *y){
  * downsample the sequence <x> by a factor <M> resulting in a sequence <y>
  * return 0 on success
  *-------------------------------------------------------------------------*/
-int downsample(const long M, const seqR1 *x, const seqR1 *y){
+int downsample(const long M, const seqR1 *x, seqR1 *y){
   long Nx=x->getN();
   long Ny=y->getN();
   long n,m;

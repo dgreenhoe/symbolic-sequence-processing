@@ -528,7 +528,7 @@ double dna_metric(dnaseq x, dnaseq y){
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a dna sequence x with 2N offset
  *-------------------------------------------------------------------------*/
-int dnaseq::Rxxo(const seqR1 *rxx, const int showcount){
+int dnaseq::Rxxo(seqR1 *rxx, const int showcount){
   const long N=getN();
   int rval;
   rval=Rxx(rxx,showcount);
@@ -539,7 +539,7 @@ int dnaseq::Rxxo(const seqR1 *rxx, const int showcount){
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a dna sequence x
  *-------------------------------------------------------------------------*/
-int dnaseq::Rxx(const seqR1 *rxx, const int showcount){
+int dnaseq::Rxx(seqR1 *rxx, const int showcount){
   long m;
   const long N=getN();
   int rval=0;

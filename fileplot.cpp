@@ -502,7 +502,7 @@ int plot_ocs_auto(const seqR1 *Rxx, const long Nhw, const time_t time1, const ch
   fprintf(fptr,"    %%-----------------------------------------\n");
   fprintf(fptr,"    %% re-plot left side of center spike for better clarity\n");
   fprintf(fptr,"    %%-----------------------------------------\n");
-  fprintf(fptr,"    \\psline(-1,%10.3lf)(0,%10.3lf)%\n",Rxx->get(N-1),Rxx->get(N));
+  fprintf(fptr,"    \\psline(-1,%10.3lf)(0,%10.3lf)\n",Rxx->get(N-1),Rxx->get(N));
   fprintf(fptr,"  \\end{pspicture}%%\n");
   fprintf(fptr,"\\end{document}%%\n");
   time(&time2);
@@ -600,7 +600,7 @@ int plot_R1_seq(const seqR1 *x, const long start, const long finish, const long 
   fprintf(fptr,"    %%----------------------------------------\n");
   fprintf(fptr,"    %% data points\n");
   fprintf(fptr,"    %%----------------------------------------\n");
-  fprintf(fptr,"    \\psline",n,xn);
+  fprintf(fptr,"    \\psline");
   for(n=start,m=0;n<=finish;n+=M,m++){
     xn=x->get(n);
     fprintf(fptr,"(%5ld,%12.6lf)",n,xn);
@@ -695,7 +695,7 @@ int plot_dft_seq(const seqR1 *x, const long start, const long finish,const doubl
   fprintf(fptr,"    %%----------------------------------------\n");
   fprintf(fptr,"    %% data points\n");
   fprintf(fptr,"    %%----------------------------------------\n");
-  fprintf(fptr,"    \\psline",n,xn);
+  fprintf(fptr,"    \\psline");
   for(n=start,m=0;n<=finish;m++){
     xn=x->get(n);
     fprintf(fptr,"(%5ld,%12.6lf)",n,10.0*log10(xn));
@@ -760,13 +760,12 @@ void printoft(FILE *fptr, const char *str){
  *-------------------------------------------------------------------------*/
 void printoft(FILE *fptr, const char *str, const time_t time1){
   time_t time2;time(&time2);
-  double seconds=difftime(time2,time1);
   struct tm *gmt;
   gmt = gmtime(&time2);
   char tbuffer[80];
   strftime(tbuffer,80,"%Y %B %d %A %I:%M:%S %p UTC",gmt);
-  fprintf(stdout,"%s [%s]\n",str,tbuffer,seconds);
-  fprintf(fptr,"%s [%s]\n",str,tbuffer,seconds);
+  fprintf(stdout,"%s [%s]\n",str,tbuffer);
+  fprintf(fptr,"%s [%s]\n",str,tbuffer);
   }
 
 /*-------------------------------------------------------------------------

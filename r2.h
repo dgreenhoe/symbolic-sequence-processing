@@ -13,9 +13,9 @@ class opair {
     opair(void){x=0; y=0;}                   //constructor using no arguments (set to 0,0)
     void clear(void){x=0; y=0;} //set (x,y)=(u,v)
     void   put(double u,double v){x=u; y=v;} //set (x,y)=(u,v)
-    opair get(void){opair p(getx(),gety()); return p;}
-    double getx(void){return x;}            //get component x
-    double gety(void){return y;}            //get component y
+    opair  get(void)  const {opair p(getx(),gety()); return p;}
+    double getx(void) const {return x;}            //get component x
+    double gety(void) const {return y;}            //get component y
     void  list(const char* str1, const char *str2, FILE *ptr);
     void  list(const char* str1, const char *str2){list(str1,str2,NULL);}
     void  list(FILE *fptr){list("","",fptr);} //list contents of sequence
@@ -34,8 +34,8 @@ class vectR2: public opair {
     vectR2(double u, double v) : opair(u,v){};      //constructor using 2 long float arguments
     vectR2(double u) : opair(u){};                //constructor using 1 long float argument
     vectR2(void) : opair(){};                   //constructor using no arguments (set to 0,0)
-    double mag(void){return sqrt(getx()*getx()+gety()*gety());}
-    double norm(void){return mag();}
+    double mag(void)  const {return sqrt(getx()*getx()+gety()*gety());}
+    double norm(void) const {return mag();}
     double theta(void);                      //polar rotation coordinate of opair in R^2
     void polartoxy(double r, double theta){put(r*cos(theta),r*sin(theta));}
     void   add(double u, double v){put(getx()+u, gety()+v);} //p=p+q
@@ -67,11 +67,11 @@ class seqR2 {
     void   inc(double x0, double y0,double dx, double dy);
     int    put(long n, vectR2 xy);   //put a value <u> at location n in seq.
     int    put(long n, double u, double v);
-    vectR2 get(long n);              //get a value from x at location n
-    double getx(long n);             //get a value from x at location n
-    double gety(long n);             //get a value from x at location n
-    long   getN(void){return N;}     //get N
-    double norm(long n);             //norm of element x_n
+    vectR2 get(const long n)  const ;              //get a value from x at location n
+    double getx(const long n) const ;             //get a value from x at location n
+    double gety(const long n) const ;             //get a value from x at location n
+    long   getN(void)         const {return N;}     //get N
+    double norm(const long n) const ;             //norm of element x_n
     void list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
     void list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
          if(display) list(start,end,str1,str2,stdout);
@@ -86,8 +86,8 @@ class seqR2 {
     void   list1(void);               //list contents of seq. using 1 space each
     void   list1(long start, long end);//
     void   test(void);
-    vectR2 max(int verbose);        
-    vectR2 max(void){return max(0);}   //max mode=0=no print        
+    vectR2 max(const int verbose) const;
+    vectR2 max(void) const {return max(0);}   //max mode=0=no print        
   };
 
 /*=====================================

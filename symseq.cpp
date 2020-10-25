@@ -53,20 +53,22 @@ void symseq::clear(void){
 /*-------------------------------------------------------------------------
  * get a symbol from the symseq x at location n
  *-------------------------------------------------------------------------*/
-char symseq::get(const long n) const{
+char symseq::get(const long n) const 
+{
   if(n<0 || n>=N){//domain check
     fprintf(stderr,"ERROR using symseq::get(n): n=%ld outside the domain [0:%ld] of the sequence.\n",n,N);
     exit(EXIT_FAILURE);
     }
   return x[n];
-  }
+}
 
 /*-------------------------------------------------------------------------
  * get a symbol from the symseq x at location n
  * but exit if symbol is not in the string <range>
  * example: symbol=get(n,"ABCDEF");
  *-------------------------------------------------------------------------*/
-char symseq::get(const long n,char *range){
+char symseq::get(const long n,char *range) const
+{
   int match;
   char *sptr;
   char symbol;
@@ -81,7 +83,7 @@ char symseq::get(const long n,char *range){
     exit(EXIT_FAILURE);
     }
   return symbol;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * put a single value from the symseq x at location n

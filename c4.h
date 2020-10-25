@@ -10,12 +10,12 @@ class cfour {
   public:
     cfour(void);
     cfour(double ur, double ui);
-    cfour   get(void);
-    complex get (int n){return z[n];}
-    complex get1(void){return z[0];}
-    complex get2(void){return z[1];}
-    complex get3(void){return z[2];}
-    complex get4(void){return z[3];}
+    cfour   get(void)   const ;
+    complex get (int n) const { return z[n]; }
+    complex get1(void)  const { return z[0]; }
+    complex get2(void)  const { return z[1]; }
+    complex get3(void)  const { return z[2]; }
+    complex get4(void)  const { return z[3]; }
     void puti(int i,complex uv){z[i]=uv;}
     void put(cfour uv);
     void put(double ur,double ui);
@@ -39,8 +39,8 @@ class vectC4: public cfour {
   public:
     vectC4(double ur, double ui) : cfour(ur,ui){};
     vectC4(void) : cfour(){}; 
-    vectC4 get(void);
-    complex get(int i){return cfour::get(i);}
+    vectC4  get(void)  const;
+    complex get(int i) const { return cfour::get(i); }
     vectC4 conj(void);
     double mag(void);
     double norm(void){return mag();}
@@ -61,18 +61,18 @@ class seqC4 {
     void clear(void){fill(0,0);}    //fill seqR1 with the value 0
     int  put(long n, vectC4 xyz);       //put a value <u> at location n in seq.
     int  put(long n, double u1,double u2,double u3,double u4);
-    vectC4 get  (long n){return x[n].get();}   //get a value from x at location n
-    complex get1(long n){return x[n].get1();}  //get a value from x1 at location n
-    complex get2(long n){return x[n].get2();}  //get a value from x2 at location n
-    complex get3(long n){return x[n].get3();}  //get a value from x3 at location n
-    complex get4(long n){return x[n].get4();}  //get a value from x4 at location n
-    long   getN(void){return N;}      //get N
-    void   list(long start, long end);//list contents of sequence
-    void   list(void){list(0,N-1);}   //list contents of sequence
-    void   list1(long start, long end,char *str1,char *str2);//
-    void   list1(long start, long end){list1(start,end,"","");}//
-    void   list1(void){list1(0,N-1);}  //list contents of seq. using 1 space each
-    void   test(void);
+    vectC4  get (long n) const { return x[n].get();  }  //get a value from x at location n
+    complex get1(long n) const { return x[n].get1(); }  //get a value from x1 at location n
+    complex get2(long n) const { return x[n].get2(); }  //get a value from x2 at location n
+    complex get3(long n) const { return x[n].get3(); }  //get a value from x3 at location n
+    complex get4(long n) const { return x[n].get4(); }  //get a value from x4 at location n
+    long    getN(void)   const { return N; }      //get N
+    void    list(long start, long end);//list contents of sequence
+    void    list(void){list(0,N-1);}   //list contents of sequence
+    void    list1(long start, long end,char *str1,char *str2);//
+    void    list1(long start, long end){list1(start,end,"","");}//
+    void    list1(void){list1(0,N-1);}  //list contents of seq. using 1 space each
+    void    test(void);
   };
 
 /*=====================================

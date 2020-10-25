@@ -11,13 +11,13 @@ class otriple {
     otriple(double u, double v, double w){x=u;y=v;z=w;}    //constructor
     otriple(double u){x=u;y=u;z=u;}                        //constructor
     otriple(void){x=0; y=0; z=0;}                          //constructor
-    void put(double u,double v,double w){x=u;y=v;z=w;}//(x,y,z)=(u,v,w)
-    void clear(void){x=0; y=0; z=0;}
-    double getx(void){return x;};                        //get component x
-    double gety(void){return y;};                        //get component y
-    double getz(void){return z;};                        //get component z
-    double max(void);
-    double min(void);
+    void   put(double u,double v,double w){x=u;y=v;z=w;}//(x,y,z)=(u,v,w)
+    void   clear(void) {x=0; y=0; z=0;}
+    double getx(void) const {return x;};                  //get component x
+    double gety(void) const {return y;};                  //get component y
+    double getz(void) const {return z;};                  //get component z
+    double max(void) const;
+    double min(void) const;
   };
 
 /*-------------------------------------------------------------------------
@@ -33,8 +33,8 @@ class vectR3: public otriple {
     vectR3(double u, double v, double w) : otriple(u,v,w){};      //constructor using 2 long float arguments
     vectR3(double u) : otriple(u){};                //constructor using 1 long float argument
     vectR3(void) : otriple(){};                   //constructor using no arguments (set to 0,0)
-    double mag(void){return sqrt(getx()*getx()+gety()*gety()+getz()*getz());};//norm of ordered pair
-    double norm(void){return mag();}
+    double mag(void) const {return sqrt(getx()*getx()+gety()*gety()+getz()*getz());};//norm of ordered pair
+    double norm(void) const {return mag();}
     void polartoxyz(double r, double theta,double phi){put(r*cos(phi)*cos(theta),r*cos(phi)*sin(theta),r*sin(phi));}//set (x,y,z) using polar coordinates (r,theta,phi)
     void  operator+=(vectR3 q){put(getx()+q.getx(), gety()+q.gety(), getz()+q.getz());} //p=p+q
     void  operator-=(vectR3 q){put(getx()-q.getx(), gety()-q.gety(), getz()-q.getz());} //p=p-q

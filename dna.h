@@ -25,8 +25,8 @@ class dnaseq: public symseq {
     seqR1  dnatoR1bin(void);    //map dna sequence to R^1 using AT-CG binary scheme
     seqR4  dnatoR4(void);         //map dna sequence to R^4 
     double Rxx (const long m);
-    int    Rxx (const seqR1 *Rxx, const int showcount);
-    int    Rxxo(const seqR1 *rxx, const int showcount);
+    int    Rxx ( seqR1 *Rxx, const int showcount);
+    int    Rxxo( seqR1 *rxx, const int showcount);
 
     seqR1  histogram(const long start, const long end, int display, FILE *fptr);//compute, display, and write histogram 
     seqR1  histogram(){return histogram(0,getN()-1,0,NULL);}//compute histogram

@@ -38,18 +38,20 @@ int fdieseq::metrictbl(void){
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a fair die seqR1 x with 2N offset
  *-------------------------------------------------------------------------*/
-int fdieseq::Rxxo(const seqR1 *rxx, const int showcount){
+int fdieseq::Rxxo(seqR1 *rxx, const int showcount) const
+{
   const long N=getN();
   int rval;
   rval=Rxx(rxx,showcount);
   rxx->add(2*N);
   return rval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a fair die seqR1 x
  *-------------------------------------------------------------------------*/
-int fdieseq::Rxx(const seqR1 *rxx, const int showcount){
+int fdieseq::Rxx(seqR1 *rxx, const int showcount) const
+{
   long m;
   const long N=getN();
   int rval=0;
@@ -64,12 +66,13 @@ int fdieseq::Rxx(const seqR1 *rxx, const int showcount){
     }
   if(showcount)fprintf(stderr,"%8ld .... done.\n",m+N);
   return rval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx(m)
  *-------------------------------------------------------------------------*/
-double fdieseq::Rxx(const long m){
+double fdieseq::Rxx(const long m) const
+{
   const long mm=labs(m);
   const long N=getN();
   long n,nmm;
@@ -77,13 +80,13 @@ double fdieseq::Rxx(const long m){
   char a,b;
   for(n=0,sum=0;n<(N+mm);n++){
     nmm=n-mm;
-    a=(n  <0 || n  >=N)? 0.0 : get(n);
-    b=(nmm<0 || nmm>=N)? 0.0 : get(nmm);
-    d=(a==0 || b==0)?    1.0 : fdie_metric(a,b);
+    a = (n  <0 || n  >=N)? 0.0 : get(n);
+    b = (nmm<0 || nmm>=N)? 0.0 : get(nmm);
+    d = (a ==0 || b  ==0)? 1.0 : fdie_metric(a,b);
     sum+=d;
     }
   return -sum;
-  }
+}
 
 
 //

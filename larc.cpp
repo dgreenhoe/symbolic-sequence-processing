@@ -96,7 +96,8 @@ double larc_indefint(double rp, double rq, double thetap, double thetaq, double 
  * Lagrange arc metric from <p> to <q> in R^2
  *-------------------------------------------------------------------------*/
 double larc_metric(const vectR2 p, const vectR2 q){
-  const double rp=p.mag(), rq=q.mag();
+  const double rp  = p.mag();
+  const double rq  = q.mag();
   const double phi = pqtheta(p,q);
   const vectR2  pq=p-q;
   double d;
@@ -201,7 +202,7 @@ double larcc::arclength(long int N){
   double sum=0;
   double rp=p.mag(),     rq=q.mag();
   double tdiff=pqtheta(p,q);
-  double tp=0, tq=tdiff;
+  double tp=0;
   double theta=tp;
   long int n;
   vectR2 p1,p2;

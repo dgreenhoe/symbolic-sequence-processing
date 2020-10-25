@@ -60,7 +60,8 @@ oquad oquad::get(void){
 /*-------------------------------------------------------------------------
  * return the minimum element of the 4 tupple
  *-------------------------------------------------------------------------*/
-double oquad::min(void){
+double oquad::min(void) const
+{
   int i;
   double u,min;
   min=fabs(x[0]);
@@ -74,7 +75,8 @@ double oquad::min(void){
 /*-------------------------------------------------------------------------
  * return the maximum element of the 4 tupple
  *-------------------------------------------------------------------------*/
-double oquad::max(void){
+double oquad::max(void) const
+{
   int i;
   double u,max;
   max=fabs(x[0]);
@@ -83,19 +85,20 @@ double oquad::max(void){
     if(u>max) max=u;
     }
   return max;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * print the tuple
  *-------------------------------------------------------------------------*/
-void oquad::list(const char *str1, const char *str2){
+void oquad::list(const char *str1, const char *str2) const
+{
   int i;
   if(strlen(str1)!=0)printf("%s",str1);
   putchar('(');
   for(i=0;i<5;i++)printf("%9.6lf,",get(i));
   printf("%9.6lf)",get(5));
   if(strlen(str2)!=0)printf("%s",str2);
-  }
+}
 
 
 /*=====================================
@@ -114,7 +117,8 @@ const vectR4 vectR4::get(void){
 /*-------------------------------------------------------------------------
  * magnitude
  *-------------------------------------------------------------------------*/
-double vectR4::mag(void){
+double vectR4::mag(void) const
+{
   int i;
   double u;
   double sum=0;
@@ -316,7 +320,8 @@ vectR4 operator-(vectR4 p){
  * on ERROR   return negative value or exit with value EXIT_FAILURE
  *-------------------------------------------------------------------------*/
 double pqtheta(const vectR4 p, const vectR4 q){
-  const double rp=p.r(), rq=q.r();
+  const double rp = p.r();
+  const double rq = q.r();
   double y,theta;
   if(rp==0) return -1;
   if(rq==0) return -2;

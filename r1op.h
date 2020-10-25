@@ -22,7 +22,7 @@ extern int sin(seqR1 *x,seqR1 *y);
 extern int sin(double u, seqR1 *y);
 extern int cos(seqR1 *x,seqR1 *y);
 extern int cos(double u, seqR1 *y);
-extern void copy(const long start, const long end, const seqR1 *x, const seqR1 *y);
-extern int downsample(const long M, const seqR1 *x,const seqR1 *y);
+extern void copy(const long start, const long end, const seqR1 *x, seqR1 *y);
+extern int downsample(const long M, const seqR1 *x, seqR1 *y);
 
 

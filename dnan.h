@@ -13,7 +13,7 @@ class dnanseq: public symseq {
     int    randomize(unsigned seed,int wA,int wT,int wC,int wG,int wN){srand(seed);return randomize(0,getN()-1,wA,wT,wC,wG,wN);}
     int    randomize(int wA,int wT,int wC,int wG, int wN){return randomize(0,getN()-1,wA,wT,wC,wG,wN);}
     int    randomize(long start, long end, unsigned seed,int wA,int wT,int wC,int wG,int wN){srand(seed);return randomize(start,end,wA,wT,wC,wG,wN);}
-    char   get(long n){return symseq::get(n,"ATCGN");}     //get a value from x at location n
+    char   get(long n) const {return symseq::get(n,"ATCGN");}     //get a value from x at location n
     void   put(long n, char symbol){symseq::put(n,symbol);}
     void   put(dnanseq *y, const long n, const char symbol);
     void   put(dnanseq *y, long n){return put(y,n,'.');}
@@ -25,9 +25,9 @@ class dnanseq: public symseq {
     seqR1  dnantoR1pam(void);      //map dnan sequence to R^1 using PAM scheme (symmetric about zero)
     seqR1  dnantoR1bin(void);    //map dnan sequence to R^1 using AT-CG binary scheme
     seqR4  dnantoR4(void);         //map dnan sequence to R^4 
-    double Rxx (const long m);
-    int    Rxx (const seqR1 *Rxx, const int showcount);
-    int    Rxxo(const seqR1 *rxx, const int showcount);
+    double Rxx (const long m) const;
+    int    Rxx (seqR1 *Rxx, const int showcount) const;
+    int    Rxxo(seqR1 *rxx, const int showcount) const;
     seqR1  histogram(const long start, const long end, int display, FILE *fptr);//compute, display, and write histogram 
     seqR1  histogram(){return histogram(0,getN()-1,0,NULL);}//compute histogram
     seqR1  histogram(const long start, const long end){return histogram(start,end,0,NULL);}//compute histogram
@@ -37,7 +37,7 @@ class dnanseq: public symseq {
   };
 
 extern long numsym_fasta_file(const char *filename);
-extern int read_fasta_file(const char *filename, char *description, const dnanseq *x);
+extern int read_fasta_file(const char *filename, char *description, dnanseq *x);
 extern int dnan_domain(const char c);
 extern vectR2 dnan_dnatoR2(const char c);
 extern double dnan_dnatoR1(const char c);

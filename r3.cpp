@@ -231,7 +231,8 @@ double pqtheta(const vectR3 p, const vectR3 q){
 /*-------------------------------------------------------------------------
  * return the minimum element of the 6 tupple
  *-------------------------------------------------------------------------*/
-double otriple::min(void){
+double otriple::min(void) const
+{
   int i;
   double u,min;
   double x[3];
@@ -242,12 +243,13 @@ double otriple::min(void){
     if(u<min) min=u;
     }
   return min;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * return the maximum element of the 6 tupple
  *-------------------------------------------------------------------------*/
-double otriple::max(void){
+double otriple::max(void) const
+{
   int i;
   double u,max;
   double x[3];
@@ -258,6 +260,4 @@ double otriple::max(void){
     if(u>max) max=u;
     }
   return max;
-  }
-
-
+}

@@ -123,13 +123,14 @@ const int seqR1::add(const double u){
 /*-------------------------------------------------------------------------
  * get a single value from the seqR1 x at location n
  *-------------------------------------------------------------------------*/
-double seqR1::get(long n){
+double seqR1::get(long n) const
+{
   if(n>=N){
     fprintf(stderr,"\nERROR using seqR1::get(n): index n=%ld larger than sequence length N=%ld\n",n,N);
     exit(EXIT_FAILURE);
     }
   return x[n];
-  }
+}
 
 /*-------------------------------------------------------------------------
  * shift seqR1 n elements to the right inserting zeros on the left
@@ -156,7 +157,8 @@ void seqR1::shiftL(long n){
 /*-------------------------------------------------------------------------
  * return the maximum value of the seqR1 x
  *-------------------------------------------------------------------------*/
-double seqR1::max(const long start,const long end){
+double seqR1::max(const long start,const long end) const
+{
   long n=start;
   double u,max;
   max=x[n];
@@ -166,12 +168,13 @@ double seqR1::max(const long start,const long end){
     if(u>max) max=u;
     }
   return max;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * return the minimum value of the seqR1 x
  *-------------------------------------------------------------------------*/
-double seqR1::min(const long start,const long end){
+double seqR1::min(const long start,const long end) const
+{
   long n=start;
   double u,min;
   min=x[start];
@@ -181,7 +184,7 @@ double seqR1::min(const long start,const long end){
     if(u<min) min=u;
     }
   return min;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * return the first argument n yielding the maximum value x_n of the seqR1 x
@@ -413,7 +416,8 @@ double seqR1::normalize(void){
 /*-------------------------------------------------------------------------
  * return the largest pair of values in the seqR1 as measured by norm()
  *-------------------------------------------------------------------------*/
-double seqR1::max(int mode){
+double seqR1::max(const int mode) const
+{
   long n;
   double maxnorm=0;
   long   maxn=0;
@@ -430,7 +434,7 @@ double seqR1::max(int mode){
       }
     }
   return maxval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * list all values (n,x_n) such that x_n >= u
@@ -490,10 +494,10 @@ long seqR1::gte(const double threshold,const long start, const long end, const c
 /*-------------------------------------------------------------------------
  * list contents of seqR1 using 1 digit per element
  *-------------------------------------------------------------------------*/
-void seqR1::test(void){
-  long n;
+void seqR1::test(void)
+{
   printf("seqR1::test N=%ld x[0,1,2] = %lf %lf %lf ...\n",N,x[0],x[1],x[2]);
-  }
+}
 
 /*-------------------------------------------------------------------------
  * operator seqR1 x = seqR1 y
