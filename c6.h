@@ -75,22 +75,22 @@ class seqC6 {
     complex get4(long n){return x[n].get4();}  //get a value from x4 at location n
     complex get5(long n){return x[n].get5();}  //get a value from x5 at location n
     complex get6(long n){return x[n].get6();}  //get a value from x6 at location n
-    long   getN(void){return N;}      //get N
+    long getN(void){return N;}      //get N
     void list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
     void list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
          if(display)   list(start,end,str1,str2,stdout);
-                       list(start,end,str1,str2,fptr);
+         if(1)         list(start,end,str1,str2,fptr);
          }
     void list(const char* str1, const char *str2,int display,FILE *fptr){
          if(display)   list(0,N-1,str1,str2,stdout);
-                       list(0,N-1,str1,str2,fptr);
+         if(1)         list(0,N-1,str1,str2,fptr);
          }
     void list(const long start, const long end){list(start,end,"","",stdout);}
     void list(void){list(0,N-1,"","",stdout);}
-    void   list1(long start, long end,char *str1,char *str2);//
-    void   list1(long start, long end){list1(start,end,"","");}//
-    void   list1(void){list1(0,N-1);}  //list contents of seq. using 1 space each
-    void   test(void);
+    void list1(long start, long end,char *str1,char *str2);//
+    void list1(long start, long end){list1(start,end,"","");}//
+    void list1(void){list1(0,N-1);}  //list contents of seq. using 1 space each
+    void test(void);
   };
 
 /*=====================================

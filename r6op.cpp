@@ -51,14 +51,14 @@ void convolve(seqR6 *x, seqR1 *y, seqR6 *z, int showcount){
   const long Nx=x->getN();
   const long Ny=y->getN();
   const long Nz=z->getN();
-  long n,m,nm;
+  long n=0,m,nm;
   vectR6 u,sum;
   double v;
   if(Nz!=Nx+Ny-1){//check length of *z
     fprintf(stderr,"\nERROR using using convolve(seqR6 *x, seqR1 *y, seqR6 *z): %ld = Nz != Nx+Ny-1 = %ld+%ld-1 = %ld\n",Nz,Nx,Ny,Nx+Ny-1);
     exit(EXIT_FAILURE);
     }
-  if(showcount)fprintf(stderr,"%10ld  ",0);
+  if(showcount)fprintf(stderr,"%10ld  ",n);
   for(n=0;n<Nz;n++){
     if(showcount)fprintf(stderr,"\b\b\b\b\b\b\b\b\b\b\b\b%10ld  ",n);
     sum=0;

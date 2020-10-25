@@ -10,11 +10,11 @@ class symseq {
     symseq(const long M);  //constructor initializing to '.'
     symseq(const long M,const unsigned seed,const char *symbols); //constructor initializing using seed
     void clear(void);                 //fill sequence with the value 'A'
-    char get(const long n);                 //get a value from x at location n
+    char get(const long n) const;           //get a value from x at location n
     char get(const long n,char *symbols);   //get a value from x at location n but exit if not in <symbols> string
-    void put(long n, char symbol);
+    const void put(const long n, const char symbol);
     void put(const long start, const long end, const char symbol);
-    const long getN(void){const long M=(const long)N; return M;}        //get N
+    const long getN(void) const {const long M=(const long)N; return M;}        //get N
     void downsample(int M, symseq *y);//downsample by a factor of <M> and write to <y>
     void  list(const long start, const long end, const char* str1, const char *str2, const int display, FILE *fptr);
     void  list(const long start, const long end, FILE *fptr){list(start,end, "","",1,fptr);}
@@ -37,6 +37,6 @@ class symseq {
   };
 
 extern long cmp(const symseq *x,const symseq *y, int showdiff, FILE *fptr);
-void copy(const long start, const long end, const symseq *x, const symseq *y);
+void copy(const long start, const long end, const symseq *x, symseq *y);
 void downsample(int M, symseq *x, symseq *y);
 

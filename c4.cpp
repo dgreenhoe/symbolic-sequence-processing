@@ -164,9 +164,9 @@ vectC4 operator*(const complex z, const vectR4 x){
   double xe;
   complex xez;
   int i;
-  for(i=0;i<4;i++){
-    xe=x.get(i);
-    xez=xe*z;
+  for( i=0; i<4; i++ ){
+    xe  = x.get(i);
+    xez = xe*z;
     y.puti(i,xez);
     }
   return y;
@@ -326,7 +326,6 @@ int mag(seqC4 *xC4, seqR1 *ymag){
   long n;
   vectC4  v;
   int retval=0;
-  double u;
   double vmag;
   ymag->clear();
   if(Nx!=Ny){

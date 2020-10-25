@@ -104,10 +104,10 @@ void oquad::list(const char *str1, const char *str2){
 /*-------------------------------------------------------------------------
  * return the 4-tuple value
  *-------------------------------------------------------------------------*/
-vectR4 vectR4::get(void){
+const vectR4 vectR4::get(void){
   vectR4 u;
   int i;
-  for(i=0;i<4;i++)u.put(i,get(i));
+  for( i=0; i<4; i++ ) u.put( i, get(i) );
   return u;
   }
 

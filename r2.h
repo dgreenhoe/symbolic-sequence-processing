@@ -62,24 +62,24 @@ class seqR2 {
   public:
     seqR2(long M);             //constructor
     seqR2(long M, double u);   //constructor
-    void   clear(void);               //fill seqR1 with the value 0
-    void   fill(double u);            //fill seqR1 with the value <u>
+    void   clear(void);              //fill seqR1 with the value 0
+    void   fill(double u);           //fill seqR1 with the value <u>
     void   inc(double x0, double y0,double dx, double dy);
-    int    put(long n, vectR2 xy);     //put a value <u> at location n in seq.
+    int    put(long n, vectR2 xy);   //put a value <u> at location n in seq.
     int    put(long n, double u, double v);
-    vectR2 get(long n);               //get a value from x at location n
+    vectR2 get(long n);              //get a value from x at location n
     double getx(long n);             //get a value from x at location n
     double gety(long n);             //get a value from x at location n
-    long   getN(void){return N;}      //get N
+    long   getN(void){return N;}     //get N
     double norm(long n);             //norm of element x_n
     void list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
     void list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
-         if(display)   list(start,end,str1,str2,stdout);
-                       list(start,end,str1,str2,fptr);
+         if(display) list(start,end,str1,str2,stdout);
+         if(1)       list(start,end,str1,str2,fptr);
          }
     void list(const char* str1, const char *str2,int display,FILE *fptr){
-         if(display)   list(0,N-1,str1,str2,stdout);
-                       list(0,N-1,str1,str2,fptr);
+         if(display) list(0,N-1,str1,str2,stdout);
+         if(1)       list(0,N-1,str1,str2,fptr);
          }
     void list(const long start, const long end){list(start,end,"","",stdout);}
     void list(void){list(0,N-1,"","",stdout);}

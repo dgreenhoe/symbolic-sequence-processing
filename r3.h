@@ -61,14 +61,14 @@ class seqR3 {
     long getN(void){return N;}      //get N
     void list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
     void list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
-         if(display)   list(start,end,str1,str2,stdout);
-                       list(start,end,str1,str2,fptr);
+         if(display) list(start,end,str1,str2,stdout);
+         if(1)       list(start,end,str1,str2,fptr);
          }
     void list(const long start, const long end){list(start,end,"","",stdout);}
     void list(void){list(0,N-1,"","",stdout);}
-    void  list1(void);              //list contents of seq. using 1 space each
-    void  list1(long start, long end);//
-    void  test(void);
+    void list1(void);              //list contents of seq. using 1 space each
+    void list1(long start, long end);//
+    void test(void);
   };
 
 /*=====================================

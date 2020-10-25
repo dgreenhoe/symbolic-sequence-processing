@@ -70,7 +70,7 @@ int test_vectR2(void){
   p.put(2,-3); q.put(-5,7);        printf("(%lf,%lf)*(%lf,%lf)=%lf\n",p.getx(),p.gety(),q.getx(),q.gety(),p^q);
   q=p; q&=(PI/2);                  printf("rotate(%lf,%lf)by 90degrees = (%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
   q=p; q&=(PI);                    printf("rotate(%lf,%lf)by 180degrees = (%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
-  p.clear();                       printf("clear operation--> (%lf,%lf)\n",p.getx(),p.gety(),p.norm());
+  p.clear();                       printf("clear operation--> (%lf,%lf)\n",p.getx(),p.gety());
   return 0;
   }
 
@@ -83,16 +83,16 @@ int test_complex(void){
 
   printf("\ntest complex operations:\n");
   printf("-----------------------\n");
-                                   printf("p = (%lf,%lf)\n",p.getx(),p.gety());
-                                   printf("norm(%lf,%lf)=%lf\n",p.getx(),p.gety(),p.norm());
-  p.put(10*sqrt(3),2);                printf("theta(%lf,%lf)=%lf degrees\n",p.getx(),p.gety(),p.theta()/PI*180);
-  q=-p;                            printf("-(%lf,%lf)=(%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
-  p.put(3,-5); q.put(-2,7); s=p+q; printf("(%lf,%lf)+(%lf,%lf)=(%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety(),s.getx(),s.gety());
-  p.put(3,-5); q.put(-2,7); s=p-q; printf("(%lf,%lf)-(%lf,%lf)=(%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety(),s.getx(),s.gety());
-  p.put(2,-3); q.put(-5,7); s=p*q; printf("(%lf,%lf)*(%lf,%lf)=(%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety(),s.getx(),s.gety());
-  q=p; q&=(PI/2);                  printf("rotate(%lf,%lf)by 90degrees = (%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
-  q=p; q&=(PI);                    printf("rotate(%lf,%lf)by 180degrees = (%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
-  p.clear();                       printf("clear operation--> (%lf,%lf)\n",p.getx(),p.gety(),p.norm());
+  printf("p = (%lf,%lf)\n",p.getx(),p.gety());
+  printf("norm(%lf,%lf)=%lf\n",p.getx(),p.gety(),p.norm());
+  p.put(10*sqrt(3),2);             printf("theta(%lf,%lf)=%lf degrees\n",           p.getx(), p.gety(), p.theta()/PI*180);
+  q=-p;                            printf("-(%lf,%lf)=(%lf,%lf)\n",p.getx(),           p.gety(), q.getx(), q.gety());
+  p.put(3,-5); q.put(-2,7); s=p+q; printf("(%lf,%lf)+(%lf,%lf)=(%lf,%lf)\n",           p.getx(), p.gety(), q.getx(), q.gety(), s.getx(), s.gety());
+  p.put(3,-5); q.put(-2,7); s=p-q; printf("(%lf,%lf)-(%lf,%lf)=(%lf,%lf)\n",           p.getx(), p.gety(), q.getx(), q.gety(), s.getx(), s.gety());
+  p.put(2,-3); q.put(-5,7); s=p*q; printf("(%lf,%lf)*(%lf,%lf)=(%lf,%lf)\n",           p.getx(), p.gety(), q.getx(), q.gety(), s.getx(), s.gety());
+  q=p; q&=(PI/2);                  printf("rotate(%lf,%lf)by 90degrees = (%lf,%lf)\n", p.getx(), p.gety(), q.getx(), q.gety() );
+  q=p; q&=(PI);                    printf("rotate(%lf,%lf)by 180degrees = (%lf,%lf)\n",p.getx(), p.gety(), q.getx(), q.gety() );
+  p.clear();                       printf("clear operation--> (%lf,%lf)\n",            p.getx(), p.gety());
   return 0;
   }
 
@@ -209,7 +209,6 @@ int test_halfcircle(void){
   ellipsec circle(1,1);
   vectR2 q;
   vectR2 (ellipsec::*memfptr)(double t);
-  fncttype f;
   double length, errorl,perror;
   
   memfptr = &ellipsec::xy;
@@ -219,7 +218,7 @@ int test_halfcircle(void){
   errorl  = length-PI;
   perror  = fabs(100*errorl/PI);
   printf("half circle = %.16lf\n",length);
-  printf("pi          = %.16lf error=%lf (%lf\%)\n",PI, errorl, perror);
+  printf("pi          = %.16lf error=%lf (%lf%%)\n",PI, errorl, perror);
   if (perror<0.001)  return 1;
   else             return 0;
   }
@@ -242,19 +241,19 @@ int test_circle(void){
 
   x=0; y=0;
   circle.set(1,1,0,x,y);
-  printf("L circle(%6.3lf,%6.3lf)=%.16lf  error=%lf (%lf\%)",x,y,length, errorl, perror); 
+  printf("L circle(%6.3lf,%6.3lf)=%.16lf  error=%lf (%lf%%)",x,y,length, errorl, perror); 
   if (perror<0.001)printf("  ok\n"); 
   else{fails++;  printf("  FAIL\n");}
 
   x=1; y=-2;
   circle.set(1,1,0,x,y);
-  printf("L circle(%6.3lf,%6.3lf)=%.16lf  error=%lf (%lf\%)",x,y,length, errorl, perror); 
+  printf("L circle(%6.3lf,%6.3lf)=%.16lf  error=%lf (%lf%%)",x,y,length, errorl, perror); 
   if (perror<0.001)printf("  ok\n"); 
   else{fails++;  printf("  FAIL\n");}
 
   x=-3; y=-5;
   circle.set(1,1,0,x,y);
-  printf("L circle(%6.3lf,%6.3lf)=%.16lf  error=%lf (%lf\%)",x,y,length, errorl, perror); 
+  printf("L circle(%6.3lf,%6.3lf)=%.16lf  error=%lf (%lf%%)",x,y,length, errorl, perror); 
   if (perror<0.001)printf("  ok\n"); 
   else{fails++;  printf("  FAIL\n");}
   return fails;
@@ -279,8 +278,8 @@ int test_circle_d1(void){
   error2 = phi2 - (PI/4-1);
   perror1 = fabs(100*error1/(PI/4+1));
   perror2 = fabs(100*error2/(PI/4-1));
-  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf\%)\n",circle.x(phi1),circle.y(phi1),phi1,error1,perror1);
-  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf\%)\n",circle.x(phi2),circle.y(phi2),phi2,error2,perror2);
+  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf%%)\n",circle.x(phi1),circle.y(phi1),phi1,error1,perror1);
+  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf%%)\n",circle.x(phi2),circle.y(phi2),phi2,error2,perror2);
   if(perror1>0.1) return -1;
   if(perror2>0.5) return -5;
   return 0;
@@ -316,8 +315,8 @@ int test_ellipse_d1(void){
   ellipse.findt_dfroms(PI/2, 1, -1, 1000, &phi2, &err2);
   perror1 = fabs(100*err1);
   perror2 = fabs(100*err2);
-  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf\%)\n",ellipse.x(phi1),ellipse.y(phi1),phi1,err1,perror1);
-  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf\%)\n",ellipse.x(phi2),ellipse.y(phi2),phi2,err2,perror2);
+  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error = %9.6lf (%lf%%)\n", ellipse.x(phi1), ellipse.y(phi1), phi1, err1, perror1 );
+  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error = %9.6lf (%lf%%)\n", ellipse.x(phi2), ellipse.y(phi2), phi2, err2, perror2 );
   if(perror1>0.2) return -1;
   if(perror2>0.2) return -2;
   return 0;
@@ -742,8 +741,7 @@ int test_spinner(void){
  * test die seqR1 functions
  *-------------------------------------------------------------------------*/
 int test_die(void){
-  int n,m;
-  long N=100;
+  const long N=100;
   dieseq x(N);
 
   printf("Test die seqR1 functions\n");
@@ -757,8 +755,8 @@ int test_die(void){
  * test real die seqR1 functions
  *-------------------------------------------------------------------------*/
 int test_rdie(void){
-  int n,m;
-  long N=100;
+  long m;
+  const long N=100;
   rdieseq x(N);
   seqR1 Rxx(2*N+1);
   seqR1 histo(8);
@@ -857,8 +855,8 @@ int test_dft_R1(void){
   printf("\n|DFT(y_n)|:\n");            mDy.list();
   printf("\n");                         mDy.max('p');
 
-  n=10; yn=dftn(&y,n); printf("y[%02d]=(%+lf,%+lf) |y[%02d]|=%lf\n",n,yn.real(),yn.imag(),n,yn.mag());
-  n=90; yn=dftn(&y,n); printf("y[%02d]=(%+lf,%+lf) |y[%02d]|=%lf\n",n,yn.real(),yn.imag(),n,yn.mag());
+  n=10; yn=dftn(&y,n); printf("y[%02ld]=(%+lf,%+lf) |y[%02ld]|=%lf\n",n,yn.real(),yn.imag(),n,yn.mag());
+  n=90; yn=dftn(&y,n); printf("y[%02ld]=(%+lf,%+lf) |y[%02ld]|=%lf\n",n,yn.real(),yn.imag(),n,yn.mag());
 
   return 0;
   }

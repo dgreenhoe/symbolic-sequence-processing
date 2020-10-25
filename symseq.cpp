@@ -31,7 +31,6 @@ symseq::symseq(long M){
  * constructor initializing symseq to '.'
  *-------------------------------------------------------------------------*/
 symseq::symseq(const long M,const unsigned seed,const char *symbols){
-  long n;
   void *memptr;
   N=M;
   memptr=malloc(N*sizeof(char));
@@ -48,13 +47,13 @@ symseq::symseq(const long M,const unsigned seed,const char *symbols){
  *-------------------------------------------------------------------------*/
 void symseq::clear(void){
   long n;
-  for(n=0; n<N; n++)x[n]='.';
+  for(n=0; n<N; n++) x[n] = '.';
   }
 
 /*-------------------------------------------------------------------------
  * get a symbol from the symseq x at location n
  *-------------------------------------------------------------------------*/
-char symseq::get(const long n){
+char symseq::get(const long n) const{
   if(n<0 || n>=N){//domain check
     fprintf(stderr,"ERROR using symseq::get(n): n=%ld outside the domain [0:%ld] of the sequence.\n",n,N);
     exit(EXIT_FAILURE);
@@ -68,7 +67,6 @@ char symseq::get(const long n){
  * example: symbol=get(n,"ABCDEF");
  *-------------------------------------------------------------------------*/
 char symseq::get(const long n,char *range){
-  int M;
   int match;
   char *sptr;
   char symbol;
@@ -88,8 +86,7 @@ char symseq::get(const long n,char *range){
 /*-------------------------------------------------------------------------
  * put a single value from the symseq x at location n
  *-------------------------------------------------------------------------*/
-void symseq::put(long n, char symbol){
-  int rval;
+const void symseq::put(const long n, const char symbol){
   if(n<0 || n>=N){//domain check
     fprintf(stderr,"ERROR using symseq::put(n): n=%ld outside the domain [0:%ld] of the sequence.\n",n,N-1);
     exit(EXIT_FAILURE);
@@ -242,9 +239,9 @@ long cmp(const symseq *x, const symseq *y, int showdiff, FILE *fptr){
  * into the sequence <*y> = [y_0     ... y_{N-1}] 
  * where N = end-start+1
  *-------------------------------------------------------------------------*/
-void copy(const long start, const long end, const symseq *x, const symseq *y){
-  long Nx=x->getN();
-  long Ny=y->getN();
+void copy(const long start, const long end, const symseq *x, symseq *y){
+  const long Nx = x->getN();
+  const long Ny = y->getN();
   long n,m;
   double xx;
   y->clear();
@@ -257,12 +254,10 @@ void copy(const long start, const long end, const symseq *x, const symseq *y){
     exit(EXIT_FAILURE);
     }
   for(n=start,m=0;n<=end;n++,m++){
-    xx=x->get(n);
-    y->put(m,xx);
+    xx = x->get( n );
+    y->put( m, xx );
     }
   }
-
-
 
 /*-------------------------------------------------------------------------
  * downsample sequence by a factor of <M>
@@ -278,7 +273,7 @@ void downsample(int M, symseq *x, symseq *y){
     exit(EXIT_FAILURE);
     }
   if(Ny != Nx/M){//check validity of the length of output sequence <y>
-    fprintf(stderr,"ERROR using symseq::downsample(M,y): length %ld of output sequence y must be N/M = %ld/%ld = %ld\n",Ny,Nx,M,Nx/M);
+    fprintf(stderr,"ERROR using symseq::downsample(M,y): length %ld of output sequence y must be N/M = %ld/%d = %ld\n",Ny,Nx,M,Nx/M);
     exit(EXIT_FAILURE);
     }
   for(n=0,m=0; m<Ny; n+=M,m++){

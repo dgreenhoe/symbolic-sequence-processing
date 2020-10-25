@@ -44,7 +44,7 @@ class vectR4: public oquad {
     vectR4(double u1,double u2,double u3,double u4) : oquad(u1,u2,u3,u4){};
     vectR4(double u) : oquad(u){};
     vectR4(void) : oquad(){}; 
-    vectR4 get(void);
+    const vectR4 get(void);
     double get(int i){return oquad::get(i);}
     double mag(void);
     double norm(void){return mag();}

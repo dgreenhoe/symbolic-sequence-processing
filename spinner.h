@@ -17,8 +17,8 @@ class spinseq: public dieseq {
     void operator=(spinseq y);     //x=y
     int metrictbl(void);
     double Rxx (const long m);
-    int    Rxx (const seqR1 *Rxx, const int showcount);
-    int    Rxxo(const seqR1 *rxx, const int showcount);
+    int    Rxx (seqR1 *Rxx, const int showcount);
+    int    Rxxo(seqR1 *rxx, const int showcount);
     spinseq downsample(int factor);//downsample by a factor of <factor>
   };
 

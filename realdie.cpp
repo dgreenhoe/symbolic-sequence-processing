@@ -36,7 +36,7 @@ int rdieseq::metrictbl(void){
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a real die seqR1 x with 2N offset
  *-------------------------------------------------------------------------*/
-int rdieseq::Rxxo(const seqR1 *rxx, const int showcount){
+int rdieseq::Rxxo(seqR1 *rxx, const int showcount){
   const long N=getN();
   int rval;
   rval=Rxx(rxx,showcount);
@@ -47,7 +47,7 @@ int rdieseq::Rxxo(const seqR1 *rxx, const int showcount){
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a real die seqR1 x
  *-------------------------------------------------------------------------*/
-int rdieseq::Rxx(const seqR1 *rxx, const int showcount){
+int rdieseq::Rxx(seqR1 *rxx, const int showcount){
   long m;
   const long N=getN();
   int rval=0;
@@ -114,7 +114,6 @@ void rdieseq::operator=(dieseq y){
 int rdie_dietoR1(char c){
   int n,rval;
   char domain[6]={'A','B','C','D','E','F'};
-  char element;
   for(n=0,rval=-1;n<6;n++)if(c==domain[n])rval=n;
   if(rval==-1){
     fprintf(stderr,"ERROR using rdie_dietoR1(char c): c=%c(0x%x) is not in the valid domain {0,A,B,C,D,E,F}\n",c,c);

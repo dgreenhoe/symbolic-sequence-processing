@@ -36,8 +36,8 @@ int spinseq::metrictbl(void){
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a spinner seqR1 x with 2N offset
  *-------------------------------------------------------------------------*/
-int spinseq::Rxxo(const seqR1 *rxx, const int showcount){
-  const long N=getN();
+int spinseq::Rxxo(seqR1 *rxx, const int showcount){
+  long N = getN();
   int rval;
   rval=Rxx(rxx,showcount);
   rxx->add(2*N);
@@ -47,7 +47,7 @@ int spinseq::Rxxo(const seqR1 *rxx, const int showcount){
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a spinner seqR1 x
  *-------------------------------------------------------------------------*/
-int spinseq::Rxx(const seqR1 *rxx, const int showcount){
+int spinseq::Rxx(seqR1 *rxx, const int showcount){
   long m;
   const long N=getN();
   int rval=0;
@@ -137,7 +137,7 @@ void spinseq::operator=(spinseq y){
   const long M=y.getN();
   char symbol;
   if(N!=M){
-    fprintf(stderr,"\nERROR using spinseq x = spinseq y: size of x (%ld) is smaller than size of y (%ld)\n",N,M,N);
+    fprintf(stderr,"\nERROR using spinseq x = spinseq y: size of x (%ld) is smaller than size of y (%ld)\n",N,M);
     exit(EXIT_FAILURE);
     }
   for(n=0;n<N;n++){
@@ -403,4 +403,3 @@ double spin_metric(char a, char b){
   else if(d>4.5) d=1.0;
   return d;
   }
-

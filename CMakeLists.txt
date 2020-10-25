@@ -42,6 +42,10 @@
  set( FLAGS_COMPILE
       #-v
       -fpermissive
+      -Wall
+      -Wno-write-strings
+      -Wno-return-type
+      -Wno-format-overflow
     )
 
  set( FLAGS_LINK

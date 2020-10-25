@@ -16,9 +16,9 @@ class rdieseq: public dieseq {
     void  operator>>=(long n){shiftR(n);} //shift rdieseq n elements to the right
     void  operator<<=(long n){shiftL(n);} //shift rdieseq n elements to the left
     int metrictbl(void);
-    int Rxx(const seqR1 *Rxx, const int showcount);
-    int Rxx(const seqR1 *Rxy, const int showcount,const long N, const long M, const long start, const long finish);
-    int Rxxo(const seqR1 *rxx, const int showcount);
+    int Rxx(seqR1 *Rxx, const int showcount);
+    int Rxx(seqR1 *Rxy, const int showcount,const long N, const long M, const long start, const long finish);
+    int Rxxo(seqR1 *rxx, const int showcount);
     double Rxx(const long m);
   };
 

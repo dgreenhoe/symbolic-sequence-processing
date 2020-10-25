@@ -11,18 +11,18 @@ class osix {
     osix(void);
     osix(double u0, double u1, double u2, double u3, double u4, double u5);
     osix(double u);
-    osix   get(void);
+    osix   get(void) const ;
     void   list(const char *str1, const char *str2);
     void   list(void){list("","");}
     void   list(const char *str){list(str,"\n");}
     void   listn(void){list("","\n");}
-    double get(int n){return x[n];}
-    double get1(void){return x[0];};                      //get component x1
-    double get2(void){return x[1];};                      //get component x2
-    double get3(void){return x[2];};                      //get component x3
-    double get4(void){return x[3];};                      //get component x4
-    double get5(void){return x[4];};                      //get component x5
-    double get6(void){return x[5];};                      //get component x6
+    double get(int n) const {return x[n];}
+    double get1(void) const {return x[0];};                      //get component x1
+    double get2(void) const {return x[1];};                      //get component x2
+    double get3(void) const {return x[2];};                      //get component x3
+    double get4(void) const {return x[3];};                      //get component x4
+    double get5(void) const {return x[4];};                      //get component x5
+    double get6(void) const {return x[5];};                      //get component x6
     void put(double u0, double u1, double u2, double u3, double u4, double u5){x[0]=u0;x[1]=u1;x[2]=u2;x[3]=u3;x[4]=u4;x[5]=u5;}
     void put(int n,double u){x[n]=u;}
     void put(double u);
@@ -48,11 +48,11 @@ class vectR6: public osix {
     vectR6(double u1,double u2,double u3,double u4,double u5,double u6) : osix(u1,u2,u3,u4,u5,u6){};
     vectR6(double u) : osix(u){};
     vectR6(void) : osix(){}; 
-    vectR6 get(void);
-    double get(int i){return osix::get(i);}
-    double mag(void);
-    double norm(void){return mag();}
-    double r(void)   {return mag();}
+    vectR6 get(void) const;
+    const double get(int i) const {return osix::get(i);}
+    const double mag(void) const;
+    double norm(void)const {return mag();}
+    double r(void)   const {return mag();}
     vectR6 mpy       (double a);
    //vectR6 operator* (double a){return mpy(a);}
     void   operator+=(vectR6 q); //{put(get1()+q.get1(),get2()+q.get2(),get3()+q.get3(),get4()+q.get4(),get5()+q.get5(),get6()+q.get6());} //p=p+q
@@ -81,27 +81,27 @@ class seqR6 {
     long   getN(void){return N;}      //get N
     void list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
     void list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
-         if(display)   list(start,end,str1,str2,stdout);
-                       list(start,end,str1,str2,fptr);
+         if(display) list(start,end,str1,str2,stdout);
+         if(1)       list(start,end,str1,str2,fptr);
          }
     void list(const char* str1, const char *str2,int display,FILE *fptr){
-         if(display)   list(0,N-1,str1,str2,stdout);
-                       list(0,N-1,str1,str2,fptr);
+         if(display) list(0,N-1,str1,str2,stdout);
+         if(1)       list(0,N-1,str1,str2,fptr);
          }
     void list(const long start, const long end){list(start,end,"","",stdout);}
     void list(void){list(0,N-1,"","",stdout);}
     void list1(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
     void list1(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
-         if(display)   list1(start,end,str1,str2,stdout);
-                       list1(start,end,str1,str2,fptr);
+         if(display) list1(start,end,str1,str2,stdout);
+         if(1)       list1(start,end,str1,str2,fptr);
          }
     void list1(const char* str1, const char *str2,int display,FILE *fptr){
-         if(display)   list1(0,N-1,str1,str2,stdout);
-                       list1(0,N-1,str1,str2,fptr);
+         if(display) list1(0,N-1,str1,str2,stdout);
+         if(1)       list1(0,N-1,str1,str2,fptr);
          }
     void list1(const long start, const long end){list1(start,end,"","",stdout);}
     void list1(void){list1(0,N-1,"","",stdout);}
-    void   test(void);
+    void test(void);
   };
 
 /*=====================================

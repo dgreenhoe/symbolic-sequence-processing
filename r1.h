@@ -19,10 +19,10 @@ class seqR1 {
     void   hanning(void);                //fill seqR1 with Hanning filter window
     void   lptohp(void);                 //convert low pass filter to high pass filter
     void   truncate(long n){N=n;}        //truncate sequence to first <n> elements
-    int    put(long n, double u);        //put a value <u> at location n in seq.
+    const int put(const long n, const double u); //put a value <u> at location n in seq.
     int    put(const long start, const long end, const double u);//put a value <u> at locations start to end
-    int    add(long n, double u);        //add a value <u> at location n in seq.
-    int    add(double u);                //add a value <u> to every element in sequence
+    int    add(const long n, const double u); //add a value <u> at location n in seq.
+    const int    add(const double u);          //add a value <u> to every element in sequence
     void   shiftL(long n);               //shift seqR1 n elements to the left
     void   shiftR(long n);               //shift seqR1 n elements to the right
     void   randomize(unsigned seed);     //
@@ -43,7 +43,7 @@ class seqR1 {
     long   gt(const double threshold,const long start, const long end, const char *str1, const char *str2, FILE *fptr);     //list pairs >= to u
     long   gt(const double threshold,const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
              if(display)return gt(threshold,start,end,str1,str2,stdout);
-                        return gt(threshold,start,end,str1,str2,fptr);
+             if(1)      return gt(threshold,start,end,str1,str2,fptr);
              }
     long   gt(const double threshold,const long start, const long end){return gt(threshold,start,end,"","",NULL);}
     long   gt(double threshold){return gt(threshold,0,N-1,"","",NULL);} //
@@ -70,12 +70,12 @@ class seqR1 {
     void   listL(void);                  //list contents of seqR1 in long format
     void list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
     void list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
-         if(display)   list(start,end,str1,str2,stdout);
-                       list(start,end,str1,str2,fptr);
+         if(display) list(start,end,str1,str2,stdout);
+         if(1)       list(start,end,str1,str2,fptr);
          }
     void list(const char* str1, const char *str2,int display,FILE *fptr){
-         if(display)   list(0,N-1,str1,str2,stdout);
-                       list(0,N-1,str1,str2,fptr);
+         if(display) list(0,N-1,str1,str2,stdout);
+         if(1)       list(0,N-1,str1,str2,fptr);
          }
     void list(const long start, const long end){list(start,end,"","",stdout);}
     void list(void){list(0,N-1,"","",stdout);}

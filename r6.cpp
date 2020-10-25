@@ -50,7 +50,7 @@ void osix::put(osix u){
 /*-------------------------------------------------------------------------
  * return the 6-tuple value
  *-------------------------------------------------------------------------*/
-osix osix::get(void){
+osix osix::get(void) const{
   osix u;
   int i;
   for(i=0;i<6;i++)u.put(i,get(i));
@@ -104,7 +104,7 @@ void osix::list(const char *str1, const char *str2){
 /*-------------------------------------------------------------------------
  * return the 6-tuple value
  *-------------------------------------------------------------------------*/
-vectR6 vectR6::get(void){
+vectR6 vectR6::get(void) const {
   vectR6 u;
   int i;
   for(i=0;i<6;i++)u.put(i,get(i));
@@ -114,7 +114,8 @@ vectR6 vectR6::get(void){
 /*-------------------------------------------------------------------------
  * magnitude
  *-------------------------------------------------------------------------*/
-double vectR6::mag(void){
+const double vectR6::mag(void) const
+{
   int i;
   double u;
   double sum=0;
@@ -123,7 +124,7 @@ double vectR6::mag(void){
     sum += u*u;
     }
   return sqrt(sum);
-  }
+}
 
 /*-------------------------------------------------------------------------
  * add a scalar
@@ -169,7 +170,7 @@ void vectR6::operator*=(double a){
 vectR6 operator*(const double a, const vectR6 y){
   vectR6 p;
   int i;
-  for(i=0;i<6;i++)p.put(i,a*y.get(i));
+  for(i=0; i<6; i++) p.put( i, a*y.get(i) );
   return p;
   }
 
@@ -182,7 +183,6 @@ double operator^(vectR6 p,vectR6 q){
   for(i=0;i<6;i++)sum += p.get(i)*q.get(i);
   return sum;
   }
-
 
 /*=====================================
  * seqR6
@@ -312,7 +312,8 @@ vectR6 operator-(vectR6 p){
  * on ERROR   return negative value or exit with value EXIT_FAILURE
  *-------------------------------------------------------------------------*/
 double pqtheta(const vectR6 p, const vectR6 q){
-  const double rp=p.r(), rq=q.r();
+  const double rp = p.r();
+  const double rq = q.r();
   double y,theta;
   if(rp==0) return -1;
   if(rq==0) return -2;

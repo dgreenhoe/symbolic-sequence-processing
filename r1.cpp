@@ -78,7 +78,7 @@ void seqR1::lptohp(void){
 /*-------------------------------------------------------------------------
  * put a single value <u> into the seqR1 x at location n
  *-------------------------------------------------------------------------*/
-int seqR1::put(long n, double u){
+const int seqR1::put(const long n, const double u){
   if(n<N){
     x[n]=u;
     return 0;
@@ -103,7 +103,7 @@ int seqR1::put(const long start, const long end, const double u){
 /*-------------------------------------------------------------------------
  * add a single value <u> into the seqR1 x at location n
  *-------------------------------------------------------------------------*/
-int seqR1::add(long n, double u){
+int seqR1::add(const long n, const double u){
   if(n<N){
     x[n]+=u;
     return 0;
@@ -114,9 +114,9 @@ int seqR1::add(long n, double u){
 /*-------------------------------------------------------------------------
  * add a single value <u> to every element in the sequence x
  *-------------------------------------------------------------------------*/
-int seqR1::add(double u){
+const int seqR1::add(const double u){
   long n;
-  for(n=0;n<N;n++)x[n]+=u;
+  for(n=0; n<N; n++) x[n] += u;
   return 0;
   }
 
