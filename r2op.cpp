@@ -89,7 +89,7 @@ void convolve(seqR2 *x, seqR1 *y, seqR2 *z, int showcount){
     fprintf(stderr,"\nERROR using using convolve(seqR6 *x, seqR1 *y, seqR6 *z): %ld = Nz != Nx+Ny-1 = %ld+%ld-1 = %ld\n",Nz,Nx,Ny,Nx+Ny-1);
     exit(EXIT_FAILURE);
     }
-  if(showcount)fprintf(stderr,"%10ld  ",0);
+  if(showcount)fprintf(stderr,"%10d  ",0);
   for(n=0;n<Nz;n++){
     if(showcount)fprintf(stderr,"\b\b\b\b\b\b\b\b\b\b\b\b%10ld  ",n);
     sum=0;

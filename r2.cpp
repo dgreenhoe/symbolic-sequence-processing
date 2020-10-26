@@ -301,12 +301,14 @@ double pqtheta(const vectR2 p, const vectR2 q){
       exit(EXIT_FAILURE);
       }
     }
-  if(y<-1.0) 
+  if(y<(-1.0))
+  { 
     if(y+1>-0.0000000000001)y=-1.0;
     else{ 
       fprintf(stderr,"\nERROR using pqtheta(vectR2 p, vectR2 q): (p^q)/(rp*rq)=%.12lf<-1\n",y); 
       exit(EXIT_FAILURE);
       }
+  }
   theta = acos(y);
   return theta;
   }

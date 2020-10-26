@@ -534,7 +534,8 @@ void seqR1::operator+=(seqR1 y){
  * operator: return x -= y where y is another seqR1 of length M
  *-------------------------------------------------------------------------*/
 void seqR1::operator-=(seqR1 y){
-  long n,M,NM;
+  long n,NM;
+  const long M=y.getN();
   if(N<=M)NM=N;
   else    NM=M;
   for(n=0;n<NM;n++)x[n]-=y.x[n];
