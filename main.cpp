@@ -32,9 +32,9 @@ int main(int argc, char *argv[]){
 
   bspline_Sdat();
   perform_tests();
-  //make_2015ssp_texplots();
-  //test_2015larc();
-  //make_2015larc_data();
+  make_2015ssp_texplots();
+  test_2015larc();
+  make_2015larc_data();
   //lab_larc_pti(0.5, 0, -1, 1, 20, "larc_pti_05");
   //lab_larc_pti(0.5,   0, -1, 1, 2, "tmp");
   //lab_larc_pti(2,   0, -1, 1, 2, "tmp");
@@ -48,17 +48,17 @@ int main(int argc, char *argv[]){
  * "An extension to the spherical metric using Lagrange interpolation"
  *---------------------------------------------------------------------------*/
 int test_2015larc(void){
-//  test_opair();
-//  test_vectR2();
-//  test_complex();
-//  test_seqR2();
-//  test_otriple();
-//  test_osix();
-//  test_vectR6();
-//  test_conj();
-//  test_larc_metric_R2();
-//  test_larc_metric_R3();
-//  test_larc_metric_R6();
+  test_opair();
+  test_vectR2();
+  test_complex();
+  test_seqR2();
+  test_otriple();
+  test_osix();
+  test_vectR6();
+  test_conj();
+  test_larc_metric_R2();
+  test_larc_metric_R3();
+  test_larc_metric_R6();
   return 0;
   }
 
