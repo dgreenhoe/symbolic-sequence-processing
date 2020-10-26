@@ -67,15 +67,15 @@ cfour cfour::get(void) const
 /*-------------------------------------------------------------------------
  * print the tuple
  *-------------------------------------------------------------------------*/
-void cfour::list(const char *str1, const char *str2){
+void cfour::list(const char *str1, const char *str2) const
+{
   int i;
   if(strlen(str1)!=0)printf("%s",str1);
   putchar('(');
   for(i=0;i<5;i++)printf("%+.6lf%+.6lfi,",get(i).real(),get(i).imag());
   printf("%+.6lf%+.6lfi)",get(5).real(),get(5).imag());
   if(strlen(str2)!=0)printf("%s",str2);
-  }
-
+}
 
 /*=====================================
  * vectC4 functions
@@ -238,7 +238,8 @@ int seqC4::put(long n, vectC4 u){
 /*-------------------------------------------------------------------------
  * list contents of sequence
  *-------------------------------------------------------------------------*/
-void seqC4::list(long start, long end){
+void seqC4::list(long start, long end) const
+{
   int i;
   long n,m;
   vectC4 p;
@@ -253,20 +254,7 @@ void seqC4::list(long start, long end){
     printf(")\n");
     //if(m%2==0)printf("\n");
     }
-  }
-
-/*-------------------------------------------------------------------------
- * list contents of seqR1 using 1 digit per element
- *-------------------------------------------------------------------------*/
-//void seqC4::list1(long start, long end){
-//  long n,m;
-//  vectC4 p;
-//  for(n=start,m=1; n<=end; n++,m++){
-//    p=z[n];
-//    printf(" %1.0lf%1.0lf%1.0lf%1.0lf%1.0lf%1.0lf",p.get1(),p.get2(),p.get3(),p.get4(),p.get5(),p.get6());
-//    if(m%10==0)printf("\n");
-//    }
-//  }
+}
 
 /*=====================================
  * external operations

@@ -18,8 +18,8 @@ class dieseq: public symseq {
     int   randomize(unsigned seed,int wA,int wB,int wC,int wD,int wE,int wF){srand(seed);return randomize(0,getN()-1,wA,wB,wC,wD,wE,wF);}
     int   randomize(int wA,int wB,int wC,int wD,int wE,int wF){return randomize(0,getN()-1,wA,wB,wC,wD,wE,wF);}
     int   randomize(long start, long end, unsigned seed, int wA,int wB,int wC,int wD,int wE,int wF){srand(seed);return randomize(start,end, wA,wB,wC,wD,wE,wF);}
-    char  get(long n) const {return symseq::get(n,"ABCDEF"); }     //get a value from x at location n
-    void  put(long n, char symbol){symseq::put(n,symbol);}
+    char  get(const long n) const {return symseq::get(n,"ABCDEF"); }     //get a value from x at location n
+    void  put(const long n, const char symbol){symseq::put(n,symbol);}
     seqR1 dietoR1(void);         //map die face values to R^1
     seqC1 dietoC1(void);         //map die face values to R^1
     seqR1 dietoR1pam(void);      //map die face values to R^1 using PAM scheme (symmetric about zero)

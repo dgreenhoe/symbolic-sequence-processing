@@ -67,7 +67,7 @@ char symseq::get(const long n) const
  * but exit if symbol is not in the string <range>
  * example: symbol=get(n,"ABCDEF");
  *-------------------------------------------------------------------------*/
-char symseq::get(const long n,char *range) const
+char symseq::get(const long n, const char *range) const
 {
   int match;
   char *sptr;
@@ -77,7 +77,7 @@ char symseq::get(const long n,char *range) const
     exit(EXIT_FAILURE);
     }
   symbol = x[n];
-  for(match=0,sptr=range;*sptr!='\0';sptr++) if(symbol==*sptr) match=1;
+  for(match=0,sptr=(char*)range;*sptr!='\0';sptr++) if(symbol==*sptr) match=1;
   if(!match){//range check
     fprintf(stderr,"\nERROR using symbol=symseq::get(%ld): symbol='%c' (0x%02X) outside the range {%s} of the sequence.\n",n,symbol,symbol,range);
     exit(EXIT_FAILURE);

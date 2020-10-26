@@ -20,10 +20,10 @@ class cfour {
     void put(cfour uv);
     void put(double ur,double ui);
     void clear(void){put(0,0);}
-    void   list(const char *str1, const char *str2);
-    void   list(void){list("","");}
-    void   list(const char *str){list(str,"\n");}
-    void   listn(void){list("","\n");}
+    void   list(const char *str1, const char *str2) const;
+    void   list(void)                               const { list("" , ""  ); }
+    void   list(const char *str)                    const { list(str, "\n"); }
+    void   listn(void)                              const { list("" , "\n"); }
   };
 
 /*-------------------------------------------------------------------------
@@ -67,11 +67,11 @@ class seqC4 {
     complex get3(long n) const { return x[n].get3(); }  //get a value from x3 at location n
     complex get4(long n) const { return x[n].get4(); }  //get a value from x4 at location n
     long    getN(void)   const { return N; }      //get N
-    void    list(long start, long end);//list contents of sequence
-    void    list(void){list(0,N-1);}   //list contents of sequence
-    void    list1(long start, long end,char *str1,char *str2);//
-    void    list1(long start, long end){list1(start,end,"","");}//
-    void    list1(void){list1(0,N-1);}  //list contents of seq. using 1 space each
+    void    list(const long start, const long end) const;//list contents of sequence
+    void    list(void)   const {list(0,N-1);}   //list contents of sequence
+    void    list1(const long start, const long end, const char *str1, const char *str2) const;//
+    void    list1(const long start, const long end) const {list1(start,end,"","");}//
+    void    list1(void)  const {list1(0,N-1);}  //list contents of seq. using 1 space each
     void    test(void);
   };
 

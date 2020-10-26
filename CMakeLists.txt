@@ -43,8 +43,7 @@
       #-v
       -Wall
       -Werror
-      -Wno-write-strings
-      -Wno-return-type
+     #-Wno-write-strings
       -Wno-format-overflow
     )
 

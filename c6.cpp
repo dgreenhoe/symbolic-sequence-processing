@@ -265,7 +265,8 @@ int seqC6::put(long n, vectC6 u)
 /*-------------------------------------------------------------------------
  * list contents of sequence
  *-------------------------------------------------------------------------*/
-void seqC6::list(const long start, const long end, const char* str1, const char *str2, FILE *ptr){
+void seqC6::list(const long start, const long end, const char* str1, const char *str2, FILE *ptr) const
+{
   int i;
   long n,m;
   complex z;
@@ -285,20 +286,7 @@ void seqC6::list(const long start, const long end, const char* str1, const char 
       }
     if(strlen(str2)>0)fprintf(ptr,"%s",str2);
     }
-  }
-
-/*-------------------------------------------------------------------------
- * list contents of seqR1 using 1 digit per element
- *-------------------------------------------------------------------------*/
-//void seqC6::list1(long start, long end){
-//  long n,m;
-//  vectC6 p;
-//  for(n=start,m=1; n<=end; n++,m++){
-//    p=z[n];
-//    printf(" %1.0lf%1.0lf%1.0lf%1.0lf%1.0lf%1.0lf",p.get1(),p.get2(),p.get3(),p.get4(),p.get5(),p.get6());
-//    if(m%10==0)printf("\n");
-//    }
-//  }
+}
 
 /*=====================================
  * external operations

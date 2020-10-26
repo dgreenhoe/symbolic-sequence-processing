@@ -59,6 +59,7 @@ int test_2015larc(void){
 //  test_larc_metric_R2();
 //  test_larc_metric_R3();
 //  test_larc_metric_R6();
+  return 0;
   }
 
 /*---------------------------------------------------------------------------
@@ -94,6 +95,8 @@ int make_2015larc_data(void){
   lab_larc_ball_R3(0, 0, -3, 1, "data/larc_ball(0_0_-3)"); //Example 3.18: larc in R^3
   lab_larc_ball_R3(0, 0, -5, 1, "data/larc_ball(0_0_-5)"); //Example 3.18: larc in R^3
   lab_larc_ball_R3(0, 0,-10, 1, "data/larc_ball(0_0_-10)");//Example 3.18: larc in R^3
+
+  return 0;
   }
 
 /*---------------------------------------------------------------------------

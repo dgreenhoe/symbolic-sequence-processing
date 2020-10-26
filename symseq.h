@@ -11,7 +11,7 @@ class symseq {
     symseq(const long M,const unsigned seed,const char *symbols); //constructor initializing using seed
     void clear(void);                 //fill sequence with the value 'A'
     char get(const long n) const;           //get a value from x at location n
-    char get(const long n,char *symbols) const;   //get a value from x at location n but exit if not in <symbols> string
+    char get(const long n, const char *symbols) const;   //get a value from x at location n but exit if not in <symbols> string
     const void put(const long n, const char symbol);
     void put(const long start, const long end, const char symbol);
     const long getN(void) const {const long M=(const long)N; return M;}        //get N
