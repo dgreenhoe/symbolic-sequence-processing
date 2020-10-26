@@ -360,7 +360,6 @@ int mag(seqC6 *xC6, seqR1 *ymag){
   long n;
   vectC6  v;
   int retval=0;
-  double u;
   double vmag;
   ymag->clear();
   if(Nx!=Ny){

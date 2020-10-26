@@ -102,7 +102,7 @@ void fdieseq::operator=(dieseq y){
   const long N=getN();
   const long M=y.getN();
   if(N!=M){
-    fprintf(stderr,"\nERROR using fdieseq x = fdieseq y: size of x (%ld) is smaller than size of y (%ld)\n",N,M,N);
+    fprintf(stderr,"\nERROR using fdieseq x = fdieseq y: size of x (%ld) is smaller than size of y (%ld)\n",N,M);
     exit(EXIT_FAILURE);
     }
   for(n=0;n<N;n++)put(n,y.get(n));
@@ -114,7 +114,6 @@ void fdieseq::operator=(dieseq y){
 seqR6 fdieseq::dietoR6(void){
   const long N=getN();
   long n;
-  char yc;
   seqR6 seq6(N);
   for(n=0; n<N; n++)seq6.put(n,die_dietoR6(get(n)));
   return seq6;

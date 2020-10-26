@@ -36,10 +36,6 @@ class seqR1 {
     double max(const int mode) const;                //return max absolute value in sequence
     double min(const long start,const long end) const; //minimum value of sequence
     double min(void) const {return min(0,N-1);}         //minimum value of sequence
-//    long   gte(const double threshold,const long start, const long end, const char *str1, const char *str2, FILE *fptr);
-//    long   gte(double threshold){return gte(threshold,0,N-1,"","",NULL);} //
-//    long   gte(double threshold, FILE *fptr){return gte(threshold,0,N-1,"","",fptr);} //
-//
     long   gt(const double threshold,const long start, const long end, const char *str1, const char *str2, FILE *fptr);     //list pairs >= to u
     long   gt(const double threshold,const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
              if(display)return gt(threshold,start,end,str1,str2,stdout);
@@ -68,17 +64,17 @@ class seqR1 {
     void   increment(long n);            //increment element n in sequence
     void   round(void);                  //round each element to nearest element
     void   listL(void);                  //list contents of seqR1 in long format
-    void list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
-    void list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
-         if(display) list(start,end,str1,str2,stdout);
-         if(1)       list(start,end,str1,str2,fptr);
-         }
-    void list(const char* str1, const char *str2,int display,FILE *fptr){
-         if(display) list(0,N-1,str1,str2,stdout);
-         if(1)       list(0,N-1,str1,str2,fptr);
-         }
-    void list(const long start, const long end){list(start,end,"","",stdout);}
-    void list(void){list(0,N-1,"","",stdout);}
+    void   list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
+    void   list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
+           if(display) list(start,end,str1,str2,stdout);
+           if(1)       list(start,end,str1,str2,fptr);
+           }
+    void   list(const char* str1, const char *str2,int display,FILE *fptr){
+           if(display) list(0,N-1,str1,str2,stdout);
+           if(1)       list(0,N-1,str1,str2,fptr);
+           }
+    void   list(const long start, const long end){list(start,end,"","",stdout);}
+    void   list(void){list(0,N-1,"","",stdout);}
     void   list1(long start, long end);  //list contents of seq. using 1 space each
     void   list1(void){list1(0,N-1);}    //list contents of seq. using 1 space each
     void   listi(long start, long end);  //list contents of seq. using integer format

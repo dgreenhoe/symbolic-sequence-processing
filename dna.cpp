@@ -205,7 +205,6 @@ complex dnatoC1c(char c){
 seqR4 dnaseq::dnatoR4(void){
   const long N=getN();
   long n;
-  char yc;
   seqR4 seq4(N);
   for(n=0; n<N; n++)seq4.put(n,dnatoR4c(get(n)));
   return seq4;
@@ -310,10 +309,7 @@ seqR1 dnaseq::histogram(const long start, const long end, int display, FILE *fpt
   seqR1 data(6);
   long n;
   long bin;
-  double p;
-  int i;
   char symbol;
-  FILE *ptr;
   data.clear();
   for(n=start;n<=end;n++){
     symbol=get(n);

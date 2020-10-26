@@ -44,13 +44,11 @@
  *-------------------------------------------------------------------------*/
 int lab_fdie_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   fdieseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -117,13 +115,11 @@ int lab_fdie_ocs(const unsigned seed, const long N, const char *basefilename){
  *-------------------------------------------------------------------------*/
 int lab_rdie_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   rdieseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -191,13 +187,11 @@ int lab_rdie_ocs(const unsigned seed, const long N, const char *basefilename){
  *-------------------------------------------------------------------------*/
 int lab_spin_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   spinseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -265,13 +259,11 @@ int lab_spin_ocs(const unsigned seed, const long N, const char *basefilename){
  *-------------------------------------------------------------------------*/
 int lab_wdie_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   fdieseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -335,13 +327,11 @@ int lab_wdie_ocs(const unsigned seed, const long N, const char *basefilename){
  *-------------------------------------------------------------------------*/
 int lab_wrdie_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   rdieseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -405,13 +395,11 @@ int lab_wrdie_ocs(const unsigned seed, const long N, const char *basefilename){
  *-------------------------------------------------------------------------*/
 int lab_wspin_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   spinseq x(N);   //for spinner sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -475,13 +463,11 @@ int lab_wspin_ocs(const unsigned seed, const long N, const char *basefilename){
  *-------------------------------------------------------------------------*/
 int lab_dna_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   dnaseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -545,7 +531,6 @@ int lab_dna_ocs(const unsigned seed, const long N, const char *basefilename){
  *-------------------------------------------------------------------------*/
 int lab_dna_ocs(const char *datafilename, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   const long N=numsym_fasta_file(datafilename);
   dnaseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
@@ -554,7 +539,6 @@ int lab_dna_ocs(const char *datafilename, const char *basefilename){
   FILE *lptr; // pointer to log  file
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
 
   //----------------------------------------------
@@ -617,7 +601,6 @@ int lab_dna_ocs(const char *datafilename, const char *basefilename){
  *-------------------------------------------------------------------------*/
 int lab_dnan_ocs(const char *datafilename, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   const long N=numsym_fasta_file(datafilename);
   dnanseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
@@ -626,7 +609,6 @@ int lab_dnan_ocs(const char *datafilename, const char *basefilename){
   FILE *lptr; // pointer to log  file
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
 
   //----------------------------------------------
@@ -693,7 +675,6 @@ int lab_dnan_ocs(const char *datafilename, const char *basefilename){
  *-------------------------------------------------------------------------*/
 int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
 
   rdieseq x(N+M);        //for die sequence
   seqR1   xR1(N+M);      //for R^1 seqR1 mapped from x sequence
@@ -737,7 +718,7 @@ int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *bas
   //open log file
   //----------------------------------------------
   printf(         "---------------------------------------------------------------\n");
-  sprintf(comment,"Experiment: low pass filter length %6ld real die sequence",N,M);printf("%s\n",comment);
+  sprintf(comment,"Experiment: low pass filter length %6ld real die sequence",N);printf("%s\n",comment);
   printf(         "---------------------------------------------------------------\n");
   sprintf(buf,"%s_%ldm%ld",basefilename,N,M);
   lptr=log_open (buf,time1,comment);
@@ -1002,7 +983,6 @@ int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *bas
  *-------------------------------------------------------------------------*/
 int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   rdieseq x(M*(N+2)-(M-1));//for real die sequence
   seqR1 r(M);              //for M-tap rectangular filter
   seqR1 h(M);              //for M-tap Hanning filter
@@ -1193,7 +1173,7 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   //----------------------------------------------
   //plot histogram tex files
   //----------------------------------------------
-  sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M);
+  sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M,1.0);
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR1reMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
@@ -1232,7 +1212,7 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   //----------------------------------------------
   //plot autocorrelation tex files
   //----------------------------------------------
-  sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M);
+  sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M,1.0);
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR1re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
@@ -1284,7 +1264,6 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
  *-------------------------------------------------------------------------*/
 int lab_spin_lp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   spinseq    x(N+M);        //for die sequence
   seqR1   xR1(N+M);      //for R^1 seqR1 mapped from x sequence
   seqR2 xR2(N+M);      //for R^2 seqR1 mapped from x sequence
@@ -1537,7 +1516,6 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
  *-------------------------------------------------------------------------*/
 int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   spinseq x(M*(N+2)-(M-1));   //for spinner sequence
   seqR1 r(M);              //for M-tap rectangular filter
   seqR1 h(M);              //for M-tap Hanning filter
@@ -1589,7 +1567,7 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   //open log file
   //----------------------------------------------
   printf(         "-----------------------------------------------------------\n");
-  sprintf(comment,"Experiment: high pass filter length %ld weighted spinner sequence\n",N,M); printf("%s",comment);
+  sprintf(comment,"Experiment: high pass filter length %ld weighted spinner sequence\n",N); printf("%s",comment);
   printf(         "-----------------------------------------------------------\n");
   sprintf(buf,"%s_%ldm%ld",basefilename,N,M);
   lptr=log_open (buf,time1,comment);
@@ -1649,7 +1627,7 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   else     {sprintf(buf,"Euclidean and Lagrange sequences following %ld-tap Hanning filter differ at %ld locations.\n",M,n);printofe(lptr,buf,time1);}
 
   //----------------------------------------------
-  sprintf(buf,"Perform down sampling...\n  ",M);printofe(lptr,buf,time1);
+  sprintf(buf,"Perform down sampling...\n  ");printofe(lptr,buf,time1);
   //----------------------------------------------
   printf("xR1re|%ld...",M); downsample(M, &xR1re, &xR1reM);//xR1reM = xR1re downsampled by M
   printf("xR1he|%ld...",M); downsample(M, &xR1he, &xR1heM);//xR1heM = xR1he downsampled by M
@@ -1818,7 +1796,6 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
  *-------------------------------------------------------------------------*/
 int lab_fdie_lp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
 
   fdieseq x(N+M);        //for die sequence
   seqR1   xR1(N+M);      //for R^1 seqR1 mapped from x sequence
@@ -1988,7 +1965,7 @@ int lab_fdie_lp(const unsigned seed, const long N, const long M, const char *bas
   //----------------------------------------------
   //plot histogram tex files
   //----------------------------------------------
-  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M);
+  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M,1.0);
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR1re, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
@@ -2027,7 +2004,7 @@ int lab_fdie_lp(const unsigned seed, const long N, const long M, const char *bas
   //----------------------------------------------
   //plot autocorrelation tex files
   //----------------------------------------------
-  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M);
+  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M,1.0);
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_auto(&RxR1re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
@@ -2078,7 +2055,6 @@ int lab_fdie_lp(const unsigned seed, const long N, const long M, const char *bas
  *-------------------------------------------------------------------------*/
 int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   fdieseq x(M*(N+2)-(M-1));   //for fair die sequence
   seqR1 r(M);              //for M-tap rectangular filter
   seqR1 h(M);              //for M-tap Hanning filter
@@ -2189,7 +2165,7 @@ int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *bas
   else     {sprintf(buf,"Euclidean and Lagrange sequences after using %ld-tap Hanning filter differ at %ld locations.\n",M,n);printofe(lptr,buf,time1);}
 
   //----------------------------------------------
-  sprintf(buf,"Perform down sampling...\n  ",M);printofe(lptr,buf,time1);
+  sprintf(buf,"Perform down sampling...\n  "); printofe(lptr,buf,time1);
   //----------------------------------------------
   printf("xR1re|%ld...",M); downsample(M, &xR1re, &xR1reM);//xR1reM = xR1re downsampled by M
   printf("xR1he|%ld...",M); downsample(M, &xR1he, &xR1heM);//xR1heM = xR1he downsampled by M
@@ -2269,7 +2245,7 @@ int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *bas
   //----------------------------------------------
   //plot histogram tex files
   //----------------------------------------------
-  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M);
+  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M,1.0);
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR1reMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
@@ -2308,7 +2284,7 @@ int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *bas
   //----------------------------------------------
   //plot autocorrelation tex files
   //----------------------------------------------
-  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M);
+  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M,1.0);
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR1re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
@@ -2359,7 +2335,6 @@ int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *bas
  *-------------------------------------------------------------------------*/
 int lab_die_nonstat34(const unsigned seed, const long N, const long M, const int vx, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   const int vA=vx,vB=vx,vD=vx,vE=vx,vF=vx, vC=100-5*vx;
   const int wA=vx,wB=vx,wC=vx,wE=vx,wF=vx, wD=100-5*vx;
   double threshold;
@@ -2378,7 +2353,7 @@ int lab_die_nonstat34(const unsigned seed, const long N, const long M, const int
   seqR1 mDxC1(N);  // mDxC1 = |DFT(xC1)|
   seqR1 mDxR6(N);  // mDxR6 = |DFT(xR6)|
 
-  long n,m;
+  long n;
   vectC6 y6n;
   char comment[1024];      //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
@@ -2536,7 +2511,6 @@ int lab_die_nonstat34(const unsigned seed, const long N, const long M, const int
  *-------------------------------------------------------------------------*/
 int lab_die_edge(const unsigned seed, const long N, const long M, const long Mh, const int vx, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   const long D=10;
   const int vA=vx,vB=vx,vD=vx,vE=vx,vF=vx, vC=100-5*vx;
 
@@ -2674,7 +2648,6 @@ int lab_die_edge(const unsigned seed, const long N, const long M, const long Mh,
  *-------------------------------------------------------------------------*/
 int lab_dna_dft(const char *datafilename, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   const long N=numsym_fasta_file(datafilename);
   const long M=8;
   const long hres1=0;
@@ -2697,7 +2670,6 @@ int lab_dna_dft(const char *datafilename, const char *basefilename){
   seqR1   mDxC1(N);    //magnitude of DFT of C^1 sequence mapped from x sequence
   seqR1   mDxR4(N);    //magnitude of DFT of R^4 sequence mapped from x sequence
 
-  long n;
   char comment[1024];      //comment to be passed to plotting function
   char buf[128];          //general purpose buffer
   char filename[128];          //general purpose buffer
@@ -2736,7 +2708,7 @@ int lab_dna_dft(const char *datafilename, const char *basefilename){
   sprintf(buf,"Perform DFT operation R^1-->C^1...\n");printof(lptr,buf);
   //----------------------------------------------
   xR1=x.dnatoR1pam();
-  sprintf(buf,"[x'_%ld..x'_%ld] of length %ld dna sequence mapped to R^1 using PAM mapping:\n",0,50,N); 
+  sprintf(buf,"[x'_%d..x'_%d] of length %ld dna sequence mapped to R^1 using PAM mapping:\n",0,50,N); 
   dft(&xR1,&DxR1);
   mag(&DxR1,&mDxR1);
   rmsval=rms(&mDxR1,1,N/2-1);
@@ -2754,7 +2726,7 @@ int lab_dna_dft(const char *datafilename, const char *basefilename){
   sprintf(buf,"Perform DFT operation C^1-->C^1...");printof(lptr,buf);
   //----------------------------------------------
   xC1=x.dnatoC1();
-  sprintf(buf,"[x'_%ld..x'_%ld] of length %ld dna sequence mapped to C^1 using QPSK mapping:\n",0,10,N); 
+  sprintf(buf,"[x'_%d..x'_%d] of length %ld dna sequence mapped to C^1 using QPSK mapping:\n",0,10,N); 
   xC1.list(0,10,buf,"\n",lptr);
   dft(&xC1,&DxC1);
   mag(&DxC1,&mDxC1);
@@ -2771,7 +2743,7 @@ int lab_dna_dft(const char *datafilename, const char *basefilename){
   sprintf(buf,"Perform DFT operation R^4-->C^4...\n");printof(lptr,buf);
   //----------------------------------------------
   xR4=x.dnatoR4();
-  sprintf(buf,"[x'_%ld..x'_%ld] of length %ld dna sequence mapped to R^4 :\n",0,10,N);  
+  sprintf(buf,"[x'_%d..x'_%d] of length %ld dna sequence mapped to R^4 :\n",0,10,N);  
   xR4.list(0,10,buf,"\n",lptr);
   dft(&xR4,&DxR4);
   mag(&DxR4,&mDxR4);
@@ -2818,7 +2790,6 @@ int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int
   char filename[128];          //general purpose buffer
   char comment[1024];      //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  char header[1024];
   FILE *lptr; // pointer to log  file
 
   //----------------------------------------------
@@ -2833,7 +2804,7 @@ int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int
   //----------------------------------------------
   //sprintf(buf,"length %ld pseudo-random die sequence ",N); printof(lptr,buf);
   //----------------------------------------------
-  sprintf(buf,"dna weight values for [x_{%3ld}...x_{%3ld}]: (%d %d %d %d)\n",0,  M/2-1,vA,vC,vG,vT);printof(lptr,buf);
+  sprintf(buf,"dna weight values for [x_{%3d}...x_{%3ld}]: (%d %d %d %d)\n",0,  M/2-1,vA,vC,vG,vT);printof(lptr,buf);
   sprintf(buf,"dna weight values for [x_{%3ld}...x_{%3ld}]: (%d %d %d %d)\n",M/2,M-1,  wA,wC,wG,wT);printof(lptr,buf);
   x.seed(seed);
   for(n=0;((n+2)*M/2)<=N;n+=2){
@@ -2851,7 +2822,7 @@ int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int
   sprintf(buf,"Perform DFT operation R^1-->C^1...\n");printof(lptr,buf);
   //----------------------------------------------
   xR1=x.dnatoR1pam();
-  sprintf(buf,"[x'_%ld..x'_%ld] of length %ld dna sequence mapped to R^1 using PAM mapping:\n",0,50,N); 
+  sprintf(buf,"[x'_%d..x'_%d] of length %ld dna sequence mapped to R^1 using PAM mapping:\n",0,50,N); 
   xR1.list(0,100,buf,"\n",lptr);
   dft(&xR1,&DxR1);
   mag(&DxR1,&ymag);
@@ -2867,7 +2838,7 @@ int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int
   sprintf(buf,"Perform DFT operation C^1-->C^1...");printof(lptr,buf);
   //----------------------------------------------
   xC1=x.dnatoC1();
-  sprintf(buf,"[x'_%ld..x'_%ld] of length %ld dna sequence mapped to C^1 using QPSK mapping:\n",0,10,N); 
+  sprintf(buf,"[x'_%d..x'_%d] of length %ld dna sequence mapped to C^1 using QPSK mapping:\n",0,10,N); 
   xC1.list(0,10,buf,"\n",lptr);
   dft(&xC1,&DxC1);
   mag(&DxC1,&ymag);
@@ -2884,7 +2855,7 @@ int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int
   sprintf(buf,"Perform DFT operation R^4-->C^4...\n");printof(lptr,buf);
   //----------------------------------------------
   xR4=x.dnatoR4();
-  sprintf(buf,"[x'_%ld..x'_%ld] of length %ld dna sequence mapped to R^4 :\n",0,10,N);  
+  sprintf(buf,"[x'_%d..x'_%d] of length %ld dna sequence mapped to R^4 :\n",0,10,N);  
   xR4.list(0,10,buf,"\n",lptr);
   dft(&xR4,&DxR4);
   mag(&DxR4,&ymag);
@@ -2908,7 +2879,6 @@ int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int
  *-------------------------------------------------------------------------*/
 int lab_dna_edge(const unsigned seed, const long N, const long M, const long Mh, const int vx, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   const long D=5;
   const int vA=vx,vT=vx,vG=vx,vC=100-3*vx;
 
@@ -2942,7 +2912,7 @@ int lab_dna_edge(const unsigned seed, const long N, const long M, const long Mh,
   //----------------------------------------------
   // generate dna sequence
   //----------------------------------------------
-  sprintf(buf,"dna weight*100 for [x_{%3ld}...x_{%3ld}]: (%d %d %d %d)\n",0,  M-1,vA,vC,vT,vG);printof(lptr,buf);
+  sprintf(buf,"dna weight*100 for [x_{%3d}...x_{%3ld}]: (%d %d %d %d)\n",0, M-1,vA,vC,vT,vG);printof(lptr,buf);
   x.randomize(seed);
   x.randomize(M,2*M-1, vA,vC,vG,vT); 
   x.histogram(1,lptr);              
@@ -3072,7 +3042,6 @@ int lab_dna_edge(const unsigned seed, const long N, const long M, const long Mh,
  *-------------------------------------------------------------------------*/
 int lab_dna_averaging(const long Mh, const char *datafilename, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   const long D=20;
   const long N=numsym_fasta_file(datafilename);
   if(N==-1)return -1;
@@ -3087,11 +3056,9 @@ int lab_dna_averaging(const long Mh, const char *datafilename, const char *basef
   seqR4   xR4h(N+Mh-1); //for x mapped to R4 and filtered by h
 
   long n;
-  double threshold;
   char comment[1024];      //comment to be passed to plotting function
   char header[1024];
   char buf[128];          //general purpose buffer
-  char filename[128];          //general purpose buffer
   FILE *lptr; // pointer to log  file
 
   //----------------------------------------------
@@ -3181,7 +3148,6 @@ int lab_dna_averaging(const long Mh, const char *datafilename, const char *basef
  *-------------------------------------------------------------------------*/
 int lab_dna_edge(const long Mh, const char *datafilename, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   const long D=20;
   const long N=numsym_fasta_file(datafilename);
   if(N==-1)return -1;
@@ -3198,12 +3164,11 @@ int lab_dna_edge(const long Mh, const char *datafilename, const char *basefilena
   seqR1   xC1hm(N+Mh-1); //magnitude for x mapped to R1 and filtered by h
   seqR1   xR4hm(N+Mh-1); //magnitude for x mapped to R4 and filtered by h
 
-  long n,count;
-  double threshold,rmsval,max,yn;
+  long n;
+  double threshold;
   char comment[1024];      //comment to be passed to plotting function
   char header[1024];
   char buf[128];          //general purpose buffer
-  char filename[128];          //general purpose buffer
   FILE *lptr; // pointer to log  file
 
   //----------------------------------------------

@@ -37,13 +37,11 @@
  *-------------------------------------------------------------------------*/
 int lab_larc_distances_R2(const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   vectR2 p,q;
   double d,dN;
   int fails=0;
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -103,12 +101,10 @@ int lab_larc_distances_R2(const char *basefilename){
  *-------------------------------------------------------------------------*/
 int lab_larc_distances_R3(const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   vectR3 p,q;
   double d,de,s=1.0/PI;
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -147,13 +143,12 @@ int lab_larc_ball_R2(const double px, const double py, const double r, const dou
   time_t time1,time2; time(&time1);   //starting time stamp (passed to plotting routine)
   struct tm *gmt;
   double seconds;
-  double a,b,t,theta,err;
-  double x,y,d;
+  double theta;
+  double d=0;
   vectR2 p(px,py);
   vectR2 q;
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
   FILE *fptr; // pointer to data  file
@@ -192,7 +187,7 @@ int lab_larc_ball_R2(const double px, const double py, const double r, const dou
   fprintf(fptr,"%%========================================================================\n");
   fprintf(fptr,"[\n");
 
-  printf("\ntheta = %4.2lf PI",0);
+  printf("\ntheta = 0 PI");
   for(theta=0;theta<(2*PI);theta+=(2*PI/Nplot)){
     //q.put(x,y);
     if(larc_findq(p, theta, r, rmin, rmax, maxerror, Nsearch, &q))
@@ -228,15 +223,11 @@ int lab_larc_ball_R3(const double px, const double py, const double pz, const do
   time_t time1,time2; time(&time1);   //starting time stamp (passed to plotting routine)
   struct tm *gmt;
   double seconds;
-  double a,b,t,theta,phi,err;
-  double x,y,d;
+  double theta,phi;
   vectR3 p(px,py,pz);
   vectR3 q;
   char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
-  long n;
   int row,col;
-  const long N=1000;
   char filename[1024];
   FILE *lptr; // pointer to log  file
   FILE *fptr; // pointer to data  file
@@ -317,7 +308,6 @@ int lab_larc_ball_R3(const double px, const double py, const double pz, const do
  *-------------------------------------------------------------------------*/
 int lab_larc_pti(const double a, const double sigma, const double min, const double max, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
-  double seconds;
   vectR2 p,q,r;
   double px,py,qx,qy,rx,ry;
   double dpq,dqr,dpr;
@@ -327,7 +317,7 @@ int lab_larc_pti(const double a, const double sigma, const double min, const dou
   int fails=0;
   char comment[1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
-  long n,count=0;
+  long count=0;
   char filename[1024];
   FILE *lptr; // pointer to log  file
 

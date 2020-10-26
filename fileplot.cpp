@@ -196,7 +196,7 @@ int plot_ocs_seq(const symseq *x, const long start, const long finish, const tim
   if(mode==-1){
     mode=modelist[0];
     sprintf(cmdstr,cmdstrlist[mode]);
-    fprintf(stderr,"\nERROR using plot_ocs_seq(...): unknown plottype string \"%s\".\n",plottype,cmdstr);
+    fprintf(stderr,"\nERROR using plot_ocs_seq(...): unknown plottype string \"%s\".\n",plottype);
     exit(EXIT_FAILURE);
     }
   Nsym = strlen(symlist[mode]);
@@ -269,7 +269,7 @@ int plot_ocs_histo(const symseq *x, const long start, const long finish, const t
   struct tm *gmt;
   double seconds;
   int i,mode,Nbin,Nsym;
-  long n,m;
+  long n;
   char symbol;
   char cmdstr[8]="lolli";//"lolli"=default command string
   char tbuffer[80];// time buffer
@@ -381,7 +381,7 @@ int plot_ocs_histo(const symseq *x, const long start, const long finish, const t
   fprintf(fptr,"    %%----------------------------------------\n");
   for(n=1;n<=Nbin;n++)fprintf(fptr,"    \\rput[t](%ld,1.15){$%.0lf$}%%\n",n,h.get(n));
   fprintf(fptr,"    %%\n");
-  for(n=1;n<=Nbin;n++)fprintf(fptr,"    \\rput[t](%d,0.92){$\\scy(%.2lf\\%%)$}%%\n",n,h.get(n)/(double)N*100.0);
+  for(n=1;n<=Nbin;n++)fprintf(fptr,"    \\rput[t](%ld,0.92){$\\scy(%.2lf\\%%)$}%%\n",n,h.get(n)/(double)N*100.0);
   fprintf(fptr,"  \\end{pspicture}%%\n");
   fprintf(fptr,"\\end{document}%%\n");
   time(&time2); gmt = gmtime(&time2);
@@ -445,7 +445,7 @@ int plot_ocs_auto(const seqR1 *Rxx, const long Nhw, const time_t time1, const ch
   fprintf(fptr,"    \\rput[l](-3.2,0.84){\\rnode[r]{centerLl}{$\\opair{-%ld}{%.1lf}$}}%% label for bottom left of center lobe\n",Nhw,Rxx->get(N-Nhw));
   fprintf(fptr,"    \\rput[l](0.25,0.24){\\rnode[rb]{noiseRl}{$\\opair{%ld}{0}$}}%% label for bottom right of right noise area\n",N);
   fprintf(fptr,"    \\rput[r](-0.25,0.24){\\rnode[lb]{noiseLl}{$\\opair{-%ld}{0}$}}%% label for bottom left of left noise area\n",N);
-  fprintf(fptr,"    \\rput[t](-1.7,2){\\rnode[r]{highresl}{\\scs full resolution region}}%% label for full resolution area\n",N);
+  fprintf(fptr,"    \\rput[t](-1.7,2){\\rnode[r]{highresl}{\\scs full resolution region}}%% label for full resolution area\n");
   fprintf(fptr,"    \\rput[b](-1.6,1.2){\\rnode[b]{lowresLl}{\\scs1:%ld resolution region}}%% label for left low resolution area\n",nSkip);
   fprintf(fptr,"    \\rput[b](1.6,1.2){\\rnode[b]{lowresRl}{\\scs1:%ld resolution region}}%% label for right low resolution area\n",nSkip);
   fprintf(fptr,"    %%-------------------------------------\n");

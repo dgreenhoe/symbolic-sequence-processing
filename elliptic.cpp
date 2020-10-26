@@ -43,7 +43,7 @@ int ellipsec::findt_dfroms(double s, double d, int direction, long int N, double
   long int n;
   double delta=PI/N;
   double dd;
-  double besttb=ta, smalleste;
+  double besttb, smalleste;
   double prm;
 
   prm = perimeter(N);
@@ -171,8 +171,8 @@ vectR2  ellipsec::xy(double t){
 double ellipsec::x(double t){
   vectR2 p(a*cos(t),b*sin(t));   // normalized point value
   vectR2 r(cos(phi), -sin(phi)); // rotation vector
-  return r^p + xo; 
-  }
+  return (r^p) + xo; 
+}
 
 /*-------------------------------------------------------------------------
  * compute the value y(t) on ellipse(a,b,phi,xo,yo) at parameter <t>
@@ -180,7 +180,7 @@ double ellipsec::x(double t){
 double ellipsec::y(double t){
   vectR2 p(a*cos(t),b*sin(t));   // normalized point value
   vectR2 r(sin(phi),  cos(phi)); // rotation vector
-  return r^p + yo; 
+  return (r^p) + yo; 
   }
 
 /*-------------------------------------------------------------------------

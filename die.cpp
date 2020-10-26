@@ -138,10 +138,7 @@ seqR1 dieseq::histogram(const long start, const long end, int display, FILE *fpt
   seqR1 data(8);
   long n;
   long bin;
-  double p;
-  int i;
   char symbol;
-  FILE *ptr;
   data.clear();
   for(n=start;n<=end;n++){
     symbol=get(n);
@@ -175,7 +172,7 @@ void phistogram(seqR1 *data, const long start, const long end, FILE *ptr){
   for(bin=1;bin<=6;bin++)fprintf(ptr,"         %c",'A'+(char)bin-1);  
   fprintf(ptr,"     extra   |\n|");
   for(bin=1;bin<=6;bin++)fprintf(ptr,"%10.0lf",data->get(bin));  
-  fprintf(ptr,"%10.0lf   |\n|",data[0]); 
+  fprintf(ptr,"%10.0lf   |\n|",data->get(0)); 
   for(bin=1;bin<=6;bin++)fprintf(ptr," (%6.2lf%%)",data->get(bin)/(double)N*100.0);  
   fprintf(ptr,"  (%6.2lf%%)  |\n",data->get(0)/(double)N*100.0); 
   fprintf(ptr," -------------------------------------------------------------------------\n");

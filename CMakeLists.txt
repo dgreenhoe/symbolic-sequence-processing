@@ -41,8 +41,8 @@
 #--------------------------------------
  set( FLAGS_COMPILE
       #-v
-      #-fpermissive
       -Wall
+      -Werror
       -Wno-write-strings
       -Wno-return-type
       -Wno-format-overflow

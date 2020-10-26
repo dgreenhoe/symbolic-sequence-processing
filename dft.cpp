@@ -137,7 +137,7 @@ int dft(seqR1 *x, seqC1 *y){
   const long Ny=y->getN();
   const long N=(Nx<Ny)?Nx:Ny;
   int retval=0;
-  long n;
+  long n=0;
   complex yn,ync;
 
   y->clear();
@@ -164,7 +164,7 @@ int dft(seqC1 *x, seqC1 *y){
   const long Ny=y->getN();
   const long N=(Nx<Ny)?Nx:Ny;
   int retval=0;
-  long n;
+  long n=0;
   complex yn;
 
   y->clear();
@@ -184,11 +184,12 @@ int dft(seqC1 *x, seqC1 *y){
 /*-------------------------------------------------------------------------
  * unitary Discrete Fourier Transform (DFT) from seqR1 to seqC1
  *-------------------------------------------------------------------------*/
-int dft(seqR4 *x, seqC4 *y){
+int dft(seqR4 *x, seqC4 *y)
+{
   const long Nx=x->getN();
   const long Ny=y->getN();
   const long N=(Nx<Ny)?Nx:Ny;
-  long n;
+  long n=0;
   vectC4 yn,ync;
   int retval=0;
 
@@ -206,7 +207,7 @@ int dft(seqR4 *x, seqC4 *y){
     if(n!=0)y->put(N-n,ync);
     }
   return retval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * unitary Discrete Fourier Transform (DFT) from seqR1 to seqC1
@@ -215,7 +216,7 @@ int dft(seqR6 *x, seqC6 *y){
   const long Nx=x->getN();
   const long Ny=y->getN();
   const long N=(Nx<Ny)?Nx:Ny;
-  long n;
+  long n=0;
   vectC6 yn;
   int retval=0;
 

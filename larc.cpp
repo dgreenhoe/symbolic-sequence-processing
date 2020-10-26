@@ -99,7 +99,7 @@ double larc_metric(const vectR2 p, const vectR2 q){
   const double rp  = p.mag();
   const double rq  = q.mag();
   const double phi = pqtheta(p,q);
-  const vectR2  pq=p-q;
+  const vectR2  pq; //=p-q;
   double d;
   if(rp==0 || rq==0 || phi<=0.0000001){//use Euclidean metric
     d = emetric(p,q); 

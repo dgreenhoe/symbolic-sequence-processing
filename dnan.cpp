@@ -170,10 +170,7 @@ seqR1 dnanseq::histogram(const long start, const long end, int display, FILE *fp
   seqR1 data(7);
   long n;
   long bin;
-  double p;
-  int i;
   char symbol;
-  FILE *ptr;
   data.clear();
   for(n=start;n<=end;n++){
     symbol=get(n);

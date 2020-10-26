@@ -34,7 +34,6 @@ int plot_dna_seq(const unsigned seed, int N, const char *filename);
  *-------------------------------------------------------------------------*/
 int plot_balloon_metric_ball(vectR2 p, double r, FILE *fptr){
   ellipsec ellipse;
-  double a,b,t,phi,err;
   time_t time1,time2; 
   struct tm *gmt;
   double seconds;
@@ -83,7 +82,6 @@ int plot_balloon_metric_ball(vectR2 p, double r, FILE *fptr){
  *-------------------------------------------------------------------------*/
 int plot_larc_ball(vectR2 p, double r, FILE *fptr){
   ellipsec ellipse;
-  double a,b,t,phi,err;
   time_t time1,time2; 
   struct tm *gmt;
   double seconds;
@@ -228,7 +226,6 @@ int plot_euclidean_metric_ball(double alpha, vectR3 p, double r, FILE *fptr){
  *-------------------------------------------------------------------------*/
 int plot_mca_metric_ball(vectR2 p, double r, FILE *fptr){
   ellipsec ellipse;
-  double a,b,t,phi,err;
   time_t time1,time2; 
   struct tm *gmt;
   double seconds;
