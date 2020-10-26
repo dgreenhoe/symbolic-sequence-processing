@@ -147,7 +147,7 @@ int lab_larc_ball_R2(const double px, const double py, const double r, const dou
   double d=0;
   vectR2 p(px,py);
   vectR2 q;
-  char comment[1024];          //comment to be passed to plotting function
+  char comment[2*1024];          //comment to be passed to plotting function
   char buf[1024];          //general purpose buffer
   char filename[1024];
   FILE *lptr; // pointer to log  file
@@ -226,7 +226,7 @@ int lab_larc_ball_R3(const double px, const double py, const double pz, const do
   double theta,phi;
   vectR3 p(px,py,pz);
   vectR3 q;
-  char comment[1024];          //comment to be passed to plotting function
+  char comment[2*1024];          //comment to be passed to plotting function
   int row,col;
   char filename[1024];
   FILE *lptr; // pointer to log  file

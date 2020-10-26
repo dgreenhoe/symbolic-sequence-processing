@@ -47,8 +47,8 @@ int lab_fdie_ocs(const unsigned seed, const long N, const char *basefilename){
   fdieseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -118,8 +118,8 @@ int lab_rdie_ocs(const unsigned seed, const long N, const char *basefilename){
   rdieseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -190,8 +190,8 @@ int lab_spin_ocs(const unsigned seed, const long N, const char *basefilename){
   spinseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -262,8 +262,8 @@ int lab_wdie_ocs(const unsigned seed, const long N, const char *basefilename){
   fdieseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -330,8 +330,8 @@ int lab_wrdie_ocs(const unsigned seed, const long N, const char *basefilename){
   rdieseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -398,8 +398,8 @@ int lab_wspin_ocs(const unsigned seed, const long N, const char *basefilename){
   spinseq x(N);   //for spinner sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -466,8 +466,8 @@ int lab_dna_ocs(const unsigned seed, const long N, const char *basefilename){
   dnaseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   char filename[1024];
   FILE *lptr; // pointer to log  file
 
@@ -537,8 +537,8 @@ int lab_dna_ocs(const char *datafilename, const char *basefilename){
   char header[1024];
   if(N==-1)return -1;
   FILE *lptr; // pointer to log  file
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   char filename[1024];
 
   //----------------------------------------------
@@ -607,8 +607,8 @@ int lab_dnan_ocs(const char *datafilename, const char *basefilename){
   char header[1024];
   if(N==-1)return -1;
   FILE *lptr; // pointer to log  file
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   char filename[1024];
 
   //----------------------------------------------
@@ -708,8 +708,8 @@ int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *bas
   seqR1 RxR3he(2*N+1);  //for auto-correlation seqR1 of xR3he 
   seqR1 RxR3hl(2*N+1);  //for auto-correlation seqR1 of xR3hl 
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //comment to be passed to plotting function
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //comment to be passed to plotting function
   long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
@@ -1023,8 +1023,8 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   seqR1   RxR3rl(2*N+1); //for auto-correlation of xR3rlMN
   seqR1   RxR3hl(2*N+1); //for auto-correlation of xR3hlMN
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
@@ -1296,8 +1296,8 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
   seqR1 RxR2he(2*N+1);  //for auto-correlation seqR1 of xR2he 
   seqR1 RxR2hl(2*N+1);  //for auto-correlation seqR1 of xR2hl 
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //comment to be passed to plotting function
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //comment to be passed to plotting function
   long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
@@ -1556,8 +1556,8 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   seqR1    RxR2rl(2*N+1); //for auto-correlation of xR2rlMN
   seqR1    RxR2hl(2*N+1); //for auto-correlation of xR2hlMN
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   long n;
   char filename[1024];
 
@@ -1829,8 +1829,8 @@ int lab_fdie_lp(const unsigned seed, const long N, const long M, const char *bas
   seqR1   RxR6he(2*N+1);   //for auto-correlation seqR1 of xR6he 
   seqR1   RxR6hl(2*N+1);   //for auto-correlation seqR1 of xR6hl 
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //comment to be passed to plotting function
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //comment to be passed to plotting function
   long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
@@ -2095,8 +2095,8 @@ int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *bas
   seqR1 RxR6rl(2*N+1); //for auto-correlation of xR6rlMN
   seqR1 RxR6hl(2*N+1); //for auto-correlation of xR6hlMN
 
-  char comment[1024];          //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];          //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   long n;
   char filename[1024];
   FILE *lptr; // pointer to log  file
@@ -2356,7 +2356,7 @@ int lab_die_nonstat34(const unsigned seed, const long N, const long M, const int
   long n;
   vectC6 y6n;
   char comment[1024];      //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char buf[4*1024];          //general purpose buffer
   char filename[1024];
   double pmargin;
   FILE *lptr; // pointer to log  file
@@ -2528,7 +2528,7 @@ int lab_die_edge(const unsigned seed, const long N, const long M, const long Mh,
 
   double threshold,yn,pmargin,max,rmsval;
   long n,count;
-  char comment[1024];      //comment to be passed to plotting function
+  char comment[2*1024];      //comment to be passed to plotting function
   char buf[128];          //general purpose buffer
   FILE *lptr; // pointer to log  file
 
@@ -2670,7 +2670,7 @@ int lab_dna_dft(const char *datafilename, const char *basefilename){
   seqR1   mDxC1(N);    //magnitude of DFT of C^1 sequence mapped from x sequence
   seqR1   mDxR4(N);    //magnitude of DFT of R^4 sequence mapped from x sequence
 
-  char comment[1024];      //comment to be passed to plotting function
+  char comment[2*1024];      //comment to be passed to plotting function
   char buf[128];          //general purpose buffer
   char filename[128];          //general purpose buffer
   FILE *lptr; // pointer to log  file
@@ -2788,8 +2788,8 @@ int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int
   vectC4  ynR4;
   const double pmargin=1.0;
   char filename[128];          //general purpose buffer
-  char comment[1024];      //comment to be passed to plotting function
-  char buf[1024];          //general purpose buffer
+  char comment[2*1024];      //comment to be passed to plotting function
+  char buf[2*1024];          //general purpose buffer
   FILE *lptr; // pointer to log  file
 
   //----------------------------------------------
@@ -2896,7 +2896,7 @@ int lab_dna_edge(const unsigned seed, const long N, const long M, const long Mh,
 
   double threshold,rmsval,yn,pmargin,max1,max2,max;
   long n,n2,count;
-  char comment[1024];      //comment to be passed to plotting function
+  char comment[2*1024];      //comment to be passed to plotting function
   char buf[128];          //general purpose buffer
   FILE *lptr; // pointer to log  file
 
@@ -3056,7 +3056,7 @@ int lab_dna_averaging(const long Mh, const char *datafilename, const char *basef
   seqR4   xR4h(N+Mh-1); //for x mapped to R4 and filtered by h
 
   long n;
-  char comment[1024];      //comment to be passed to plotting function
+  char comment[2*1024];      //comment to be passed to plotting function
   char header[1024];
   char buf[128];          //general purpose buffer
   FILE *lptr; // pointer to log  file
@@ -3166,7 +3166,7 @@ int lab_dna_edge(const long Mh, const char *datafilename, const char *basefilena
 
   long n;
   double threshold;
-  char comment[1024];      //comment to be passed to plotting function
+  char comment[2*1024];      //comment to be passed to plotting function
   char header[1024];
   char buf[128];          //general purpose buffer
   FILE *lptr; // pointer to log  file

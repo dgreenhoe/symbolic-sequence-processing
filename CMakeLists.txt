@@ -43,8 +43,7 @@
       #-v
       -Wall
       -Werror
-     #-Wno-write-strings
-      -Wno-format-overflow
+      #-Wno-format-overflow
     )
 
  set( FLAGS_LINK
