@@ -43,15 +43,17 @@
       #-v
       -Wall
       -Werror
-      #-Wno-format-overflow
     )
 
  set( FLAGS_LINK
       #-v
+      -Wall
+      -Werror
     )
 
 #--------------------------------------
 # Source Files
+#ERROR using spin_spintoR1(c): c=0(0x30) is not in the valid domain {A,B,C,D,E,F}
 #--------------------------------------
  set( SOURCES_TARGET
       main.cpp

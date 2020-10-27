@@ -13,40 +13,36 @@
 #include "lab2015ssp.h"
 #include "lab2015larc.h"
 
-/*-------------------------------------
- * prototypes
- *-------------------------------------*/
+//-------------------------------------
+// prototypes
+//-------------------------------------
 int perform_tests(void);
 int test_2015larc(void);
 int make_2015larc_data(void);
 int make_2015ssp_texplots(void);
 
-/*-------------------------------------
- * main
- *-------------------------------------*/
+//-------------------------------------
+// main
+//-------------------------------------
 int main(int argc, char *argv[]){
   //printf("This is opseq.exe by Daniel J. Greenhoe \n");
   //printf("  for support of version 0.50 (2016 July 04 Monday) of the text \n");
   //printf("  \"A book concerning symbolic sequence processing\" \n");
   //printf("   by Daniel J. Greenhoe \n");
 
-  bspline_Sdat();
-  perform_tests();
-  make_2015ssp_texplots();
-  test_2015larc();
-  make_2015larc_data();
-  //lab_larc_pti(0.5, 0, -1, 1, 20, "larc_pti_05");
-  //lab_larc_pti(0.5,   0, -1, 1, 2, "tmp");
-  //lab_larc_pti(2,   0, -1, 1, 2, "tmp");
-    //         |_____________________________p
-
+  test_spinner();     // ERROR using spin_spintoR1(c): c=0(0x30) is not in the valid domain {A,B,C,D,E,F}
+//bspline_Sdat();
+//perform_tests();
+//make_2015ssp_texplots();
+//test_2015larc();
+//make_2015larc_data();
   return 0;
   }
 
-/*---------------------------------------------------------------------------
- * calculate data for the paper 2015sphx:
- * "An extension to the spherical metric using Lagrange interpolation"
- *---------------------------------------------------------------------------*/
+//---------------------------------------------------------------------------
+// calculate data for the paper 2015sphx:
+// "An extension to the spherical metric using Lagrange interpolation"
+//---------------------------------------------------------------------------
 int test_2015larc(void){
   test_opair();
   test_vectR2();
@@ -62,10 +58,10 @@ int test_2015larc(void){
   return 0;
   }
 
-/*---------------------------------------------------------------------------
- * calculate data for the paper 2015sphx:
- * "An extension to the spherical metric using Lagrange interpolation"
- *---------------------------------------------------------------------------*/
+//---------------------------------------------------------------------------
+// calculate data for the paper 2015sphx:
+// "An extension to the spherical metric using Lagrange interpolation"
+//---------------------------------------------------------------------------
 int make_2015larc_data(void){
   lab_larc_distances_R2("data/lab_larc_distances_R2");     //Thm 3.13, Rem 3.14, Exm 3.15
   lab_larc_distances_R3("data/lab_larc_distances_R3");     //Example 3.16: larc in R^3
@@ -99,11 +95,11 @@ int make_2015larc_data(void){
   return 0;
   }
 
-/*---------------------------------------------------------------------------
- * make plot TeX files
- * these files can be compiled using xelatex to make pdf files 
- * for inclusion into main pdf file for paper
- *---------------------------------------------------------------------------*/
+//---------------------------------------------------------------------------
+// make plot TeX files
+// these files can be compiled using xelatex to make pdf files 
+// for inclusion into main pdf file for paper
+//---------------------------------------------------------------------------
 int make_2015ssp_texplots(void){
   lab_fdie_ocs (0x5EED, 16002, "plots\\fdie"); // Example 3.4  (fair die sequence), 3 plots
   lab_rdie_ocs (0x5EED, 16002, "plots\\rdie"); // Example 3.5  (real die sequence), 3 plots
@@ -139,43 +135,42 @@ int make_2015ssp_texplots(void){
   return 0;
   }
 
-/*---------------------------------------------------------------------------
- * perform tests
- *---------------------------------------------------------------------------*/
-int perform_tests(void){
+//---------------------------------------------------------------------------
+// perform tests
+//---------------------------------------------------------------------------
+int perform_tests(void)
+{
   test_opair();
   test_vectR2();
   test_complex();
   test_seqR2();
-  if(test_otriple() !=0) return -1;
-  if(test_osix()    !=0) return -1;
-  if(test_vectR6()  !=0) return -1;
-  if(test_dieC1()  !=0) return -1;
+  if(test_otriple()       !=0) return -1;
+  if(test_osix()          !=0) return -1;
+  if(test_vectR6()        !=0) return -1;
+  if(test_dieC1()         !=0) return -1;
   test_conj();
-  if(test_dft_R1()!=0)            return -1;
-  if(test_pqtheta()!=0)        return -1;
+  if(test_dft_R1()        !=0) return -1;
+  if(test_pqtheta()       !=0) return -1;
   if(test_larc_metric_R2()!=0) return -1;
   if(test_larc_metric_R3()!=0) return -1;
   if(test_larc_metric_R6()!=0) return -1;
   if(test_circle()        !=0) return -1;
   if(test_circle_d1()     !=0) return -1;
   if(test_ellipse_d1()    !=0) return -1;
-  //test_rdie_metric();
-  //test_correlation();
   if(test_halfcircle()    ==0) return -1;
   if(test_findt()         ==0) return -1;
   if(test_perimeter()     ==0) return -1;
   if(test_balloon_metric()==0) return -1;
   if(test_mca_metric()    ==0) return -1;
-  if(test_spinner()    ==0) return -1;
-  if(test_rdie()    ==0) return -1;
-  if(test_dna_metric()==0) return -1;
-  if(test_dnan_metric()==0) return -1;
+  if(test_spinner()       ==0) return -1;
+  if(test_rdie()          ==0) return -1;
+  if(test_dna_metric()    ==0) return -1;
+  if(test_dnan_metric()   ==0) return -1;
   test_die();
   test_rdie();
   test_dft_R1();
   test_expi();
   return 0;
-  }
+}
 
 

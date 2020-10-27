@@ -712,17 +712,17 @@ int test_conj(void){
  *-------------------------------------------------------------------------*/
 int test_spinner(void){
   int n,m;
-  long N=160;
+  const long N=160;
   spinseq x(N);
   seqR1 cseq(2*N+1);
 
   printf("Test spinner routines\n");
   printf("---------------------\n");
-  printf("%3.1lf ",spin_metric('0','0'));
-  for(m=0;m<6;m++)printf("%3.1lf ",spin_metric('0',(char)('A'+m)));
+  printf("%3.1lf ",spin_metric('A','A'));
+  for(m=0;m<6;m++)printf("%3.1lf ",spin_metric('A',(char)('A'+m)));
   putchar('\n');
   for(n=0;n<6;n++){
-    printf("%3.1lf ",spin_metric('0','A'+n));
+    printf("%3.1lf ",spin_metric('A','A'+n));
     for(m=0;m<6;m++)printf("%3.1lf ",spin_metric((char)('A'+n),(char)('A'+m)));
     putchar('\n');
     }
@@ -730,9 +730,9 @@ int test_spinner(void){
   x.randomize(0x5EED);
   //cseq=spin_correlation(x,x,':'); //auto-correlation for spinner sequence
 
-  x.list();putchar('\n');
-  cseq.list(0,N);putchar('\n');
-  cseq.list(N+1,2*N);putchar('\n');
+  x.list(          ); putchar('\n');
+  cseq.list(0,  1*N); putchar('\n');
+  cseq.list(N+1,2*N); putchar('\n');
 
   return 1;
   }

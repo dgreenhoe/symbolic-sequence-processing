@@ -86,7 +86,7 @@ double spinseq::Rxx(const long m){
 /*-------------------------------------------------------------------------
  * downsample sequence by a factor of <factor>
  *-------------------------------------------------------------------------*/
-spinseq spinseq::downsample(int factor){
+spinseq spinseq::downsample(const int factor){
   const long N=getN();
   long n,m;
   long M;
@@ -106,10 +106,10 @@ spinseq spinseq::downsample(int factor){
  * A-->1  B-->2  C-->3  D-->4  E-->5  F-->6
  *-------------------------------------------------------------------------*/
 seqR1 spinseq::spintoR1(void){
-  const long N=getN();
+  const long N = getN();
   long n;
   seqR1 y(N);
-  for(n=0; n<N; n++)y.put(n,spin_spintoR1(get(n)));
+  for(n=0; n<N; n++) y.put(n, spin_spintoR1(get(n)) );
   return y;
   }
 
@@ -152,7 +152,7 @@ void spinseq::operator=(spinseq y){
 /*-------------------------------------------------------------------------
  * map spin face values to R^1
  *-------------------------------------------------------------------------*/
-double spin_spintoR1(char c){
+double spin_spintoR1(const char c){
   double rval;
   switch(c){
     case 'A': rval = 1.0;  break;
@@ -171,7 +171,7 @@ double spin_spintoR1(char c){
 /*-------------------------------------------------------------------------
  * map spinner face values to R^2
  *-------------------------------------------------------------------------*/
-vectR2 spin_spintoR2(char c){
+vectR2 spin_spintoR2(const char c){
   vectR2 xy;
   switch(c){
     case 'A': xy.put(0,         -1.0);  break;
