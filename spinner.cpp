@@ -25,30 +25,33 @@
 /*-------------------------------------------------------------------------
  * display spinner metric table
  *-------------------------------------------------------------------------*/
-int spinseq::metrictbl(void){
+int spinseq::metrictbl(void)
+{
   char a,b;
   for(a='A';a<='F';a++){
     for(b='A';b<='F';b++)printf("d(%c,%c)=%.1lf ",a,b,spin_metric(a,b));
     printf("\n");
     }
   return 1;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a spinner seqR1 x with 2N offset
  *-------------------------------------------------------------------------*/
-int spinseq::Rxxo(seqR1 *rxx, const int showcount){
+int spinseq::Rxxo(seqR1 *rxx, const int showcount)
+{
   long N = getN();
   int rval;
   rval=Rxx(rxx,showcount);
   rxx->add(2*N);
   return rval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx of a spinner seqR1 x
  *-------------------------------------------------------------------------*/
-int spinseq::Rxx(seqR1 *rxx, const int showcount){
+int spinseq::Rxx(seqR1 *rxx, const int showcount)
+{
   long m;
   const long N=getN();
   int rval=0;
@@ -63,12 +66,13 @@ int spinseq::Rxx(seqR1 *rxx, const int showcount){
     }
   if(showcount)fprintf(stderr,"%8ld .... done.\n",m+N);
   return rval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * autocorrelation Rxx(m)
  *-------------------------------------------------------------------------*/
-double spinseq::Rxx(const long m){
+double spinseq::Rxx(const long m)
+{
   const long mm=labs(m);
   const long N=getN();
   long n,nmm;
@@ -76,18 +80,19 @@ double spinseq::Rxx(const long m){
   char a,b;
   for(n=0,sum=0;n<(N+mm);n++){
     nmm=n-mm;
-    a=(n  <0 || n  >=N)? 0.0 : get(n);
-    b=(nmm<0 || nmm>=N)? 0.0 : get(nmm);
-    d=(a==0 || b==0)?    1.0 : spin_metric(a,b);
+    a=( n  <0 || n  >=N )? 0.0 : get(n);
+    b=( nmm<0 || nmm>=N )? 0.0 : get(nmm);
+    d=( a==0  || b==0   )? 1.0 : spin_metric(a,b);
     sum+=d;
     }
   return -sum;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * downsample sequence by a factor of <factor>
  *-------------------------------------------------------------------------*/
-spinseq spinseq::downsample(const int factor){
+spinseq spinseq::downsample(const int factor)
+{
   const long N=getN();
   long n,m;
   long M;
@@ -99,31 +104,33 @@ spinseq spinseq::downsample(const int factor){
   spinseq newseq(M);
   for(n=0,m=0; m<M; n+=factor,m++)newseq.put(m,get(n));
   return newseq;
-  }
+}
 
 
 /*-------------------------------------------------------------------------
  * map spin face values to R^1
  * A-->1  B-->2  C-->3  D-->4  E-->5  F-->6
  *-------------------------------------------------------------------------*/
-seqR1 spinseq::spintoR1(void){
+seqR1 spinseq::spintoR1(void)
+{
   const long N = getN();
   long n;
   seqR1 y(N);
   for(n=0; n<N; n++) y.put(n, spin_spintoR1(get(n)) );
   return y;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * map spin face values to R^2 sequence
  *-------------------------------------------------------------------------*/
-seqR2 spinseq::spintoR2(void){
+seqR2 spinseq::spintoR2(void)
+{
   const long N=getN();
   long n;
   seqR2 seqR2(N);
   for(n=0; n<N; n++)seqR2.put(n,spin_spintoR2(get(n)));
   return seqR2;
-  }
+}
 
 
 /*=====================================
@@ -132,7 +139,8 @@ seqR2 spinseq::spintoR2(void){
 /*-------------------------------------------------------------------------
  * operator spinseq x = dieseq y
  *-------------------------------------------------------------------------*/
-void spinseq::operator=(spinseq y){
+void spinseq::operator=(spinseq y)
+{
   long n;
   const long N=getN();
   const long M=y.getN();
@@ -145,7 +153,7 @@ void spinseq::operator=(spinseq y){
     symbol=y.get(n);
     put(n,symbol);
     }
-  }
+}
 
 /*=====================================
  * external operations
@@ -153,7 +161,8 @@ void spinseq::operator=(spinseq y){
 /*-------------------------------------------------------------------------
  * map spin face values to R^1
  *-------------------------------------------------------------------------*/
-double spin_spintoR1(const char c){
+double spin_spintoR1(const char c)
+{
   double rval;
   switch(c){
     case 'A': rval = 1.0;  break;
@@ -167,31 +176,33 @@ double spin_spintoR1(const char c){
       exit(EXIT_FAILURE);
     }
   return rval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * map spinner face values to R^2
  *-------------------------------------------------------------------------*/
-vectR2 spin_spintoR2(const char c){
+vectR2 spin_spintoR2(const char c)
+{
   vectR2 xy;
   switch(c){
-    case 'A': xy.put(0,         -1.0);  break;
-    case 'B': xy.put(+sqrt(3)/2,-0.5);  break;
-    case 'C': xy.put(+sqrt(3)/2,+0.5);  break;
-    case 'D': xy.put( 0,        +1.0);  break;
-    case 'E': xy.put(-sqrt(3)/2,+0.5);  break;
-    case 'F': xy.put(-sqrt(3)/2,-0.5);  break;
+    case 'A': xy.put(  0        , -1.0 );  break;
+    case 'B': xy.put( +sqrt(3)/2, -0.5 );  break;
+    case 'C': xy.put( +sqrt(3)/2, +0.5 );  break;
+    case 'D': xy.put(  0        , +1.0 );  break;
+    case 'E': xy.put( -sqrt(3)/2, +0.5 );  break;
+    case 'F': xy.put( -sqrt(3)/2, -0.5 );  break;
     default:  
       fprintf(stderr,"ERROR: c=%c(0x%x) is not in the valid domain {0,A,B,C,D,E,F} in spin_spintoR2(char c)\n",c,c);
       exit(EXIT_FAILURE);
     }
   return xy;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * map R^2 values to spin face values using Lagrange Arc distance
  *-------------------------------------------------------------------------*/
-spinseq spin_R2tospin_larc(seqR2 xy){
+spinseq spin_R2tospin_larc(seqR2 xy)
+{
   long n;
   int m;
   long N=xy.getN();
@@ -226,12 +237,13 @@ spinseq spin_R2tospin_larc(seqR2 xy){
     rspin.put(n,closestface);
     }
   return rspin;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * map R^3 values to spin face values and (0,0,0) using Lagrange Arc metric
  *-------------------------------------------------------------------------*/
-spinseq spin_R2tospin0_larc(seqR2 xy){
+spinseq spin_R2tospin0_larc(seqR2 xy)
+{
   long n;
   int m;
   long N=xy.getN();
@@ -267,13 +279,14 @@ spinseq spin_R2tospin0_larc(seqR2 xy){
     rspin.put(n,closestface);
     }
   return rspin;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * map R^2 values to spin face values using Euclidean metric
  *   0    A    B    C    D    E   F   A+..+F
  *-------------------------------------------------------------------------*/
-spinseq spin_R2tospin_euclid(seqR2 xy){
+spinseq spin_R2tospin_euclid(seqR2 xy)
+{
   long n;
   int m;
   long N=xy.getN();
@@ -306,13 +319,14 @@ spinseq spin_R2tospin_euclid(seqR2 xy){
     rspin.put(n,closestface);
     }
   return rspin;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * map R^2 values to spin face and (0,0) values using Euclidean metric
  *   0    A    B    C    D    E   F   A+..+F
  *-------------------------------------------------------------------------*/
-spinseq spin_R2tospin0_euclid(seqR3 xy){
+spinseq spin_R2tospin0_euclid(seqR3 xy)
+{
   long n;
   int m;
   long N=xy.getN();
@@ -360,12 +374,13 @@ spinseq spin_R2tospin0_euclid(seqR3 xy){
     rspin.put(n,closestface);
     }
   return rspin;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * map R^1 values to spin face values using Euclidean metric
  *-------------------------------------------------------------------------*/
-spinseq spin_R1tospin_euclid(seqR1 xy){
+spinseq spin_R1tospin_euclid(seqR1 xy)
+{
   long n;
   long N=xy.getN();
   char closestface;
@@ -380,7 +395,7 @@ spinseq spin_R1tospin_euclid(seqR1 xy){
     rspin.put(n,closestface);
     }
   return rspin;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * spinner metric d(a,b)
@@ -394,7 +409,8 @@ spinseq spin_R1tospin_euclid(seqR1 xy){
  *      a= F| 1    2    3    2    1    0
  * On success return d(a,b). On error return -1.
  *-------------------------------------------------------------------------*/
-double spin_metric(char a, char b){
+double spin_metric(char a, char b)
+{
   double ra=spin_spintoR1(a);
   double rb=spin_spintoR1(b);
   double d;
@@ -403,4 +419,4 @@ double spin_metric(char a, char b){
   if     (d>3.5) d=2.0;
   else if(d>4.5) d=1.0;
   return d;
-  }
+}
