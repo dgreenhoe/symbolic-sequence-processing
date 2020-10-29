@@ -249,15 +249,21 @@ vectR2 seqR2::max(const int verbose) const
  *-------------------------------------------------------------------------*/
 vectR2 operator+(vectR2 p, vectR2 q)
 {
-  double px = p.getx();
-  double py = p.gety();
-  double qx = q.getx();
-  double qy = q.gety();
-  Eigen::Vector2d a( px, py );
-  Eigen::Vector2d b( qx, qy );
-  Eigen::Vector2d c = a + b;
+//double pp[2] = {1.0,2.0};
+//double qq[2] = {3.0,4.0};
+//const double px = p.getx();
+//const double py = p.gety();
+//const double qx = q.getx();
+//const double qy = q.gety();
+  const Eigen::Vector2d a( p.getx(), p.gety() );
+  const Eigen::Vector2d b( q.getx(), q.gety() );
+//const Eigen::Vector2d a( px, py );
+//const Eigen::Vector2d b( qx, qy );
+//Eigen::Map<Eigen::Vector2d> aa(pp);
+//Eigen::Map<Eigen::Vector2d> bb(qq);
+  const Eigen::Vector2d c = a + b;
 //vectR2 r( px+qx, py+qy );
-  vectR2 r( c(1), c(2) );
+  const vectR2 r( c(0), c(1) );
   return r;
 }
 
@@ -266,11 +272,10 @@ vectR2 operator+(vectR2 p, vectR2 q)
  *-------------------------------------------------------------------------*/
 vectR2 operator-(vectR2 p, vectR2 q)
 {
-  double px = p.getx();
-  double py = p.gety();
-  double qx = q.getx();
-  double qy = q.gety();
-  vectR2 r( px-qx, py-qy );
+  const Eigen::Vector2d a( p.getx(), p.gety() );
+  const Eigen::Vector2d b( q.getx(), q.gety() );
+  const Eigen::Vector2d c = a - b;
+  const vectR2 r( c(0), c(1) );
   return r;
 }
 
@@ -282,10 +287,10 @@ vectR2 operator-(vectR2 p, vectR2 q)
  *-------------------------------------------------------------------------*/
 vectR2 operator-(vectR2 p)
 {
-  double px = p.getx();
-  double py = p.gety();
-  vectR2 q(-px, -py);
-  return q;
+  const Eigen::Vector2d a( p.getx(), p.gety() );
+  const Eigen::Vector2d b = -a;
+  const vectR2 c( b(0), b(1) );
+  return c;
 }
 
 /*-------------------------------------------------------------------------
@@ -294,14 +299,20 @@ vectR2 operator-(vectR2 p)
 vectR2 operator&(vectR2 p,double phi)
 {
   double c,s;
-  vectR2 q;
-  mat2x2 R; // rotation matrix
+//vectR2 q;
+//mat2x2 R; // rotation matrix
 
   if(phi==0){ c=1;        s=0;        }
   else      { c=cos(phi); s=sin(phi); }
-  R.put(c,-s,s,c);
-  q = R*p;
-  return q;
+  Eigen::Matrix2d RR;
+  RR << c, -s,
+        s,  c;
+  const Eigen::Vector2d x( p.getx(), p.gety() );
+  const Eigen::Vector2d y = RR * x;
+//R.put(c,-s,s,c);
+//q = R*p;
+  const vectR2 qq( y(0), y(1) );
+  return qq;
 }
 
 /*-------------------------------------------------------------------------
