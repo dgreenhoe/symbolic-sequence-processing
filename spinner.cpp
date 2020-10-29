@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <Eigen/Eigen>
 #include "main.h"
 #include "symseq.h"
 #include "r1.h"
