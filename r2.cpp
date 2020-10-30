@@ -31,7 +31,7 @@ void opair::list(const char *str1, const char *str2, FILE *ptr)
  * return value is in the half open interval [0:2pi)
  * return -1 on error
  *-------------------------------------------------------------------------*/
-double vectR2::theta(void)
+double vectR2::theta(void) const
 {
   double x=getx();
   double y=gety();
@@ -54,7 +54,7 @@ double vectR2::theta(void)
 /*-------------------------------------------------------------------------
  * operator: rotate (x,y) counter-clockwise by <phi> radians
  *-------------------------------------------------------------------------*/
-void vectR2::operator&=(double phi)
+void vectR2::operator&=(const double phi)
 {
   vectR2  p(getx(),gety());
   p = p & phi;
@@ -67,7 +67,7 @@ void vectR2::operator&=(double phi)
 /*-------------------------------------------------------------------------
  * constructor initializing seqR1 to 0
  *-------------------------------------------------------------------------*/
-seqR2::seqR2(long M)
+seqR2::seqR2(const long M)
 {
   long n;
   N=M;
@@ -213,7 +213,6 @@ void seqR2::list1(long start, long end)
     }
 }
 
-
 /*-------------------------------------------------------------------------
  * return the largest pair of values in the seqR1 as measured by norm()
  *-------------------------------------------------------------------------*/
@@ -248,22 +247,11 @@ vectR2 seqR2::max(const int verbose) const
 /*-------------------------------------------------------------------------
  * operator: return p+q
  *-------------------------------------------------------------------------*/
-vectR2 operator+(vectR2 p, vectR2 q)
+vectR2 operator+(const vectR2 p, const vectR2 q)
 {
-//double pp[2] = {1.0,2.0};
-//double qq[2] = {3.0,4.0};
-//const double px = p.getx();
-//const double py = p.gety();
-//const double qx = q.getx();
-//const double qy = q.gety();
   const Eigen::Vector2d a( p.getx(), p.gety() );
   const Eigen::Vector2d b( q.getx(), q.gety() );
-//const Eigen::Vector2d a( px, py );
-//const Eigen::Vector2d b( qx, qy );
-//Eigen::Map<Eigen::Vector2d> aa(pp);
-//Eigen::Map<Eigen::Vector2d> bb(qq);
   const Eigen::Vector2d c = a + b;
-//vectR2 r( px+qx, py+qy );
   const vectR2 r( c(0), c(1) );
   return r;
 }
@@ -271,7 +259,7 @@ vectR2 operator+(vectR2 p, vectR2 q)
 /*-------------------------------------------------------------------------
  * operator: return p-q
  *-------------------------------------------------------------------------*/
-vectR2 operator-(vectR2 p, vectR2 q)
+vectR2 operator-(const vectR2 p, const vectR2 q)
 {
   const Eigen::Vector2d a( p.getx(), p.gety() );
   const Eigen::Vector2d b( q.getx(), q.gety() );
@@ -286,7 +274,7 @@ vectR2 operator-(vectR2 p, vectR2 q)
 /*-------------------------------------------------------------------------
  * operator: return -p
  *-------------------------------------------------------------------------*/
-vectR2 operator-(vectR2 p)
+vectR2 operator-(const vectR2 p)
 {
   const Eigen::Vector2d a( p.getx(), p.gety() );
   const Eigen::Vector2d b = -a;
@@ -295,27 +283,19 @@ vectR2 operator-(vectR2 p)
 }
 
 /*-------------------------------------------------------------------------
- * operator: return <p> rotated counter-clockwise by <phi> radians
+ * operator: return <p> rotated clockwise by <phi> radians
  * https://stackoverflow.com/questions/17036818/initialise-eigenvector-with-stdvector
  *-------------------------------------------------------------------------*/
-vectR2 operator&(vectR2 p,double phi)
+vectR2 operator&(const vectR2 p, const double phi)
 {
   double c,s;
-//vectR2 q;
-//mat2x2 R; // rotation matrix
-
   if(phi==0){ c=1;        s=0;        }
   else      { c=cos(phi); s=sin(phi); }
   const std::vector<double> rr = {c, -s, 
                                   s,  c };
   const Eigen::Matrix2d R = Eigen::Map<const Eigen::Matrix2d, Eigen::Unaligned>( rr.data(), rr.size()/2, rr.size()/2 );
-  //RR = (Eigen::Matrix2d << c, -s, s, c).finished();
-  //RR << c, -s,
-  //      s,  c;
   const Eigen::Vector2d x( p.getx(), p.gety() );
   const Eigen::Vector2d y = R * x;
-//R.put(c,-s,s,c);
-//q = R*p;
   const vectR2 q( y(0), y(1) );
   return q;
 }

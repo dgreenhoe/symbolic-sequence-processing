@@ -8,49 +8,50 @@ class opair {
   private:
     double x,y;
   public:
-    opair(double u, double v){x=u;y=v;}      //constructor using 2 long float arguments
-    opair(double u){x=u;y=u;}                //constructor using 1 long float argument
-    opair(void){x=0; y=0;}                   //constructor using no arguments (set to 0,0)
-    void clear(void){x=0; y=0;} //set (x,y)=(u,v)
-    void   put(double u,double v){x=u; y=v;} //set (x,y)=(u,v)
-    opair  get(void)  const {opair p(getx(),gety()); return p;}
-    double getx(void) const {return x;}            //get component x
-    double gety(void) const {return y;}            //get component y
+    opair(const double u, const double v)            { x = u; y = v;                     }
+    opair(const double u)                            { x = u; y = u;                     }
+    opair(void)                                      { x = 0; y = 0;                     }
+    void   clear(void)                               { x = 0; y = 0;                     }
+    void   put(  const double u, const double v)     { x = u; y = v;                     }
+    opair  get(  void)                         const { opair p(getx(),gety()); return p; }
+    double getx( void)                         const { return x;                         }
+    double gety( void)                         const { return y;                         }
     void  list(const char* str1, const char *str2, FILE *ptr);
     void  list(const char* str1, const char *str2){list(str1,str2,NULL);}
     void  list(FILE *fptr){list("","",fptr);} //list contents of sequence
     void  list(void){list("","",NULL);}    //list contents of sequence
   };
 
-/*-------------------------------------------------------------------------
- * vector | x | over R^2
- *        | y |
- * vectors on R^2 are ordered pairs 
- * (and hence inherit all the properties of class opair)
- * but also have additional linear space (vector space) properties
- *-------------------------------------------------------------------------*/
-class vectR2: public opair {
+//-----------------------------------------------------------------------------
+// vector | x | over R^2
+//        | y |
+// vectors on R^2 are ordered pairs 
+// (and hence inherit all the properties of class opair)
+// but also have additional linear space (vector space) properties
+//-----------------------------------------------------------------------------
+class vectR2: public opair 
+{
   public:
-    vectR2(double u, double v) : opair(u,v){};      //constructor using 2 long float arguments
-    vectR2(double u) : opair(u){};                //constructor using 1 long float argument
-    vectR2(void) : opair(){};                   //constructor using no arguments (set to 0,0)
-    double mag(void)  const {return sqrt(getx()*getx()+gety()*gety());}
-    double norm(void) const {return mag();}
-    double theta(void);                      //polar rotation coordinate of opair in R^2
-    void polartoxy(double r, double theta){put(r*cos(theta),r*sin(theta));}
-    void   add(double u, double v){put(getx()+u, gety()+v);} //p=p+q
-    void   operator+=(vectR2 q){put(getx()+q.getx(), gety()+q.gety());} //p=p+q
-    void   operator-=(vectR2 q){put(getx()-q.getx(), gety()-q.gety());} //p=p-q
-    void   operator&=(double phi);     //rotate p by <phi> radians in R^2 plane
-    inline void   operator*=(double a){put(a*getx(), a*gety());}
-    inline vectR2 operator* (double a){vectR2 u(a*getx(), a*gety()); return u;}
-  };
+    vectR2(const double u, const double v) : opair(u,v){};
+    vectR2(const double u) : opair(u){};
+    vectR2(void) : opair(){};
+    double theta(void)                                           const; 
+    void   operator+=(const vectR2 q)                                  { put(getx()+q.getx(), gety()+q.gety());    }
+    void   operator-=(const vectR2 q)                                  { put(getx()-q.getx(), gety()-q.gety());    }
+    void   operator&=(const double phi);
+    inline double mag(void)                                      const { return sqrt(getx()*getx()+gety()*gety()); }
+    inline double norm(void)                                     const { return mag();                             }
+    inline void   polartoxy( const double r, const double theta)       { put(r*cos(theta) , r*sin(theta));         }
+    inline void   add(       const double u, const double v    )       { put(getx() + u   , gety() + v );          }
+    inline void   operator*=(const double a)                           { put(a*getx()     , a*gety()   );          }
+    inline vectR2 operator* (const double a)                     const { vectR2 u(a*getx(), a*gety()   ); return u;}
+};
 
-vectR2  operator-(vectR2 p);               // -p
-vectR2  operator+(vectR2 p, vectR2 q);  // p+q
-vectR2  operator-(vectR2 p, vectR2 q);  // p-q
-vectR2  operator&(vectR2 p,double phi);    // <p> rotated counter-clockwise by <phi>
-inline double  operator^(vectR2 p,vectR2 q){return p.getx()*q.getx() + p.gety()*q.gety();}   // "dot product" of p and q
+vectR2  operator-( const vectR2 p                   );
+vectR2  operator+( const vectR2 p, const vectR2 q   );
+vectR2  operator-( const vectR2 p, const vectR2 q   );
+vectR2  operator&( const vectR2 p, const double phi );
+inline double  operator^(const vectR2 p, const vectR2 q){return p.getx()*q.getx() + p.gety()*q.gety();}
 
 /*-------------------------------------------------------------------------
  * class of sequences over R^2
