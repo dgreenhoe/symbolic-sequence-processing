@@ -293,7 +293,8 @@ vectR2 operator&(const vectR2 p, const double phi)
   else      { c=cos(phi); s=sin(phi); }
   const std::vector<double> rr = {c, -s, 
                                   s,  c };
-  const Eigen::Matrix2d R = Eigen::Map<const Eigen::Matrix2d, Eigen::Unaligned>( rr.data(), rr.size()/2, rr.size()/2 );
+  const Eigen::Matrix2d R(rr.data());
+  //const Eigen::Matrix2d R = Eigen::Map<const Eigen::Matrix2d, Eigen::Unaligned>( rr.data(), rr.size()/2, rr.size()/2 );
   const Eigen::Vector2d x( p.getx(), p.gety() );
   const Eigen::Vector2d y = R * x;
   const vectR2 q( y(0), y(1) );
