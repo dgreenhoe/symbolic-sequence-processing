@@ -45,7 +45,7 @@
 # Set Flags
 #--------------------------------------
  set( FLAGS_COMPILE
-      -v
+      #-v
       -Wall
       -Werror
     )

@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <vector>
 #include <Eigen/Dense>
 #include "main.h"
 #include "r1.h"
@@ -295,6 +296,7 @@ vectR2 operator-(vectR2 p)
 
 /*-------------------------------------------------------------------------
  * operator: return <p> rotated counter-clockwise by <phi> radians
+ * https://stackoverflow.com/questions/17036818/initialise-eigenvector-with-stdvector
  *-------------------------------------------------------------------------*/
 vectR2 operator&(vectR2 p,double phi)
 {
@@ -304,15 +306,18 @@ vectR2 operator&(vectR2 p,double phi)
 
   if(phi==0){ c=1;        s=0;        }
   else      { c=cos(phi); s=sin(phi); }
-  Eigen::Matrix2d RR;
-  RR << c, -s,
-        s,  c;
+  const std::vector<double> rr = {c, -s, 
+                                  s,  c };
+  const Eigen::Matrix2d R = Eigen::Map<const Eigen::Matrix2d, Eigen::Unaligned>( rr.data(), rr.size()/2, rr.size()/2 );
+  //RR = (Eigen::Matrix2d << c, -s, s, c).finished();
+  //RR << c, -s,
+  //      s,  c;
   const Eigen::Vector2d x( p.getx(), p.gety() );
-  const Eigen::Vector2d y = RR * x;
+  const Eigen::Vector2d y = R * x;
 //R.put(c,-s,s,c);
 //q = R*p;
-  const vectR2 qq( y(0), y(1) );
-  return qq;
+  const vectR2 q( y(0), y(1) );
+  return q;
 }
 
 /*-------------------------------------------------------------------------
