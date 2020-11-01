@@ -1,10 +1,10 @@
-/*============================================================================
- * Daniel J. Greenhoe
- * normed linear space R^2
- *============================================================================*/
-/*=====================================
- * headers
- *=====================================*/
+//=============================================================================
+// Daniel J. Greenhoe
+// normed linear space R^2
+//=============================================================================
+//=====================================
+// headers
+//=====================================
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,9 +16,9 @@
 #include "r2.h"
 #include "r2op.h"
 
-/*-------------------------------------------------------------------------
- * list value of opair
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// list value of opair
+//-----------------------------------------------------------------------------
 void opair::list(const char *str1, const char *str2, FILE *ptr) const
 {
   if( strlen(str1)>0 ) fprintf(ptr,"%s",str1);
@@ -26,15 +26,15 @@ void opair::list(const char *str1, const char *str2, FILE *ptr) const
   if( strlen(str2)>0 ) fprintf(ptr,"%s",str2);
 }
 
-/*-------------------------------------------------------------------------
- * polar rotation coordinate <theta> of opair point (x,y)
- * return value is in the half open interval [0:2pi)
- * return -1 on error
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// polar rotation coordinate <theta> of opair point (x,y)
+// return value is in the half open interval [0:2pi)
+// return -1 on error
+//-----------------------------------------------------------------------------
 double vectR2::theta(void) const
 {
-  double x=getx();
-  double y=gety();
+  const double x = getx();
+  const double y = gety();
   if(x==0){
     if(y==0)       return -1;
     else if(y>0)   return +PI/2;
@@ -51,9 +51,9 @@ double vectR2::theta(void) const
   else             return -1;
 }
 
-/*-------------------------------------------------------------------------
- * operator: rotate (x,y) counter-clockwise by <phi> radians
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// operator: rotate (x,y) counter-clockwise by <phi> radians
+//-----------------------------------------------------------------------------
 void vectR2::operator&=(const double phi)
 {
   vectR2  p(getx(),gety());
@@ -62,11 +62,11 @@ void vectR2::operator&=(const double phi)
 }
 
 /*=====================================
- * seqR2
+// seqR2
  *=====================================*/
-/*-------------------------------------------------------------------------
- * constructor initializing seqR1 to 0
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// constructor initializing seqR1 to 0
+//-----------------------------------------------------------------------------
 seqR2::seqR2(const long M)
 {
   long n;
@@ -75,9 +75,9 @@ seqR2::seqR2(const long M)
   for(n=0; n<N; n++)xy[n].clear();
 }
 
-/*-------------------------------------------------------------------------
- * constructor initializing seqR1 to <u>
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// constructor initializing seqR1 to <u>
+//-----------------------------------------------------------------------------
 seqR2::seqR2(long M, double u)
 {
   long n;
@@ -88,28 +88,28 @@ seqR2::seqR2(long M, double u)
     }
 }
 
-/*-------------------------------------------------------------------------
- * fill the seqR1 with a value 0
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// fill the seqR1 with a value 0
+//-----------------------------------------------------------------------------
 void seqR2::clear(void)
 {
   long n;
   for(n=0; n<N; n++)xy[n].clear();
 }
 
-/*-------------------------------------------------------------------------
- * fill the seqR1 with a value <u>
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// fill the seqR1 with a value <u>
+//-----------------------------------------------------------------------------
 void seqR2::fill(double u)
 {
   long n;
   for(n=0; n<N; n++)xy[n].put(u,u);
 }
 
-/*-------------------------------------------------------------------------
- * fill the seqR1 with (x_0, x_1, x_2, ...)
- * where x_n = x_{n-1} + (dx,dy)
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// fill the seqR1 with (x_0, x_1, x_2, ...)
+// where x_n = x_{n-1} + (dx,dy)
+//-----------------------------------------------------------------------------
 void seqR2::inc(double x0, double y0,double dx, double dy)
 {
   long n;
@@ -120,9 +120,9 @@ void seqR2::inc(double x0, double y0,double dx, double dy)
     }
 }
 
-/*-------------------------------------------------------------------------
- * put a single value <u> into the seqR1 x at location n
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// put a single value <u> into the seqR1 x at location n
+//-----------------------------------------------------------------------------
 int seqR2::put(long n, double u, double v)
 {
   int retval=0;
@@ -145,9 +145,9 @@ int seqR2::put(long n, vectR2 xya)
   return retval;
 }
 
-/*-------------------------------------------------------------------------
- * get a single value from the seqR1 x at location n
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// get a single value from the seqR1 x at location n
+//-----------------------------------------------------------------------------
 vectR2 seqR2::get(const long n) const
 {
   vectR2 xya(0,0);
@@ -156,9 +156,9 @@ vectR2 seqR2::get(const long n) const
   return xya;
 }
 
-/*-------------------------------------------------------------------------
- * get a single value from the seqR1 x,y, or z at location n
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// get a single value from the seqR1 x,y, or z at location n
+//-----------------------------------------------------------------------------
 double seqR2::getx(const long n) const
 {
   double u=0;
@@ -175,9 +175,9 @@ double seqR2::gety(const long n) const
   return u;
 }
 
-/*-------------------------------------------------------------------------
- * list contents of sequence
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// list contents of sequence
+//-----------------------------------------------------------------------------
 void seqR2::list(const long start, const long end, const char *str1, const char *str2, FILE *ptr) const
 {
   long n,m;
@@ -192,9 +192,9 @@ void seqR2::list(const long start, const long end, const char *str1, const char 
   if(strlen(str2)>0)fprintf(ptr,"%s",str2);
 }
 
-/*-------------------------------------------------------------------------
- * list contents of seqC1 using 1 digit per element
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// list contents of seqC1 using 1 digit per element
+//-----------------------------------------------------------------------------
 void seqR2::list1(void) const
 {
   long n,m;
@@ -213,18 +213,18 @@ void seqR2::list1(long start, long end) const
     }
 }
 
-/*-------------------------------------------------------------------------
- * return the largest pair of values in the seqR1 as measured by norm()
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// return the largest pair of values in the seqR1 as measured by norm()
+//-----------------------------------------------------------------------------
 double seqR2::norm(const long n) const
 {
   vectR2 xya=get(n);
   return xya.norm();
 }
 
-/*-------------------------------------------------------------------------
- * return the largest pair of values in the seqR1 as measured by norm()
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// return the largest pair of values in the seqR1 as measured by norm()
+//-----------------------------------------------------------------------------
 vectR2 seqR2::max(const int verbose) const
 {
   long n;
@@ -233,61 +233,70 @@ vectR2 seqR2::max(const int verbose) const
   vectR2  maxpair;
   for(n=0; n<N; n++)if(norm(n)>maxnorm){maxnorm=norm(n); maxn=n;}
   maxpair=get(maxn);
-  if(verbose){
+  if(verbose)
+  {
     for(n=0; n<N; n++)
+    {
       if(norm(n)>=(maxnorm*0.999))
         printf("max=(%lf,%lf) at n=%ld\n",maxpair.getx(),maxpair.gety(),n);
     }
+  }
   return maxpair;
 }
 
-/*=====================================
- * external operations
- *=====================================*/
-/*-------------------------------------------------------------------------
- * operator: return p+q
- *-------------------------------------------------------------------------*/
+//=====================================
+// external operations
+//=====================================
+//-----------------------------------------------------------------------------
+// operator: return p+q
+//-----------------------------------------------------------------------------
 vectR2 operator+(const vectR2 p, const vectR2 q)
 {
-  const Eigen::Vector2d a( p.getx(), p.gety() );
-  const Eigen::Vector2d b( q.getx(), q.gety() );
+  //const Eigen::Vector2d a( p.getx(), p.gety() );
+  //const Eigen::Vector2d a( p.pairxy.front(), p.pairxy.back() );
+  const Eigen::Map< const Eigen::Vector2d > a( p.pairxy.data() );
+  const Eigen::Map< const Eigen::Vector2d > b( q.pairxy.data() );
+//const Eigen::Vector2d b( q.getx(), q.gety() );
   const Eigen::Vector2d c = a + b;
   const vectR2 r( c(0), c(1) );
   return r;
 }
 
-/*-------------------------------------------------------------------------
- * operator: return p-q
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// operator: return p-q
+//-----------------------------------------------------------------------------
 vectR2 operator-(const vectR2 p, const vectR2 q)
 {
-  const Eigen::Vector2d a( p.getx(), p.gety() );
-  const Eigen::Vector2d b( q.getx(), q.gety() );
+//const Eigen::Vector2d a( p.getx(), p.gety() );
+//const Eigen::Vector2d b( q.getx(), q.gety() );
+  const Eigen::Map< const Eigen::Vector2d > a( p.pairxy.data() );
+  const Eigen::Map< const Eigen::Vector2d > b( q.pairxy.data() );
   const Eigen::Vector2d c = a - b;
   const vectR2 r( c(0), c(1) );
   return r;
 }
 
-/*-------------------------------------------------------------------------
- * operator: return p*q
- *-------------------------------------------------------------------------*/
-/*-------------------------------------------------------------------------
- * operator: return -p
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// operator: return p*q
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// operator: return -p
+//-----------------------------------------------------------------------------
 vectR2 operator-(const vectR2 p)
 {
-  const Eigen::Vector2d a( p.getx(), p.gety() );
+//const Eigen::Vector2d a( p.getx(), p.gety() );
+  const Eigen::Map< const Eigen::Vector2d > a( p.pairxy.data() );
   const Eigen::Vector2d b = -a;
   const vectR2 c( b(0), b(1) );
   return c;
 }
 
-/*-------------------------------------------------------------------------
- * operator: return <p> rotated counter-clockwise by <phi> radians
- * https://stackoverflow.com/questions/17036818/
- * https://eigen.tuxfamily.org/dox/group__TopicStorageOrders.html
- * https://stackoverflow.com/questions/28722899/
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// operator: return <p> rotated counter-clockwise by <phi> radians
+// https://stackoverflow.com/questions/17036818/
+// https://eigen.tuxfamily.org/dox/group__TopicStorageOrders.html
+// https://stackoverflow.com/questions/28722899/
+//-----------------------------------------------------------------------------
 vectR2 operator&(const vectR2 p, const double phi)
 {
   double cosphi, sinphi;
@@ -299,18 +308,19 @@ vectR2 operator&(const vectR2 p, const double phi)
 //printf("     _                    _\n");
 //printf("R = | %9.6lf %9.6lf  |\n", R(0,0), R(0,1) );
 //printf("    |_%9.6lf %9.6lf _|\n", R(1,0), R(1,1) );
-  const Eigen::Vector2d x( p.getx(), p.gety() );
+//const Eigen::Vector2d x( p.getx(), p.gety() );
+  const Eigen::Map< const Eigen::Vector2d > x( p.pairxy.data() );
   const Eigen::Vector2d y = R * x;
   const vectR2 q( y(0), y(1) );
   return q;
 }
 
-/*-------------------------------------------------------------------------
- * return the angle theta in radians between the two vectors induced by
- * the points <p> and <q> in the plane R^2
- * on SUCCESS return theta in the closed interval [0:PI]
- * on ERROR   return negative value or exit with value EXIT_FAILURE
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+// return the angle theta in radians between the two vectors induced by
+// the points <p> and <q> in the plane R^2
+// on SUCCESS return theta in the closed interval [0:PI]
+// on ERROR   return negative value or exit with value EXIT_FAILURE
+//-----------------------------------------------------------------------------
 double pqtheta(const vectR2 p, const vectR2 q)
 {
   const double rp=p.mag(), rq=q.mag();

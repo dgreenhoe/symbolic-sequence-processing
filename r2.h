@@ -1,25 +1,40 @@
-/*============================================================================
- * Daniel J. Greenhoe
- *============================================================================*/
-/*-------------------------------------------------------------------------
- * ordered pair (x,y) on R^2
- *-------------------------------------------------------------------------*/
+//============================================================================
+// Daniel J. Greenhoe
+//============================================================================
+#include <vector>
+//-------------------------------------------------------------------------
+// ordered pair (x,y) on R^2
+//-------------------------------------------------------------------------
 class opair {
-  private:
-    double x,y;
+//  private:
+  //double x,y;
   public:
-    opair(const double u, const double v)        { x = u; y = v;                     }
-    opair(const double u)                        { x = u; y = u;                     }
-    opair(void)                                  { x = 0; y = 0;                     }
-    void   clear(void)                           { x = 0; y = 0;                     }
-    void   put(  const double u, const double v) { x = u; y = v;                     }
-    opair  get(  void)                                        const { opair p(getx(),gety()); return p; }
-    double getx( void)                                        const { return x;                         }
-    double gety( void)                                        const { return y;                         }
-    void  list(const char* str1, const char *str2, FILE *ptr) const;
-    void  list(const char* str1, const char *str2)            const { list(str1,str2,NULL); }
-    void  list(FILE *fptr)                                    const { list("","",fptr);     }
-    void  list(void)                                          const { list("","",NULL);     }
+    std::vector<double> pairxy = { 0, 0 };
+    opair(const double u, const double v)        { pairxy.front() = u; pairxy.back() = v;                }
+    opair(const double u)                        { pairxy.front() = u; pairxy.back() = u;                }
+    opair(void)                                  { pairxy.front() = 0; pairxy.back() = 0;                }
+    void   clear(void)                           { pairxy.front() = 0; pairxy.back() = 0;                }
+    void   put(  const double u, const double v) { pairxy.front() = u; pairxy.back() = v;                }
+    opair  get(  void)                                         const { opair p(getx(),gety()); return p; }
+    double getx( void)                                         const { return pairxy.front();            }
+    double gety( void)                                         const { return pairxy.back();             }
+    void   list(const char* str1, const char *str2, FILE *ptr) const;
+    void   list(const char* str1, const char *str2)            const { list(str1,str2,NULL);             }
+    void   list(FILE *fptr)                                    const { list("","",fptr);                 }
+    void   list(void)                                          const { list("","",NULL);                 }
+//public:
+//  opair(const double u, const double v)        { x = u; y = v;                     }
+//  opair(const double u)                        { x = u; y = u;                     }
+//  opair(void)                                  { x = 0; y = 0;                     }
+//  void   clear(void)                           { x = 0; y = 0;                     }
+//  void   put(  const double u, const double v) { x = u; y = v;                     }
+//  opair  get(  void)                                        const { opair p(getx(),gety()); return p; }
+//  double getx( void)                                        const { return x;                         }
+//  double gety( void)                                        const { return y;                         }
+//  void  list(const char* str1, const char *str2, FILE *ptr) const;
+//  void  list(const char* str1, const char *str2)            const { list(str1,str2,NULL); }
+//  void  list(FILE *fptr)                                    const { list("","",fptr);     }
+//  void  list(void)                                          const { list("","",NULL);     }
   };
 
 //-----------------------------------------------------------------------------
@@ -53,9 +68,9 @@ vectR2  operator-( const vectR2 p, const vectR2 q   );
 vectR2  operator&( const vectR2 p, const double phi );
 inline double  operator^( const vectR2 p, const vectR2 q ) {return p.getx()*q.getx() + p.gety()*q.gety(); }
 
-/*-------------------------------------------------------------------------
- * class of sequences over R^2
- *-------------------------------------------------------------------------*/
+//-------------------------------------------------------------------------
+// class of sequences over R^2
+//-------------------------------------------------------------------------
 class seqR2 
 {
   private:
@@ -92,9 +107,9 @@ class seqR2
          }
 };
 
-/*=====================================
- * functions
- *=====================================*/
+//=====================================
+// functions
+//=====================================
 extern double pqtheta(const vectR2 p, const vectR2 q); //return radians between vectors induced by p and q in R^2
 inline double chordlength(vectR2 p, vectR2 q){
   vectR2  pqd=p-q; // differnce of p and q
