@@ -19,11 +19,11 @@
 /*-------------------------------------------------------------------------
  * list value of opair
  *-------------------------------------------------------------------------*/
-void opair::list(const char *str1, const char *str2, FILE *ptr)
+void opair::list(const char *str1, const char *str2, FILE *ptr) const
 {
-  if(strlen(str1)>0)fprintf(ptr,"%s",str1);
+  if( strlen(str1)>0 ) fprintf(ptr,"%s",str1);
   fprintf(ptr,"(%9.6lf,%9.6lf)",getx(),gety());
-  if(strlen(str2)>0)fprintf(ptr,"%s",str2);
+  if( strlen(str2)>0 ) fprintf(ptr,"%s",str2);
 }
 
 /*-------------------------------------------------------------------------
@@ -178,7 +178,7 @@ double seqR2::gety(const long n) const
 /*-------------------------------------------------------------------------
  * list contents of sequence
  *-------------------------------------------------------------------------*/
-void seqR2::list(const long start, const long end, const char *str1, const char *str2, FILE *ptr)
+void seqR2::list(const long start, const long end, const char *str1, const char *str2, FILE *ptr) const
 {
   long n,m;
   vectR2 x;
@@ -195,7 +195,7 @@ void seqR2::list(const long start, const long end, const char *str1, const char 
 /*-------------------------------------------------------------------------
  * list contents of seqC1 using 1 digit per element
  *-------------------------------------------------------------------------*/
-void seqR2::list1(void)
+void seqR2::list1(void) const
 {
   long n,m;
   for(n=0,m=1; n<N; n++,m++){
@@ -203,7 +203,7 @@ void seqR2::list1(void)
     if(m%5==0)printf("\n");
     }
 }
-void seqR2::list1(long start, long end)
+void seqR2::list1(long start, long end) const
 {
   long n,m;
   for(n=start,m=1; n<=end; n++,m++){
