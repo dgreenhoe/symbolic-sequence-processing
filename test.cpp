@@ -71,7 +71,7 @@ int test_vectR2(void){
   q=p; q&=(PI/2);                  printf("rotate(%lf,%lf)by 90degrees = (%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
   q=p; q&=(PI);                    printf("rotate(%lf,%lf)by 180degrees = (%lf,%lf)\n",p.getx(),p.gety(),q.getx(),q.gety());
   p.clear();                       printf("clear operation--> (%lf,%lf)\n",p.getx(),p.gety());
-exit(1);
+//exit(1);
   return 0;
   }
 

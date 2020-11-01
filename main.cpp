@@ -30,11 +30,11 @@ int main(int argc, char *argv[]){
   //printf("  \"A book concerning symbolic sequence processing\" \n");
   //printf("   by Daniel J. Greenhoe \n");
 
-//bspline_Sdat();
+  bspline_Sdat();
   perform_tests();
-//make_2015ssp_texplots();
-//test_2015larc();
-//make_2015larc_data();
+  make_2015ssp_texplots();
+  test_2015larc();
+  make_2015larc_data();
   return 0;
   }
 

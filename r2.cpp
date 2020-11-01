@@ -283,18 +283,22 @@ vectR2 operator-(const vectR2 p)
 }
 
 /*-------------------------------------------------------------------------
- * operator: return <p> rotated clockwise by <phi> radians
- * https://stackoverflow.com/questions/17036818/initialise-eigenvector-with-stdvector
+ * operator: return <p> rotated counter-clockwise by <phi> radians
+ * https://stackoverflow.com/questions/17036818/
+ * https://eigen.tuxfamily.org/dox/group__TopicStorageOrders.html
+ * https://stackoverflow.com/questions/28722899/
  *-------------------------------------------------------------------------*/
 vectR2 operator&(const vectR2 p, const double phi)
 {
-  double c,s;
-  if(phi==0){ c=1;        s=0;        }
-  else      { c=cos(phi); s=sin(phi); }
-  const std::vector<double> rr = {c, -s, 
-                                  s,  c };
-  const Eigen::Matrix2d R(rr.data());
-  //const Eigen::Matrix2d R = Eigen::Map<const Eigen::Matrix2d, Eigen::Unaligned>( rr.data(), rr.size()/2, rr.size()/2 );
+  double cosphi, sinphi;
+  if(phi==0){ cosphi = 1;        sinphi = 0;        }
+  else      { cosphi = cos(phi); sinphi = sin(phi); }
+  const std::vector<double> rr = { cosphi, -sinphi, 
+                                   sinphi,  cosphi  };
+  const Eigen::Matrix<double, 2, 2, Eigen::RowMajor> R(rr.data()); 
+//printf("     _                    _\n");
+//printf("R = | %9.6lf %9.6lf  |\n", R(0,0), R(0,1) );
+//printf("    |_%9.6lf %9.6lf _|\n", R(1,0), R(1,1) );
   const Eigen::Vector2d x( p.getx(), p.gety() );
   const Eigen::Vector2d y = R * x;
   const vectR2 q( y(0), y(1) );
