@@ -52,12 +52,12 @@ int main(int argc, char *argv[])
 TEST( TestSuiteLarc, 2015larc )
 //int test_2015larc(void)
 {
-  test_opair();
+//test_opair();
   test_vectR2();
   test_complex();
   test_seqR2();
-  test_otriple();
-  test_osix();
+//test_otriple();
+//test_osix();
   test_vectR6();
   test_conj();
   test_larc_metric_R2();
@@ -106,60 +106,67 @@ TEST( TestSuiteLarc, balls )
   }
 
 //---------------------------------------------------------------------------
-// make plot TeX files
-// these files can be compiled using xelatex to make pdf files 
-// for inclusion into main pdf file for paper
+//! \brief Make plot TeX files
+//! \details These files can be compiled using xelatex to make pdf files 
+//!          for inclusion into main pdf file for paper
 //---------------------------------------------------------------------------
-TEST( TestSuiteLarc, ocs )
-//int make_2015ssp_texplots(void)
+TEST( TestSuiteOCS, die )
 {
-  lab_fdie_ocs (0x5EED, 16002, "plots\\fdie"); // Example 3.4  (fair die sequence), 3 plots
-  lab_rdie_ocs (0x5EED, 16002, "plots\\rdie"); // Example 3.5  (real die sequence), 3 plots
-  lab_spin_ocs (0x5EED, 16002, "plots\\spin"); // Example 3.6  (spinner  sequence), 3 plots
-  lab_wrdie_ocs(0x5EED, 16002, "plots\\wrdie");// Example 3.7  (weighted real die sequence), 3 plots
-  lab_wdie_ocs (0x5EED, 16002, "plots\\wdie"); // Example 3.8  (weighted die sequence), 3 plots
-  lab_wspin_ocs(0x5EED, 16002, "plots\\wspin");// Example 3.9  (weighted spinner sequence), 3 plots
-  lab_dna_ocs  (0x5EED, 16000, "plots\\dna");  // Example 3.10 (artificial DNA  sequence), 3 plots
-  lab_dna_ocs  ("..\\..\\common\\symseq\\fasta\\NC004718_sars.dat","plots\\dna_sars");  // Example 3.11 (SARS virus)
-  lab_dna_ocs  ("..\\..\\common\\symseq\\fasta\\AF086833_ebola.dat","plots\\dna_ebola"); // Example 3.12 (Ebola virus)
-  lab_dna_ocs  ("..\\..\\common\\symseq\\fasta\\gi880815890_MelissococcusPlutonius.dat","plots\\dna_mpbacterium"); // Example 3.13 (Bacterium)
-  lab_dnan_ocs ("..\\..\\common\\symseq\\fasta\\gi187567196_papaya1446.dat","plots\\dna_papaya1446");  // Example 3.14 (papaya)
-  lab_rdie_lp(0x5EED, 12000, 16, "plots\\rdie_lp");  // Example 4.1 (low pass filtering real die sequence)
-  lab_rdie_lp(0x5EED, 12000, 50, "plots\\rdie_lp");  // Example 4.1 (low pass filtering real die sequence)
-  lab_spin_lp(0x5EED, 12000, 16, "plots\\spin_lp");  // Example 4.2 (low pass filtering spinner sequence)
-  lab_spin_lp(0x5EED, 12000, 50, "plots\\spin_lp");  // Example 4.2 (low pass filtering spinner sequence)
-  lab_fdie_lp( 0x5EED, 12000, 16, "plots\\fdie_lp"); // Example 4.3 (low pass filtering fair die sequence)
-  lab_fdie_lp( 0x5EED, 12000, 50, "plots\\fdie_lp"); // Example 4.3 (low pass filtering fair die sequence)
-  lab_wrdie_hp(0x5EED, 1200, 50, "plots\\wrdie_hp"); // Example 4.4 (high pass filtering weighted real die sequence)
-  lab_wspin_hp(0x5EED, 1200, 50, "plots\\wspin_hp"); // Example 4.5 (high pass filtering weighted spinner sequence) 
-  lab_wdie_hp(0x5EED, 1200, 16, "plots\\wdie_hp");   // Example 4.6 (high pass filtering weighted die sequence)     
-  lab_wdie_hp(0x5EED, 1200, 50, "plots\\wdie_hp");   // Example 4.6 (high pass filtering weighted die sequence)     
-  lab_die_nonstat34(0x5eed, 1200,  120,  15, "plots\\diedft"); // Example 4.7 (DFT analyis of die sequence)
-  lab_die_nonstat34(0x5eed, 12000, 1200, 16, "plots\\diedft"); //   Example 4.8 (DFT analyis of die sequence)
-  lab_die_nonstat34(0x5eed, 12000, 120,  16, "plots\\diedft"); // Example 4.9 (DFT analyis of die sequence)
-  lab_dna_nonstatCT(0x5eed, 12000, 1200, 24, -1, 5, "plots\\dnadft");// Example 4.10 (DFT analyis of DNA sequence)
-  lab_dna_dft("..\\..\\common\\symseq\\fasta\\AF086833_ebola.dat","plots\\dna_AF086833_ebola_dft");// Example 4.11 (DFT of Ebola DNA sequence)
-  lab_die_edge(0x5eed, 12000, 4000, 200, 10, "plots\\diehaar");// Example 4.12 (Wavelet analysis of die sequence)
-  lab_dna_edge(0x5eed, 12000, 4000, 200, 17, "plots\\dnahaar");// Example 4.13 (Wavelet analysis of DNA sequence)
-  lab_dna_averaging(1600,"..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
-  lab_dna_edge(1600,"..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
-  lab_dna_edge(4000,"..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
-//return 0;
-  }
+  lab_fdie_ocs (     0x5EED, 16002,                "plots\\fdie"    ); // Example 3.4  (fair die sequence), 3 plots
+  lab_rdie_ocs (     0x5EED, 16002,                "plots\\rdie"    ); // Example 3.5  (real die sequence), 3 plots
+  lab_spin_ocs (     0x5EED, 16002,                "plots\\spin"    ); // Example 3.6  (spinner  sequence), 3 plots
+  lab_wrdie_ocs(     0x5EED, 16002,                "plots\\wrdie"   ); // Example 3.7  (weighted real die sequence), 3 plots
+  lab_wdie_ocs (     0x5EED, 16002,                "plots\\wdie"    ); // Example 3.8  (weighted die sequence), 3 plots
+  lab_wspin_ocs(     0x5EED, 16002,                "plots\\wspin"   ); // Example 3.9  (weighted spinner sequence), 3 plots
+  lab_rdie_lp(       0x5EED, 12000,   16,          "plots\\rdie_lp" ); // Example 4.1  (low pass filtering real die sequence)
+  lab_rdie_lp(       0x5EED, 12000,   50,          "plots\\rdie_lp" ); // Example 4.1  (low pass filtering real die sequence)
+  lab_spin_lp(       0x5EED, 12000,   16,          "plots\\spin_lp" ); // Example 4.2  (low pass filtering spinner sequence)
+  lab_spin_lp(       0x5EED, 12000,   50,          "plots\\spin_lp" ); // Example 4.2  (low pass filtering spinner sequence)
+  lab_fdie_lp(       0x5EED, 12000,   16,          "plots\\fdie_lp" ); // Example 4.3  (low pass filtering fair die sequence)
+  lab_fdie_lp(       0x5EED, 12000,   50,          "plots\\fdie_lp" ); // Example 4.3  (low pass filtering fair die sequence)
+  lab_wrdie_hp(      0x5EED, 1200 ,   50,          "plots\\wrdie_hp"); // Example 4.4  (high pass filtering weighted real die sequence)
+  lab_wspin_hp(      0x5EED, 1200 ,   50,          "plots\\wspin_hp"); // Example 4.5  (high pass filtering weighted spinner sequence) 
+  lab_wdie_hp(       0x5EED, 1200 ,   16,          "plots\\wdie_hp" ); // Example 4.6  (high pass filtering weighted die sequence)     
+  lab_wdie_hp(       0x5EED, 1200 ,   50,          "plots\\wdie_hp" ); // Example 4.6  (high pass filtering weighted die sequence)     
+  lab_die_nonstat34( 0x5eed, 1200 ,  120,  15,     "plots\\diedft"  ); // Example 4.7  (DFT analyis of die sequence)
+  lab_die_nonstat34( 0x5eed, 12000, 1200,  16,     "plots\\diedft"  ); // Example 4.8  (DFT analyis of die sequence)
+  lab_die_nonstat34( 0x5eed, 12000,  120,  16,     "plots\\diedft"  ); // Example 4.9  (DFT analyis of die sequence)
+  lab_die_edge(      0x5eed, 12000, 4000, 200, 10, "plots\\diehaar" ); // Example 4.12 (Wavelet analysis of die sequence)
+}
+
+//---------------------------------------------------------------------------
+//! \brief Make plot TeX files
+//! \details These files can be compiled using xelatex to make pdf files 
+//!          for inclusion into main pdf file for paper
+//---------------------------------------------------------------------------
+TEST( TestSuiteOCS, dna )
+{
+  lab_dna_ocs  (    0x5EED, 16000, "plots\\dna");                                                                              // Example 3.10 (artificial DNA  sequence), 3 plots
+  lab_dna_ocs  (                   "..\\..\\common\\symseq\\fasta\\NC004718_sars.dat","plots\\dna_sars");                      // Example 3.11 (SARS virus)
+  lab_dna_ocs  (                   "..\\..\\common\\symseq\\fasta\\AF086833_ebola.dat","plots\\dna_ebola");                    // Example 3.12 (Ebola virus)
+  lab_dna_ocs  (                   "..\\..\\common\\symseq\\fasta\\gi880815890_MelissococcusPlutonius.dat","plots\\dna_mpbacterium"); // Example 3.13 (Bacterium)
+  lab_dnan_ocs (                   "..\\..\\common\\symseq\\fasta\\gi187567196_papaya1446.dat","plots\\dna_papaya1446");        // Example 3.14 (papaya)
+  lab_dna_nonstatCT(0x5eed, 12000, 1200, 24, -1, 5, "plots\\dnadft");                                                           // Example 4.10 (DFT analyis of DNA sequence)
+  lab_dna_dft(                     "..\\..\\common\\symseq\\fasta\\AF086833_ebola.dat","plots\\dna_AF086833_ebola_dft");        // Example 4.11 (DFT of Ebola DNA sequence)
+  lab_dna_edge(0x5eed, 12000, 4000, 200, 17, "plots\\dnahaar");                                                                 // Example 4.13 (Wavelet analysis of DNA sequence)
+  lab_dna_averaging(1600,          "..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
+  lab_dna_edge(     1600,          "..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
+  lab_dna_edge(     4000,          "..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
+}
 
 //---------------------------------------------------------------------------
 // perform tests
 //---------------------------------------------------------------------------
-TEST( TestSuiteGeneral, performTests )
+TEST( TestSuiteGeneral, all )
 //int perform_tests(void)
 {
   int rval;
-  test_opair();
+//test_opair();
   test_vectR2();
   test_complex();
   test_seqR2();
-  if(test_otriple()       !=0) rval = -1;
-  if(test_osix()          !=0) rval = -1;
+//if(test_otriple()       !=0) rval = -1;
+//if(test_osix()          !=0) rval = -1;
   if(test_vectR6()        !=0) rval = -1;
   if(test_dieC1()         !=0) rval = -1;
   test_conj();                 rval =  0;
