@@ -50,20 +50,13 @@ int main(int argc, char *argv[])
 // "An extension to the spherical metric using Lagrange interpolation"
 //---------------------------------------------------------------------------
 TEST( TestSuiteLarc, 2015larc )
-//int test_2015larc(void)
 {
-//test_opair();
-  test_vectR2();
   test_complex();
-  test_seqR2();
-//test_otriple();
-//test_osix();
-  test_vectR6();
+  //test_seqR2();
   test_conj();
   test_larc_metric_R2();
   test_larc_metric_R3();
   test_larc_metric_R6();
-  //return 0;
   }
 
 //---------------------------------------------------------------------------
@@ -71,7 +64,6 @@ TEST( TestSuiteLarc, 2015larc )
 // "An extension to the spherical metric using Lagrange interpolation"
 //---------------------------------------------------------------------------
 TEST( TestSuiteLarc, balls )
-//int make_2015larc_data(void)
 {
   lab_larc_distances_R2("data/lab_larc_distances_R2");     //Thm 3.13, Rem 3.14, Exm 3.15
   lab_larc_distances_R3("data/lab_larc_distances_R3");     //Example 3.16: larc in R^3
@@ -101,8 +93,6 @@ TEST( TestSuiteLarc, balls )
   lab_larc_ball_R3(0, 0, -3, 1, "data/larc_ball(0_0_-3)"); //Example 3.18: larc in R^3
   lab_larc_ball_R3(0, 0, -5, 1, "data/larc_ball(0_0_-5)"); //Example 3.18: larc in R^3
   lab_larc_ball_R3(0, 0,-10, 1, "data/larc_ball(0_0_-10)");//Example 3.18: larc in R^3
-
-  //return 0;
   }
 
 //---------------------------------------------------------------------------
@@ -158,16 +148,10 @@ TEST( TestSuiteOCS, dna )
 // perform tests
 //---------------------------------------------------------------------------
 TEST( TestSuiteGeneral, all )
-//int perform_tests(void)
 {
   int rval;
-//test_opair();
-  test_vectR2();
   test_complex();
-  test_seqR2();
-//if(test_otriple()       !=0) rval = -1;
-//if(test_osix()          !=0) rval = -1;
-  if(test_vectR6()        !=0) rval = -1;
+  //test_seqR2();
   if(test_dieC1()         !=0) rval = -1;
   test_conj();                 rval =  0;
   if(test_dft_R1()        !=0) rval = -1;
@@ -192,6 +176,5 @@ TEST( TestSuiteGeneral, all )
   test_dft_R1();
   test_expi();
   printf("rval = %d\n", rval);
-  //return 0;
 }
 

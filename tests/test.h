@@ -5,7 +5,7 @@
  * headers
  *=====================================*/
 
-TEST(TestSuite, Test1);
-TEST(TestSuite, Test2);
+//TEST(TestSuite, Test1);
+//TEST(TestSuite, Test2);
 
 

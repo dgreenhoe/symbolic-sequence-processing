@@ -66,6 +66,8 @@
  set( SOURCES_TARGET
       main.cpp
       test.cpp
+      tests/TestSuiteTuples.cpp
+      tests/TestSuiteVectRn.cpp
       tests/test.cpp
       test2.cpp
     )
@@ -226,7 +228,7 @@
  target_compile_options(     ${TARGET} PRIVATE    ${FLAGS_COMPILE}                          )
  target_link_options(        ${TARGET} PRIVATE    ${FLAGS_LINK}                             )
  target_sources(             ${TARGET} PRIVATE    ${SOURCES_TARGET}                         )
- target_include_directories( ${TARGET} PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ..   )
+ target_include_directories( ${TARGET} PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${PROJECT_SOURCE_DIR} ${DIR_GTEST}/include/ ..   )
  set_target_properties(      ${TARGET} PROPERTIES OUTPUT_NAME ${TARGET} SUFFIX ".exe"       )
 
 
