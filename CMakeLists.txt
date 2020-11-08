@@ -35,6 +35,8 @@
  set( DIR_TOOLCHAIN ${DIR_GNU} )
  set( DIR_TOOLCHAIN_INCLUDES  ${DIR_TOOLCHAIN}/include/windows/crtl )
  set( DIR_EIGEN ../../libraries/eigen-3.3.8 )
+ set( DIR_GTEST ../../libraries/googletest-1.10.0/googletest )
+ set( DIR_GMOCK ../../libraries/googletest-1.10.0/googlemock )
 
 #--------------------------------------
 # Toolchain
@@ -54,6 +56,7 @@
       #-v
       -Wall
       -Werror
+      #-lgtest -lgtest_main
     )
 
 #--------------------------------------
@@ -63,6 +66,8 @@
  set( SOURCES_TARGET
       main.cpp
       test.cpp
+      tests/test.cpp
+      test2.cpp
     )
 
  set( SOURCES_CMD
@@ -100,6 +105,34 @@
       realdie.cpp
       spinner.cpp
       symseq.cpp
+    )
+
+ set( SOURCES_TESTS
+      tests/test.cpp
+    )
+
+ set( SOURCES_GTEST
+      ${DIR_GTEST}/src/gtest-all.cc
+      ${DIR_GTEST}/src/gtest-death-test.cc
+      ${DIR_GTEST}/src/gtest-filepath.cc
+      ${DIR_GTEST}/src/gtest-internal-inl.h
+      ${DIR_GTEST}/src/gtest-matchers.cc
+      ${DIR_GTEST}/src/gtest-port.cc
+      ${DIR_GTEST}/src/gtest-printers.cc
+      ${DIR_GTEST}/src/gtest-test-part.cc
+      ${DIR_GTEST}/src/gtest-typed-test.cc
+      ${DIR_GTEST}/src/gtest.cc
+     #${DIR_GTEST}/src/gtest_main.cc
+    )
+
+ set( SOURCES_GMOCK
+      ${DIR_GMOCK}/src/gmock-all.cc
+      ${DIR_GMOCK}/src/gmock-cardinalities.cc
+      ${DIR_GMOCK}/src/gmock-internal-utils.cc
+      ${DIR_GMOCK}/src/gmock-matchers.cc
+      ${DIR_GMOCK}/src/gmock-spec-builders.cc
+      ${DIR_GMOCK}/src/gmock.cc
+      ${DIR_GMOCK}/src/gmock_main.cc
     )
 
  set( HEADERS_TARGET
@@ -146,7 +179,7 @@
     )
 
 #--------------------------------------
-# Builds
+# Build Libraries
 #--------------------------------------
  add_library(                Lib_Cmd   STATIC                                               )
  set_target_properties(      Lib_Cmd   PROPERTIES  PREFIX ""                                )
@@ -160,10 +193,45 @@
  target_sources(             Lib_DSP   PRIVATE    ${SOURCES_DSP}                            )
  target_include_directories( Lib_DSP   PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_EIGEN} .. )
 
+ add_library(                Lib_Tests STATIC                                               )
+ set_target_properties(      Lib_Tests PROPERTIES PREFIX ""                                 )
+ target_compile_options(     Lib_Tests PRIVATE    ${FLAGS_COMPILE}                          )
+ target_sources(             Lib_Tests PRIVATE    ${SOURCES_TESTS}                          )
+ target_include_directories( Lib_Tests PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ${DIR_GTEST} .. )
+
+ add_library(                Lib_Gtest STATIC                                               )
+ set_target_properties(      Lib_Gtest PROPERTIES PREFIX ""                                 )
+ target_compile_options(     Lib_Gtest PRIVATE    ${FLAGS_COMPILE}                          )
+ target_sources(             Lib_Gtest PRIVATE    ${SOURCES_GTEST}                          )
+ target_include_directories( Lib_Gtest PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ${DIR_GTEST} .. )
+
+ add_library(                Lib_Gmock STATIC                                               )
+ set_target_properties(      Lib_Gmock PROPERTIES PREFIX ""                                 )
+ target_compile_options(     Lib_Gmock PRIVATE    ${FLAGS_COMPILE}                          )
+ target_sources(             Lib_Gmock PRIVATE    ${SOURCES_GMOCK}                          )
+ target_include_directories( Lib_Gmock PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ${DIR_GMOCK}/include/ ${DIR_GMOCK} .. )
+
+#add_library(                Lib_GtestMainExt STATIC IMPORTED )
+#set_target_properties(      Lib_GtestMainExt PROPERTIES C_EXTENSIONS OFF IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/libgtest_main.a )
+#add_library(                Lib_GtestExt STATIC IMPORTED )
+#set_target_properties(      Lib_GtestExt PROPERTIES C_EXTENSIONS OFF IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/libgtest.a )
+
+#--------------------------------------
+# Build Executable
+#--------------------------------------
  add_executable(             ${TARGET}                                                      )
- set_target_properties(      ${TARGET} PROPERTIES OUTPUT_NAME ${TARGET} SUFFIX ".exe"       )
+ target_link_libraries(      ${TARGET} PRIVATE    Lib_Cmd Lib_DSP Lib_Gtest                 )
+#target_link_libraries(      ${TARGET} PRIVATE    Lib_Cmd Lib_DSP Lib_Gtest Lib_Tests       )
+#target_link_libraries(      ${TARGET} PRIVATE    Lib_Cmd Lib_DSP Lib_GtestMainExt Lib_Tests       )
  target_compile_options(     ${TARGET} PRIVATE    ${FLAGS_COMPILE}                          )
  target_link_options(        ${TARGET} PRIVATE    ${FLAGS_LINK}                             )
- target_link_libraries(      ${TARGET} PRIVATE    Lib_Cmd Lib_DSP                           )
  target_sources(             ${TARGET} PRIVATE    ${SOURCES_TARGET}                         )
- target_include_directories( ${TARGET} PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ..              )
+ target_include_directories( ${TARGET} PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ..   )
+ set_target_properties(      ${TARGET} PROPERTIES OUTPUT_NAME ${TARGET} SUFFIX ".exe"       )
+
+
+#--------------------------------------
+# Information
+#--------------------------------------
+message( STATUS "PROJECT_SOURCE_DIR = ${PROJECT_SOURCE_DIR}" )
+

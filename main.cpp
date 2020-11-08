@@ -8,10 +8,12 @@
 #include <stdlib.h>
 #include <math.h>
 #include "main.h"
-#include "test.h"
 #include "bsplines.h"
 #include "lab2015ssp.h"
 #include "lab2015larc.h"
+#include "test.h"
+#include "gtest/gtest.h"  // https://github.com/google/googletest/blob/master/googletest/docs/primer.md
+//#include "tests/test.h"
 
 //-------------------------------------
 // prototypes
@@ -23,26 +25,33 @@ int make_2015ssp_texplots(void);
 
 //-------------------------------------
 // main
+// https://stackoverflow.com/questions/12657596/
 //-------------------------------------
-int main(int argc, char *argv[]){
-  //printf("This is opseq.exe by Daniel J. Greenhoe \n");
+int main(int argc, char *argv[])
+{
+  printf("This is opseq.exe by Daniel J. Greenhoe \n");
   //printf("  for support of version 0.50 (2016 July 04 Monday) of the text \n");
   //printf("  \"A book concerning symbolic sequence processing\" \n");
   //printf("   by Daniel J. Greenhoe \n");
 
   //bspline_Sdat();
-  perform_tests();
+  //perform_tests();
   //make_2015ssp_texplots();
   //test_2015larc();
   //make_2015larc_data();
-  return 0;
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
   }
+
+
 
 //---------------------------------------------------------------------------
 // calculate data for the paper 2015sphx:
 // "An extension to the spherical metric using Lagrange interpolation"
 //---------------------------------------------------------------------------
-int test_2015larc(void){
+TEST( TestSuiteLarc, 2015larc )
+//int test_2015larc(void)
+{
   test_opair();
   test_vectR2();
   test_complex();
@@ -54,14 +63,16 @@ int test_2015larc(void){
   test_larc_metric_R2();
   test_larc_metric_R3();
   test_larc_metric_R6();
-  return 0;
+  //return 0;
   }
 
 //---------------------------------------------------------------------------
 // calculate data for the paper 2015sphx:
 // "An extension to the spherical metric using Lagrange interpolation"
 //---------------------------------------------------------------------------
-int make_2015larc_data(void){
+TEST( TestSuiteLarc, balls )
+//int make_2015larc_data(void)
+{
   lab_larc_distances_R2("data/lab_larc_distances_R2");     //Thm 3.13, Rem 3.14, Exm 3.15
   lab_larc_distances_R3("data/lab_larc_distances_R3");     //Example 3.16: larc in R^3
     
@@ -91,7 +102,7 @@ int make_2015larc_data(void){
   lab_larc_ball_R3(0, 0, -5, 1, "data/larc_ball(0_0_-5)"); //Example 3.18: larc in R^3
   lab_larc_ball_R3(0, 0,-10, 1, "data/larc_ball(0_0_-10)");//Example 3.18: larc in R^3
 
-  return 0;
+  //return 0;
   }
 
 //---------------------------------------------------------------------------
@@ -99,7 +110,9 @@ int make_2015larc_data(void){
 // these files can be compiled using xelatex to make pdf files 
 // for inclusion into main pdf file for paper
 //---------------------------------------------------------------------------
-int make_2015ssp_texplots(void){
+TEST( TestSuiteLarc, ocs )
+//int make_2015ssp_texplots(void)
+{
   lab_fdie_ocs (0x5EED, 16002, "plots\\fdie"); // Example 3.4  (fair die sequence), 3 plots
   lab_rdie_ocs (0x5EED, 16002, "plots\\rdie"); // Example 3.5  (real die sequence), 3 plots
   lab_spin_ocs (0x5EED, 16002, "plots\\spin"); // Example 3.6  (spinner  sequence), 3 plots
@@ -131,45 +144,47 @@ int make_2015ssp_texplots(void){
   lab_dna_averaging(1600,"..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
   lab_dna_edge(1600,"..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
   lab_dna_edge(4000,"..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
-  return 0;
+//return 0;
   }
 
 //---------------------------------------------------------------------------
 // perform tests
 //---------------------------------------------------------------------------
-int perform_tests(void)
+TEST( TestSuiteGeneral, performTests )
+//int perform_tests(void)
 {
+  int rval;
   test_opair();
   test_vectR2();
   test_complex();
   test_seqR2();
-  if(test_otriple()       !=0) return -1;
-  if(test_osix()          !=0) return -1;
-  if(test_vectR6()        !=0) return -1;
-  if(test_dieC1()         !=0) return -1;
-  test_conj();
-  if(test_dft_R1()        !=0) return -1;
-  if(test_pqtheta()       !=0) return -1;
-  if(test_larc_metric_R2()!=0) return -1;
-  if(test_larc_metric_R3()!=0) return -1;
-  if(test_larc_metric_R6()!=0) return -1;
-  if(test_circle()        !=0) return -1;
-  if(test_circle_d1()     !=0) return -1;
-  if(test_ellipse_d1()    !=0) return -1;
-  if(test_halfcircle()    ==0) return -1;
-  if(test_findt()         ==0) return -1;
-  if(test_perimeter()     ==0) return -1;
-  if(test_balloon_metric()==0) return -1;
-  if(test_mca_metric()    ==0) return -1;
-  if(test_spinner()       ==0) return -1;
-  if(test_rdie()          ==0) return -1;
-  if(test_dna_metric()    ==0) return -1;
-  if(test_dnan_metric()   ==0) return -1;
+  if(test_otriple()       !=0) rval = -1;
+  if(test_osix()          !=0) rval = -1;
+  if(test_vectR6()        !=0) rval = -1;
+  if(test_dieC1()         !=0) rval = -1;
+  test_conj();                 rval =  0;
+  if(test_dft_R1()        !=0) rval = -1;
+  if(test_pqtheta()       !=0) rval = -1;
+  if(test_larc_metric_R2()!=0) rval = -1;
+  if(test_larc_metric_R3()!=0) rval = -1;
+  if(test_larc_metric_R6()!=0) rval = -1;
+  if(test_circle()        !=0) rval = -1;
+  if(test_circle_d1()     !=0) rval = -1;
+  if(test_ellipse_d1()    !=0) rval = -1;
+  if(test_halfcircle()    ==0) rval = -1;
+  if(test_findt()         ==0) rval = -1;
+  if(test_perimeter()     ==0) rval = -1;
+  if(test_balloon_metric()==0) rval = -1;
+  if(test_mca_metric()    ==0) rval = -1;
+  if(test_spinner()       ==0) rval = -1;
+  if(test_rdie()          ==0) rval = -1;
+  if(test_dna_metric()    ==0) rval = -1;
+  if(test_dnan_metric()   ==0) rval = -1;
   test_die();
   test_rdie();
   test_dft_R1();
   test_expi();
-  return 0;
+  printf("rval = %d\n", rval);
+  //return 0;
 }
-
 
