@@ -30,76 +30,70 @@
 /*-------------------------------------------------------------------------
  * test Lagrange arc metric in R^2
  *-------------------------------------------------------------------------*/
-int test_larc_metric_R2(void){
-  vectR2 p,q;
-  double d,dN;
-  int fails=0;
-  printf("Lagrange arc metric tests in R2\n");
-  printf("--------------------\n");
-  p.put(1,0);                   q.put(-1,0);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  q.put(1,0);                   p.put(-1,0);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0,2);                   q.put(2,0);                    d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0,1);                   q.put(1,0);                    d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0,1);                   q.put( cos(PI/4), sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0,1);                   q.put(-cos(PI/4), sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0,1);                   q.put(-cos(PI/4),-sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0,1);                   q.put( cos(PI/4),-sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,0);                   q.put(-0.5,-0.5);              d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,0);                   q.put(-2,-2);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,0);                   q.put(0,2);                    d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put( cos(PI/4),-sin(PI/4)); q.put(-2,1);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put( cos(PI/4),-sin(PI/4)); q.put(-1.63,1.33);             d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put( cos(PI/4), sin(PI/4)); q.put( 1, 1);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,0);                   q.put(2,0);                    d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,0);                   q.put(-1,0);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,1);                   q.put(0,0);                    d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,0);                   q.put(0,-1);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0,1);                   q.put(-cos(PI/4), sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0,1);                   q.put( cos(PI/4), sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,0);                   q.put(-2,0);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  q.put(1,0);                   p.put(-2,0);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,0);                   q.put(-0.5,0);                 d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  printf("Theorem 3.9 (1): triangle inequality fails\n");
-  p.put(1,0);                   q.put(-0.5,0);                 d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,0);                   q.put(-0.5,0.2);               d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(-0.5,0.2);              q.put(-0.5,0);                 d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  printf("Theorem 3.9 (2): translation invariance fails\n");
-  p.put(1,0.5);                 q.put(0.5,1);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0.5,0);                 q.put(0,0.5);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  printf("Theorem 3.9 (5): balls are not convex\n");
-  p.put(0,1);                   q.put(-0.70,-1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  q.put(0,1);                   p.put(-0.70,-1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0,1);                   q.put( 0.70,-1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  q.put(0,1);                   p.put( 0.70,-1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(0,1);                   q.put( 0,   -1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  q.put(0,1);                   p.put( 0,   -1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  printf("Theorem 3.10: Lagrange arc distance versus Euclidean metric\n");
-  p.put(1,0);                   q.put(-0.50,0);                d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  q.put(1,0);                   p.put(-0.50,0);                d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  p.put(1,0);                   q.put(-0.50,0.75);             d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  q.put(1,0);                   p.put(-0.50,0.75);             d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  printf("d((%6.3lf,%6.3lf),(%6.3lf,%6.3lf))=%13.10lf ~= %13.10lf  ",p.getx(),p.gety(),q.getx(),q.gety(),d,dN);if(dN<d*0.999||dN>d*1.001){printf("FAIL\n");fails++;}else printf("ok\n");
-  printf("number of fails = %d\n",fails);
-  return fails;
-  }
-
 //-----------------------------------------------------------------------------
 //! \brief Test Lagrange arc metric in R^2
+//! \details See Example 3.12: Lagrange arc distance in R^2
 //-----------------------------------------------------------------------------
 TEST( TestSuiteLarc, R2 )
 {
   vectR2 p,q;
   double d,dN;
-
-  p.put( 0,1);        q.put( 1, 0); d=larc_metric(p,q); dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, 1e-6 * d );
-  p.put( 0,1);        q.put(-1, 0); d=larc_metric(p,q); dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, 1e-6 * d );
-  p.put( 0,1);        q.put( 0,-1); d=larc_metric(p,q); dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, 1e-6 * d );
-  p.put( 1,0);        q.put( 0,-1); d=larc_metric(p,q); dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, 1e-6 * d );
-  p.put( 1,0);        q.put(-1, 0); d=larc_metric(p,q); dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, 1e-6 * d );
-  p.put(-1,0);        q.put( 0,-1); d=larc_metric(p,q); dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, 1e-6 * d );
-  p.put( 0,1);        q.put( 2, 0); d=larc_metric(p,q); dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, 1e-6 * d );
-  p.put( 0,1);        q.put( 0,-2); d=larc_metric(p,q); dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, 1e-6 * d );
-  p.put( 0,1);        q.put(-2, 1); d=larc_metric(p,q); dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, 1e-6 * d );
-  p.put( 0.000001,0); q.put(PI, 0); d=larc_metric(p,q); dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, 1e-6 * d );
+  const double err = 1e-6;
+  printf("Lagrange arc metric tests in R2\n");
+  printf("--------------------\n");
+  p.put(1,0);                   q.put(-1,0);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  q.put(1,0);                   p.put(-1,0);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0,2);                   q.put(2,0);                    d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0,1);                   q.put(1,0);                    d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0,1);                   q.put( cos(PI/4), sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0,1);                   q.put(-cos(PI/4), sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0,1);                   q.put(-cos(PI/4),-sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0,1);                   q.put( cos(PI/4),-sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,0);                   q.put(-0.5,-0.5);              d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,0);                   q.put(-2,-2);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,0);                   q.put(0,2);                    d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( cos(PI/4),-sin(PI/4)); q.put(-2,1);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( cos(PI/4),-sin(PI/4)); q.put(-1.63,1.33);             d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( cos(PI/4), sin(PI/4)); q.put( 1, 1);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,0);                   q.put(2,0);                    d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,0);                   q.put(-1,0);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,1);                   q.put(0,0);                    d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,0);                   q.put(0,-1);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0,1);                   q.put(-cos(PI/4), sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0,1);                   q.put( cos(PI/4), sin(PI/4));  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,0);                   q.put(-2,0);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  q.put(1,0);                   p.put(-2,0);                   d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,0);                   q.put(-0.5,0);                 d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  printf("Theorem 3.9 (1): triangle inequality fails\n");
+  p.put(1,0);                   q.put(-0.5,0);                 d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,0);                   q.put(-0.5,0.2);               d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(-0.5,0.2);              q.put(-0.5,0);                 d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  printf("Theorem 3.9 (2): translation invariance fails\n");
+  p.put(1,0.5);                 q.put(0.5,1);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0.5,0);                 q.put(0,0.5);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  printf("Theorem 3.9 (5): balls are not convex\n");
+  p.put(0,1);                   q.put(-0.70,-1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  q.put(0,1);                   p.put(-0.70,-1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0,1);                   q.put( 0.70,-1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  q.put(0,1);                   p.put( 0.70,-1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(0,1);                   q.put( 0,   -1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  q.put(0,1);                   p.put( 0,   -1.12);            d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  printf("Theorem 3.10: Lagrange arc distance versus Euclidean metric\n");
+  p.put(1,0);                   q.put(-0.50,0);                d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  q.put(1,0);                   p.put(-0.50,0);                d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(1,0);                   q.put(-0.50,0.75);             d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  q.put(1,0);                   p.put(-0.50,0.75);             d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+//printof(lptr,"Example 3.12: Lagrange arc distance in R^2 (?)\n");
+  p.put( 0,1);                  q.put( 1, 0);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( 0,1);                  q.put(-1, 0);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( 0,1);                  q.put( 0,-1);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( 1,0);                  q.put( 0,-1);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( 1,0);                  q.put(-1, 0);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put(-1,0);                  q.put( 0,-1);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( 0,1);                  q.put( 2, 0);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( 0,1);                  q.put( 0,-2);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( 0,1);                  q.put(-2, 1);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
+  p.put( 0.000001,0);           q.put(PI, 0);                  d=larc_metric(p,q);  dN=larc_metric(p,q,1000);  ASSERT_NEAR( dN, d, err * d );
 }
 
 /*-------------------------------------------------------------------------

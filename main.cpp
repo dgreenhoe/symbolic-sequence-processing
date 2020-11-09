@@ -54,7 +54,7 @@ TEST( TestSuiteLarc, 2015larc )
 //test_complex();
   //test_seqR2();
   //test_conj();
-  test_larc_metric_R2();
+//test_larc_metric_R2();
   test_larc_metric_R3();
   test_larc_metric_R6();
   }
@@ -152,7 +152,7 @@ TEST( TestSuiteGeneral, all )
   //test_conj();
 //  ASSERT_EQ( test_dft_R1()        , 0 );
   ASSERT_EQ( test_pqtheta()       , 0 );
-  ASSERT_EQ( test_larc_metric_R2(), 0 );
+//ASSERT_EQ( test_larc_metric_R2(), 0 );
   ASSERT_EQ( test_larc_metric_R3(), 0 );
   ASSERT_EQ( test_larc_metric_R6(), 0 );
 //ASSERT_EQ( test_circle()        , 0 );
