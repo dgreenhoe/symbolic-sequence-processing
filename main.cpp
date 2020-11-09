@@ -155,7 +155,7 @@ TEST( TestSuiteGeneral, all )
   ASSERT_EQ( test_larc_metric_R2(), 0 );
   ASSERT_EQ( test_larc_metric_R3(), 0 );
   ASSERT_EQ( test_larc_metric_R6(), 0 );
-  ASSERT_EQ( test_circle()        , 0 );
+//ASSERT_EQ( test_circle()        , 0 );
   ASSERT_EQ( test_circle_d1()     , 0 );
   ASSERT_EQ( test_ellipse_d1()    , 0 );
   ASSERT_EQ( test_halfcircle()    , 1 );

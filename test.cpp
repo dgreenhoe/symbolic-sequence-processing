@@ -146,41 +146,39 @@ int test_halfcircle(void){
   else             return 0;
   }
 
-/*-------------------------------------------------------------------------
- * perimeter of circle test
- *-------------------------------------------------------------------------*/
-int test_circle(void){
+//-----------------------------------------------------------------------------
+//! \brief Estimate perimeter length of unit circle test
+//-----------------------------------------------------------------------------
+TEST( TestSuiteCircle, circle )
+{
   ellipsec circle(1,1);
-  double x,y;
-  double length, errorl,perror;
-  int fails=0;
-  long N=1000;
-
-  length = circle.pathlength(0,2*PI,N);
-  errorl  = length-2*PI;
-  perror  = fabs(100*errorl/(2*PI));
-  printf("\ntest circle.pathlength(0,2pi,%ld):\n",N);
-  printf("---------------------------------------\n");
-
-  x=0; y=0;
-  circle.set(1,1,0,x,y);
-  printf("L circle(%6.3lf,%6.3lf)=%.16lf  error=%lf (%lf%%)",x,y,length, errorl, perror); 
-  if (perror<0.001)printf("  ok\n"); 
-  else{fails++;  printf("  FAIL\n");}
-
-  x=1; y=-2;
-  circle.set(1,1,0,x,y);
-  printf("L circle(%6.3lf,%6.3lf)=%.16lf  error=%lf (%lf%%)",x,y,length, errorl, perror); 
-  if (perror<0.001)printf("  ok\n"); 
-  else{fails++;  printf("  FAIL\n");}
-
-  x=-3; y=-5;
-  circle.set(1,1,0,x,y);
-  printf("L circle(%6.3lf,%6.3lf)=%.16lf  error=%lf (%lf%%)",x,y,length, errorl, perror); 
-  if (perror<0.001)printf("  ok\n"); 
-  else{fails++;  printf("  FAIL\n");}
-  return fails;
-  }
+  double length;
+  const long N=1000;
+  //-----------------------------------
+  // Circle centered at (0,0) and with radius 1
+  //-----------------------------------
+  length  = circle.pathlength(0,2*M_PI,N); // estimate path length around circle
+  ASSERT_NEAR( length, 2*M_PI, 1e-5 * (2*M_PI) ); // relative error
+  //-----------------------------------
+  // Circle centered at (0,0) and with radius 1
+  //-----------------------------------
+  circle.set(1,1,0,0,0);
+  length  = circle.pathlength(0,2*M_PI,N);
+  ASSERT_NEAR( length, 2*M_PI, 1e-5 * (2*M_PI) );
+  //-----------------------------------
+  // Circle centered at (1,-2) and with radius 1
+  //-----------------------------------
+  circle.set(1,1,0,1,-2);
+  length  = circle.pathlength(0,2*M_PI,N);
+  ASSERT_NEAR( length, 2*M_PI, 1e-5 * (2*M_PI) );
+  //-----------------------------------
+  // Circle centered at (-3,-5) and with radius 1
+  // measuring half-way around
+  //-----------------------------------
+  circle.set(1,1,0,-3,-5);
+  length  = circle.pathlength(M_PI,2*M_PI,N);
+  ASSERT_NEAR( length, M_PI, 1e-5 * M_PI );
+}
 
 /*-------------------------------------------------------------------------
  * find points on unit circle that are distance 1 
@@ -511,7 +509,7 @@ int test_expi(void){
   complex y;
   double theta;
   for(n=0; n<=N; n++){
-    theta = 2.0*PI*(double)n/(double)N;
+    theta = 2.0*M_PI*(double)n/(double)N;
     y = expi(theta);
     printf("n=%2ld, theta=%lf (%3.0lf), expi(theta)=(%+9.6lf,%+9.6lf) mag=%lf\n",n,theta,theta/PI*180,y.real(),y.imag(), y.mag());
     }
@@ -530,7 +528,7 @@ int test_dft_R1(void){
   long n;
   printf("\ntest DFT operations with cos(2pi n/10):\n");
   printf("---------------------------------------\n");
-  cos((2.0*PI/10.0),&y);
+  cos((2.0*M_PI/10.0),&y);
   dft(&y,&Dy);
   mag(&Dy,&mDy);
   printf("\n(y_n)=cos(2 pi n/10):\n");  y.list();
@@ -540,7 +538,7 @@ int test_dft_R1(void){
 
   printf("\ntest DFT operations with sin(2pi n/10):\n");
   printf("---------------------------------------\n");
-  sin((2.0*PI/10.0),&y);
+  sin((2.0*M_PI/10.0),&y);
   dft(&y,&Dy);
   mag(&Dy,&mDy);
   printf("\n(y_n)=sin(2 pi n/10):\n");  y.list();
