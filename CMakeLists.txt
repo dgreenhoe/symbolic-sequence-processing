@@ -68,8 +68,8 @@
       test.cpp
       tests/TestSuiteTuples.cpp
       tests/TestSuiteVectRn.cpp
+      tests/TestSuiteLarc.cpp
       tests/test.cpp
-      tests/testlarc.cpp
       test2.cpp
     )
 
