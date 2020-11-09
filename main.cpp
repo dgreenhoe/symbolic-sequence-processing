@@ -43,22 +43,6 @@ int main(int argc, char *argv[])
   return RUN_ALL_TESTS();
   }
 
-
-
-//---------------------------------------------------------------------------
-// calculate data for the paper 2015sphx:
-// "An extension to the spherical metric using Lagrange interpolation"
-//---------------------------------------------------------------------------
-TEST( TestSuiteLarc, 2015larc )
-{
-//test_complex();
-  //test_seqR2();
-  //test_conj();
-//test_larc_metric_R2();
-  test_larc_metric_R3();
-  test_larc_metric_R6();
-  }
-
 //---------------------------------------------------------------------------
 // calculate data for the paper 2015sphx:
 // "An extension to the spherical metric using Lagrange interpolation"
@@ -151,11 +135,7 @@ TEST( TestSuiteGeneral, all )
 {
   //test_conj();
 //  ASSERT_EQ( test_dft_R1()        , 0 );
-  ASSERT_EQ( test_pqtheta()       , 0 );
-//ASSERT_EQ( test_larc_metric_R2(), 0 );
-  ASSERT_EQ( test_larc_metric_R3(), 0 );
-  ASSERT_EQ( test_larc_metric_R6(), 0 );
-//ASSERT_EQ( test_circle()        , 0 );
+//ASSERT_EQ( test_pqtheta()       , 0 );
   ASSERT_EQ( test_circle_d1()     , 0 );
   ASSERT_EQ( test_ellipse_d1()    , 0 );
   ASSERT_EQ( test_halfcircle()    , 1 );

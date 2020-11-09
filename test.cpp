@@ -98,32 +98,29 @@ int test_seqR2(void){
   }
 
 
-/*-------------------------------------------------------------------------
- * test Lagrange arc metric in R^2
- *-------------------------------------------------------------------------*/
-int test_pqtheta(void){
+//-----------------------------------------------------------------------------
+//! \brief Test Lagrange arc metric in R^2
+//-----------------------------------------------------------------------------
+TEST( TestSuiteVectRn, theta )
+{
   vectR2 p,q;
   double tr,td,dc;
-  int fails=0;
-  printf("\n(p,q) theta tests in R2\n");
-  printf("-----------------------\n");
-  p.put(0,0);                   q.put(2,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= -1*180/PI; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td>dc*0.999||td<dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(0,1);                   q.put(0,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= -2*180/PI; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td>dc*0.999||td<dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(0,2);                   q.put(2,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 90; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(0,1);                   q.put(1,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 90; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(1,3);                   q.put(-1,-3);                  tr=pqtheta(p,q); td=tr*180/PI; dc=180; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(-2,5);                  q.put(2,-5);                   tr=pqtheta(p,q); td=tr*180/PI; dc=180; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(0,1);                   q.put( cos(PI/4), sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc= 45; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(0,1);                   q.put( cos(PI/4),-sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc=135; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(0,1);                   q.put(-cos(PI/4), sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc= 45; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(0,1);                   q.put(-cos(PI/4),-sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc=135; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put( 7*cos(PI/4), 7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 45; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put( 7*cos(PI/4),-7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc=135; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(-7*cos(PI/4), 7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 45; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  p.put(-7*cos(PI/4),-7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc=135; printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);if(td<dc*0.999||td>dc*1.001){fails++; printf("FAIL %lf!=%lf\n",td,dc);}else printf("ok\n");
-  printf("number of fails = %d\n",fails);
-  return fails;
-  }
+  const double err = 1e-8;
+  p.put(0,0);                       q.put(2,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= -1*180/PI;  ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put(0,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= -2*180/PI;  ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,2);                       q.put(2,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 90;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put(1,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 90;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(1,3);                       q.put(-1,-3);                  tr=pqtheta(p,q); td=tr*180/PI; dc=180;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(-2,5);                      q.put(2,-5);                   tr=pqtheta(p,q); td=tr*180/PI; dc=180;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put( cos(PI/4), sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put( cos(PI/4),-sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put(-cos(PI/4), sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put(-cos(PI/4),-sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put( 7*cos(PI/4), 7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put( 7*cos(PI/4),-7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(-7*cos(PI/4), 7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(-7*cos(PI/4),-7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+}
 
 /*-------------------------------------------------------------------------
  * half circle test
