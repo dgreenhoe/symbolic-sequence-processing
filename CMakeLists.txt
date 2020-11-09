@@ -69,11 +69,12 @@
       tests/TestSuiteTuples.cpp
       tests/TestSuiteVectRn.cpp
       tests/test.cpp
+      tests/testlarc.cpp
       test2.cpp
     )
 
  set( SOURCES_CMD
-      testlarc.cpp
+      fileplot.cpp
     )
 
  set( SOURCES_DSP
