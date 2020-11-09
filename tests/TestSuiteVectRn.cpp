@@ -2,12 +2,7 @@
 // Daniel J. Greenhoe
 // Test routines
 //=============================================================================
-/*=====================================
- * headers
- *=====================================*/
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <math.h>
 #include "r1.h"
 #include "r2.h"

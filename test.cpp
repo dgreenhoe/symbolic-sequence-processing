@@ -40,27 +40,47 @@
 #include "test.h"
 #include "gtest/gtest.h"  // https://github.com/google/googletest/blob/master/googletest/docs/primer.md
 
-/*-------------------------------------------------------------------------
- * test complex operations
- *-------------------------------------------------------------------------*/
-int test_complex(void){
+//-----------------------------------------------------------------------------
+//! \brief Test complex operations
+//-----------------------------------------------------------------------------
+TEST( TestSuiteGeneral, C1 )
+{
   complex p(3,-4);
   complex q,s;
 
-  printf("\ntest complex operations:\n");
-  printf("-----------------------\n");
-  printf("p = (%lf,%lf)\n",p.getx(),p.gety());
-  printf("norm(%lf,%lf)=%lf\n",p.getx(),p.gety(),p.norm());
-  p.put(10*sqrt(3),2);             printf("theta(%lf,%lf)=%lf degrees\n",           p.getx(), p.gety(), p.theta()/PI*180);
-  q=-p;                            printf("-(%lf,%lf)=(%lf,%lf)\n",p.getx(),           p.gety(), q.getx(), q.gety());
-  p.put(3,-5); q.put(-2,7); s=p+q; printf("(%lf,%lf)+(%lf,%lf)=(%lf,%lf)\n",           p.getx(), p.gety(), q.getx(), q.gety(), s.getx(), s.gety());
-  p.put(3,-5); q.put(-2,7); s=p-q; printf("(%lf,%lf)-(%lf,%lf)=(%lf,%lf)\n",           p.getx(), p.gety(), q.getx(), q.gety(), s.getx(), s.gety());
-  p.put(2,-3); q.put(-5,7); s=p*q; printf("(%lf,%lf)*(%lf,%lf)=(%lf,%lf)\n",           p.getx(), p.gety(), q.getx(), q.gety(), s.getx(), s.gety());
-  q=p; q&=(PI/2);                  printf("rotate(%lf,%lf)by 90degrees = (%lf,%lf)\n", p.getx(), p.gety(), q.getx(), q.gety() );
-  q=p; q&=(PI);                    printf("rotate(%lf,%lf)by 180degrees = (%lf,%lf)\n",p.getx(), p.gety(), q.getx(), q.gety() );
-  p.clear();                       printf("clear operation--> (%lf,%lf)\n",            p.getx(), p.gety());
-  return 0;
-  }
+  ASSERT_EQ( p.getx(),  3 );
+  ASSERT_EQ( p.gety(), -4 );
+  ASSERT_EQ( p.norm(),  5 );
+  p.put(sqrt(3), 1);
+  ASSERT_DOUBLE_EQ( p.theta()/M_PI*180, 30.0 );
+  q=-p;
+  ASSERT_EQ( q.getx(), -sqrt(3) );
+  ASSERT_EQ( q.gety(), -1       );
+  p.put(  3, -5 ); 
+  q.put( -2,  7 ); 
+  s = p + q;
+  ASSERT_EQ( s.getx(),  3 - 2 );
+  ASSERT_EQ( s.gety(), -5 + 7 );
+  s = p - q;
+  ASSERT_EQ( s.getx(),  3 + 2 );
+  ASSERT_EQ( s.gety(), -5 - 7 );
+  p.put(  2, -3 ); 
+  q.put( -5,  7 ); 
+  s = p * q;
+  ASSERT_EQ( s.getx(),  (2 * (-5)) - ((-3) * ( 7)) );
+  ASSERT_EQ( s.gety(),  (2 * ( 7)) + ((-5) * (-3)) );
+  q = p; 
+  q &= (PI/2);
+  ASSERT_DOUBLE_EQ( q.getx(),  3 );
+  ASSERT_DOUBLE_EQ( q.gety(),  2 );
+  q = p; 
+  q &= M_PI;
+  ASSERT_DOUBLE_EQ( q.getx(), -2 );
+  ASSERT_DOUBLE_EQ( q.gety(),  3 );
+  p.clear();
+  ASSERT_EQ( p.getx(),  0 );
+  ASSERT_EQ( p.gety(),  0 );
+}
 
 /*-------------------------------------------------------------------------
  * test complex operations
@@ -461,18 +481,26 @@ int test_rdie(void){
 /*-------------------------------------------------------------------------
  * test die to C^1 mapping
  *-------------------------------------------------------------------------*/
-int test_dieC1(void){
-  //fdie_dietoC1('A').list();
-  printf("\nTest die to C^1:\n");
-  printf(  "---------------\n");
-  die_dietoC1c('A').list("die A --> ","\n");
-  die_dietoC1c('B').list("die B --> ","\n");
-  die_dietoC1c('C').list("die C --> ","\n");
-  die_dietoC1c('D').list("die D --> ","\n");
-  die_dietoC1c('E').list("die E --> ","\n");
-  die_dietoC1c('F').list("die F --> ","\n");
-  return 0;
-  }
+TEST( TestSuiteDie, C1 )
+{
+  ASSERT_DOUBLE_EQ( (die_dietoC1c('0')).real(), 0.0 );
+  ASSERT_DOUBLE_EQ( (die_dietoC1c('0')).imag(), 0.0 );
+  double theta = 30.0;
+  ASSERT_DOUBLE_EQ( (die_dietoC1c('A')).real(), cos( theta / 180. * M_PI ) );
+  ASSERT_DOUBLE_EQ( (die_dietoC1c('A')).imag(), sin( theta / 180. * M_PI ) );
+  theta += 60;
+  ASSERT_DOUBLE_EQ( (die_dietoC1c('B')).real(), cos( theta / 180. * M_PI ) );
+  ASSERT_DOUBLE_EQ( (die_dietoC1c('B')).imag(), sin( theta / 180. * M_PI ) );
+  theta += 60;
+  ASSERT_DOUBLE_EQ( (die_dietoC1c('C')).real(), cos( theta / 180. * M_PI ) );
+  ASSERT_DOUBLE_EQ( (die_dietoC1c('C')).imag(), sin( theta / 180. * M_PI ) );
+  theta += 60;
+  ASSERT_FLOAT_EQ(  (die_dietoC1c('D')).real(), cos( theta / 180. * M_PI ) );
+  ASSERT_FLOAT_EQ(  (die_dietoC1c('D')).imag(), sin( theta / 180. * M_PI ) );
+  theta += 60;
+  ASSERT_DOUBLE_EQ( (die_dietoC1c('E')).real(), cos( theta / 180. * M_PI ) );
+  ASSERT_DOUBLE_EQ( (die_dietoC1c('E')).imag(), sin( theta / 180. * M_PI ) );
+}
 
 /*-------------------------------------------------------------------------
  * test expi function

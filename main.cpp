@@ -51,9 +51,9 @@ int main(int argc, char *argv[])
 //---------------------------------------------------------------------------
 TEST( TestSuiteLarc, 2015larc )
 {
-  test_complex();
+//test_complex();
   //test_seqR2();
-  test_conj();
+  //test_conj();
   test_larc_metric_R2();
   test_larc_metric_R3();
   test_larc_metric_R6();
@@ -149,32 +149,27 @@ TEST( TestSuiteOCS, dna )
 //---------------------------------------------------------------------------
 TEST( TestSuiteGeneral, all )
 {
-  int rval;
-  test_complex();
-  //test_seqR2();
-  if(test_dieC1()         !=0) rval = -1;
-  test_conj();                 rval =  0;
-  if(test_dft_R1()        !=0) rval = -1;
-  if(test_pqtheta()       !=0) rval = -1;
-  if(test_larc_metric_R2()!=0) rval = -1;
-  if(test_larc_metric_R3()!=0) rval = -1;
-  if(test_larc_metric_R6()!=0) rval = -1;
-  if(test_circle()        !=0) rval = -1;
-  if(test_circle_d1()     !=0) rval = -1;
-  if(test_ellipse_d1()    !=0) rval = -1;
-  if(test_halfcircle()    ==0) rval = -1;
-  if(test_findt()         ==0) rval = -1;
-  if(test_perimeter()     ==0) rval = -1;
-  if(test_balloon_metric()==0) rval = -1;
-  if(test_mca_metric()    ==0) rval = -1;
-  if(test_spinner()       ==0) rval = -1;
-  if(test_rdie()          ==0) rval = -1;
-  if(test_dna_metric()    ==0) rval = -1;
-  if(test_dnan_metric()   ==0) rval = -1;
+  //test_conj();
+//  ASSERT_EQ( test_dft_R1()        , 0 );
+  ASSERT_EQ( test_pqtheta()       , 0 );
+  ASSERT_EQ( test_larc_metric_R2(), 0 );
+  ASSERT_EQ( test_larc_metric_R3(), 0 );
+  ASSERT_EQ( test_larc_metric_R6(), 0 );
+  ASSERT_EQ( test_circle()        , 0 );
+  ASSERT_EQ( test_circle_d1()     , 0 );
+  ASSERT_EQ( test_ellipse_d1()    , 0 );
+  ASSERT_EQ( test_halfcircle()    , 1 );
+  ASSERT_EQ( test_findt()         , 1 );
+  ASSERT_EQ( test_perimeter()     , 1 );
+  ASSERT_EQ( test_balloon_metric(), 1 );
+  ASSERT_EQ( test_mca_metric()    , 1 );
+  ASSERT_EQ( test_spinner()       , 1 );
+  ASSERT_EQ( test_rdie()          , 0 );
+  ASSERT_EQ( test_dna_metric()    , 1 );
+  ASSERT_EQ( test_dnan_metric()   , 1 );
   test_die();
   test_rdie();
   test_dft_R1();
   test_expi();
-  printf("rval = %d\n", rval);
 }
 

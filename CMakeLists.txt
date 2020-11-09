@@ -127,15 +127,15 @@
      #${DIR_GTEST}/src/gtest_main.cc
     )
 
- set( SOURCES_GMOCK
-      ${DIR_GMOCK}/src/gmock-all.cc
-      ${DIR_GMOCK}/src/gmock-cardinalities.cc
-      ${DIR_GMOCK}/src/gmock-internal-utils.cc
-      ${DIR_GMOCK}/src/gmock-matchers.cc
-      ${DIR_GMOCK}/src/gmock-spec-builders.cc
-      ${DIR_GMOCK}/src/gmock.cc
-      ${DIR_GMOCK}/src/gmock_main.cc
-    )
+#set( SOURCES_GMOCK
+#     ${DIR_GMOCK}/src/gmock-all.cc
+#     ${DIR_GMOCK}/src/gmock-cardinalities.cc
+#     ${DIR_GMOCK}/src/gmock-internal-utils.cc
+#     ${DIR_GMOCK}/src/gmock-matchers.cc
+#     ${DIR_GMOCK}/src/gmock-spec-builders.cc
+#     ${DIR_GMOCK}/src/gmock.cc
+#     ${DIR_GMOCK}/src/gmock_main.cc
+#   )
 
  set( HEADERS_TARGET
       main.h
@@ -207,11 +207,11 @@
  target_sources(             Lib_Gtest PRIVATE    ${SOURCES_GTEST}                          )
  target_include_directories( Lib_Gtest PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ${DIR_GTEST} .. )
 
- add_library(                Lib_Gmock STATIC                                               )
- set_target_properties(      Lib_Gmock PROPERTIES PREFIX ""                                 )
- target_compile_options(     Lib_Gmock PRIVATE    ${FLAGS_COMPILE}                          )
- target_sources(             Lib_Gmock PRIVATE    ${SOURCES_GMOCK}                          )
- target_include_directories( Lib_Gmock PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ${DIR_GMOCK}/include/ ${DIR_GMOCK} .. )
+#add_library(                Lib_Gmock STATIC                                               )
+#set_target_properties(      Lib_Gmock PROPERTIES PREFIX ""                                 )
+#target_compile_options(     Lib_Gmock PRIVATE    ${FLAGS_COMPILE}                          )
+#target_sources(             Lib_Gmock PRIVATE    ${SOURCES_GMOCK}                          )
+#target_include_directories( Lib_Gmock PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ${DIR_GMOCK}/include/ ${DIR_GMOCK} .. )
 
 #add_library(                Lib_GtestMainExt STATIC IMPORTED )
 #set_target_properties(      Lib_GtestMainExt PROPERTIES C_EXTENSIONS OFF IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/libgtest_main.a )
