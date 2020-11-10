@@ -194,7 +194,7 @@
  set_target_properties(      Lib_DSP   PROPERTIES PREFIX ""                                 )
  target_compile_options(     Lib_DSP   PRIVATE    ${FLAGS_COMPILE}                          )
  target_sources(             Lib_DSP   PRIVATE    ${SOURCES_DSP}                            )
- target_include_directories( Lib_DSP   PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_EIGEN} .. )
+ target_include_directories( Lib_DSP   PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ${DIR_GTEST} ${DIR_EIGEN} .. )
 
  add_library(                Lib_Tests STATIC                                               )
  set_target_properties(      Lib_Tests PROPERTIES PREFIX ""                                 )

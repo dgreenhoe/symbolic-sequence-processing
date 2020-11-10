@@ -434,7 +434,9 @@ int test_die(void){
 /*-------------------------------------------------------------------------
  * test real die seqR1 functions
  *-------------------------------------------------------------------------*/
-int test_rdie(void){
+TEST( TestSuiteDie, rdie )
+//int test_rdie(void)
+{
   long m;
   const long N=100;
   rdieseq x(N);
@@ -442,36 +444,42 @@ int test_rdie(void){
   seqR1 histo(8);
 
   printf("Test real die seqR1 operations\n");
-  printf("---------------------------------\n");
   x.randomize(0x5EED);
   x.list();putchar('\n');
 
   printf("Test real die histogram operation\n");
-  printf("---------------------------------\n");
   histo=x.histogram();
   histo.list();putchar('\n');
 
-  printf("Test rdie_metric d(a,b)\n");
-  printf("-----------------------\n");
-  x.metrictbl();
+  char a,b;
+  for(a='A';a<='F';a++)
+  {
+    for(b='A';b<='F';b++)
+    {
+      if( a==b ) ASSERT_EQ( fdie_metric(a,b), 0.0 );
+      else       ASSERT_EQ( fdie_metric(a,b), 1.0 );
+    }
+  }
+  //x.metrictbl();
 
-  printf("Test auto-correlation Rxx\n");
-  printf("-------------------------\n");
-  m=-N; printf("Rxx(%4ld)=%8.3lf\n",m,x.Rxx(m));
-  m=-1; printf("Rxx(%4ld)=%8.3lf\n",m,x.Rxx(m));
-  m= 0; printf("Rxx(%4ld)=%8.3lf\n",m,x.Rxx(m));
-  m= 1; printf("Rxx(%4ld)=%8.3lf\n",m,x.Rxx(m));
-  m= N; printf("Rxx(%4ld)=%8.3lf\n",m,x.Rxx(m));
+  //printf("Test auto-correlation Rxx\n");
+  ASSERT_EQ( x.Rxx(-N), -2*N );
+  ASSERT_EQ( x.Rxx( 0),    0 );
+  ASSERT_EQ( x.Rxx( N), -2*N );
+  for( m=-N; m< 0; m++ ) ASSERT_LT( x.Rxx(m), -(N-15) );
+  for( m= 1; m<=N; m++ ) ASSERT_LT( x.Rxx(m), -(N-15) );
 
-  if(x.Rxx(&Rxx,1)){fprintf(stderr,"ERROR computing Rxx for seqR1 x.\n"); return -1;} //auto-correlation seqR1 of truncated xR3hl
+  if(x.Rxx(&Rxx,1))//auto-correlation seqR1 of truncated xR3hl
   // |      |   |____________switch to turn on counting display
   // |      |________________pointer to output correlation sequence
   // |_______________________input real die sequence
+  {
+    FAIL(); 
+  } 
 
-  Rxx.list();
+  //Rxx.list();
 
-  return 0;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * test die to C^1 mapping

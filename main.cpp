@@ -44,14 +44,13 @@ int main(int argc, char *argv[])
   }
 
 //---------------------------------------------------------------------------
-// calculate data for the paper 2015sphx:
-// "An extension to the spherical metric using Lagrange interpolation"
+//! \brief Calculate data for the paper 2015sphx:
+//! "An extension to the spherical metric using Lagrange interpolation"
 //---------------------------------------------------------------------------
-TEST( TestSuiteLarc, balls )
+TEST( LabLarc, ballR2 )
 {
   lab_larc_distances_R2("data/lab_larc_distances_R2");     //Thm 3.13, Rem 3.14, Exm 3.15
-  lab_larc_distances_R3("data/lab_larc_distances_R3");     //Example 3.16: larc in R^3
-    
+
   lab_larc_ball_R2(0,   0,   1, 0.5,  4, 0.001,  2000, 1000, "data/larc_ball(0_0)");    //Example 3.17: larc in R^2
   lab_larc_ball_R2(0.5, 0.5, 1, 0.5,  4, 0.001,  2000, 1000, "data/larc_ball(05_05)");  //Example 3.17: larc in R^2
   lab_larc_ball_R2(1,   1,   1, 0.5,  4, 0.001,  2000, 1000, "data/larc_ball(1_1)");    //Example 3.17: larc in R^2
@@ -67,7 +66,16 @@ TEST( TestSuiteLarc, balls )
     //             |    |    |____________________________________radius of ball
     //             |    |_________________________________________x of point p=(x,y)
     //             |______________________________________________y of point p=(x,y)
+}
 
+//---------------------------------------------------------------------------
+//! \brief Calculate data for the paper 2015sphx:
+//! "An extension to the spherical metric using Lagrange interpolation"
+//---------------------------------------------------------------------------
+TEST( LabLarc, ballR3 )
+{
+  lab_larc_distances_R3("data/lab_larc_distances_R3");     //Example 3.16: larc in R^3
+    
   lab_larc_ball_R3(1, 1,  1, 1, "data/larc_ball(1_1_1)");  //Example 3.18: larc in R^3
   lab_larc_ball_R3(1,-1,  1, 1, "data/larc_ball(1_1_1)");  //Example 3.18: larc in R^3
   lab_larc_ball_R3(0, 0,  1, 1, "data/larc_ball(0_0_1)");  //Example 3.18: larc in R^3
@@ -77,14 +85,14 @@ TEST( TestSuiteLarc, balls )
   lab_larc_ball_R3(0, 0, -3, 1, "data/larc_ball(0_0_-3)"); //Example 3.18: larc in R^3
   lab_larc_ball_R3(0, 0, -5, 1, "data/larc_ball(0_0_-5)"); //Example 3.18: larc in R^3
   lab_larc_ball_R3(0, 0,-10, 1, "data/larc_ball(0_0_-10)");//Example 3.18: larc in R^3
-  }
+}
 
 //---------------------------------------------------------------------------
 //! \brief Make plot TeX files
 //! \details These files can be compiled using xelatex to make pdf files 
 //!          for inclusion into main pdf file for paper
 //---------------------------------------------------------------------------
-TEST( TestSuiteOCS, die )
+TEST( LabOCS, die )
 {
   lab_fdie_ocs (     0x5EED, 16002,                "plots\\fdie"    ); // Example 3.4  (fair die sequence), 3 plots
   lab_rdie_ocs (     0x5EED, 16002,                "plots\\rdie"    ); // Example 3.5  (real die sequence), 3 plots
@@ -113,7 +121,7 @@ TEST( TestSuiteOCS, die )
 //! \details These files can be compiled using xelatex to make pdf files 
 //!          for inclusion into main pdf file for paper
 //---------------------------------------------------------------------------
-TEST( TestSuiteOCS, dna )
+TEST( LabOCS, dna )
 {
   lab_dna_ocs  (    0x5EED, 16000, "plots\\dna");                                                                              // Example 3.10 (artificial DNA  sequence), 3 plots
   lab_dna_ocs  (                   "..\\..\\common\\symseq\\fasta\\NC004718_sars.dat","plots\\dna_sars");                      // Example 3.11 (SARS virus)
@@ -144,11 +152,10 @@ TEST( TestSuiteGeneral, all )
   ASSERT_EQ( test_balloon_metric(), 1 );
   ASSERT_EQ( test_mca_metric()    , 1 );
   ASSERT_EQ( test_spinner()       , 1 );
-  ASSERT_EQ( test_rdie()          , 0 );
+//ASSERT_EQ( test_rdie()          , 0 );
   ASSERT_EQ( test_dna_metric()    , 1 );
   ASSERT_EQ( test_dnan_metric()   , 1 );
   test_die();
-  test_rdie();
   test_dft_R1();
   test_expi();
 }
