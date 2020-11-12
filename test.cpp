@@ -189,31 +189,29 @@ TEST( TestSuiteCircle, circle )
   ASSERT_NEAR( length, M_PI, 1e-5 * M_PI );
 }
 
-/*-------------------------------------------------------------------------
- * find points on unit circle that are distance 1 
- * from the point at pi/4 radians on unit circle
- *-------------------------------------------------------------------------*/
-int test_circle_d1(void){
+//-----------------------------------------------------------------------------
+//! \brief Find points on unit circle that are distance 1 
+//!        from the point at pi/4 radians on unit circle
+//-----------------------------------------------------------------------------
+TEST( TestSuiteEllipse, circled1 )
+{
   ellipsec circle(1,1);
   double phi1, phi2;
   double err1, err2;
-  double error1, error2;
-  double perror1, perror2;
+  const long N = 1000;
+  const double err = 10.0 / N;
 
-  printf("\nfind points on unit circle that are distance 1 from the point at pi/4 radians on unit circle\n");
-  printf("--------------------------------------------------------------\n");
-  circle.findt_dfroms(PI/4, 1, +1, 1000, &phi1, &err1);
-  circle.findt_dfroms(PI/4, 1, -1, 1000, &phi2, &err2);
-  error1 = phi1 - (PI/4+1);
-  error2 = phi2 - (PI/4-1);
-  perror1 = fabs(100*error1/(PI/4+1));
-  perror2 = fabs(100*error2/(PI/4-1));
-  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf%%)\n",circle.x(phi1),circle.y(phi1),phi1,error1,perror1);
-  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf%%)\n",circle.x(phi2),circle.y(phi2),phi2,error2,perror2);
-  if(perror1>0.1) return -1;
-  if(perror2>0.5) return -5;
-  return 0;
-  }
+  circle.findt_dfroms( M_PI/4, 1, +1, N, &phi1, &err1);
+  circle.findt_dfroms( M_PI/4, 1, -1, N, &phi2, &err2);
+//const double error1 = phi1 - ( M_PI/4+1 );
+//const dboule error2 = phi2 - ( M_PI/4-1 );
+//const double perror1 = fabs(100*error1/( M_PI/4+1 ));
+//const double perror2 = fabs(100*error2/( M_PI/4-1 ));
+//printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf%%)\n",circle.x(phi1),circle.y(phi1),phi1,error1,perror1);
+//printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf%%)\n",circle.x(phi2),circle.y(phi2),phi2,error2,perror2);
+  ASSERT_NEAR( phi1, M_PI/4 + 1, err * (M_PI/4 + 1) );
+  ASSERT_NEAR( phi2, M_PI/4 - 1, err * (1 - M_PI/4) );
+}
 
 /*-------------------------------------------------------------------------
  * test elliptic normalize
