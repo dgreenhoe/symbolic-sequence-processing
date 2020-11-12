@@ -140,23 +140,19 @@ TEST( TestSuiteVectRn, theta )
 //-----------------------------------------------------------------------------
 //! \brief Half circle test
 //-----------------------------------------------------------------------------
-int test_halfcircle(void)
+TEST( TestSuiteEllipse, circle )
 {
   ellipsec circle(1,1);
   vectR2 q;
   vectR2 (ellipsec::*memfptr)(double t);
-  double length, errorl,perror;
   
   memfptr = &ellipsec::xy;
   q=(circle.*memfptr)(1); printf("q=(%lf,%lf)\n",q.getx(),q.gety());
 
-  length = circle.pathlength(PI/2,-PI/2, 100000);
-  errorl  = length-PI;
-  perror  = fabs(100*errorl/PI);
-  printf("half circle = %.16lf\n",length);
-  printf("pi          = %.16lf error=%lf (%lf%%)\n",PI, errorl, perror);
-  if (perror<0.001)  return 1;
-  else             return 0;
+  const long N = 100000;
+  const double length = circle.pathlength(M_PI/2,-M_PI/2, N);
+  const double err = 1e-10;
+  ASSERT_NEAR( length, M_PI, err * M_PI );
 }
 
 //-----------------------------------------------------------------------------
