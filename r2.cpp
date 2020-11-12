@@ -61,18 +61,19 @@ void vectR2::operator&=(const double phi)
   put(p.getx(),p.gety());
 }
 
-/*=====================================
+//=====================================
 // seqR2
- *=====================================*/
+//=====================================
 //-----------------------------------------------------------------------------
 // constructor initializing seqR1 to 0
 //-----------------------------------------------------------------------------
 seqR2::seqR2(const long M)
 {
-  long n;
-  N=M;
-  xy = (vectR2 *)malloc(N*sizeof(vectR2));
-  for(n=0; n<N; n++)xy[n].clear();
+  //long n;
+  N  = M;
+  std::vector<double> test = {1, 2};
+  xy = new vectR2[N];
+  seqR2::clear();
 }
 
 //-----------------------------------------------------------------------------
@@ -82,10 +83,11 @@ seqR2::seqR2(long M, double u)
 {
   long n;
   N=M;
-  xy = (vectR2 *)malloc(N*sizeof(vectR2));
-  for(n=0; n<N; n++){
+  xy = new vectR2[N];
+  for(n=0; n<N; n++)
+  {
     xy[n].put(u,u);
-    }
+  }
 }
 
 //-----------------------------------------------------------------------------
@@ -94,7 +96,7 @@ seqR2::seqR2(long M, double u)
 void seqR2::clear(void)
 {
   long n;
-  for(n=0; n<N; n++)xy[n].clear();
+  for( n=0; n<N; n++ ) xy[n].clear();
 }
 
 //-----------------------------------------------------------------------------
@@ -103,7 +105,7 @@ void seqR2::clear(void)
 void seqR2::fill(double u)
 {
   long n;
-  for(n=0; n<N; n++)xy[n].put(u,u);
+  for(n=0; n<N; n++) xy[n].put(u,u);
 }
 
 //-----------------------------------------------------------------------------
@@ -113,11 +115,12 @@ void seqR2::fill(double u)
 void seqR2::inc(double x0, double y0,double dx, double dy)
 {
   long n;
-  for(n=0;n<N;n++){
+  for(n=0;n<N;n++)
+  {
     xy[n].put(x0,y0);
-    x0+=dx;
-    y0+=dy;
-    }
+    x0 += dx;
+    y0 += dy;
+  }
 }
 
 //-----------------------------------------------------------------------------

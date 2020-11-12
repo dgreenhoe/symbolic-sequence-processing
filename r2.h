@@ -5,7 +5,8 @@
 //-------------------------------------------------------------------------
 // ordered pair (x,y) on R^2
 //-------------------------------------------------------------------------
-class opair {
+class opair 
+{
 //  private:
   //double x,y;
   public:
@@ -22,20 +23,7 @@ class opair {
     void   list(const char* str1, const char *str2)            const { list(str1,str2,NULL);             }
     void   list(FILE *fptr)                                    const { list("","",fptr);                 }
     void   list(void)                                          const { list("","",NULL);                 }
-//public:
-//  opair(const double u, const double v)        { x = u; y = v;                     }
-//  opair(const double u)                        { x = u; y = u;                     }
-//  opair(void)                                  { x = 0; y = 0;                     }
-//  void   clear(void)                           { x = 0; y = 0;                     }
-//  void   put(  const double u, const double v) { x = u; y = v;                     }
-//  opair  get(  void)                                        const { opair p(getx(),gety()); return p; }
-//  double getx( void)                                        const { return x;                         }
-//  double gety( void)                                        const { return y;                         }
-//  void  list(const char* str1, const char *str2, FILE *ptr) const;
-//  void  list(const char* str1, const char *str2)            const { list(str1,str2,NULL); }
-//  void  list(FILE *fptr)                                    const { list("","",fptr);     }
-//  void  list(void)                                          const { list("","",NULL);     }
-  };
+};
 
 //-----------------------------------------------------------------------------
 // vector | x | over R^2

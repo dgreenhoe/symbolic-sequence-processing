@@ -82,21 +82,36 @@ TEST( TestSuiteGeneral, C1 )
   ASSERT_EQ( p.gety(),  0 );
 }
 
-/*-------------------------------------------------------------------------
- * test complex operations
- *-------------------------------------------------------------------------*/
-int test_seqR2(void){
-  printf("\ntest seqR2 operations:\n");
-  printf("-----------------------\n");
+//-----------------------------------------------------------------------------
+//! \brief test complex operations
+//-----------------------------------------------------------------------------
+TEST( TestSuiteSeqR2, max )
+{
+  seqR2 x(6);
 
-  seqR2 x(6);       printf("construct: "); x.list();
-  x.fill(2);        printf("\nfill(2): "); x.list();
-  x.inc(2,-5,1,-5); printf("\ninc: ");     x.list();
-  x.max('p');
-  x.clear();        printf("\nclear: ");   x.list();
-  return 0;
+  x.fill(2);
+  ASSERT_EQ( x.getx(0),  2 );  ASSERT_EQ( x.gety(0), 2 );
+  ASSERT_EQ( x.getx(1),  2 );  ASSERT_EQ( x.gety(1), 2 );
+
+  x.inc(2,-5,1,-5);
+  ASSERT_EQ( x.getx(0),  2 );  ASSERT_EQ( x.gety(0),  -5 );
+  ASSERT_EQ( x.getx(1),  3 );  ASSERT_EQ( x.gety(1), -10 );
+  ASSERT_EQ( x.getx(2),  4 );  ASSERT_EQ( x.gety(2), -15 );
+  ASSERT_EQ( x.getx(3),  5 );  ASSERT_EQ( x.gety(3), -20 );
+  ASSERT_EQ( x.getx(4),  6 );  ASSERT_EQ( x.gety(4), -25 );
+  ASSERT_EQ( x.getx(5),  7 );  ASSERT_EQ( x.gety(5), -30 );
+
+  const vectR2 maxVal = x.max();
+  ASSERT_EQ( maxVal.getx(),   7 );  
+  ASSERT_EQ( maxVal.gety(), -30 );
+
+  x.clear();
+  for( int n=0; n<6; n++ )
+  {
+    ASSERT_EQ( x.getx(n), 0 );  
+    ASSERT_EQ( x.gety(n), 0 );
   }
-
+}
 
 //-----------------------------------------------------------------------------
 //! \brief Test Lagrange arc metric in R^2
@@ -122,10 +137,11 @@ TEST( TestSuiteVectRn, theta )
   p.put(-7*cos(PI/4),-7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
 }
 
-/*-------------------------------------------------------------------------
- * half circle test
- *-------------------------------------------------------------------------*/
-int test_halfcircle(void){
+//-----------------------------------------------------------------------------
+//! \brief Half circle test
+//-----------------------------------------------------------------------------
+int test_halfcircle(void)
+{
   ellipsec circle(1,1);
   vectR2 q;
   vectR2 (ellipsec::*memfptr)(double t);
@@ -141,7 +157,7 @@ int test_halfcircle(void){
   printf("pi          = %.16lf error=%lf (%lf%%)\n",PI, errorl, perror);
   if (perror<0.001)  return 1;
   else             return 0;
-  }
+}
 
 //-----------------------------------------------------------------------------
 //! \brief Estimate perimeter length of unit circle test

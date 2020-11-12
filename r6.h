@@ -1,9 +1,9 @@
-/*============================================================================
- * Daniel J. Greenhoe
- *============================================================================*/
-/*-------------------------------------------------------------------------
- * ordered pair (x,y)
- *-------------------------------------------------------------------------*/
+//=============================================================================
+//! Daniel J. Greenhoe
+//=============================================================================
+//-----------------------------------------------------------------------------
+//! \brief Ordered pair (x,y)
+//-----------------------------------------------------------------------------
 class osix {
   private:
     double x[6];
@@ -32,17 +32,17 @@ class osix {
     void clear(void){put(0);}
   };
 
-/*-------------------------------------------------------------------------
- *        | x1 |
- *        | x2 |
- * vector | x3 | over R^6
- *        | x4 |
- *        | x5 |
- *        | x6 |
- * vectors on R^6 are 6-tuples
- * (and hence inherit all the properties of class osix)
- * but also have additional linear space (vector space) properties
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//!        | x1 |
+//!        | x2 |
+//! vector | x3 | over R^6
+//!        | x4 |
+//!        | x5 |
+//!        | x6 |
+//! vectors on R^6 are 6-tuples
+//! (and hence inherit all the properties of class osix)
+//! but also have additional linear space (vector space) properties
+//-----------------------------------------------------------------------------
 class vectR6: public osix {
   public:
     vectR6(double u1,double u2,double u3,double u4,double u5,double u6) : osix(u1,u2,u3,u4,u5,u6){};
@@ -60,25 +60,26 @@ class vectR6: public osix {
     void   operator*=(double a);
   };
 
-class seqR6 {
+class seqR6 
+{
   private:
     long N;
     vectR6 *x;
   public:
-    seqR6(long M);               //constructor
-    seqR6(long M, double u);     //constructor
-    void fill(double u);              //fill seqR1 with the value <u>
-    void clear(void){fill(0);}        //fill seqR1 with the value 0
-    int  put(long n, vectR6 xyz);       //put a value <u> at location n in seq.
+    seqR6(long M);                              // constructor
+    seqR6(long M, double u);                    // constructor
+    void fill(double u);                        // fill seqR1 with the value <u>
+    void clear(void){ fill(0); }                // fill seqR1 with the value 0
+    int  put(long n, vectR6 xyz);               // put a value <u> at location n in seq.
     int  put(long n, double u1,double u2,double u3,double u4,double u5,double u6);
-    vectR6 get (long n){return x[n].get();}   //get a value from x at location n
-    double get1(long n){return x[n].get1();}  //get a value from x1 at location n
-    double get2(long n){return x[n].get2();}  //get a value from x2 at location n
-    double get3(long n){return x[n].get3();}  //get a value from x3 at location n
-    double get4(long n){return x[n].get4();}  //get a value from x4 at location n
-    double get5(long n){return x[n].get5();}  //get a value from x5 at location n
-    double get6(long n){return x[n].get6();}  //get a value from x6 at location n
-    long   getN(void){return N;}      //get N
+    vectR6 get (long n){ return x[n].get();  }  // get a value from x at location n
+    double get1(long n){ return x[n].get1(); }  // get a value from x1 at location n
+    double get2(long n){ return x[n].get2(); }  // get a value from x2 at location n
+    double get3(long n){ return x[n].get3(); }  // get a value from x3 at location n
+    double get4(long n){ return x[n].get4(); }  // get a value from x4 at location n
+    double get5(long n){ return x[n].get5(); }  // get a value from x5 at location n
+    double get6(long n){ return x[n].get6(); }  // get a value from x6 at location n
+    long   getN(void){   return N;           }  // get N
     void list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
     void list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
          if(display) list(start,end,str1,str2,stdout);
@@ -102,7 +103,7 @@ class seqR6 {
     void list1(const long start, const long end){list1(start,end,"","",stdout);}
     void list1(void){list1(0,N-1,"","",stdout);}
     void test(void);
-  };
+};
 
 /*=====================================
  * operator overloading
