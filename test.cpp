@@ -260,9 +260,9 @@ TEST( TestSuiteEllipse, distance1b )
   }
 }
 
-/*-------------------------------------------------------------------------
- * find the perimeter of an ellipse
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Find the perimeter of an ellipse
+//-----------------------------------------------------------------------------
 TEST( TestSuiteEllipse, perimeter )
 {
   ellipsec ellipse(0.8,2);
@@ -274,57 +274,62 @@ TEST( TestSuiteEllipse, perimeter )
 //printf("ellipse(%lf,%lf) perimeter=%9.6lf estimate=%9.6lf\n",ellipse.geta(),ellipse.getb(),perim,est);
 }
 
-/*-------------------------------------------------------------------------
- * test DNA metric
- *-------------------------------------------------------------------------*/
-int test_dna_metric(void){
-  const char domain[6]="0ATCG";
+//-----------------------------------------------------------------------------
+//! \brief Test DNA metric
+//-----------------------------------------------------------------------------
+TEST( TestSuiteDNA, metric ) 
+{
+  const char domain[]="ATCG";
   const int N=strlen(domain);
-  int n,m;
+  int n, m;
   double d;
 
-  printf("dna_metric(a,b) test over domain of N=%d symbols\n",N);
-  printf("------------------------------------------------\n");
-  printf("  ");
-  for(m=0;m<N;m++)printf("     %c",domain[m]);//print column headers: 0 A ...
-  putchar('\n');
-  for(n=0;n<N;n++){
-    printf("%c  ",domain[n]);// print row headers
-    for(m=0;m<N;m++){
+//for(m=0;m<N;m++)printf("     %c",domain[m]);//print column headers: 0 A ...
+//putchar('\n');
+  for( n=0; n<N; n++ )
+  {
+  //printf("%c  ",domain[n]);// print row headers
+    for(m=0;m<N;m++)
+    {
       d=dnan_metric(domain[n],domain[m]);
-      if(d==(double)abs(d)) printf("%5.0lf ",d);//if d is integer
-      else                  printf("%5.3lf ",d);//if d is non-integer
-      }
-    putchar('\n');
+      if( m==n ) ASSERT_EQ( d, 0 );
+      else       ASSERT_EQ( d, 1 );
+    //if(d==(double)abs(d)) printf("%5.0lf ",d);//if d is integer
+    //else                  printf("%5.3lf ",d);//if d is non-integer
     }
-  return 1;
+  //putchar('\n');
   }
+}
 
 /*-------------------------------------------------------------------------
  * test DNA-N metric
  *-------------------------------------------------------------------------*/
-int test_dnan_metric(void){
-  const char domain[7]="0ATCGN";
+TEST( TestSuiteDNAN, metric ) 
+{
+  const char domain[]="ATCGN";
   const int N=strlen(domain);
   int n,m;
   double d;
 
-  printf("dnan_metric(a,b) test over domain of N=%d symbols\n",N);
-  printf("-------------------------------------------------\n");
-  printf("  ");
-  for(m=0;m<N;m++)printf("     %c",domain[m]);//print column headers: 0 A ...
-  putchar('\n');
-  for(n=0;n<N;n++){
-    printf("%c  ",domain[n]);// print row headers
-    for(m=0;m<N;m++){
-      d=dnan_metric(domain[n],domain[m]);
-      if(d==(double)abs(d)) printf("%5.0lf ",d);//if d is integer
-      else                  printf("%5.3lf ",d);//if d is non-integer
-      }
-    putchar('\n');
+//printf("dnan_metric(a,b) test over domain of N=%d symbols\n",N);
+//printf("-------------------------------------------------\n");
+//printf("  ");
+//for( m=0; m<N; m++ ) printf("     %c",domain[m]);//print column headers: 0 A ...
+//putchar('\n');
+  for( n=0; n<N; n++ )
+  {
+  //printf("%c  ", domain[n] );// print row headers
+    for( m=0; m<N; m++ )
+    {
+      d = dnan_metric( domain[n], domain[m] );
+      if( m==n ) ASSERT_EQ( d, 0 );
+      else       ASSERT_EQ( d, 1 );
+    //if(d==(double)abs(d)) printf("%5.0lf ",d);//if d is integer
+    //else                  printf("%5.3lf ",d);//if d is non-integer
     }
-  return 1;
+//putchar('\n');
   }
+}
 
 /*-------------------------------------------------------------------------
  * test balloon metric

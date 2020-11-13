@@ -146,8 +146,6 @@ TEST( TestSuiteGeneral, all )
   ASSERT_EQ( test_balloon_metric(), 1 );
   ASSERT_EQ( test_mca_metric()    , 1 );
   ASSERT_EQ( test_spinner()       , 1 );
-  ASSERT_EQ( test_dna_metric()    , 1 );
-  ASSERT_EQ( test_dnan_metric()   , 1 );
   test_die();
   test_dft_R1();
   test_expi();
