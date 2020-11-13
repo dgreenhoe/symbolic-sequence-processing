@@ -143,7 +143,6 @@ TEST( TestSuiteGeneral, all )
 {
   //test_conj();
 //  ASSERT_EQ( test_dft_R1()        , 0 );
-  ASSERT_EQ( test_ellipse_d1()    , 0 );
   ASSERT_EQ( test_findt()         , 1 );
   ASSERT_EQ( test_perimeter()     , 1 );
   ASSERT_EQ( test_balloon_metric(), 1 );

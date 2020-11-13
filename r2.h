@@ -98,8 +98,9 @@ class seqR2
 //=====================================
 // functions
 //=====================================
-extern double pqtheta(const vectR2 p, const vectR2 q); //return radians between vectors induced by p and q in R^2
-inline double chordlength(vectR2 p, vectR2 q){
-  vectR2  pqd=p-q; // differnce of p and q
-  return pqd.norm(); // "length" of difference
-  }
+extern double pqtheta(const vectR2 p, const vectR2 q);
+inline double chordlength(const vectR2 p, const vectR2 q)
+{
+  const vectR2  pqd = p - q; // differnce of p and q
+  return pqd.norm();         // "length" of difference
+}

@@ -203,35 +203,32 @@ TEST( TestSuiteEllipse, circled1 )
 
   circle.findt_dfroms( M_PI/4, 1, +1, N, &phi1, &err1);
   circle.findt_dfroms( M_PI/4, 1, -1, N, &phi2, &err2);
-//const double error1 = phi1 - ( M_PI/4+1 );
-//const dboule error2 = phi2 - ( M_PI/4-1 );
-//const double perror1 = fabs(100*error1/( M_PI/4+1 ));
-//const double perror2 = fabs(100*error2/( M_PI/4-1 ));
-//printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf%%)\n",circle.x(phi1),circle.y(phi1),phi1,error1,perror1);
-//printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error=%9.6lf(%lf%%)\n",circle.x(phi2),circle.y(phi2),phi2,error2,perror2);
   ASSERT_NEAR( phi1, M_PI/4 + 1, err * (M_PI/4 + 1) );
   ASSERT_NEAR( phi2, M_PI/4 - 1, err * (1 - M_PI/4) );
 }
 
-/*-------------------------------------------------------------------------
- * test elliptic normalize
- *-------------------------------------------------------------------------*/
-int test_normalize(void){
+//-----------------------------------------------------------------------------
+//! \brief Test elliptic normalize
+//-----------------------------------------------------------------------------
+TEST( TestSuiteVectR2, rotate )
+{
   vectR2 p,q;
-  double phi;
-  p.put(0,2); phi=PI/2; q= p & phi;  printf("p=(%lf,%lf) q=(%lf,%lf) phi=%lf\n",p.getx(),p.gety(),q.getx(),q.gety(), phi);
-  p.put(0,2); phi=PI/2; q= p & (-phi);  printf("p=(%lf,%lf) q=(%lf,%lf) phi=%lf\n",p.getx(),p.gety(),q.getx(),q.gety(), -phi);
-  p.put(2,0); phi=PI/2; q= p & phi;  printf("p=(%lf,%lf) q=(%lf,%lf) phi=%lf\n",p.getx(),p.gety(),q.getx(),q.gety(), phi);
-  p.put(2,0); phi=PI/2; q= p & (-phi);  printf("p=(%lf,%lf) q=(%lf,%lf) phi=%lf\n",p.getx(),p.gety(),q.getx(),q.gety(), -phi);
-  p.put(2,0); phi=PI/2; p &= phi;  printf("p=(%lf,%lf) phi=%lf\n",p.getx(),p.gety(), phi);
-  return 0;
-  }
+  const double phi = M_PI / 2;
+  const double err = 1e-15;
+  p.put(0,2); q= p &   phi ;  ASSERT_NEAR( q.getx(), -2, err ); ASSERT_NEAR( q.gety(),  0, err * 2 );
+  p.put(0,2); q= p & (-phi);  ASSERT_NEAR( q.getx(),  2, err ); ASSERT_NEAR( q.gety(),  0, err * 2 );
+  p.put(2,0); q= p &   phi ;  ASSERT_NEAR( q.getx(),  0, err ); ASSERT_NEAR( q.gety(),  2, err * 2 );
+  p.put(2,0); q= p & (-phi);  ASSERT_NEAR( q.getx(),  0, err ); ASSERT_NEAR( q.gety(), -2, err * 2 );
+  p.put(2,0);    p &=  phi ;  ASSERT_NEAR( p.getx(),  0, err ); ASSERT_NEAR( p.gety(),  2, err * 2 );
+}
 
-/*-------------------------------------------------------------------------
- * find points on ellipse(0.8,1) that are distance 1 
- * from the point at pi/2 radians on the ellipse
- *-------------------------------------------------------------------------*/
-int test_ellipse_d1(void){
+//-----------------------------------------------------------------------------
+//! \brief Find points on ellipse(0.8,1) that are distance 1 
+//!        from the point at pi/2 radians on the ellipse
+//-----------------------------------------------------------------------------
+TEST( TestSuiteEllipse, ellipsed1 )
+//int test_ellipse_d1(void)
+{
   ellipsec ellipse(0.8,1);
   double phi1, phi2;
   double err1, err2;
@@ -245,10 +242,9 @@ int test_ellipse_d1(void){
   perror2 = fabs(100*err2);
   printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error = %9.6lf (%lf%%)\n", ellipse.x(phi1), ellipse.y(phi1), phi1, err1, perror1 );
   printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error = %9.6lf (%lf%%)\n", ellipse.x(phi2), ellipse.y(phi2), phi2, err2, perror2 );
-  if(perror1>0.2) return -1;
-  if(perror2>0.2) return -2;
-  return 0;
-  }
+//  if(perror1>0.2) return -1;
+//  if(perror2>0.2) return -2;
+}
 
 /*-------------------------------------------------------------------------
  * find points on ellipse(0.8,1) that are distance 1 
