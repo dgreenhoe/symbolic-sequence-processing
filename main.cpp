@@ -141,10 +141,7 @@ TEST( LabOCS, dna )
 //---------------------------------------------------------------------------
 TEST( TestSuiteGeneral, all )
 {
-  //test_conj();
 //  ASSERT_EQ( test_dft_R1()        , 0 );
-  ASSERT_EQ( test_mca_metric()    , 1 );
-  ASSERT_EQ( test_spinner()       , 1 );
   test_die();
   test_dft_R1();
   test_expi();

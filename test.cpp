@@ -355,10 +355,11 @@ TEST( TestSuiteMetric, balloon )
   p.put( cos(PI/4),-sin(PI/4)); q.put(-1.63,1.33);             d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.980283, err * 1.980283 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
 }
 
-/*-------------------------------------------------------------------------
- * test Mean Cicular Arc metric in R^2
- *-------------------------------------------------------------------------*/
-int test_mca_metric(void){
+//-----------------------------------------------------------------------------
+//! \brief Test Mean Cicular Arc metric in R^2
+//-----------------------------------------------------------------------------
+TEST( TestSuiteMetric, mca )
+{
   vectR2 p,q;
   double d,d2;
   printf("Lagrange arc metric tests in R2\n");
@@ -387,48 +388,47 @@ int test_mca_metric(void){
   p.put(1.5,1.5);               q.put(1.75,1.75);              d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
   p.put(0,0.5);                 q.put(2.75,5);                 d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
   p.put(0,0.5);                 q.put(1,100);                  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  return 1;
-  }
+}
 
-/*-------------------------------------------------------------------------
- * test spinner
- *-------------------------------------------------------------------------*/
-int test_conj(void){
+//-----------------------------------------------------------------------------
+//! \brief Test conjugate operation
+//-----------------------------------------------------------------------------
+TEST( TestSuiteGeneral, conj )
+{
   complex z,zc;
 
-  z.put(1.0,1.0);   zc=z.conj();  z.list();  zc.list(); putchar('\n');
-  z.put(-3.2,4.7);  zc=z.conj();  z.list();  zc.list(); putchar('\n');
-  return 0;
-  }
+  z.put(1.0,1.0);   
+  zc=z.conj();  
+  ASSERT_EQ(  z.getx(),  zc.getx() );
+  ASSERT_EQ(  z.gety(), -zc.gety() );
 
-/*-------------------------------------------------------------------------
- * test spinner
- *-------------------------------------------------------------------------*/
-int test_spinner(void){
-  int n,m;
+  z.put(-3.2,4.7);  
+  zc = z.conj();  
+  ASSERT_EQ(  z.getx(),  zc.getx() );
+  ASSERT_EQ(  z.gety(), -zc.gety() );
+}
+
+//-----------------------------------------------------------------------------
+//! \brief Test spinner
+//-----------------------------------------------------------------------------
+TEST( TestSuiteMetric, spinner )
+{
   const long N=160;
   spinseq x(N);
   seqR1 cseq(2*N+1);
 
-  printf("Test spinner routines\n");
-  printf("---------------------\n");
-  printf("%3.1lf ",spin_metric('A','A'));
-  for(m=0;m<6;m++)printf("%3.1lf ",spin_metric('A',(char)('A'+m)));
-  putchar('\n');
-  for(n=0;n<6;n++){
-    printf("%3.1lf ",spin_metric('A','A'+n));
-    for(m=0;m<6;m++)printf("%3.1lf ",spin_metric((char)('A'+n),(char)('A'+m)));
-    putchar('\n');
-    }
+  ASSERT_EQ( spin_metric( 'A'+0, 'A'+0 ), 0 ); ASSERT_EQ( spin_metric( 'A'+0, 'A'+1 ), 1 );  ASSERT_EQ( spin_metric( 'A'+0, 'A'+2 ), 2 ); ASSERT_EQ( spin_metric( 'A'+0, 'A'+3 ), 3 ); ASSERT_EQ( spin_metric( 'A'+0, 'A'+4 ), 2 ); ASSERT_EQ( spin_metric( 'A'+0, 'A'+5 ), 2 );
+  ASSERT_EQ( spin_metric( 'A'+0, 'A'+0 ), 0 ); ASSERT_EQ( spin_metric( 'A'+0, 'A'+1 ), 1 );  ASSERT_EQ( spin_metric( 'A'+0, 'A'+2 ), 2 ); ASSERT_EQ( spin_metric( 'A'+0, 'A'+3 ), 3 ); ASSERT_EQ( spin_metric( 'A'+0, 'A'+4 ), 2 ); ASSERT_EQ( spin_metric( 'A'+0, 'A'+5 ), 2 );
+  ASSERT_EQ( spin_metric( 'A'+1, 'A'+0 ), 1 ); ASSERT_EQ( spin_metric( 'A'+1, 'A'+1 ), 0 );  ASSERT_EQ( spin_metric( 'A'+1, 'A'+2 ), 1 ); ASSERT_EQ( spin_metric( 'A'+1, 'A'+3 ), 2 ); ASSERT_EQ( spin_metric( 'A'+1, 'A'+4 ), 3 ); ASSERT_EQ( spin_metric( 'A'+1, 'A'+5 ), 2 );
+  ASSERT_EQ( spin_metric( 'A'+2, 'A'+0 ), 2 ); ASSERT_EQ( spin_metric( 'A'+2, 'A'+1 ), 1 );  ASSERT_EQ( spin_metric( 'A'+2, 'A'+2 ), 0 ); ASSERT_EQ( spin_metric( 'A'+2, 'A'+3 ), 1 ); ASSERT_EQ( spin_metric( 'A'+2, 'A'+4 ), 2 ); ASSERT_EQ( spin_metric( 'A'+2, 'A'+5 ), 3 );
+  ASSERT_EQ( spin_metric( 'A'+3, 'A'+0 ), 3 ); ASSERT_EQ( spin_metric( 'A'+3, 'A'+1 ), 2 );  ASSERT_EQ( spin_metric( 'A'+3, 'A'+2 ), 1 ); ASSERT_EQ( spin_metric( 'A'+3, 'A'+3 ), 0 ); ASSERT_EQ( spin_metric( 'A'+3, 'A'+4 ), 1 ); ASSERT_EQ( spin_metric( 'A'+3, 'A'+5 ), 2 );
+  ASSERT_EQ( spin_metric( 'A'+4, 'A'+0 ), 2 ); ASSERT_EQ( spin_metric( 'A'+4, 'A'+1 ), 3 );  ASSERT_EQ( spin_metric( 'A'+4, 'A'+2 ), 2 ); ASSERT_EQ( spin_metric( 'A'+4, 'A'+3 ), 1 ); ASSERT_EQ( spin_metric( 'A'+4, 'A'+4 ), 0 ); ASSERT_EQ( spin_metric( 'A'+4, 'A'+5 ), 1 );
+  ASSERT_EQ( spin_metric( 'A'+5, 'A'+0 ), 2 ); ASSERT_EQ( spin_metric( 'A'+5, 'A'+1 ), 2 );  ASSERT_EQ( spin_metric( 'A'+5, 'A'+2 ), 3 ); ASSERT_EQ( spin_metric( 'A'+5, 'A'+3 ), 2 ); ASSERT_EQ( spin_metric( 'A'+5, 'A'+4 ), 1 ); ASSERT_EQ( spin_metric( 'A'+5, 'A'+5 ), 0 );
 
   x.randomize(0x5EED);
-  //cseq=spin_correlation(x,x,':'); //auto-correlation for spinner sequence
-
   x.list(          ); putchar('\n');
   cseq.list(0,  1*N); putchar('\n');
   cseq.list(N+1,2*N); putchar('\n');
-
-  return 1;
   }
 
 /*-------------------------------------------------------------------------
