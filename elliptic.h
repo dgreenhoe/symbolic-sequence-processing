@@ -53,8 +53,8 @@ class ellipsec{
     double getb(void){   return b  ; }
     double getphi(void){ return phi; }
     double estimate(void);
-    double x(const double theta); //get x component of a point at angle theta on ellipse(a,b)
-    double y(const double theta); //get y component of a point at angle theta on ellipse(a,b)
+    double x(const double theta);
+    double y(const double theta);
     vectR2  xy(const double theta);
     double pathlength(const double ta, const double tb, const long N);
     double perimeter(const long N){ return 4*pathlength( 0, M_PI/2, N ); } 
@@ -72,6 +72,6 @@ class ellipsec{
 typedef vectR2 (*fncttype)(double);
 
 
-extern double metric_balloon(vectR2 p, vectR2 q);
+extern double metric_balloon(const vectR2 p, const vectR2 q);
 
 
