@@ -112,7 +112,8 @@ int ellipsec::setab_givenxya(double x, double y, double aa){
  * compute parameter t for parametric representation of ellipse(a,b) 
  * for a point p=(x,y) on the ellipse.
  *-------------------------------------------------------------------------*/
-int ellipsec::tgivenxy(double x, double y, double *t){
+int ellipsec::tgivenxy( const double x, const double y, double *t )
+{
   double tt,xx,yy;
   vectR2 xy(x,y); // xy = (x,y)
   ellipsec en(a,b,0,0,0); // normalized ellipse(a,b)
@@ -147,12 +148,14 @@ int ellipsec::tgivenxy(double x, double y, double *t){
 
   *t = tt;
   return 1;
-  }
-int ellipsec::tgivenxy(vectR2 p, double *t){
-  double x=p.getx();
-  double y=p.gety();
+}
+
+int ellipsec::tgivenxy(const vectR2 p, double *t)
+{
+  const double x = p.getx();
+  const double y = p.gety();
   return tgivenxy(x,y,t);
-  }
+}
 
 /*-------------------------------------------------------------------------
  * find the point (x(t),y(t)) on ellipse(a,b,phi,xo,yo) at parameter <t>

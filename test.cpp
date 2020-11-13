@@ -226,24 +226,23 @@ TEST( TestSuiteVectR2, rotate )
 //! \brief Find points on ellipse(0.8,1) that are distance 1 
 //!        from the point at pi/2 radians on the ellipse
 //-----------------------------------------------------------------------------
-TEST( TestSuiteEllipse, ellipsed1 )
+TEST( TestSuiteEllipse, distance1 )
 //int test_ellipse_d1(void)
 {
   ellipsec ellipse(0.8,1);
+  const double errMax = 0.0015;
+  const long N = 1000;
   double phi1, phi2;
   double err1, err2;
-  double perror1, perror2;
 
-  printf("find points on ellipse(0.8,1) that are distance 1 from the point at pi/2 radians on the ellipse:\n");
-  printf("-------------------------------------\n");
-  ellipse.findt_dfroms(PI/2, 1, +1, 1000, &phi1, &err1);
-  ellipse.findt_dfroms(PI/2, 1, -1, 1000, &phi2, &err2);
-  perror1 = fabs(100*err1);
-  perror2 = fabs(100*err2);
-  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error = %9.6lf (%lf%%)\n", ellipse.x(phi1), ellipse.y(phi1), phi1, err1, perror1 );
-  printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error = %9.6lf (%lf%%)\n", ellipse.x(phi2), ellipse.y(phi2), phi2, err2, perror2 );
-//  if(perror1>0.2) return -1;
-//  if(perror2>0.2) return -2;
+  ellipse.findt_dfroms( M_PI/2, 1, +1, N, &phi1, &err1 );
+  ellipse.findt_dfroms( M_PI/2, 1, -1, N, &phi2, &err2 );
+//const double perror1 = fabs(100*err1);
+//const double perror2 = fabs(100*err2);
+//printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error = %9.6lf (%lf%%)\n", ellipse.x(phi1), ellipse.y(phi1), phi1, err1, perror1 );
+//printf("(x,y) = (%9.6lf, %9.6lf) phi = %9.6lf error = %9.6lf (%lf%%)\n", ellipse.x(phi2), ellipse.y(phi2), phi2, err2, perror2 );
+  ASSERT_LE( err1, errMax );
+  ASSERT_LE( err2, errMax );
 }
 
 /*-------------------------------------------------------------------------
