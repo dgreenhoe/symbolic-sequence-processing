@@ -142,7 +142,6 @@ TEST( LabOCS, dna )
 TEST( TestSuiteGeneral, all )
 {
 //  ASSERT_EQ( test_dft_R1()        , 0 );
-  test_die();
   test_dft_R1();
   test_expi();
 }
