@@ -227,7 +227,6 @@ TEST( TestSuiteVectR2, rotate )
 //!        from the point at pi/2 radians on the ellipse
 //-----------------------------------------------------------------------------
 TEST( TestSuiteEllipse, distance1 )
-//int test_ellipse_d1(void)
 {
   ellipsec ellipse(0.8,1);
   const double errMax = 0.0015;
@@ -245,31 +244,35 @@ TEST( TestSuiteEllipse, distance1 )
   ASSERT_LE( err2, errMax );
 }
 
-/*-------------------------------------------------------------------------
- * find points on ellipse(0.8,1) that are distance 1 
- * from the point at pi/2 radians on the ellipse
- *-------------------------------------------------------------------------*/
-int test_findt(void){
+//-----------------------------------------------------------------------------
+//! \brief Find points on ellipse(0.8,1) that are distance 1 
+//!        from the point at pi/2 radians on the ellipse
+//-----------------------------------------------------------------------------
+TEST( TestSuiteEllipse, distance1b )
+{
   vectR2 p(cos(PI/4),sin(PI/4));
   ellipsec ellipse;
   double t;
-  if(ellipse.setab_givenxyb(p,2)){
-    if(ellipse.tgivenxy(p,&t)==0)return 0;
+  if( ellipse.setab_givenxyb(p,2) )
+  {
+    ASSERT_NE( ellipse.tgivenxy(p,&t), 0 );
     printf("t=%lf (x,y)=(%lf,%lf) ellipse(a,b)=(%lf,%lf)\n",t, p.getx(),p.gety(),ellipse.geta(),ellipse.getb());
-    }
-  return 1;
   }
+}
 
 /*-------------------------------------------------------------------------
  * find the perimeter of an ellipse
  *-------------------------------------------------------------------------*/
-int test_perimeter(void){
+TEST( TestSuiteEllipse, perimeter )
+{
   ellipsec ellipse(0.8,2);
-  double perim=ellipse.perimeter(1000);
-  double est  =ellipse.estimate();
-  printf("ellipse(%lf,%lf) perimeter=%9.6lf estimate=%9.6lf\n",ellipse.geta(),ellipse.getb(),perim,est);
-  return 1;
-  }
+  const long   N     = 1000;
+  const double err   = 1e-4;
+  const double perim = ellipse.perimeter(N);
+  const double est   = ellipse.estimate();
+  ASSERT_NEAR( est, perim, err * perim );
+//printf("ellipse(%lf,%lf) perimeter=%9.6lf estimate=%9.6lf\n",ellipse.geta(),ellipse.getb(),perim,est);
+}
 
 /*-------------------------------------------------------------------------
  * test DNA metric
