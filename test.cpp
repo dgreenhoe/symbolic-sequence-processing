@@ -331,28 +331,29 @@ TEST( TestSuiteDNAN, metric )
   }
 }
 
-/*-------------------------------------------------------------------------
- * test balloon metric
- *-------------------------------------------------------------------------*/
-int test_balloon_metric(void){
+//-----------------------------------------------------------------------------
+//! \brief Test balloon metric
+//-----------------------------------------------------------------------------
+TEST( TestSuiteMetric, balloon )
+{
   vectR2 p,q;
   double d;
+  const double err = 1e-6;
+
   printf("Balloon metric tests\n");
   printf("--------------------\n");
-  p.put(0,2);                   q.put(2,0);                    d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(0,1);                   q.put(1,0);                    d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(0,1);                   q.put( cos(PI/4), sin(PI/4));  d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(0,1);                   q.put(-cos(PI/4), sin(PI/4));  d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(0,1);                   q.put(-cos(PI/4),-sin(PI/4));  d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(0,1);                   q.put( cos(PI/4),-sin(PI/4));  d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(1,0);                   q.put(-0.5,-0.5);              d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(1,0);                   q.put(-2,-2);                  d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(1,0);                   q.put(0,2);                    d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put( cos(PI/4),-sin(PI/4)); q.put(-2,1);                   d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put( cos(PI/4),-sin(PI/4)); q.put(-1.63,1.33);             d=metric_balloon(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-
-  return 1;
-  }
+  p.put(0,2);                   q.put(2,0);                    d=metric_balloon(p,q);  ASSERT_NEAR( d, 2.000000, err * 2.000000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(0,1);                   q.put(1,0);                    d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.000000, err * 1.000000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(0,1);                   q.put( cos(PI/4), sin(PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 0.500000, err * 0.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(0,1);                   q.put(-cos(PI/4), sin(PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 0.500000, err * 0.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(0,1);                   q.put(-cos(PI/4),-sin(PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.500000, err * 1.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(0,1);                   q.put( cos(PI/4),-sin(PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.500000, err * 1.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(1,0);                   q.put(-0.5,-0.5);              d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.126357, err * 1.126357 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(1,0);                   q.put(-2,-2);                  d=metric_balloon(p,q);  ASSERT_NEAR( d, 2.388169, err * 2.388169 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(1,0);                   q.put(0,2);                    d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.541964, err * 1.541964 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put( cos(PI/4),-sin(PI/4)); q.put(-2,1);                   d=metric_balloon(p,q);  ASSERT_NEAR( d, 2.075940, err * 2.075940 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put( cos(PI/4),-sin(PI/4)); q.put(-1.63,1.33);             d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.980283, err * 1.980283 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+}
 
 /*-------------------------------------------------------------------------
  * test Mean Cicular Arc metric in R^2
