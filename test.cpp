@@ -521,7 +521,7 @@ TEST( TestSuiteDie, C1 )
 //-----------------------------------------------------------------------------
 //! \brief Test expi function
 //-----------------------------------------------------------------------------
-TEST( TestSuite, expi )
+TEST( TestSuiteBases, expi )
 {
   const long N=17;
   long n;
@@ -538,38 +538,42 @@ TEST( TestSuite, expi )
   }
 }
 
-/*-------------------------------------------------------------------------
- * test DFT operator
- *-------------------------------------------------------------------------*/
-int test_dft_R1(void){
-  long N=100;
+//-----------------------------------------------------------------------------
+//! \brief Test DFT operator
+//-----------------------------------------------------------------------------
+TEST( TestSuiteBases, dft )
+//int test_dft_R1(void)
+{
+  const long N=100;
   seqR1 y(N);
   seqC1 Dy(N);
   seqR1 mDy(N);
   complex yn;
   long n;
-  printf("\ntest DFT operations with cos(2pi n/10):\n");
-  printf("---------------------------------------\n");
+
+//printf("\ntest DFT operations with cos(2pi n/10):\n");
   cos((2.0*M_PI/10.0),&y);
   dft(&y,&Dy);
   mag(&Dy,&mDy);
-  printf("\n(y_n)=cos(2 pi n/10):\n");  y.list();
-  printf("\nDFT(y_n):\n");              Dy.list();
-  printf("\n|DFT(y_n)|:\n");            mDy.list();
-  printf("\n");                         mDy.max('p');
+//printf("\n(y_n)=cos(2 pi n/10):\n");  y.list();
+//printf("\nDFT(y_n):\n");              Dy.list();
+//printf("\n|DFT(y_n)|:\n");            mDy.list();
+//printf("\n");                         mDy.max('p');
 
-  printf("\ntest DFT operations with sin(2pi n/10):\n");
-  printf("---------------------------------------\n");
+//printf("\ntest DFT operations with sin(2pi n/10):\n");
   sin((2.0*M_PI/10.0),&y);
   dft(&y,&Dy);
   mag(&Dy,&mDy);
-  printf("\n(y_n)=sin(2 pi n/10):\n");  y.list();
-  printf("\nDFT(y_n):\n");              Dy.list();
-  printf("\n|DFT(y_n)|:\n");            mDy.list();
-  printf("\n");                         mDy.max('p');
+//printf("\n(y_n)=sin(2 pi n/10):\n");  y.list();
+//printf("\nDFT(y_n):\n");              Dy.list();
+//printf("\n|DFT(y_n)|:\n");            mDy.list();
+//printf("\n");                         mDy.max('p');
 
-  n=10; yn=dftn(&y,n); printf("y[%02ld]=(%+lf,%+lf) |y[%02ld]|=%lf\n",n,yn.real(),yn.imag(),n,yn.mag());
-  n=90; yn=dftn(&y,n); printf("y[%02ld]=(%+lf,%+lf) |y[%02ld]|=%lf\n",n,yn.real(),yn.imag(),n,yn.mag());
-
-  return 0;
+  for( n=0; n<N; n++ )
+  {
+    yn = dftn(&y,n); 
+  //printf("y[%02ld]=(%+lf,%+lf) |y[%02ld]|=%lf\n",n,yn.real(),yn.imag(),n,yn.mag());
+    if( (n==10) || (n==(N-10)) ) ASSERT_DOUBLE_EQ( yn.mag(), 5.0 );
+    else                         ASSERT_NEAR( yn.mag(), 0.0, 1e-12 );
   }
+}

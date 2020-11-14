@@ -1,9 +1,9 @@
-/*============================================================================
- * Daniel J. Greenhoe
- *============================================================================*/
-/*=====================================
- * headers
- *=====================================*/
+//=============================================================================
+// Daniel J. Greenhoe
+//=============================================================================
+//=====================================
+// headers
+//=====================================
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -14,14 +14,6 @@
 #include "test.h"
 #include "gtest/gtest.h"  // https://github.com/google/googletest/blob/master/googletest/docs/primer.md
 //#include "tests/test.h"
-
-//-------------------------------------
-// prototypes
-//-------------------------------------
-int perform_tests(void);
-int test_2015larc(void);
-int make_2015larc_data(void);
-int make_2015ssp_texplots(void);
 
 //-------------------------------------
 // main
@@ -35,13 +27,9 @@ int main(int argc, char *argv[])
   //printf("   by Daniel J. Greenhoe \n");
 
   //bspline_Sdat();
-  //perform_tests();
-  //make_2015ssp_texplots();
-  //test_2015larc();
-  //make_2015larc_data();
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
-  }
+}
 
 //---------------------------------------------------------------------------
 //! \brief Calculate data for the paper 2015sphx:
@@ -134,14 +122,5 @@ TEST( LabOCS, dna )
   lab_dna_averaging(1600,          "..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
   lab_dna_edge(     1600,          "..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
   lab_dna_edge(     4000,          "..\\..\\common\\symseq\\fasta\\NC001416_phagelambda.dat","plots\\dna_NC001416_phagelambda");// Example 4.14 (sliding histogram of Phage Lambda)
-}
-
-//---------------------------------------------------------------------------
-// perform tests
-//---------------------------------------------------------------------------
-TEST( TestSuiteGeneral, all )
-{
-//  ASSERT_EQ( test_dft_R1()        , 0 );
-  test_dft_R1();
 }
 
