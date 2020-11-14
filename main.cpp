@@ -11,9 +11,7 @@
 #include "bsplines.h"
 #include "lab2015ssp.h"
 #include "lab2015larc.h"
-#include "test.h"
 #include "gtest/gtest.h"  // https://github.com/google/googletest/blob/master/googletest/docs/primer.md
-//#include "tests/test.h"
 
 //-------------------------------------
 // main

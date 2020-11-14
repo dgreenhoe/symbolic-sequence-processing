@@ -1,20 +1,14 @@
-/*============================================================================
- * Daniel J. Greenhoe
- * elliptic routines
- * "ellipse" here is defined as all the points (x,y) in R^2 that satisfy
- *   x^2    y^2   
- *   ---  + ---  = 1  
- *   a^2    b^2
- *============================================================================*/
-/*=====================================
- * headers
- *=====================================*/
+//=============================================================================
+// Daniel J. Greenhoe
+//=============================================================================
+//=====================================
+// headers
+//=====================================
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <time.h>
-#include "main.h"
 #include "symseq.h"
 #include "r1.h"
 #include "r2.h"
@@ -37,7 +31,6 @@
 #include "spinner.h"
 #include "dnan.h"
 #include "dft.h"
-#include "test.h"
 #include "gtest/gtest.h"  // https://github.com/google/googletest/blob/master/googletest/docs/primer.md
 
 //-----------------------------------------------------------------------------
@@ -70,7 +63,7 @@ TEST( TestSuiteGeneral, C1 )
   ASSERT_EQ( s.getx(),  (2 * (-5)) - ((-3) * ( 7)) );
   ASSERT_EQ( s.gety(),  (2 * ( 7)) + ((-5) * (-3)) );
   q = p; 
-  q &= (PI/2);
+  q &= (M_PI/2);
   ASSERT_DOUBLE_EQ( q.getx(),  3 );
   ASSERT_DOUBLE_EQ( q.gety(),  2 );
   q = p; 
@@ -121,20 +114,20 @@ TEST( TestSuiteVectRn, theta )
   vectR2 p,q;
   double tr,td,dc;
   const double err = 1e-8;
-  p.put(0,0);                       q.put(2,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= -1*180/PI;  ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(0,1);                       q.put(0,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= -2*180/PI;  ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(0,2);                       q.put(2,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 90;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(0,1);                       q.put(1,0);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 90;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(1,3);                       q.put(-1,-3);                  tr=pqtheta(p,q); td=tr*180/PI; dc=180;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(-2,5);                      q.put(2,-5);                   tr=pqtheta(p,q); td=tr*180/PI; dc=180;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(0,1);                       q.put( cos(PI/4), sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(0,1);                       q.put( cos(PI/4),-sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(0,1);                       q.put(-cos(PI/4), sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(0,1);                       q.put(-cos(PI/4),-sin(PI/4));  tr=pqtheta(p,q); td=tr*180/PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put( 7*cos(PI/4), 7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put( 7*cos(PI/4),-7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(-7*cos(PI/4), 7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
-  p.put(-7*cos(PI/4),-7*sin(PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,0);                       q.put(2,0);                    tr=pqtheta(p,q); td=tr*180/M_PI; dc= -1*180/M_PI;  ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put(0,0);                    tr=pqtheta(p,q); td=tr*180/M_PI; dc= -2*180/M_PI;  ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,2);                       q.put(2,0);                    tr=pqtheta(p,q); td=tr*180/M_PI; dc= 90;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put(1,0);                    tr=pqtheta(p,q); td=tr*180/M_PI; dc= 90;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(1,3);                       q.put(-1,-3);                  tr=pqtheta(p,q); td=tr*180/M_PI; dc=180;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(-2,5);                      q.put(2,-5);                   tr=pqtheta(p,q); td=tr*180/M_PI; dc=180;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put( cos(M_PI/4), sin(M_PI/4));  tr=pqtheta(p,q); td=tr*180/M_PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put( cos(M_PI/4),-sin(M_PI/4));  tr=pqtheta(p,q); td=tr*180/M_PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put(-cos(M_PI/4), sin(M_PI/4));  tr=pqtheta(p,q); td=tr*180/M_PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(0,1);                       q.put(-cos(M_PI/4),-sin(M_PI/4));  tr=pqtheta(p,q); td=tr*180/M_PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put( 7*cos(M_PI/4), 7*sin(M_PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/M_PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put( 7*cos(M_PI/4),-7*sin(M_PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/M_PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(-7*cos(M_PI/4), 7*sin(M_PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/M_PI; dc= 45;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
+  p.put(-7*cos(M_PI/4),-7*sin(M_PI/4)); q.put(0,1);                    tr=pqtheta(p,q); td=tr*180/M_PI; dc=135;         ASSERT_NEAR( td, dc, err * fabs(dc) );  //printf("p=(%6.3lf,%6.3lf) q=(%6.3lf,%6.3lf) theta=%6.2lf radians %6.2lf degrees ",p.getx(),p.gety(),q.getx(),q.gety(),tr,td);
 }
 
 //-----------------------------------------------------------------------------
@@ -250,7 +243,7 @@ TEST( TestSuiteEllipse, distance1 )
 //-----------------------------------------------------------------------------
 TEST( TestSuiteEllipse, distance1b )
 {
-  vectR2 p(cos(PI/4),sin(PI/4));
+  vectR2 p(cos(M_PI/4),sin(M_PI/4));
   ellipsec ellipse;
   double t;
   if( ellipse.setab_givenxyb(p,2) )
@@ -344,15 +337,15 @@ TEST( TestSuiteMetric, balloon )
   printf("--------------------\n");
   p.put(0,2);                   q.put(2,0);                    d=metric_balloon(p,q);  ASSERT_NEAR( d, 2.000000, err * 2.000000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
   p.put(0,1);                   q.put(1,0);                    d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.000000, err * 1.000000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(0,1);                   q.put( cos(PI/4), sin(PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 0.500000, err * 0.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(0,1);                   q.put(-cos(PI/4), sin(PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 0.500000, err * 0.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(0,1);                   q.put(-cos(PI/4),-sin(PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.500000, err * 1.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put(0,1);                   q.put( cos(PI/4),-sin(PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.500000, err * 1.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(0,1);                   q.put( cos(M_PI/4), sin(M_PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 0.500000, err * 0.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(0,1);                   q.put(-cos(M_PI/4), sin(M_PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 0.500000, err * 0.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(0,1);                   q.put(-cos(M_PI/4),-sin(M_PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.500000, err * 1.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put(0,1);                   q.put( cos(M_PI/4),-sin(M_PI/4));  d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.500000, err * 1.500000 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
   p.put(1,0);                   q.put(-0.5,-0.5);              d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.126357, err * 1.126357 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
   p.put(1,0);                   q.put(-2,-2);                  d=metric_balloon(p,q);  ASSERT_NEAR( d, 2.388169, err * 2.388169 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
   p.put(1,0);                   q.put(0,2);                    d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.541964, err * 1.541964 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put( cos(PI/4),-sin(PI/4)); q.put(-2,1);                   d=metric_balloon(p,q);  ASSERT_NEAR( d, 2.075940, err * 2.075940 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
-  p.put( cos(PI/4),-sin(PI/4)); q.put(-1.63,1.33);             d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.980283, err * 1.980283 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put( cos(M_PI/4),-sin(M_PI/4)); q.put(-2,1);                   d=metric_balloon(p,q);  ASSERT_NEAR( d, 2.075940, err * 2.075940 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
+  p.put( cos(M_PI/4),-sin(M_PI/4)); q.put(-1.63,1.33);             d=metric_balloon(p,q);  ASSERT_NEAR( d, 1.980283, err * 1.980283 ); printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d);
 }
 
 //-----------------------------------------------------------------------------
@@ -364,30 +357,30 @@ TEST( TestSuiteMetric, mca )
   double d,d2;
   printf("Lagrange arc metric tests in R2\n");
   printf("--------------------\n");
-  p.put(0,2);                   q.put(2,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,1);                   q.put(1,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,1);                   q.put( cos(PI/4), sin(PI/4));  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,1);                   q.put(-cos(PI/4), sin(PI/4));  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,1);                   q.put(-cos(PI/4),-sin(PI/4));  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,1);                   q.put( cos(PI/4),-sin(PI/4));  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(1,0);                   q.put(-0.5,-0.5);              d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(1,0);                   q.put(-2,-2);                  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(1,0);                   q.put(0,2);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put( cos(PI/4),-sin(PI/4)); q.put(-2,1);                   d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put( cos(PI/4),-sin(PI/4)); q.put(-1.63,1.33);             d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put( cos(PI/4), sin(PI/4)); q.put( 1, 1);                  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(1,0);                   q.put(2,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(1,0);                   q.put(-1,0);                   d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(1,1);                   q.put(0,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(1,0);                   q.put(0,-5);                   d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,1);                   q.put(1,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,1);                   q.put(2,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,1);                   q.put(0,-2);                   d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,1);                   q.put(-2,1);                   d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(1,0);                   q.put(2,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(1.5,1.5);               q.put(1.75,1.75);              d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,0.5);                 q.put(2.75,5);                 d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
-  p.put(0,0.5);                 q.put(1,100);                  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/PI);
+  p.put(0,2);                   q.put(2,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,1);                   q.put(1,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,1);                   q.put( cos(M_PI/4), sin(M_PI/4));  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,1);                   q.put(-cos(M_PI/4), sin(M_PI/4));  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,1);                   q.put(-cos(M_PI/4),-sin(M_PI/4));  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,1);                   q.put( cos(M_PI/4),-sin(M_PI/4));  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(1,0);                   q.put(-0.5,-0.5);              d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(1,0);                   q.put(-2,-2);                  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(1,0);                   q.put(0,2);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put( cos(M_PI/4),-sin(M_PI/4)); q.put(-2,1);                   d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put( cos(M_PI/4),-sin(M_PI/4)); q.put(-1.63,1.33);             d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put( cos(M_PI/4), sin(M_PI/4)); q.put( 1, 1);                  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(1,0);                   q.put(2,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(1,0);                   q.put(-1,0);                   d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(1,1);                   q.put(0,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(1,0);                   q.put(0,-5);                   d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,1);                   q.put(1,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,1);                   q.put(2,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,1);                   q.put(0,-2);                   d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,1);                   q.put(-2,1);                   d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(1,0);                   q.put(2,0);                    d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(1.5,1.5);               q.put(1.75,1.75);              d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,0.5);                 q.put(2.75,5);                 d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
+  p.put(0,0.5);                 q.put(1,100);                  d=mca_metric(p,q);  d2=larc_metric(p,q);  printf("d((%9.6lf,%9.6lf),(%9.6lf,%9.6lf))=%9.6lf %9.6lf t=%6.2lf\n",p.getx(),p.gety(),q.getx(),q.gety(),d,d2,pqtheta(p,q)*180/M_PI);
 }
 
 //-----------------------------------------------------------------------------
@@ -531,7 +524,7 @@ TEST( TestSuiteBases, expi )
   {
     theta = 2.0 * M_PI*(double)n/(double)N;
     y = expi(theta);
-  //printf("n=%2ld, theta=%lf (%3.0lf), expi(theta)=(%+9.6lf,%+9.6lf) mag=%lf\n",n,theta,theta/PI*180,y.real(),y.imag(), y.mag());
+  //printf("n=%2ld, theta=%lf (%3.0lf), expi(theta)=(%+9.6lf,%+9.6lf) mag=%lf\n",n,theta,theta/M_PI*180,y.real(),y.imag(), y.mag());
     ASSERT_DOUBLE_EQ( y.real(), cos(theta) );
     ASSERT_DOUBLE_EQ( y.imag(), sin(theta) );
     ASSERT_DOUBLE_EQ( y.mag(),  1.0        );

@@ -65,12 +65,10 @@
 #--------------------------------------
  set( SOURCES_TARGET
       main.cpp
-      test.cpp
+      tests/TestSuiteMisc.cpp
       tests/TestSuiteTuples.cpp
       tests/TestSuiteVectRn.cpp
       tests/TestSuiteLarc.cpp
-      tests/test.cpp
-      test2.cpp
     )
 
  set( SOURCES_CMD
@@ -110,9 +108,9 @@
       symseq.cpp
     )
 
- set( SOURCES_TESTS
-      tests/test.cpp
-    )
+# set( SOURCES_TESTS
+#      tests/TestSuiteMisc.cpp
+#    )
 
  set( SOURCES_GTEST
       ${DIR_GTEST}/src/gtest-all.cc
@@ -196,11 +194,11 @@
  target_sources(             Lib_DSP   PRIVATE    ${SOURCES_DSP}                            )
  target_include_directories( Lib_DSP   PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ${DIR_GTEST} ${DIR_EIGEN} .. )
 
- add_library(                Lib_Tests STATIC                                               )
- set_target_properties(      Lib_Tests PROPERTIES PREFIX ""                                 )
- target_compile_options(     Lib_Tests PRIVATE    ${FLAGS_COMPILE}                          )
- target_sources(             Lib_Tests PRIVATE    ${SOURCES_TESTS}                          )
- target_include_directories( Lib_Tests PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${DIR_GTEST}/include/ ${DIR_GTEST} .. )
+#add_library(                Lib_Tests STATIC                                               )
+#set_target_properties(      Lib_Tests PROPERTIES PREFIX ""                                 )
+#target_compile_options(     Lib_Tests PRIVATE    ${FLAGS_COMPILE}                          )
+#target_sources(             Lib_Tests PRIVATE    ${SOURCES_TESTS}                          )
+#target_include_directories( Lib_Tests PRIVATE    ${DIR_TOOLCHAIN_INCLUDES} ${PROJECT_SOURCE_DIR} ${DIR_GTEST}/include/ ${DIR_GTEST} .. )
 
  add_library(                Lib_Gtest STATIC                                               )
  set_target_properties(      Lib_Gtest PROPERTIES PREFIX ""                                 )
@@ -225,7 +223,7 @@
  add_executable(             ${TARGET}                                                      )
  target_link_libraries(      ${TARGET} PRIVATE    Lib_Cmd Lib_DSP Lib_Gtest                 )
 #target_link_libraries(      ${TARGET} PRIVATE    Lib_Cmd Lib_DSP Lib_Gtest Lib_Tests       )
-#target_link_libraries(      ${TARGET} PRIVATE    Lib_Cmd Lib_DSP Lib_GtestMainExt Lib_Tests       )
+#target_link_libraries(      ${TARGET} PRIVATE    Lib_Cmd Lib_DSP Lib_GtestMainExt Lib_Tests)
  target_compile_options(     ${TARGET} PRIVATE    ${FLAGS_COMPILE}                          )
  target_link_options(        ${TARGET} PRIVATE    ${FLAGS_LINK}                             )
  target_sources(             ${TARGET} PRIVATE    ${SOURCES_TARGET}                         )
