@@ -449,7 +449,6 @@ TEST( TestSuiteGeneral, die )
  * test real die seqR1 functions
  *-------------------------------------------------------------------------*/
 TEST( TestSuiteDie, rdie )
-//int test_rdie(void)
 {
   long m;
   const long N=100;
@@ -519,21 +518,25 @@ TEST( TestSuiteDie, C1 )
   ASSERT_DOUBLE_EQ( (die_dietoC1c('E')).imag(), sin( theta / 180. * M_PI ) );
 }
 
-/*-------------------------------------------------------------------------
- * test expi function
- *-------------------------------------------------------------------------*/
-int test_expi(void){
-  const long N=12;
+//-----------------------------------------------------------------------------
+//! \brief Test expi function
+//-----------------------------------------------------------------------------
+TEST( TestSuite, expi )
+{
+  const long N=17;
   long n;
   complex y;
   double theta;
-  for(n=0; n<=N; n++){
-    theta = 2.0*M_PI*(double)n/(double)N;
+  for(n=0; n<=N; n++)
+  {
+    theta = 2.0 * M_PI*(double)n/(double)N;
     y = expi(theta);
-    printf("n=%2ld, theta=%lf (%3.0lf), expi(theta)=(%+9.6lf,%+9.6lf) mag=%lf\n",n,theta,theta/PI*180,y.real(),y.imag(), y.mag());
-    }
-  return 0;
+  //printf("n=%2ld, theta=%lf (%3.0lf), expi(theta)=(%+9.6lf,%+9.6lf) mag=%lf\n",n,theta,theta/PI*180,y.real(),y.imag(), y.mag());
+    ASSERT_DOUBLE_EQ( y.real(), cos(theta) );
+    ASSERT_DOUBLE_EQ( y.imag(), sin(theta) );
+    ASSERT_DOUBLE_EQ( y.mag(),  1.0        );
   }
+}
 
 /*-------------------------------------------------------------------------
  * test DFT operator
