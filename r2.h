@@ -7,18 +7,18 @@
 //-------------------------------------------------------------------------
 class opair 
 {
-//  private:
-  //double x,y;
+  private:
+    std::vector<double> xy = { 0, 0 };
   public:
-    std::vector<double> pairxy = { 0, 0 };
-    opair(const double u, const double v)        { pairxy.front() = u; pairxy.back() = v;                }
-    opair(const double u)                        { pairxy.front() = u; pairxy.back() = u;                }
-    opair(void)                                  { pairxy.front() = 0; pairxy.back() = 0;                }
-    void   clear(void)                           { pairxy.front() = 0; pairxy.back() = 0;                }
-    void   put(  const double u, const double v) { pairxy.front() = u; pairxy.back() = v;                }
+    opair(const double u, const double v)        { xy.front() = u; xy.back() = v;                }
+    opair(const double u)                        { xy.front() = u; xy.back() = u;                }
+    opair(void)                                  { xy.front() = 0; xy.back() = 0;                }
+    void   clear(void)                           { xy.front() = 0; xy.back() = 0;                }
+    void   put(  const double u, const double v) { xy.front() = u; xy.back() = v;                }
     opair  get(  void)                                         const { opair p(getx(),gety()); return p; }
-    double getx( void)                                         const { return pairxy.front();            }
-    double gety( void)                                         const { return pairxy.back();             }
+    double getx( void)                                         const { return xy.front();            }
+    double gety( void)                                         const { return xy.back();             }
+    const double *getdata(void)                                const { return xy.data();             }
     void   list(const char* str1, const char *str2, FILE *ptr) const;
     void   list(const char* str1, const char *str2)            const { list(str1,str2,NULL);             }
     void   list(FILE *fptr)                                    const { list("","",fptr);                 }

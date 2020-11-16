@@ -10,6 +10,7 @@
 #include <string.h>
 #include <math.h>
 #include <vector>
+#include <complex>
 #include <Eigen/Dense>
 #include "main.h"
 #include "r1.h"
@@ -255,10 +256,12 @@ vectR2 seqR2::max(const int verbose) const
 //-----------------------------------------------------------------------------
 vectR2 operator+(const vectR2 p, const vectR2 q)
 {
-  //const Eigen::Vector2d a( p.getx(), p.gety() );
-  //const Eigen::Vector2d a( p.pairxy.front(), p.pairxy.back() );
-  const Eigen::Map< const Eigen::Vector2d > a( p.pairxy.data() );
-  const Eigen::Map< const Eigen::Vector2d > b( q.pairxy.data() );
+//const Eigen::Vector2d a( p.getx(), p.gety() );
+//const Eigen::Vector2d a( p.pairxy.front(), p.pairxy.back() );
+//  const Eigen::Map< const Eigen::Vector2d > a( p.pairxy.data() );
+//  const Eigen::Map< const Eigen::Vector2d > b( q.pairxy.data() );
+  const Eigen::Map< const Eigen::Vector2d > a( p.getdata() );
+  const Eigen::Map< const Eigen::Vector2d > b( q.getdata() );
 //const Eigen::Vector2d b( q.getx(), q.gety() );
   const Eigen::Vector2d c = a + b;
   const vectR2 r( c(0), c(1) );
@@ -270,10 +273,10 @@ vectR2 operator+(const vectR2 p, const vectR2 q)
 //-----------------------------------------------------------------------------
 vectR2 operator-(const vectR2 p, const vectR2 q)
 {
-//const Eigen::Vector2d a( p.getx(), p.gety() );
-//const Eigen::Vector2d b( q.getx(), q.gety() );
-  const Eigen::Map< const Eigen::Vector2d > a( p.pairxy.data() );
-  const Eigen::Map< const Eigen::Vector2d > b( q.pairxy.data() );
+//  const Eigen::Map< const Eigen::Vector2d > a( p.pairxy.data() );
+//  const Eigen::Map< const Eigen::Vector2d > b( q.pairxy.data() );
+  const Eigen::Map< const Eigen::Vector2d > a( p.getdata() );
+  const Eigen::Map< const Eigen::Vector2d > b( q.getdata() );
   const Eigen::Vector2d c = a - b;
   const vectR2 r( c(0), c(1) );
   return r;
@@ -287,8 +290,8 @@ vectR2 operator-(const vectR2 p, const vectR2 q)
 //-----------------------------------------------------------------------------
 vectR2 operator-(const vectR2 p)
 {
-//const Eigen::Vector2d a( p.getx(), p.gety() );
-  const Eigen::Map< const Eigen::Vector2d > a( p.pairxy.data() );
+//const Eigen::Map< const Eigen::Vector2d > a( p.pairxy.data() );
+  const Eigen::Map< const Eigen::Vector2d > a( p.getdata() );
   const Eigen::Vector2d b = -a;
   const vectR2 c( b(0), b(1) );
   return c;
@@ -311,8 +314,8 @@ vectR2 operator&(const vectR2 p, const double phi)
 //printf("     _                    _\n");
 //printf("R = | %9.6lf %9.6lf  |\n", R(0,0), R(0,1) );
 //printf("    |_%9.6lf %9.6lf _|\n", R(1,0), R(1,1) );
-//const Eigen::Vector2d x( p.getx(), p.gety() );
-  const Eigen::Map< const Eigen::Vector2d > x( p.pairxy.data() );
+//const Eigen::Map< const Eigen::Vector2d > x( p.pairxy.data() );
+  const Eigen::Map< const Eigen::Vector2d > x( p.getdata() );
   const Eigen::Vector2d y = R * x;
   const vectR2 q( y(0), y(1) );
   return q;

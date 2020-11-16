@@ -9,7 +9,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
-#include "main.h"
+#include <Eigen/Dense>
 #include "r1.h"
 #include "r6.h"
 

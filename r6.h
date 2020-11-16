@@ -1,13 +1,15 @@
 //=============================================================================
 //! Daniel J. Greenhoe
 //=============================================================================
+#include <vector>
 //-----------------------------------------------------------------------------
 //! \brief Ordered pair (x,y)
 //-----------------------------------------------------------------------------
 class osix {
-  private:
-    double x[6];
+  //private:
+  //  double x[6];
   public:
+    std::vector<double> x = {0, 0, 0, 0, 0, 0};
     osix(void);
     osix(double u0, double u1, double u2, double u3, double u4, double u5);
     osix(double u);
@@ -43,7 +45,8 @@ class osix {
 //! (and hence inherit all the properties of class osix)
 //! but also have additional linear space (vector space) properties
 //-----------------------------------------------------------------------------
-class vectR6: public osix {
+class vectR6: public osix 
+{
   public:
     vectR6(double u1,double u2,double u3,double u4,double u5,double u6) : osix(u1,u2,u3,u4,u5,u6){};
     vectR6(double u) : osix(u){};
@@ -54,11 +57,10 @@ class vectR6: public osix {
     double norm(void)const {return mag();}
     double r(void)   const {return mag();}
     vectR6 mpy       (double a);
-   //vectR6 operator* (double a){return mpy(a);}
-    void   operator+=(vectR6 q); //{put(get1()+q.get1(),get2()+q.get2(),get3()+q.get3(),get4()+q.get4(),get5()+q.get5(),get6()+q.get6());} //p=p+q
-    void   operator-=(vectR6 q); //{put(get1()-q.get1(),get2()-q.get2(),get3()-q.get3(),get4()-q.get4(),get5()-q.get5(),get6()-q.get6());} //p=p-q
+    void   operator+=(vectR6 q);
+    void   operator-=(vectR6 q);
     void   operator*=(double a);
-  };
+};
 
 class seqR6 
 {

@@ -1,34 +1,41 @@
-/*============================================================================
- * Daniel J. Greenhoe
- *============================================================================*/
-/*-------------------------------------------------------------------------
- * ordered pair (x,y)
- *-------------------------------------------------------------------------*/
-class otriple {
+//=============================================================================
+//! \brief Daniel J. Greenhoe
+//=============================================================================
+#include <vector>
+//-----------------------------------------------------------------------------
+//! \brief ordered triple (x,y,y)
+//-----------------------------------------------------------------------------
+class otriple 
+{
   private:
-    double x,y,z;
+  //double x,y,z;
+    std::vector<double> xyz = { 0, 0, 0 };
   public:
-    otriple(double u, double v, double w){x=u;y=v;z=w;}    //constructor
-    otriple(double u){x=u;y=u;z=u;}                        //constructor
-    otriple(void){x=0; y=0; z=0;}                          //constructor
-    void   put(double u,double v,double w){x=u;y=v;z=w;}//(x,y,z)=(u,v,w)
-    void   clear(void) {x=0; y=0; z=0;}
-    double getx(void) const {return x;};                  //get component x
-    double gety(void) const {return y;};                  //get component y
-    double getz(void) const {return z;};                  //get component z
+  //otriple(double u, double v, double w){x=u;y=v;z=w;}
+  //otriple(double u){x=u;y=u;z=u;}                    
+  //otriple(void){x=0; y=0; z=0;}                      
+    otriple(double u, double v, double w){xyz.front()=u; xyz.at(1)=v; xyz.back()=w;}
+    otriple(double u){ xyz.front()=u; xyz.at(1)=u; xyz.back()=u; }
+    otriple(void)    { xyz.front()=0; xyz.at(1)=0; xyz.back()=0; }
+    void   put(double u,double v,double w){xyz.front()=u; xyz.at(1)=v; xyz.back()=w; }
+    void   clear(void) { xyz.front()=0; xyz.at(1)=0; xyz.back()=0; }
+    double getx(void) const {return xyz.front(); }; //get component x
+    double gety(void) const {return xyz.at(1)  ; }; //get component y
+    double getz(void) const {return xyz.back() ; }; //get component z
     double max(void) const;
     double min(void) const;
-  };
+};
 
-/*-------------------------------------------------------------------------
- *        | x |
- * vector | y | over R^3
- *        | z |
- * vectors on R^3 are ordered pairs 
- * (and hence inherit all the properties of class opair)
- * but also have additional linear space (vector space) properties
- *-------------------------------------------------------------------------*/
-class vectR3: public otriple {
+//-------------------------------------------------------------------------
+//        | x |
+// vector | y | over R^3
+//        | z |
+// vectors on R^3 are ordered pairs 
+// (and hence inherit all the properties of class opair)
+// but also have additional linear space (vector space) properties
+//-------------------------------------------------------------------------*/
+class vectR3: public otriple 
+{
   public:
     vectR3(double u, double v, double w) : otriple(u,v,w){};      //constructor using 2 long float arguments
     vectR3(double u) : otriple(u){};                //constructor using 1 long float argument
@@ -38,8 +45,7 @@ class vectR3: public otriple {
     void polartoxyz(double r, double theta,double phi){put(r*cos(phi)*cos(theta),r*cos(phi)*sin(theta),r*sin(phi));}//set (x,y,z) using polar coordinates (r,theta,phi)
     void  operator+=(vectR3 q){put(getx()+q.getx(), gety()+q.gety(), getz()+q.getz());} //p=p+q
     void  operator-=(vectR3 q){put(getx()-q.getx(), gety()-q.gety(), getz()-q.getz());} //p=p-q
-  };
-
+};
 
 class seqR3 {
   private:
@@ -71,9 +77,9 @@ class seqR3 {
     void test(void);
   };
 
-/*=====================================
- * operator overloading
- *=====================================*/
+//=====================================
+// operator overloading
+//=====================================
 //vectR3  operator-(vectR3 p);               // -p
 //vectR3  operator+(vectR3 p, vectR3 q);  // p+q
 //vectR3  operator-(vectR3 p, vectR3 q);  // p-q
@@ -85,9 +91,9 @@ inline vectR3  operator*(vectR3 p,double a){vectR3 pa(p.getx()*a,p.gety()*a,p.ge
 inline double  operator^(vectR3 p,vectR3 q){return p.getx()*q.getx() + p.gety()*q.gety() + p.getz()*q.getz();}   // "dot product" of p and q
 //double  operator*(vectR3 p,vectR3 q){return p.getx()*q.getx() + p.gety()*q.gety() + p.getz()*q.getz();}   // "dot product" of p and q
 
-/*=====================================
- * functions
- *=====================================*/
+//=====================================
+// functions
+//=====================================
 extern double pqtheta(const vectR3 p, const vectR3 q); //return radians between vectors induced by p and q in R^3
 
 
