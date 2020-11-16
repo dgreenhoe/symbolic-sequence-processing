@@ -8,12 +8,8 @@
 class otriple 
 {
   private:
-  //double x,y,z;
     std::vector<double> xyz = { 0, 0, 0 };
   public:
-  //otriple(double u, double v, double w){x=u;y=v;z=w;}
-  //otriple(double u){x=u;y=u;z=u;}                    
-  //otriple(void){x=0; y=0; z=0;}                      
     otriple(double u, double v, double w){xyz.front()=u; xyz.at(1)=v; xyz.back()=w;}
     otriple(double u){ xyz.front()=u; xyz.at(1)=u; xyz.back()=u; }
     otriple(void)    { xyz.front()=0; xyz.at(1)=0; xyz.back()=0; }
@@ -38,9 +34,9 @@ class otriple
 class vectR3: public otriple 
 {
   public:
-    vectR3(double u, double v, double w) : otriple(u,v,w){};      //constructor using 2 long float arguments
-    vectR3(double u) : otriple(u){};              //constructor using 1 long float argument
-    vectR3(void) : otriple(){};                   //constructor using no arguments (set to 0,0)
+    vectR3(double u, double v, double w) : otriple(u,v,w){};
+    vectR3(double u) : otriple(u){};
+    vectR3(void) : otriple(){};
     void   put(vectR3 abc){ otriple::put(abc.getx(), abc.gety(), abc.getz()); }
     void   put(int u, int v, int w){ otriple::put(u, v, w); }
     double mag(void) const {return sqrt(getx()*getx()+gety()*gety()+getz()*getz());};//norm of ordered pair
@@ -84,9 +80,6 @@ class seqR3 {
 //=====================================
 // operator overloading
 //=====================================
-//vectR3  operator-(vectR3 p);               // -p
-//vectR3  operator+(vectR3 p, vectR3 q);  // p+q
-//vectR3  operator-(vectR3 p, vectR3 q);  // p-q
 vectR3  operator-(vectR3 p);               // -p
 vectR3  operator+(vectR3 p, vectR3 q);  // p+q
 vectR3  operator-(vectR3 p, vectR3 q);  // p-q
