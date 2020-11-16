@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "main.h"
+#include <Eigen/Dense>
 #include "r1.h"
 #include "r3.h"
 
@@ -222,35 +222,23 @@ double pqtheta(const vectR3 p, const vectR3 q)
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Return the minimum element of the 6 tupple
+//! \brief Return the minimum element of the tupple
 //-----------------------------------------------------------------------------
 double otriple::min(void) const
 {
-  int i;
-  double u,min;
-  double x[3];
-  x[0]=getx(); x[1]=gety(); x[2]=getz();
-  min=fabs(x[0]);
-  for(i=1;i<3;i++){
-    u=fabs(x[i]);
-    if(u<min) min=u;
-    }
+  const Eigen::Map< const Eigen::Vector3d > abc( getdata() );
+  int row, col;
+  const double min = abc.minCoeff( &row, &col );
   return min;
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Return the maximum element of the 6 tupple
+//! \brief Return the maximum element of the tupple
 //-----------------------------------------------------------------------------
 double otriple::max(void) const
 {
-  int i;
-  double u,max;
-  double x[3];
-  x[0]=getx(); x[1]=gety(); x[2]=getz();
-  max=fabs(x[0]);
-  for(i=1;i<3;i++){
-    u=fabs(x[i]);
-    if(u>max) max=u;
-    }
+  const Eigen::Map< const Eigen::Vector3d > abc( getdata() );
+  int row, col;
+  const double max = abc.maxCoeff( &row, &col );
   return max;
 }

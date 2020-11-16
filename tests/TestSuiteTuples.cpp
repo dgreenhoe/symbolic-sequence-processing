@@ -85,7 +85,7 @@ TEST( TestSuiteTuples, osixSet )
 }
 
 //-----------------------------------------------------------------------------
-// \brief Test osix Clear operation
+//! \brief Test osix Clear operation
 //-----------------------------------------------------------------------------
 TEST( TestSuiteTuples, osixClear  )
 {
@@ -97,5 +97,25 @@ TEST( TestSuiteTuples, osixClear  )
   ASSERT_EQ( x.get4(),  0 );
   ASSERT_EQ( x.get5(),  0 );
   ASSERT_EQ( x.get6(),  0 );
+}
+
+//-----------------------------------------------------------------------------
+//! \brief Test otriple min operation
+//-----------------------------------------------------------------------------
+TEST( TestSuiteR3, min  )
+{
+  const otriple abc(1, -5, -3 );
+  const double min = abc.min();
+  ASSERT_EQ( min, -5 );
+}
+
+//-----------------------------------------------------------------------------
+//! \brief Test otriple max operation
+//-----------------------------------------------------------------------------
+TEST( TestSuiteR3, max  )
+{
+  const otriple abc(1, -5, -3 );
+  const double max = abc.max();
+  ASSERT_EQ( max, 1 );
 }
 
