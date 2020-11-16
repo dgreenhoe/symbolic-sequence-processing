@@ -19,116 +19,147 @@
 /*-------------------------------------------------------------------------
  * constructor initializing seqR3 to 0
  *-------------------------------------------------------------------------*/
-seqR3::seqR3(long M){
-  long n;
+seqR3::seqR3(long M)
+{
+//  long n;
   N=M;
-  x = (double *)malloc(N*sizeof(double));
-  y = (double *)malloc(N*sizeof(double));
-  z = (double *)malloc(N*sizeof(double));
-  for(n=0; n<N; n++){
-    x[n]=0.0;
-    y[n]=0.0;
-    z[n]=0.0;
-    }
-  }
+  //x = (double *)malloc(N*sizeof(double));
+  //y = (double *)malloc(N*sizeof(double));
+  //z = (double *)malloc(N*sizeof(double));
+  seqr3 = new vectR3[N];
+  clear();
+  //for(n=0; n<N; n++){
+  //  x[n]=0.0;
+  //  y[n]=0.0;
+  //  z[n]=0.0;
+  //  }
+}
 
 /*-------------------------------------------------------------------------
  * constructor initializing seqR3 to <u>
  *-------------------------------------------------------------------------*/
-seqR3::seqR3(long M, double u){
-  long n;
+seqR3::seqR3(long M, double u)
+{
+//  long n;
   N=M;
-  x = (double *)malloc(N*sizeof(double));
-  y = (double *)malloc(N*sizeof(double));
-  z = (double *)malloc(N*sizeof(double));
-  for(n=0; n<N; n++){
-    x[n]=u;
-    y[n]=u;
-    z[n]=u;
-    }
-  }
+  //x = (double *)malloc(N*sizeof(double));
+  //y = (double *)malloc(N*sizeof(double));
+  //z = (double *)malloc(N*sizeof(double));
+  seqr3 = new vectR3[N];
+  fill( u );
+  //for(n=0; n<N; n++){
+  //  x[n]=u;
+  //  y[n]=u;
+  //  z[n]=u;
+  //  }
+}
 
 /*-------------------------------------------------------------------------
  * fill the seqR3 with a value 0
  *-------------------------------------------------------------------------*/
-void seqR3::clear(void){
-  long n;
-  for(n=0; n<N; n++){
-    x[n]=0;
-    y[n]=0;
-    z[n]=0;
+void seqR3::clear(void)
+{
+  for( long n=0; n<N; n++){
+    put( n, 0 );
+  //  x[n]=0;
+  //  y[n]=0;
+  //  z[n]=0;
     }
-  }
+}
 
-/*-------------------------------------------------------------------------
- * fill the seqR3 with a value <u>
- *-------------------------------------------------------------------------*/
-void seqR3::fill(double u){
+//-----------------------------------------------------------------------------
+//! \brief Fill the seqR3 with a value <u>
+//-----------------------------------------------------------------------------
+void seqR3::fill(double u)
+{
   long n;
-  for(n=0; n<N; n++){
-    x[n]=u;
-    y[n]=u;
-    z[n]=u;
-    }
+  for(n=0; n<N; n++)
+  {
+    put( n, u );
+  //  x[n]=u;
+  //  y[n]=u;
+  //  z[n]=u;
   }
+}
 
-/*-------------------------------------------------------------------------
- * put a single value <u> into the seqR3 x at location n
- *-------------------------------------------------------------------------*/
-int seqR3::put(long n, double u, double v, double w){
+//-----------------------------------------------------------------------------
+//! \brief Put a single value <u> into the seqR3 x at location n
+//-----------------------------------------------------------------------------
+int seqR3::put(long n, double u, double v, double w)
+{
   if(n<N){
-    x[n]=u;
-    y[n]=v;
-    z[n]=w;
+    seqr3[n].put( u, v, w );
+    //x[n]=u;
+    //y[n]=v;
+    //z[n]=w;
     return 0;
     }
   else{   
     fprintf(stderr,"n=%ld larger than seqR3 size N=%ld\n",n,N);
     return -1;
     }
-  }
+}
 
-int seqR3::put(long n, vectR3 xyz){
-  if(n<N){
-    x[n]=xyz.getx();
-    y[n]=xyz.gety();
-    z[n]=xyz.getz();
+//-----------------------------------------------------------------------------
+// \brief Put a single value <u> into the seqR3 x at location n
+//-----------------------------------------------------------------------------
+int seqR3::put(long n, vectR3 abc)
+{
+  if(n<N)
+  {
+    //x[n]=xyz.getx();
+    //y[n]=xyz.gety();
+    //z[n]=xyz.getz();
+    (seqr3[n]).put( abc.getx(), abc.gety(), abc.gety() );
     return 0;
-    }
-  else{   
+  }
+  else
+  {   
     fprintf(stderr,"n=%ld larger than seqR3 size N=%ld\n",n,N);
     return -1;
-    }
   }
+}
 
-/*-------------------------------------------------------------------------
- * get a single value from the sequence x at location n
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Get a single value from the sequence x at location n
+//-----------------------------------------------------------------------------
 vectR3 seqR3::get(long n){
-  vectR3 xyz(0,0,0);
-  if(n<N)xyz.put(x[n],y[n],z[n]);
-  else   fprintf(stderr,"n=%ld larger than seqR3 size N=%ld\n",n,N);
-  return xyz;
+  //vectR3 xyz(0,0,0);
+  //if(n<N)xyz.put(x[n],y[n],z[n]);
+  //else   fprintf(stderr,"n=%ld larger than seqR3 size N=%ld\n",n,N);
+  return seqr3[n];
+//return xyz;
   }
 
-/*-------------------------------------------------------------------------
- * get a single value from the sequence x,y, or z at location n
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Get the x element from the sequence at location n
+//-----------------------------------------------------------------------------
 double seqR3::getx(long n){
   double u=0;
-  if(n<N)u=x[n];
+  //if(n<N)u=x[n];
+  if(n<N)u = seqr3[n].getx();
   else   fprintf(stderr,"n=%ld larger than x seqR3 size N=%ld\n",n,N);
   return u;
   }
+
+//-----------------------------------------------------------------------------
+//! \brief Get the y element from the sequence at location n
+//-----------------------------------------------------------------------------
 double seqR3::gety(long n){
   double u=0;
-  if(n<N)u=y[n];
+  if(n<N)u = seqr3[n].gety();
+  //if(n<N)u=y[n];
   else   fprintf(stderr,"n=%ld larger than y seqR3 size N=%ld\n",n,N);
   return u;
   }
+
+//-----------------------------------------------------------------------------
+//! \brief Get the z element from the sequence at location n
+//-----------------------------------------------------------------------------
 double seqR3::getz(long n){
   double u=0;
-  if(n<N)u=z[n];
+  //if(n<N)u=z[n];
+  if(n<N)u = seqr3[n].getz();
   else   fprintf(stderr,"n=%ld larger than z seqR3 size N=%ld\n",n,N);
   return u;
   }
@@ -141,7 +172,8 @@ void seqR3::list(const long start, const long end, const char *str1, const char 
   if(ptr!=NULL){
     if(strlen(str1)>0) fprintf(ptr,"%s",str1);
     for(n=start,m=1; n<=end; n++,m++){
-      fprintf(ptr,"(%6.3lf,%6.3lf,%6.3lf) ",x[n],y[n],z[n]);
+    //fprintf(ptr,"(%6.3lf,%6.3lf,%6.3lf) ",x[n],y[n],z[n]);
+      fprintf(ptr,"(%6.3lf,%6.3lf,%6.3lf) ", seqr3[n].getx(), seqr3[n].gety(), seqr3[n].getz() );
       if(m%3==0)fprintf(ptr,"\n");
       }
     if(strlen(str2)>0)fprintf(ptr,"%s",str2);
@@ -154,14 +186,16 @@ void seqR3::list(const long start, const long end, const char *str1, const char 
 void seqR3::list1(void){
   long n,m;
   for(n=0,m=1; n<N; n++,m++){
-    printf("(%2.0lf,%2.0lf,%2.0lf)   ",x[n],y[n],z[n]);
+  //printf("(%2.0lf,%2.0lf,%2.0lf)   ",x[n],y[n],z[n]);
+    printf("(%2.0lf,%2.0lf,%2.0lf)   ", seqr3[n].getx(), seqr3[n].gety(), seqr3[n].getz() );
     if(m%5==0)printf("\n");
     }
   }
 void seqR3::list1(long start, long end){
   long n,m;
   for(n=start,m=1; n<=end; n++,m++){
-    printf("(%2.0lf,%2.0lf,%2.0lf)   ",x[n],y[n],z[n]);
+//    printf("(%2.0lf,%2.0lf,%2.0lf)   ",x[n],y[n],z[n]);
+    printf("(%2.0lf,%2.0lf,%2.0lf)   ", seqr3[n].getx(), seqr3[n].gety(), seqr3[n].getz() );
     if(m%50==0)printf("\n");
     else if(m%10==0)printf(" ");
     }
@@ -210,12 +244,12 @@ vectR3 operator-(vectR3 p){
   return q;
   }
 
-/*-------------------------------------------------------------------------
- * return the angle theta in radians between the two vectors induced by 
- * the points <p> and <q> in the space R^3.
- * on SUCCESS return theta in the closed interval [0:PI]
- * on ERROR   return negative value or exit with value EXIT_FAILURE
- *-------------------------------------------------------------------------*/
+//-------------------------------------------------------------------------
+//! \brief return the angle theta in radians between the two vectors induced by 
+//! the points <p> and <q> in the space R^3.
+//! \returns On SUCCESS return theta in the closed interval [0:PI];
+//!          On ERROR   return negative value or exit with value EXIT_FAILURE
+//-------------------------------------------------------------------------*/
 double pqtheta(const vectR3 p, const vectR3 q){
   const double rp=p.mag(), rq=q.mag();
   double y,theta;
@@ -228,9 +262,9 @@ double pqtheta(const vectR3 p, const vectR3 q){
   return theta;
   }
 
-/*-------------------------------------------------------------------------
- * return the minimum element of the 6 tupple
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Return the minimum element of the 6 tupple
+//-----------------------------------------------------------------------------
 double otriple::min(void) const
 {
   int i;
@@ -245,9 +279,9 @@ double otriple::min(void) const
   return min;
 }
 
-/*-------------------------------------------------------------------------
- * return the maximum element of the 6 tupple
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Return the maximum element of the 6 tupple
+//-----------------------------------------------------------------------------
 double otriple::max(void) const
 {
   int i;

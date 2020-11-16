@@ -18,6 +18,7 @@ class otriple
     otriple(double u){ xyz.front()=u; xyz.at(1)=u; xyz.back()=u; }
     otriple(void)    { xyz.front()=0; xyz.at(1)=0; xyz.back()=0; }
     void   put(double u,double v,double w){xyz.front()=u; xyz.at(1)=v; xyz.back()=w; }
+    void   put(int u, int v, int w){ put((double)u, (double)v, (double)w); }
     void   clear(void) { xyz.front()=0; xyz.at(1)=0; xyz.back()=0; }
     double getx(void) const {return xyz.front(); }; //get component x
     double gety(void) const {return xyz.at(1)  ; }; //get component y
@@ -38,19 +39,22 @@ class vectR3: public otriple
 {
   public:
     vectR3(double u, double v, double w) : otriple(u,v,w){};      //constructor using 2 long float arguments
-    vectR3(double u) : otriple(u){};                //constructor using 1 long float argument
+    vectR3(double u) : otriple(u){};              //constructor using 1 long float argument
     vectR3(void) : otriple(){};                   //constructor using no arguments (set to 0,0)
+    void   put(vectR3 abc){ otriple::put(abc.getx(), abc.gety(), abc.getz()); }
+    void   put(int u, int v, int w){ otriple::put(u, v, w); }
     double mag(void) const {return sqrt(getx()*getx()+gety()*gety()+getz()*getz());};//norm of ordered pair
     double norm(void) const {return mag();}
-    void polartoxyz(double r, double theta,double phi){put(r*cos(phi)*cos(theta),r*cos(phi)*sin(theta),r*sin(phi));}//set (x,y,z) using polar coordinates (r,theta,phi)
-    void  operator+=(vectR3 q){put(getx()+q.getx(), gety()+q.gety(), getz()+q.getz());} //p=p+q
-    void  operator-=(vectR3 q){put(getx()-q.getx(), gety()-q.gety(), getz()-q.getz());} //p=p-q
+    void polartoxyz(double r, double theta,double phi){otriple::put(r*cos(phi)*cos(theta),r*cos(phi)*sin(theta),r*sin(phi));}//set (x,y,z) using polar coordinates (r,theta,phi)
+    void  operator+=(vectR3 q){otriple::put(getx()+q.getx(), gety()+q.gety(), getz()+q.getz());} //p=p+q
+    void  operator-=(vectR3 q){otriple::put(getx()-q.getx(), gety()-q.gety(), getz()-q.getz());} //p=p-q
 };
 
 class seqR3 {
   private:
     long N;
     double *x,*y,*z;
+    vectR3 *seqr3;
   public:
     seqR3(long M);               //constructor
     seqR3(long M, double u);     //constructor
