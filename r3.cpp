@@ -46,10 +46,9 @@ void vectR3::polartoxyz(const double r, const double theta, const double phi)
 //-----------------------------------------------------------------------------
 void vectR3::operator+=(const vectR3 q)
 {
-  const double new_x = getx() + q.getx();
-  const double new_y = gety() + q.gety();
-  const double new_z = getz() + q.getz();
-  otriple::put( new_x, new_y, new_z );
+  Eigen::Map< Eigen::Vector3d > a(   getdataa() );
+  const Eigen::Map< const Eigen::Vector3d > b( q.getdata() );
+  a += b;
 }
 
 //-----------------------------------------------------------------------------
@@ -57,10 +56,9 @@ void vectR3::operator+=(const vectR3 q)
 //-----------------------------------------------------------------------------
 void vectR3::operator-=(const vectR3 q)
 {
-  const double new_x = getx() - q.getx();
-  const double new_y = gety() - q.gety();
-  const double new_z = getz() - q.getz();
-  otriple::put( new_x, new_y, new_z );
+  Eigen::Map< Eigen::Vector3d > a(   getdataa() );
+  const Eigen::Map< const Eigen::Vector3d > b( q.getdata() );
+  a -= b;
 }
 
 //=====================================
@@ -215,28 +213,23 @@ void seqR3::list1(long start, long end){
 //-----------------------------------------------------------------------------
 //! \brief operator: return p+q
 //-----------------------------------------------------------------------------
-vectR3 operator+(vectR3 p, vectR3 q){
-  const double px=p.getx();
-  const double py=p.gety();
-  const double pz=p.getz();
-  const double qx=q.getx();
-  const double qy=q.gety();
-  const double qz=q.getz();
-  const vectR3 r( px+qx, py+qy, pz+qz );
+vectR3 operator+(vectR3 p, vectR3 q)
+{
+  const Eigen::Map< const Eigen::Vector3d > a( p.getdataa() );
+  const Eigen::Map< const Eigen::Vector3d > b( q.getdataa() );
+  const Eigen::Vector3d c = a + b;
+  const vectR3 r( c(0), c(1), c(2) );
   return r;
-  }
+}
 
 //-----------------------------------------------------------------------------
 //! \brief operator: return p-q
 //-----------------------------------------------------------------------------
 vectR3 operator-(vectR3 p, vectR3 q){
-  const double px=p.getx();
-  const double py=p.gety();
-  const double pz=p.getz();
-  const double qx=q.getx();
-  const double qy=q.gety();
-  const double qz=q.getz();
-  const vectR3 r( px-qx, py-qy, pz-qz );
+  const Eigen::Map< const Eigen::Vector3d > a( p.getdataa() );
+  const Eigen::Map< const Eigen::Vector3d > b( q.getdataa() );
+  const Eigen::Vector3d c = a - b;
+  const vectR3 r( c(0), c(1), c(2) );
   return r;
   }
 
@@ -245,10 +238,9 @@ vectR3 operator-(vectR3 p, vectR3 q){
 //-----------------------------------------------------------------------------
 vectR3 operator-(vectR3 p)
 {
-  const double px = p.getx();
-  const double py = p.gety();
-  const double pz = p.getz();
-  const vectR3 q( -px, -py, -pz );
+  const Eigen::Map< const Eigen::Vector3d > a( p.getdataa() );
+  const Eigen::Vector3d b = -a;
+  const vectR3 q( b(0), b(1), b(2) );
   return q;
 }
 

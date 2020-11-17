@@ -17,6 +17,7 @@ class otriple
     //void   put(int u, int v, int w){ put((double)u, (double)v, (double)w); }
     void   clear(void) { xyz.front()=0; xyz.at(1)=0; xyz.back()=0; }
     const double *getdata(void) const { return xyz.data(); }
+    double *getdataa(void) { return xyz.data(); }
     void   list(){ printf("(x=%12.8lf, y=%12.8lf, z=%12.8lf)\n", getx(), gety(), getz() ); }
     double getx(void) const {return xyz.front(); }; //get component x
     double gety(void) const {return xyz.at(1)  ; }; //get component y
