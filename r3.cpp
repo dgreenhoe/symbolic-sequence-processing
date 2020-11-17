@@ -13,6 +13,56 @@
 #include "r1.h"
 #include "r3.h"
 
+
+//=====================================
+// VectR3
+//=====================================*/
+//-----------------------------------------------------------------------------
+//! \brief Calculate magnitude of vector
+//-----------------------------------------------------------------------------
+double vectR3::mag(void) const 
+{
+  const double x = getx();
+  const double y = gety();
+  const double z = getz();
+  const double magSq  = x*x + y*y + z*z;
+  const double magVal = sqrt( magSq );
+  return magVal;
+}
+
+//-----------------------------------------------------------------------------
+//! \brief Convert polar (r, theta, phi) coordinate to rectangular (x,y,z) coordinate
+//-----------------------------------------------------------------------------
+void vectR3::polartoxyz(const double r, const double theta, const double phi)
+{
+  const double x = r*cos(phi)*cos(theta);
+  const double y = r*cos(phi)*sin(theta);
+  const double z = r*sin(phi);
+  otriple::put( x, y, z );
+}
+
+//-----------------------------------------------------------------------------
+//! \brief Add vector q to vectR3 vector
+//-----------------------------------------------------------------------------
+void vectR3::operator+=(const vectR3 q)
+{
+  const double new_x = getx() + q.getx();
+  const double new_y = gety() + q.gety();
+  const double new_z = getz() + q.getz();
+  otriple::put( new_x, new_y, new_z );
+}
+
+//-----------------------------------------------------------------------------
+//! \brief Subtract vector q from vectR3 vector
+//-----------------------------------------------------------------------------
+void vectR3::operator-=(const vectR3 q)
+{
+  const double new_x = getx() - q.getx();
+  const double new_y = gety() - q.gety();
+  const double new_z = getz() - q.getz();
+  otriple::put( new_x, new_y, new_z );
+}
+
 //=====================================
 // seqR3
 //=====================================*/
@@ -59,7 +109,7 @@ void seqR3::fill(double u)
 int seqR3::put(long n, double u, double v, double w)
 {
   if(n<N){
-    seqr3[n].put( u, v, w );
+    seqr3[n].otriple::put( u, v, w );
     return 0;
     }
   else{   
@@ -75,7 +125,7 @@ int seqR3::put(long n, vectR3 abc)
 {
   if(n<N)
   {
-    (seqr3[n]).put( abc.getx(), abc.gety(), abc.gety() );
+    (seqr3[n]).otriple::put( abc.getx(), abc.gety(), abc.gety() );
     return 0;
   }
   else
@@ -210,14 +260,14 @@ vectR3 operator-(vectR3 p)
 //-----------------------------------------------------------------------------
 double pqtheta(const vectR3 p, const vectR3 q)
 {
-  const double rp=p.mag(), rq=q.mag();
-  double y,theta;
+  const double rp=p.mag();
+  const double rq=q.mag();
   if(rp==0) return -1;
   if(rq==0) return -2;
-  y = (p^q)/(rp*rq);
+  const double y = (p^q)/(rp*rq);
   if(y>+1)  {fprintf(stderr,"\nERROR using pqtheta(vectR3 p, vectR3 q): (p^q)/(rp*rq)=%lf>+1\n",y); exit(EXIT_FAILURE);}
   if(y<-1)  {fprintf(stderr,"\nERROR using pqtheta(vectR3 p, vectR3 q): (p^q)/(rp*rq)=%lf<-1\n",y); exit(EXIT_FAILURE);}
-  theta = acos(y);
+  const double theta = acos(y);
   return theta;
 }
 

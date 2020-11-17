@@ -14,9 +14,10 @@ class otriple
     otriple(double u){ xyz.front()=u; xyz.at(1)=u; xyz.back()=u; }
     otriple(void)    { xyz.front()=0; xyz.at(1)=0; xyz.back()=0; }
     void   put(double u,double v,double w){xyz.front()=u; xyz.at(1)=v; xyz.back()=w; }
-    void   put(int u, int v, int w){ put((double)u, (double)v, (double)w); }
+    //void   put(int u, int v, int w){ put((double)u, (double)v, (double)w); }
     void   clear(void) { xyz.front()=0; xyz.at(1)=0; xyz.back()=0; }
     const double *getdata(void) const { return xyz.data(); }
+    void   list(){ printf("(x=%12.8lf, y=%12.8lf, z=%12.8lf)\n", getx(), gety(), getz() ); }
     double getx(void) const {return xyz.front(); }; //get component x
     double gety(void) const {return xyz.at(1)  ; }; //get component y
     double getz(void) const {return xyz.back() ; }; //get component z
@@ -39,12 +40,19 @@ class vectR3: public otriple
     vectR3(double u) : otriple(u){};
     vectR3(void) : otriple(){};
     void   put(vectR3 abc){ otriple::put(abc.getx(), abc.gety(), abc.getz()); }
-    void   put(int u, int v, int w){ otriple::put(u, v, w); }
-    double mag(void) const {return sqrt(getx()*getx()+gety()*gety()+getz()*getz());};//norm of ordered pair
-    double norm(void) const {return mag();}
-    void polartoxyz(double r, double theta,double phi){otriple::put(r*cos(phi)*cos(theta),r*cos(phi)*sin(theta),r*sin(phi));}//set (x,y,z) using polar coordinates (r,theta,phi)
-    void  operator+=(vectR3 q){otriple::put(getx()+q.getx(), gety()+q.gety(), getz()+q.getz());} //p=p+q
-    void  operator-=(vectR3 q){otriple::put(getx()-q.getx(), gety()-q.gety(), getz()-q.getz());} //p=p-q
+    void   put(   int u,    int v,    int w){ otriple::put((double)u, (double)v, (double)w); }
+    void   put(   int u,    int v, double w){ otriple::put((double)u, (double)v, (double)w); }
+    void   put(   int u, double v,    int w){ otriple::put((double)u, (double)v, (double)w); }
+    void   put(   int u, double v, double w){ otriple::put((double)u, (double)v, (double)w); }
+    void   put(double u,    int v,    int w){ otriple::put((double)u, (double)v, (double)w); }
+    void   put(double u,    int v, double w){ otriple::put((double)u, (double)v, (double)w); }
+    void   put(double u, double v,    int w){ otriple::put((double)u, (double)v, (double)w); }
+    void   put(double u, double v, double w){ otriple::put((double)u, (double)v, (double)w); }
+    double mag(void)  const;
+    double norm(void) const { return mag(); }
+    void polartoxyz(const double r, const double theta, const double phi);
+    void  operator+=(const vectR3 q);
+    void  operator-=(const vectR3 q);
 };
 
 class seqR3 {
