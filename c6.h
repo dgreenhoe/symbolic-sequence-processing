@@ -41,7 +41,6 @@ class csix {
  *-------------------------------------------------------------------------*/
 class vectC6: public csix {
   public:
-  //vectC6(double u1,double u2,double u3,double u4,double u5,double u6) : osix(u1,u2,u3,u4,u5,u6){};
     vectC6(double ur, double ui) : csix(ur,ui){};
     vectC6(void) : csix(){}; 
     vectC6 get(void)   const;

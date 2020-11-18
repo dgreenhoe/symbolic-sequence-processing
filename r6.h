@@ -2,37 +2,50 @@
 //! Daniel J. Greenhoe
 //=============================================================================
 #include <vector>
+//#include <Eigen/Dense>  // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=89325
+
+//typedef Eigen::Matrix< double, 6, 1 > Vector6d;
+
 //-----------------------------------------------------------------------------
 //! \brief Ordered pair (x,y)
 //-----------------------------------------------------------------------------
-class osix {
-  //private:
-  //  double x[6];
-  public:
+class osix 
+{
+  private:
     std::vector<double> x = {0, 0, 0, 0, 0, 0};
+  public:
     osix(void);
     osix(double u0, double u1, double u2, double u3, double u4, double u5);
     osix(double u);
+    const double* getdata(void) const { return x.data(); }
     osix   get(void) const ;
-    void   list(const char *str1, const char *str2);
-    void   list(void){list("","");}
-    void   list(const char *str){list(str,"\n");}
-    void   listn(void){list("","\n");}
-    double get(int n) const {return x[n];}
-    double get1(void) const {return x[0];};                      //get component x1
-    double get2(void) const {return x[1];};                      //get component x2
-    double get3(void) const {return x[2];};                      //get component x3
-    double get4(void) const {return x[3];};                      //get component x4
-    double get5(void) const {return x[4];};                      //get component x5
-    double get6(void) const {return x[5];};                      //get component x6
-    void put(double u0, double u1, double u2, double u3, double u4, double u5){x[0]=u0;x[1]=u1;x[2]=u2;x[3]=u3;x[4]=u4;x[5]=u5;}
-    void put(int n,double u){x[n]=u;}
+    double get(int n) const {return x.at(n)  ;}
+    double get1(void) const {return x.front();}; //get component x1
+    double get2(void) const {return x.at(1)  ;}; //get component x2
+    double get3(void) const {return x.at(2)  ;}; //get component x3
+    double get4(void) const {return x.at(3)  ;}; //get component x4
+    double get5(void) const {return x.at(4)  ;}; //get component x5
+    double get6(void) const {return x.back() ;}; //get component x6
+    double max(void)  const;
+    double min(void)  const;
+    void   put(double u0, double u1, double u2, double u3, double u4, double u5)
+    {
+      x.front() = u0;
+      x.at(1)   = u1;
+      x.at(2)   = u2;
+      x.at(3)   = u3;
+      x.at(4)   = u4;
+      x.back()  = u5;
+    }
+    void put(int n,double u){ x.at(n) = u; }
     void put(double u);
     void put(osix u);
-    double max(void);
-    double min(void);
-    void clear(void){put(0);}
-  };
+    void clear(void){ put(0); }
+    void list(const char *str1, const char *str2);
+    void list(void){list("","");}
+    void list(const char *str){list(str,"\n");}
+    void listn(void){list("","\n");}
+};
 
 //-----------------------------------------------------------------------------
 //!        | x1 |
@@ -56,10 +69,10 @@ class vectR6: public osix
     const double mag(void) const;
     double norm(void)const {return mag();}
     double r(void)   const {return mag();}
-    vectR6 mpy       (double a);
-    void   operator+=(vectR6 q);
-    void   operator-=(vectR6 q);
-    void   operator*=(double a);
+    vectR6 mpy       ( const double a );
+    void   operator+=( const vectR6 q );
+    void   operator-=( const vectR6 q );
+    void   operator*=( const double a );
 };
 
 class seqR6 
@@ -68,20 +81,20 @@ class seqR6
     long N;
     vectR6 *x;
   public:
-    seqR6(long M);                              // constructor
-    seqR6(long M, double u);                    // constructor
-    void fill(double u);                        // fill seqR1 with the value <u>
-    void clear(void){ fill(0); }                // fill seqR1 with the value 0
-    int  put(long n, vectR6 xyz);               // put a value <u> at location n in seq.
-    int  put(long n, double u1,double u2,double u3,double u4,double u5,double u6);
-    vectR6 get (long n){ return x[n].get();  }  // get a value from x at location n
-    double get1(long n){ return x[n].get1(); }  // get a value from x1 at location n
-    double get2(long n){ return x[n].get2(); }  // get a value from x2 at location n
-    double get3(long n){ return x[n].get3(); }  // get a value from x3 at location n
-    double get4(long n){ return x[n].get4(); }  // get a value from x4 at location n
-    double get5(long n){ return x[n].get5(); }  // get a value from x5 at location n
-    double get6(long n){ return x[n].get6(); }  // get a value from x6 at location n
-    long   getN(void){   return N;           }  // get N
+    seqR6(const long M);                                     // constructor
+    seqR6(const long M, const double u);                     // constructor
+    void   fill(const double u);                             // fill seqR1 with the value <u>
+    void   clear(void){ fill(0); }                           // fill seqR1 with the value 0
+    int    put( const long n, const vectR6 xyz);             // put a value <u> at location n in seq.
+    int    put( const long n, double u1,double u2,double u3,double u4,double u5,double u6);
+    vectR6 get (const long n) const { return x[n].get() ; }  // get a value from x at location n
+    double get1(const long n) const { return x[n].get1(); }  // get a value from x1 at location n
+    double get2(const long n) const { return x[n].get2(); }  // get a value from x2 at location n
+    double get3(const long n) const { return x[n].get3(); }  // get a value from x3 at location n
+    double get4(const long n) const { return x[n].get4(); }  // get a value from x4 at location n
+    double get5(const long n) const { return x[n].get5(); }  // get a value from x5 at location n
+    double get6(const long n) const { return x[n].get6(); }  // get a value from x6 at location n
+    long   getN(void)         const { return N;           }  // get N
     void list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
     void list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
          if(display) list(start,end,str1,str2,stdout);
@@ -110,17 +123,17 @@ class seqR6
 /*=====================================
  * operator overloading
  *=====================================*/
-vectR6 operator-(vectR6 p);            // -p
-vectR6 operator+(vectR6 p, vectR6 q);  // p+q
-vectR6 operator-(vectR6 p, vectR6 q);  // p-q
-vectR6 operator*(const double a, const vectR6 y);
-inline vectR6 operator*(const vectR6 y, const double a){return a*y;}
-double operator^(vectR6 p,vectR6 q);   // "dot product" of p and q
+vectR6 operator-( const vectR6 p);            // -p
+vectR6 operator+( const vectR6 p, const vectR6 q);  // p+q
+vectR6 operator-( const vectR6 p, const vectR6 q);  // p-q
+vectR6 operator*( const double a, const vectR6 y);
+inline vectR6 operator*( const vectR6 y, const double a){return a*y;}
+double operator^( const vectR6 p, const vectR6 q);   // "dot product" of p and q
 
 /*=====================================
  * functions
  *=====================================*/
-extern double pqtheta(const vectR6 p, const vectR6 q); //return radians between vectors induced by p and q in R^6
+double pqtheta(const vectR6 p, const vectR6 q); //return radians between vectors induced by p and q in R^6
 
 
 

@@ -187,7 +187,7 @@
  set_target_properties(      Lib_Cmd   PROPERTIES  PREFIX ""                                )
  target_compile_options(     Lib_Cmd   PRIVATE     ${FLAGS_COMPILE}                         )
  target_sources(             Lib_Cmd   PRIVATE     ${SOURCES_CMD}                           )
- target_include_directories( Lib_Cmd   PRIVATE     ${DIR_TOOLCHAIN_INCLUDES} ..             )
+ target_include_directories( Lib_Cmd   PRIVATE     ${DIR_TOOLCHAIN_INCLUDES} ${DIR_EIGEN} .. )
                                                                                             
  add_library(                Lib_DSP   STATIC                                               )
  set_target_properties(      Lib_DSP   PROPERTIES PREFIX ""                                 )

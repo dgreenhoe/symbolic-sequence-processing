@@ -9,7 +9,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<math.h>
-#include <Eigen/Dense>
+#include <Eigen/Dense>  // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=89325
 #include "r1.h"
 #include "r6.h"
 
@@ -21,34 +21,55 @@
 //-----------------------------------------------------------------------------
 osix::osix(void)
 {
-  int i; 
-  for(i=0;i<6;i++)x[i]=0;
+  x.at(0) = 0.0;
+  x.at(1) = 0.0;
+  x.at(2) = 0.0;
+  x.at(3) = 0.0;
+  x.at(4) = 0.0;
+  x.at(5) = 0.0;
 }
 
-osix::osix(double u0, double u1, double u2, double u3, double u4, double u5)
+osix::osix(const double u0, const double u1, const double u2, const double u3, const double u4, const double u5)
 {
-  x[0]=u0;x[1]=u1;x[2]=u2;x[3]=u3;x[4]=u4;x[5]=u5;
+  x.at(0) = u0;
+  x.at(1) = u1;
+  x.at(2) = u2;
+  x.at(3) = u3;
+  x.at(4) = u4;
+  x.at(5) = u5;
 }
    
-osix::osix(double u)
+osix::osix(const double u)
 {
-  int i; 
-  for(i=0;i<6;i++)x[i]=u;
+  x.at(0) = u;
+  x.at(1) = u;
+  x.at(2) = u;
+  x.at(3) = u;
+  x.at(4) = u;
+  x.at(5) = u;
 }
 
 //-----------------------------------------------------------------------------
 //! \brief osix put member functions
 //-----------------------------------------------------------------------------
-void osix::put(double u)
+void osix::put(const double u)
 {
-  int i; 
-  for(i=0;i<6;i++)x[i]=u;
+  x.at(0) = u;
+  x.at(1) = u;
+  x.at(2) = u;
+  x.at(3) = u;
+  x.at(4) = u;
+  x.at(5) = u;
 }
 
-void osix::put(osix u)
+void osix::put(const osix u)
 {
-  int i; 
-  for(i=0;i<6;i++)x[i]=u.get(i);
+  x.at(0) = u.get(0);
+  x.at(1) = u.get(1);
+  x.at(2) = u.get(2);
+  x.at(3) = u.get(3);
+  x.at(4) = u.get(4);
+  x.at(5) = u.get(5);
 } 
 
 //-----------------------------------------------------------------------------
@@ -57,16 +78,21 @@ void osix::put(osix u)
 osix osix::get(void) const
 {
   osix u;
-  int i;
-  for(i=0;i<6;i++)u.put(i,get(i));
+  u.put( get(0) );
+  u.put( get(1) );
+  u.put( get(2) );
+  u.put( get(3) );
+  u.put( get(4) );
+  u.put( get(5) );
   return u;
 }
 
 //-----------------------------------------------------------------------------
 //! \brief return the minimum element of the 6 tupple
 //-----------------------------------------------------------------------------
-double osix::min(void)
+double osix::min(void) const
 {
+//const Eigen::Map< const Eigen::Vector3d > a( getdata() );
   int i;
   double u,min;
   min=fabs(x[0]);
@@ -80,7 +106,7 @@ double osix::min(void)
 //-----------------------------------------------------------------------------
 //! \brief return the maximum element of the 6 tupple
 //-----------------------------------------------------------------------------
-double osix::max(void)
+double osix::max(void) const
 {
   int i;
   double u,max;
@@ -138,7 +164,7 @@ const double vectR6::mag(void) const
 //-----------------------------------------------------------------------------
 //! \brief add a scalar
 //-----------------------------------------------------------------------------
-vectR6 vectR6::mpy(double a)
+vectR6 vectR6::mpy(const double a)
 {
   int i;
   vectR6 y;
@@ -149,7 +175,7 @@ vectR6 vectR6::mpy(double a)
 //-----------------------------------------------------------------------------
 //! \brief operator: +=
 //-----------------------------------------------------------------------------
-void vectR6::operator+=(vectR6 q)
+void vectR6::operator+=(const vectR6 q)
 {
   vectR6  p=get();
   p = p+q;
@@ -159,7 +185,7 @@ void vectR6::operator+=(vectR6 q)
 //-----------------------------------------------------------------------------
 //! \brief operator: -=
 //-----------------------------------------------------------------------------
-void vectR6::operator-=(vectR6 q)
+void vectR6::operator-=(const vectR6 q)
 {
   vectR6  p=get();
   p = p-q;
@@ -169,7 +195,7 @@ void vectR6::operator-=(vectR6 q)
 //-----------------------------------------------------------------------------
 //! \brief operator: -=
 //-----------------------------------------------------------------------------
-void vectR6::operator*=(double a)
+void vectR6::operator*=(const double a)
 {
   vectR6  p=get();
   p = a*p;
@@ -191,7 +217,7 @@ vectR6 operator*(const double a, const vectR6 y)
 //-----------------------------------------------------------------------------
 //! \brief operator: dot product of p and q
 //-----------------------------------------------------------------------------
-double operator^(vectR6 p,vectR6 q)
+double operator^(const vectR6 p, const vectR6 q)
 {
   double sum=0;
   int i;
@@ -205,7 +231,7 @@ double operator^(vectR6 p,vectR6 q)
 //-----------------------------------------------------------------------------
 //! \brief constructor initializing seqR1 to 0
 //-----------------------------------------------------------------------------
-seqR6::seqR6(long M)
+seqR6::seqR6(const long M)
 {
   //long n;
   //N = M;
@@ -216,7 +242,7 @@ seqR6::seqR6(long M)
 //-----------------------------------------------------------------------------
 //! \brief constructor initializing seqR1 to <u>
 //-----------------------------------------------------------------------------
-seqR6::seqR6(long M,double u)
+seqR6::seqR6(const long M, const double u)
 {
   long n;
   N=M;
@@ -227,7 +253,7 @@ seqR6::seqR6(long M,double u)
 //-----------------------------------------------------------------------------
 //! \brief fill the seqR1 with a value <u>
 //-----------------------------------------------------------------------------
-void seqR6::fill(double u)
+void seqR6::fill(const double u)
 {
   long n;
   for(n=0; n<N; n++)x[n].put(u);
@@ -236,7 +262,7 @@ void seqR6::fill(double u)
 //-----------------------------------------------------------------------------
 //! \brief put a single value u=(u1,u2,u3,u4,u5,u6) into the seqR1 x at location n
 //-----------------------------------------------------------------------------
-int seqR6::put(long n, double u1,double u2,double u3,double u4,double u5,double u6)
+int seqR6::put(const long n, const double u1, const double u2, const double u3, const double u4, const double u5, const double u6)
 {
   int retval=0;
   if(n<N)x[n].put(u1,u2,u3,u4,u5,u6);
@@ -247,7 +273,7 @@ int seqR6::put(long n, double u1,double u2,double u3,double u4,double u5,double 
   return retval;
 }
 
-int seqR6::put(long n, vectR6 u)
+int seqR6::put(const long n, const vectR6 u)
 {
   int retval=0;
   if(n<N)x[n].put(u);

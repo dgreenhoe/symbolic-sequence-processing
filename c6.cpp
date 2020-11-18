@@ -32,7 +32,7 @@ csix::csix(void){
 //  z[0]=u0;z[1]=u1;z[2]=u2;z[3]=u3;z[4]=u4;z[5]=u5;
 //  }
    
-csix::csix(double ur,double ui){
+csix::csix(const double ur, const double ui){
   int i; 
   complex p(ur,ui);
   for(i=0;i<6;i++)z[i]=p;
@@ -42,7 +42,7 @@ csix::csix(double ur,double ui){
 /*-------------------------------------------------------------------------
  * csix put member functions
  *-------------------------------------------------------------------------*/
-void csix::put(double ur, double ui)
+void csix::put(const double ur, const double ui)
 {
   int i; 
   complex p(ur,ui);
@@ -127,7 +127,7 @@ double vectC6::mag(void) const
 /*-------------------------------------------------------------------------
  * operator: +=
  *-------------------------------------------------------------------------*/
-void vectC6::operator+=(vectC6 q){
+void vectC6::operator+=(const vectC6 q){
   vectC6  p=get();
   p = p+q;
   put(p);
@@ -136,7 +136,7 @@ void vectC6::operator+=(vectC6 q){
 /*-------------------------------------------------------------------------
  * operator: -=
  *-------------------------------------------------------------------------*/
-void vectC6::operator-=(vectC6 q){
+void vectC6::operator-=(const vectC6 q){
   vectC6  p=get();
   p = p-q;
   put(p);
@@ -145,7 +145,7 @@ void vectC6::operator-=(vectC6 q){
 /*-------------------------------------------------------------------------
  * operator: -=
  *-------------------------------------------------------------------------*/
-void vectC6::operator*=(double a){
+void vectC6::operator*=(const double a){
   vectC6  p=get();
   p = a*p;
   put(p);
@@ -193,7 +193,8 @@ vectC6 operator*(const complex z, const vectR6 x){
 /*-------------------------------------------------------------------------
  * operator: dot product of p and q
  *-------------------------------------------------------------------------*/
-double operator^(vectC6 p,vectC6 q){
+double operator^( const vectC6 p, const vectC6 q)
+{
   complex sum(0,0);
   complex pp,qq,qqc;
   int i;
@@ -204,7 +205,7 @@ double operator^(vectC6 p,vectC6 q){
     sum += (pp*(~qq));
     }
   return sum.mag();
-  }
+}
 
 
 /*=====================================
@@ -213,12 +214,13 @@ double operator^(vectC6 p,vectC6 q){
 /*-------------------------------------------------------------------------
  * constructor initializing seqR1 to 0
  *-------------------------------------------------------------------------*/
-seqC6::seqC6(long M){
+seqC6::seqC6( const long M )
+{
   long n;
   N=M;
   x = (vectC6 *)malloc(N*sizeof(vectC6));
   for(n=0; n<N; n++)x[n].clear();
-  }
+}
 
 /*-------------------------------------------------------------------------
  * constructor initializing seqR1 to <u>
@@ -233,10 +235,11 @@ seqC6::seqC6(long M){
 /*-------------------------------------------------------------------------
  * fill the seqR1 with a value <u>
  *-------------------------------------------------------------------------*/
-void seqC6::fill(double ur,double ui){
+void seqC6::fill( const double ur, const double ui )
+{
   long n;
   for(n=0; n<N; n++)x[n].put(ur,ui);
-  }
+}
 
 /*-------------------------------------------------------------------------
  * put a single value u=(u1,u2,u3,u4,u5,u6) into the seqR1 x at location n
@@ -251,7 +254,7 @@ void seqC6::fill(double ur,double ui){
 //  return retval;
 //  }
 
-int seqC6::put(long n, vectC6 u)
+int seqC6::put( const long n, const vectC6 u)
 {
   int retval=0;
   if(n<N)x[n].put(u);
@@ -294,7 +297,7 @@ void seqC6::list(const long start, const long end, const char* str1, const char 
 /*-------------------------------------------------------------------------
  * operator: return p+q
  *-------------------------------------------------------------------------*/
-vectC6 operator+(vectC6 p, vectC6 q){
+vectC6 operator+( const vectC6 p, const vectC6 q){
   int i;
   vectC6 y;
   for(i=0;i<6;i++)y.puti(i,p.get(i)+q.get(i));
@@ -304,22 +307,24 @@ vectC6 operator+(vectC6 p, vectC6 q){
 /*-------------------------------------------------------------------------
  * operator: return p-q
  *-------------------------------------------------------------------------*/
-vectC6 operator-(vectC6 p, vectC6 q){
+vectC6 operator-( const vectC6 p, const vectC6 q )
+{
   int i;
   vectC6 y;
   for(i=0;i<6;i++)y.puti(i,p.get(i)-q.get(i));
   return y;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * operator: return -p
  *-------------------------------------------------------------------------*/
-vectC6 operator-(vectC6 p){
+vectC6 operator-( const vectC6 p )
+{
   vectC6 q;
   int i;
   for(i=0;i<6;i++)q.puti(i,-p.get(i));
   return q;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * return the angle theta in radians between the two vectors induced by 
@@ -327,7 +332,8 @@ vectC6 operator-(vectC6 p){
  * on SUCCESS return theta in the half open interval [0:PI)
  * on ERROR   return negative integer
  *-------------------------------------------------------------------------*/
-double pqtheta(vectC6 p, vectC6 q){
+double pqtheta( const vectC6 p, const vectC6 q )
+{
   double rp=p.r(), rq=q.r();
   if(rp==0) return -1;
   if(rq==0) return -2;
@@ -336,12 +342,13 @@ double pqtheta(vectC6 p, vectC6 q){
   if(y<-1)  return -4;
   double theta = acos(y);
   return theta;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * compute magnitude of C^1 sequence
  *-------------------------------------------------------------------------*/
-int mag(seqC6 *xC6, seqR1 *ymag){
+int mag( seqC6 *xC6, seqR1 *ymag)
+{
   long Nx=xC6->getN();
   long Ny=ymag->getN();
   long N=(Nx<Ny)?Nx:Ny;
@@ -360,7 +367,7 @@ int mag(seqC6 *xC6, seqR1 *ymag){
     ymag->put(n,vmag);
     }
   return retval;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * z = x * y where * represents convolution
