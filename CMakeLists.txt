@@ -66,8 +66,9 @@
  set( SOURCES_TARGET
       main.cpp
       tests/TestSuiteMisc.cpp
-      tests/TestSuiteTuples.cpp
-      tests/TestSuiteVectRn.cpp
+      tests/TestSuiteR2.cpp
+      tests/TestSuiteR3.cpp
+      tests/TestSuiteR6.cpp
       tests/TestSuiteLarc.cpp
     )
 
