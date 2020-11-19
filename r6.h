@@ -18,6 +18,7 @@ class osix
     osix(double u0, double u1, double u2, double u3, double u4, double u5);
     osix(double u);
     const double* getdata(void) const { return x.data(); }
+    double* getdataa(void){ return x.data(); }
     osix   get(void) const ;
     double get(int n) const {return x.at(n)  ;}
     double get1(void) const {return x.front();}; //get component x1

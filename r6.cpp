@@ -12,7 +12,7 @@
 #include <Eigen/Dense>  // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=89325
 #include "r1.h"
 #include "r6.h"
-
+typedef Eigen::Matrix< double, 6, 1 > Vector6d;
 //=====================================
 //! \brief osix
 //=====================================
@@ -92,15 +92,9 @@ osix osix::get(void) const
 //-----------------------------------------------------------------------------
 double osix::min(void) const
 {
-//const Eigen::Map< const Eigen::Vector3d > a( getdata() );
-  int i;
-  double u,min;
-  min=fabs(x[0]);
-  for(i=1;i<6;i++){
-    u=fabs(x[i]);
-    if(u<min) min=u;
-    }
-  return min;
+  const Eigen::Map< const Vector6d > a( getdata() );
+  const double minVal = a.minCoeff();
+  return minVal;
 }
 
 //-----------------------------------------------------------------------------
@@ -108,14 +102,9 @@ double osix::min(void) const
 //-----------------------------------------------------------------------------
 double osix::max(void) const
 {
-  int i;
-  double u,max;
-  max=fabs(x[0]);
-  for(i=1;i<6;i++){
-    u=fabs(x[i]);
-    if(u>max) max=u;
-    }
-  return max;
+  const Eigen::Map< const Vector6d > a( getdata() );
+  const double maxVal = a.maxCoeff();
+  return maxVal;
 }
 
 //-----------------------------------------------------------------------------
@@ -124,13 +113,12 @@ double osix::max(void) const
 void osix::list(const char *str1, const char *str2)
 {
   int i;
-  if(strlen(str1)!=0)printf("%s",str1);
+  if(strlen(str1)!=0) printf("%s",str1);
   putchar('(');
-  for(i=0;i<5;i++)printf("%9.6lf,",get(i));
-  printf("%9.6lf)",get(5));
-  if(strlen(str2)!=0)printf("%s",str2);
+  for( i=0; i<5; i++ ) printf("%9.6lf,", get(i));
+  printf("%9.6lf)", get(5) );
+  if(strlen(str2)!=0) printf("%s",str2);
 }
-
 
 //=====================================
 //! \brief vectR6 functions
@@ -142,7 +130,7 @@ vectR6 vectR6::get(void) const
 {
   vectR6 u;
   int i;
-  for(i=0;i<6;i++)u.put(i,get(i));
+  for( i=0; i<6; i++ ) u.put( i, get(i) );
   return u;
 }
 
@@ -151,25 +139,24 @@ vectR6 vectR6::get(void) const
 //-----------------------------------------------------------------------------
 const double vectR6::mag(void) const
 {
-  int i;
-  double u;
-  double sum=0;
-  for(i=0;i<6;i++){
-    u=get(i);
-    sum += u*u;
-    }
-  return sqrt(sum);
+  const Eigen::Map< const Vector6d > a( getdata() );
+  return a.norm();
 }
 
 //-----------------------------------------------------------------------------
-//! \brief add a scalar
+//! \brief Multiply the vector by a scalar a
 //-----------------------------------------------------------------------------
 vectR6 vectR6::mpy(const double a)
 {
-  int i;
-  vectR6 y;
-  for(i=0;i<6;i++)y.put(get(i)*a);
-  return y;
+  vectR6 w;
+  const Eigen::Map< const Vector6d > vv( getdata() );
+  Eigen::Map< Vector6d > ww( w.getdataa() );
+  ww = a * vv;
+  return w;
+  //int i;
+  //vectR6 y;
+  //for(i=0;i<6;i++)y.put(i, get(i)*a);
+  //return y;
 }
 
 //-----------------------------------------------------------------------------

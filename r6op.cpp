@@ -38,15 +38,16 @@ void mag(seqR6 *x, seqR1 *y){
     }
   }
 
-/*-------------------------------------------------------------------------
- * z = x * y where * represents convolution
- * Let  <*x> be a length Nx sequence over R^6 
- * and  <*y> be a length Ny sequence over R^1.
- * Then <*z> is a length Nz=Nx+Ny-1 sequence over R^6
- *                      m=n
- * z[n] = x[n] * y[n] = SUM   x[m]*y[n-m]
- *                      m=0
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Perform convolution on sequences x and y over R6
+//! \details z = x * y where * represents convolution
+//! Let  <*x> be a length Nx sequence over R^6 
+//! and  <*y> be a length Ny sequence over R^1.
+//! Then <*z> is a length Nz=Nx+Ny-1 sequence over R^6
+//!                      m=n
+//! z[n] = x[n] * y[n] = SUM   x[m]*y[n-m]
+//!                      m=0
+//-----------------------------------------------------------------------------
 void convolve(seqR6 *x, seqR1 *y, seqR6 *z, int showcount){
   const long Nx=x->getN();
   const long Ny=y->getN();
