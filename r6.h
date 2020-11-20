@@ -82,20 +82,20 @@ class seqR6
     long N;
     vectR6 *x;
   public:
-    seqR6(const long M);                                     // constructor
-    seqR6(const long M, const double u);                     // constructor
-    void   fill(const double u);                             // fill seqR1 with the value <u>
-    void   clear(void){ fill(0); }                           // fill seqR1 with the value 0
-    int    put( const long n, const vectR6 xyz);             // put a value <u> at location n in seq.
+    seqR6(const long M);
+    seqR6(const long M, const double u);
+    void   fill(const double u);
+    void   clear(void);
+    int    put( const long n, const vectR6 xyz);
     int    put( const long n, double u1,double u2,double u3,double u4,double u5,double u6);
-    vectR6 get (const long n) const { return x[n].get() ; }  // get a value from x at location n
-    double get1(const long n) const { return x[n].get1(); }  // get a value from x1 at location n
-    double get2(const long n) const { return x[n].get2(); }  // get a value from x2 at location n
-    double get3(const long n) const { return x[n].get3(); }  // get a value from x3 at location n
-    double get4(const long n) const { return x[n].get4(); }  // get a value from x4 at location n
-    double get5(const long n) const { return x[n].get5(); }  // get a value from x5 at location n
-    double get6(const long n) const { return x[n].get6(); }  // get a value from x6 at location n
-    long   getN(void)         const { return N;           }  // get N
+    vectR6 get (const long n) const { return x[n].get() ; }  //! \brief get a value from x at location n
+    double get1(const long n) const { return x[n].get1(); }  //! \brief get a value from x1 at location n
+    double get2(const long n) const { return x[n].get2(); }  //! \brief get a value from x2 at location n
+    double get3(const long n) const { return x[n].get3(); }  //! \brief get a value from x3 at location n
+    double get4(const long n) const { return x[n].get4(); }  //! \brief get a value from x4 at location n
+    double get5(const long n) const { return x[n].get5(); }  //! \brief get a value from x5 at location n
+    double get6(const long n) const { return x[n].get6(); }  //! \brief get a value from x6 at location n
+    long   getN(void)         const { return N;           }  //! \brief get N
     void list(const long start, const long end, const char *str1, const char *str2, FILE *ptr);
     void list(const long start, const long end, const char *str1, const char *str2, int display, FILE *fptr){
          if(display) list(start,end,str1,str2,stdout);
