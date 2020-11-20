@@ -251,6 +251,24 @@ TEST( TestSuiteR6, plusequal )
 }
 
 //-----------------------------------------------------------------------------
+//! \brief Test R6 subtract equals operation
+//-----------------------------------------------------------------------------
+TEST( TestSuiteR6, subequal )
+{
+  const vectR6 x( 1, 2,     3,     4,     5,     6     ); 
+  const vectR6 y( 1, 1./2., 1./3., 1./4., 1./5., 1./6. );
+  vectR6 v;
+  v  = x;
+  v -= y;
+  ASSERT_EQ( v.get1(), 1 - 1./1. );
+  ASSERT_EQ( v.get2(), 2 - 1./2. );
+  ASSERT_EQ( v.get3(), 3 - 1./3. );
+  ASSERT_EQ( v.get4(), 4 - 1./4. );
+  ASSERT_EQ( v.get5(), 5 - 1./5. );
+  ASSERT_EQ( v.get6(), 6 - 1./6. );
+}
+
+//-----------------------------------------------------------------------------
 //! \brief Test R6 subtract equals operations
 //-----------------------------------------------------------------------------
 TEST( TestSuiteR6, equal4 )
@@ -294,12 +312,37 @@ TEST( TestSuiteR6, mult )
   ASSERT_EQ( y.get5(),  2 * ( 5 + 1./5. - 1./5. + 1./5.  - 1./5. ) );
   ASSERT_EQ( y.get6(),  2 * ( 6 + 1./6. - 1./6. + 1./6.  - 1./6. ) );
 
-  v*=-3;
-  ASSERT_EQ( v.get1(), -3 * ( 1 + 1./1. - 1./1. + 1./1.  - 1./1. ) );
-  ASSERT_EQ( v.get2(), -3 * ( 2 + 1./2. - 1./2. + 1./2.  - 1./2. ) );
-  ASSERT_EQ( v.get3(), -3 * ( 3 + 1./3. - 1./3. + 1./3.  - 1./3. ) );
-  ASSERT_EQ( v.get4(), -3 * ( 4 + 1./4. - 1./4. + 1./4.  - 1./4. ) );
-  ASSERT_EQ( v.get5(), -3 * ( 5 + 1./5. - 1./5. + 1./5.  - 1./5. ) );
-  ASSERT_EQ( v.get6(), -3 * ( 6 + 1./6. - 1./6. + 1./6.  - 1./6. ) );
+  v*=-M_PI;
+  ASSERT_DOUBLE_EQ( v.get1(), -M_PI * ( 1 + 1./1. - 1./1. + 1./1.  - 1./1. ) );
+  ASSERT_DOUBLE_EQ( v.get2(), -M_PI * ( 2 + 1./2. - 1./2. + 1./2.  - 1./2. ) );
+  ASSERT_DOUBLE_EQ( v.get3(), -M_PI * ( 3 + 1./3. - 1./3. + 1./3.  - 1./3. ) );
+  ASSERT_DOUBLE_EQ( v.get4(), -M_PI * ( 4 + 1./4. - 1./4. + 1./4.  - 1./4. ) );
+  ASSERT_DOUBLE_EQ( v.get5(), -M_PI * ( 5 + 1./5. - 1./5. + 1./5.  - 1./5. ) );
+  ASSERT_DOUBLE_EQ( v.get6(), -M_PI * ( 6 + 1./6. - 1./6. + 1./6.  - 1./6. ) );
+}
+
+//-----------------------------------------------------------------------------
+//! \brief Test R6 dot product operation
+//-----------------------------------------------------------------------------
+TEST( TestSuiteR6, dotprod )
+{
+  vectR6 x; 
+  vectR6 y;
+  double dotProd;
+
+  x.put( 1, 2,     3,     4,     5,     6     ); 
+  y.put( 1, 1./2., 1./3., 1./4., 1./5., 1./6. );
+  dotProd = x^y;
+  ASSERT_DOUBLE_EQ( dotProd, 1.0 + 1.0 + 1.0 + 1.0 + 1.0 + 1.0 );
+  
+  x.put( sqrt(2), sqrt(3), sqrt(5), sqrt(7), sqrt(11), sqrt(13) ); 
+  y.put( sqrt(2), sqrt(3), sqrt(5), sqrt(7), sqrt(11), sqrt(13) ); 
+  dotProd = x^y;
+  ASSERT_DOUBLE_EQ( dotProd, 2 + 3 + 5 + 7 + 11 + 13 );
+  
+  x.put( sqrt(2), sqrt(3), sqrt(5), sqrt(7), sqrt(11), sqrt(13) ); 
+  y.put(-sqrt(2),-sqrt(3),-sqrt(5),-sqrt(7),-sqrt(11),-sqrt(13) ); 
+  dotProd = x^y;
+  ASSERT_DOUBLE_EQ( dotProd, -(2 + 3 + 5 + 7 + 11 + 13) );
 }
 

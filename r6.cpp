@@ -153,10 +153,6 @@ vectR6 vectR6::mpy(const double a)
   Eigen::Map< Vector6d > ww( w.getdataa() );
   ww = a * vv;
   return w;
-  //int i;
-  //vectR6 y;
-  //for(i=0;i<6;i++)y.put(i, get(i)*a);
-  //return y;
 }
 
 //-----------------------------------------------------------------------------
@@ -164,9 +160,9 @@ vectR6 vectR6::mpy(const double a)
 //-----------------------------------------------------------------------------
 void vectR6::operator+=(const vectR6 q)
 {
-  vectR6  p=get();
-  p = p+q;
-  put(p);
+  Eigen::Map< Vector6d > pp( getdataa() );
+  const Eigen::Map< const Vector6d > qq( q.getdata() );
+  pp = pp + qq;
 }
 
 //-----------------------------------------------------------------------------
@@ -174,9 +170,9 @@ void vectR6::operator+=(const vectR6 q)
 //-----------------------------------------------------------------------------
 void vectR6::operator-=(const vectR6 q)
 {
-  vectR6  p=get();
-  p = p-q;
-  put(p);
+  Eigen::Map< Vector6d > pp( getdataa() );
+  const Eigen::Map< const Vector6d > qq( q.getdata() );
+  pp = pp - qq;
 }
 
 //-----------------------------------------------------------------------------
@@ -191,14 +187,15 @@ void vectR6::operator*=(const double a)
 
 
 //-----------------------------------------------------------------------------
-//! \brief operator: a*y
+//! \brief operator: a*x
 //-----------------------------------------------------------------------------
-vectR6 operator*(const double a, const vectR6 y)
+vectR6 operator*(const double a, const vectR6 x)
 {
-  vectR6 p;
-  int i;
-  for(i=0; i<6; i++) p.put( i, a*y.get(i) );
-  return p;
+  vectR6 y;
+  const Eigen::Map< const Vector6d > xx( x.getdata() );
+  Eigen::Map< Vector6d > yy( y.getdataa() );
+  yy = a * xx;
+  return y;
 }
 
 //-----------------------------------------------------------------------------
@@ -206,10 +203,10 @@ vectR6 operator*(const double a, const vectR6 y)
 //-----------------------------------------------------------------------------
 double operator^(const vectR6 p, const vectR6 q)
 {
-  double sum=0;
-  int i;
-  for(i=0;i<6;i++)sum += p.get(i)*q.get(i);
-  return sum;
+  const  Eigen::Map< const Vector6d > pp( p.getdata() );
+  const  Eigen::Map< const Vector6d > qq( q.getdata() );
+  double innerProduct = pp.adjoint() * qq;
+  return innerProduct;
 }
 
 //=====================================
@@ -220,10 +217,10 @@ double operator^(const vectR6 p, const vectR6 q)
 //-----------------------------------------------------------------------------
 seqR6::seqR6(const long M)
 {
-  //long n;
-  //N = M;
-  //x = (vectR6 *)malloc( N * sizeof(vectR6) );
-  //for( n=0; n<N; n++ ) x[n].clear();
+  long n;
+  N = M;
+  x = (vectR6 *)malloc( N * sizeof(vectR6) );
+  for( n=0; n<N; n++ ) x[n].clear();
 }
 
 //-----------------------------------------------------------------------------
@@ -308,7 +305,7 @@ void seqR6::list1(const long start, const long end, const char *str1, const char
 }
 
 //=====================================
-//! \brief external operations
+// External operations
 //=====================================
 //-----------------------------------------------------------------------------
 //! \brief operator: return p+q
@@ -362,28 +359,3 @@ double pqtheta(const vectR6 p, const vectR6 q)
   theta = acos(y);
   return theta;
 }
-
-//=====================================
-//! \brief external operations
-//=====================================
-//-----------------------------------------------------------------------------
-//! \brief compute magnitude of R^1 sequence
-//-----------------------------------------------------------------------------
-//int mag(seqR6 *xR6, seqR1 *ymag){
-//  const long Nx=xR6->getN();
-//  const long Ny=ymag->getN();
-//  long n;
-//  int retval=0;
-//  vectR6 u;
-//  ymag->clear();
-//  if(Nx!=Ny){
-//    fprintf(stderr,"\nERROR using y=mag(xR6): lengths of xR6 (%ld) and ymag (%ld) differ.\n",Nx,Ny);
-//    exit(EXIT_FAILURE);
-//    }
-//  for(n=0;n<Nx;n++){
-//    u=xR6->get(n);
-//    ymag->put(n,u.mag());
-//    }
-//  return retval;
-//  }
-
