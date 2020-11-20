@@ -310,33 +310,38 @@ void seqR6::list1(const long start, const long end, const char *str1, const char
 //-----------------------------------------------------------------------------
 //! \brief operator: return p+q
 //-----------------------------------------------------------------------------
-vectR6 operator+(vectR6 p, vectR6 q)
+vectR6 operator+(const vectR6 p, const vectR6 q)
 {
-  int i;
   vectR6 y;
-  for(i=0;i<6;i++)y.put(i,p.get(i)+q.get(i));
+  Eigen::Map< Vector6d > yy( y.getdataa() );
+  const Eigen::Map< const Vector6d > pp( p.getdata() );
+  const Eigen::Map< const Vector6d > qq( q.getdata() );
+  yy = pp + qq;
   return y;
 }
 
 //-----------------------------------------------------------------------------
 //! \brief operator: return p-q
 //-----------------------------------------------------------------------------
-vectR6 operator-(vectR6 p, vectR6 q)
+vectR6 operator-(const vectR6 p, const vectR6 q)
 {
-  int i;
   vectR6 y;
-  for(i=0;i<6;i++)y.put(i,p.get(i)-q.get(i));
+  Eigen::Map< Vector6d > yy( y.getdataa() );
+  const Eigen::Map< const Vector6d > pp( p.getdata() );
+  const Eigen::Map< const Vector6d > qq( q.getdata() );
+  yy = pp - qq;
   return y;
 }
 
 //-----------------------------------------------------------------------------
 //! \brief operator: return -p
 //-----------------------------------------------------------------------------
-vectR6 operator-(vectR6 p)
+vectR6 operator-(const vectR6 p)
 {
   vectR6 q;
-  int i;
-  for(i=0;i<6;i++)q.put(i,-p.get(i));
+  Eigen::Map< Vector6d > qq( q.getdataa() );
+  const Eigen::Map< const Vector6d > pp( p.getdata() );
+  qq = - pp;
   return q;
 }
 
@@ -351,11 +356,27 @@ double pqtheta(const vectR6 p, const vectR6 q)
   const double rp = p.r();
   const double rq = q.r();
   double y,theta;
-  if(rp==0) return -1;
-  if(rq==0) return -2;
+  if(rp==0) 
+  {
+    fprintf(stderr,"\nERROR using pqtheta(vectR6 p, vectR6 q): |p| = %lf\n", rp);
+    exit(EXIT_FAILURE);
+  }
+  if(rq==0)
+  {
+    fprintf(stderr,"\nERROR using pqtheta(vectR6 p, vectR6 q): |q| = %lf\n", rq);
+    exit(EXIT_FAILURE);
+  }
   y = (p^q)/(rp*rq);
-  if(y>+1)  {fprintf(stderr,"\nERROR using pqtheta(vectR6 p, vectR6 q): (p^q)/(rp*rq)=%lf>+1\n",y); exit(EXIT_FAILURE);}
-  if(y<-1)  {fprintf(stderr,"\nERROR using pqtheta(vectR6 p, vectR6 q): (p^q)/(rp*rq)=%lf<-1\n",y); exit(EXIT_FAILURE);}
+  if(y>+1)  
+  {
+    fprintf(stderr,"\nERROR using pqtheta(vectR6 p, vectR6 q): (p^q)/(rp*rq)=%lf>+1\n",y); 
+    exit(EXIT_FAILURE);
+  }
+  if(y<-1)  
+  {
+    fprintf(stderr,"\nERROR using pqtheta(vectR6 p, vectR6 q): (p^q)/(rp*rq)=%lf<-1\n",y); 
+    exit(EXIT_FAILURE);
+  }
   theta = acos(y);
   return theta;
 }

@@ -202,9 +202,9 @@ TEST( TestSuiteR6, mpy )
 TEST( TestSuiteR6, add )
 {
   vectR6 x,y,z;
-  x.put(1,2,3,4,5,6); 
-  y.put(1,1./2.,1./3.,1./4.,1./5.,1./6.);
-  z=x+y;
+  x.put( 1, 2    , 3    , 4     , 5    , 6     ); 
+  y.put( 1, 1./2., 1./3., 1./4. , 1./5., 1./6. );
+  z = x + y;
   ASSERT_EQ( z.get1(), 1 + 1./1. );
   ASSERT_EQ( z.get2(), 2 + 1./2. );
   ASSERT_EQ( z.get3(), 3 + 1./3. );
@@ -216,7 +216,7 @@ TEST( TestSuiteR6, add )
 //-----------------------------------------------------------------------------
 //! \brief Test R6 subtract operation
 //-----------------------------------------------------------------------------
-TEST( TestSuiteR6, equal3 )
+TEST( TestSuiteR6, sub )
 {
   vectR6 x,y,v;
   x.put(1,2,3,4,5,6); 
@@ -228,6 +228,22 @@ TEST( TestSuiteR6, equal3 )
   ASSERT_EQ( v.get4(), 4 + 1./4. - 1./4. );
   ASSERT_EQ( v.get5(), 5 + 1./5. - 1./5. );
   ASSERT_EQ( v.get6(), 6 + 1./6. - 1./6. );
+}
+
+//-----------------------------------------------------------------------------
+//! \brief Test R6 negation operation
+//-----------------------------------------------------------------------------
+TEST( TestSuiteR6, neg )
+{
+  vectR6 x,y;
+  x.put(1,1./2.,1./3.,1./4.,1./5.,1./6.);
+  y = -x;
+  ASSERT_EQ( y.get1(), -1./1. );
+  ASSERT_EQ( y.get2(), -1./2. );
+  ASSERT_EQ( y.get3(), -1./3. );
+  ASSERT_EQ( y.get4(), -1./4. );
+  ASSERT_EQ( y.get5(), -1./5. );
+  ASSERT_EQ( y.get6(), -1./6. );
 }
 
 //-----------------------------------------------------------------------------
@@ -346,3 +362,18 @@ TEST( TestSuiteR6, dotprod )
   ASSERT_DOUBLE_EQ( dotProd, -(2 + 3 + 5 + 7 + 11 + 13) );
 }
 
+//-----------------------------------------------------------------------------
+//! \brief Test otriple angle operation
+//-----------------------------------------------------------------------------
+TEST( TestSuiteR6, angle )
+{
+  vectR6 x, y;
+  x.put( 1, 0, 0, 0, 0, 0 ); y.put( 0, 3, 0, 0, 0, 0 ); ASSERT_DOUBLE_EQ( pqtheta(x,y)/M_PI*180., 90.0 );
+  x.put( 1, 0, 0, 0, 0, 0 ); y.put( 0, 0, 5, 0, 0, 0 ); ASSERT_DOUBLE_EQ( pqtheta(x,y)/M_PI*180., 90.0 );
+  x.put( 0, 3, 0, 0, 0, 0 ); y.put( 1, 0, 0, 0, 0, 0 ); ASSERT_DOUBLE_EQ( pqtheta(x,y)/M_PI*180., 90.0 );
+  x.put( 0, 3, 0, 0, 0, 0 ); y.put( 0, 0, 7, 0, 0, 0 ); ASSERT_DOUBLE_EQ( pqtheta(x,y)/M_PI*180., 90.0 );
+  x.put( 0, 0, 7, 0, 0, 0 ); y.put( 2, 0, 0, 0, 0, 0 ); ASSERT_DOUBLE_EQ( pqtheta(x,y)/M_PI*180., 90.0 );
+  x.put( 0, 0, 7, 0, 0, 0 ); y.put( 0, 5, 0, 0, 0, 0 ); ASSERT_DOUBLE_EQ( pqtheta(x,y)/M_PI*180., 90.0 );
+  x.put( 1, 2, 0, 0, 0, 0 ); y.put(-2, 1, 0, 0, 0, 0 ); ASSERT_DOUBLE_EQ( pqtheta(x,y)/M_PI*180., 90.0 );
+  x.put( 0,-3,-5, 0, 0, 0 ); y.put( 0, 5,-3, 0, 0, 0 ); ASSERT_DOUBLE_EQ( pqtheta(x,y)/M_PI*180., 90.0 );
+}
