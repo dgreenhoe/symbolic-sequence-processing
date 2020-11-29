@@ -10,10 +10,10 @@
 #include <string.h>
 #include <math.h>
 #include <Eigen/Dense>  // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=89325
-//#include "r1.h"
 #include "r1.h"
 #include "r4.h"
 typedef Eigen::Matrix< double, 4, 1 > Vector4d;
+
 //=====================================
 // oquad
 //=====================================
@@ -44,7 +44,6 @@ oquad::oquad(double u)
   xx.at(3) = u;
 }
 
-
 //-----------------------------------------------------------------------------
 //! \brief oquad put member functions
 //-----------------------------------------------------------------------------
@@ -68,19 +67,19 @@ void oquad::put(oquad u)
 //! \brief Write values to oquad
 //-----------------------------------------------------------------------------
 void oquad::put(double u0, double u1, double u2, double u3)
-{ 
-  xx.at(0) = u0; 
-  xx.at(1) = u1; 
-  xx.at(2) = u2; 
-  xx.at(3) = u3; 
+{
+  xx.at(0) = u0;
+  xx.at(1) = u1;
+  xx.at(2) = u2;
+  xx.at(3) = u3;
 }
 
 //-----------------------------------------------------------------------------
 //! \brief Write values to oquad
 //-----------------------------------------------------------------------------
 void oquad::put(int n,double u)
-{ 
-  xx.at(n) = u; 
+{
+  xx.at(n) = u;
 }
 
 //-----------------------------------------------------------------------------
@@ -130,7 +129,6 @@ void oquad::list(const char *str1, const char *str2) const
   if(strlen(str2)!=0)printf("%s",str2);
 }
 
-
 //=====================================
 // vectR4 functions
 //=====================================
@@ -164,15 +162,7 @@ vectR4 vectR4::mpy(const double a)
   vectR4 w;
   const Eigen::Map< const Vector4d > vv( getdata() );
   Eigen::Map< Vector4d > ww( w.getdataa() );
-printf("vv = %lf %lf %lf %lf\n", vv(0), vv(1), vv(2), vv(3) );
-printf("a = %lf\n", a);
   ww = a * vv;
-printf("ww = %lf %lf %lf %lf\n", ww(0), ww(1), ww(2), ww(3) );
-w.list("w = ");
-w.put(0, a * get1() );
-w.put(1, a * get2() );
-w.put(2, a * get3() );
-w.put(3, a * get4() );
   return w;
 }
 
@@ -181,12 +171,9 @@ w.put(3, a * get4() );
 //-----------------------------------------------------------------------------
 void vectR4::operator+=(vectR4 q)
 {
-  //Eigen::Map< Vector4d > pp( getdataa() );
-  //const Eigen::Map< const Vector4d > qq( q.getdata() );
-  //pp = pp + qq;
-  vectR4  p=get();
-  p = p+q;
-  put(p);
+  Eigen::Map< Vector4d > pp( getdataa() );
+  const Eigen::Map< const Vector4d > qq( q.getdata() );
+  pp = pp + qq;
 }
 
 //-----------------------------------------------------------------------------
@@ -194,23 +181,20 @@ void vectR4::operator+=(vectR4 q)
 //-----------------------------------------------------------------------------
 void vectR4::operator-=(vectR4 q)
 {
-  //Eigen::Map< Vector6d > pp( getdataa() );
-  //const Eigen::Map< const Vector6d > qq( q.getdata() );
-  //pp = pp - qq;
-  vectR4  p=get();
-  p = p-q;
-  put(p);
+  Eigen::Map< Vector4d > pp( getdataa() );
+  const Eigen::Map< const Vector4d > qq( q.getdata() );
+  pp = pp - qq;
 }
 
 //-----------------------------------------------------------------------------
 //! \brief operator: -=
 //-----------------------------------------------------------------------------
-void vectR4::operator*=(double a){
+void vectR4::operator*=(double a)
+{
   vectR4  p=get();
   p = a*p;
   put(p);
-  }
-
+}
 
 //-----------------------------------------------------------------------------
 //! \brief operator: a*y
@@ -221,8 +205,6 @@ vectR4 operator*(const double a, const vectR4 x)
   const Eigen::Map< const Vector4d > xx( x.getdata() );
   Eigen::Map< Vector4d > yy( y.getdataa() );
   yy = a * xx;
-
-for(int i=0;i<4;i++)y.put(i,a*x.get(i));
   return y;
 }
 
@@ -236,7 +218,6 @@ double operator^(vectR4 p,vectR4 q)
   double innerProduct = pp.adjoint() * qq;
   return innerProduct;
 }
-
 
 /*=====================================
 //! \brief seqR4
