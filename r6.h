@@ -9,7 +9,7 @@
 //-----------------------------------------------------------------------------
 //! \brief Ordered pair (x,y)
 //-----------------------------------------------------------------------------
-class osix 
+class osix
 {
   private:
     std::vector<double> x = {0, 0, 0, 0, 0, 0};
@@ -59,12 +59,12 @@ class osix
 //! (and hence inherit all the properties of class osix)
 //! but also have additional linear space (vector space) properties
 //-----------------------------------------------------------------------------
-class vectR6: public osix 
+class vectR6: public osix
 {
   public:
     vectR6(double u1,double u2,double u3,double u4,double u5,double u6) : osix(u1,u2,u3,u4,u5,u6){};
     vectR6(double u) : osix(u){};
-    vectR6(void) : osix(){}; 
+    vectR6(void) : osix(){};
     vectR6 get(void) const;
     const double get(int i) const {return osix::get(i);}
     const double mag(void) const;
@@ -76,7 +76,7 @@ class vectR6: public osix
     void   operator*=( const double a );
 };
 
-class seqR6 
+class seqR6
 {
   private:
     long N;

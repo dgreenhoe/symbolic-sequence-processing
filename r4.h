@@ -1,17 +1,21 @@
 //============================================================================
 // Daniel J. Greenhoe
-//============================================================================*/
+//============================================================================
+#include <vector>
 //-----------------------------------------------------------------------------
 // ordered pair (x,y)
 //-----------------------------------------------------------------------------
 class oquad {
   private:
     double x[4];
+    std::vector<double> xx = { 0, 0, 0, 0 };
   public:
     oquad(void);
     oquad(double u0, double u1, double u2, double u3);
     oquad(double u);
     oquad  get(void);
+    const double* getdata(void) const { return xx.data(); }
+    double* getdataa(void){ return xx.data(); }
     void   list(const char *str1, const char *str2) const;
     void   list(void) const { list("","");}
     void   list(const char *str) const {list(str,"\n");}
@@ -52,6 +56,7 @@ class vectR4: public oquad {
     void   operator += (vectR4 q); 
     void   operator -= (vectR4 q); 
     void   operator *= (double a);
+    vectR4 mpy ( const double a );
     inline vectR4 operator* (double a){vectR4 u(a*get1(),a*get2(),a*get3(),a*get4()); return u;}
   };
 

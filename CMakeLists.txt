@@ -68,6 +68,7 @@
       tests/TestSuiteMisc.cpp
       tests/TestSuiteR2.cpp
       tests/TestSuiteR3.cpp
+      tests/TestSuiteR4.cpp
       tests/TestSuiteR6.cpp
       tests/TestSuiteLarc.cpp
     )
