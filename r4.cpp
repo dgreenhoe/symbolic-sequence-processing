@@ -20,72 +20,100 @@ typedef Eigen::Matrix< double, 4, 1 > Vector4d;
 //-----------------------------------------------------------------------------
 // oquad constructors
 //-----------------------------------------------------------------------------
-oquad::oquad(void){
-  int i;
-  for(i=0;i<4;i++)x[i]=0;
-  }
+oquad::oquad(void)
+{
+  xx.at(0) = 0.0;
+  xx.at(1) = 0.0;
+  xx.at(2) = 0.0;
+  xx.at(3) = 0.0;
+}
 
-oquad::oquad(double u0, double u1, double u2, double u3){
-  x[0]=u0;x[1]=u1;x[2]=u2;x[3]=u3;
-  }
+oquad::oquad(double u0, double u1, double u2, double u3)
+{
+  xx.at(0) = u0;
+  xx.at(1) = u1;
+  xx.at(2) = u2;
+  xx.at(3) = u3;
+}
 
-oquad::oquad(double u){
-  int i;
-  for(i=0;i<4;i++)x[i]=u;
-  }
+oquad::oquad(double u)
+{
+  xx.at(0) = u;
+  xx.at(1) = u;
+  xx.at(2) = u;
+  xx.at(3) = u;
+}
 
 
 //-----------------------------------------------------------------------------
 //! \brief oquad put member functions
 //-----------------------------------------------------------------------------
-void oquad::put(double u){
-  int i;
-  for(i=0;i<4;i++)x[i]=u;
-  }
+void oquad::put(double u)
+{
+  xx.at(0) = u;
+  xx.at(1) = u;
+  xx.at(2) = u;
+  xx.at(3) = u;
+}
 
-void oquad::put(oquad u){
-  int i;
-  for(i=0;i<4;i++)x[i]=u.get(i);
-  }
+void oquad::put(oquad u)
+{
+  xx.at(0) = u.get(0);
+  xx.at(1) = u.get(1);
+  xx.at(2) = u.get(2);
+  xx.at(3) = u.get(3);
+}
+
+//-----------------------------------------------------------------------------
+//! \brief Write values to oquad
+//-----------------------------------------------------------------------------
+void oquad::put(double u0, double u1, double u2, double u3)
+{ 
+  xx.at(0) = u0; 
+  xx.at(1) = u1; 
+  xx.at(2) = u2; 
+  xx.at(3) = u3; 
+}
+
+//-----------------------------------------------------------------------------
+//! \brief Write values to oquad
+//-----------------------------------------------------------------------------
+void oquad::put(int n,double u)
+{ 
+  xx.at(n) = u; 
+}
 
 //-----------------------------------------------------------------------------
 //! \brief return the 4-tuple value
 //-----------------------------------------------------------------------------
-oquad oquad::get(void){
+oquad oquad::get(void)
+{
   oquad u;
-  int i;
-  for(i=0;i<4;i++)u.put(i,get(i));
+  u.put( 0, get1() );
+  u.put( 1, get2() );
+  u.put( 2, get3() );
+  u.put( 3, get4() );
   return u;
-  }
+}
 
 //-----------------------------------------------------------------------------
 //! \brief return the minimum element of the 4 tupple
 //-----------------------------------------------------------------------------
 double oquad::min(void) const
 {
-  int i;
-  double u,min;
-  min = x[0];
-  for(i=1;i<4;i++){
-    u = x[i];
-    if(u<min) min=u;
-    }
-  return min;
-  }
+  const Eigen::Map< const Vector4d > a( getdata() );
+  const double minVal = a.minCoeff();
+  return minVal;
+}
 
 //-----------------------------------------------------------------------------
 //! \brief return the maximum element of the 4 tupple
 //-----------------------------------------------------------------------------
 double oquad::max(void) const
 {
-  int i;
-  double u,max;
-  max = x[0];
-  for(i=1;i<4;i++){
-    u = x[i];
-    if(u>max) max=u;
-    }
-  return max;
+  const Eigen::Map< const Vector4d > a( getdata() );
+  const double maxVal = a.maxCoeff();
+  return maxVal;
 }
 
 //-----------------------------------------------------------------------------
@@ -93,11 +121,12 @@ double oquad::max(void) const
 //-----------------------------------------------------------------------------
 void oquad::list(const char *str1, const char *str2) const
 {
-  int i;
   if(strlen(str1)!=0)printf("%s",str1);
   putchar('(');
-  for(i=0;i<5;i++)printf("%9.6lf,",get(i));
-  printf("%9.6lf)",get(5));
+  printf("%9.6lf,", get1() );
+  printf("%9.6lf,", get2() );
+  printf("%9.6lf,", get3() );
+  printf("%9.6lf)", get4() );
   if(strlen(str2)!=0)printf("%s",str2);
 }
 
@@ -108,27 +137,24 @@ void oquad::list(const char *str1, const char *str2) const
 //-----------------------------------------------------------------------------
 //! \brief return the 4-tuple value
 //-----------------------------------------------------------------------------
-const vectR4 vectR4::get(void){
+const vectR4 vectR4::get(void)
+{
   vectR4 u;
-  int i;
-  for( i=0; i<4; i++ ) u.put( i, get(i) );
+  u.put( 0, get1() );
+  u.put( 1, get2() );
+  u.put( 2, get3() );
+  u.put( 3, get4() );
   return u;
-  }
+}
 
 //-----------------------------------------------------------------------------
 //! \brief magnitude
 //-----------------------------------------------------------------------------
 double vectR4::mag(void) const
 {
-  int i;
-  double u;
-  double sum=0;
-  for(i=0;i<4;i++){
-    u=get(i);
-    sum += u*u;
-    }
-  return sqrt(sum);
-  }
+  const Eigen::Map< const Vector4d > a( getdata() );
+  return a.norm();
+}
 
 //-----------------------------------------------------------------------------
 //! \brief Multiply the vector by a scalar a
@@ -138,27 +164,43 @@ vectR4 vectR4::mpy(const double a)
   vectR4 w;
   const Eigen::Map< const Vector4d > vv( getdata() );
   Eigen::Map< Vector4d > ww( w.getdataa() );
+printf("vv = %lf %lf %lf %lf\n", vv(0), vv(1), vv(2), vv(3) );
+printf("a = %lf\n", a);
   ww = a * vv;
+printf("ww = %lf %lf %lf %lf\n", ww(0), ww(1), ww(2), ww(3) );
+w.list("w = ");
+w.put(0, a * get1() );
+w.put(1, a * get2() );
+w.put(2, a * get3() );
+w.put(3, a * get4() );
   return w;
 }
 
 //-----------------------------------------------------------------------------
 //! \brief operator: +=
 //-----------------------------------------------------------------------------
-void vectR4::operator+=(vectR4 q){
+void vectR4::operator+=(vectR4 q)
+{
+  //Eigen::Map< Vector4d > pp( getdataa() );
+  //const Eigen::Map< const Vector4d > qq( q.getdata() );
+  //pp = pp + qq;
   vectR4  p=get();
   p = p+q;
   put(p);
-  }
+}
 
 //-----------------------------------------------------------------------------
 //! \brief operator: -=
 //-----------------------------------------------------------------------------
-void vectR4::operator-=(vectR4 q){
+void vectR4::operator-=(vectR4 q)
+{
+  //Eigen::Map< Vector6d > pp( getdataa() );
+  //const Eigen::Map< const Vector6d > qq( q.getdata() );
+  //pp = pp - qq;
   vectR4  p=get();
   p = p-q;
   put(p);
-  }
+}
 
 //-----------------------------------------------------------------------------
 //! \brief operator: -=
@@ -173,22 +215,27 @@ void vectR4::operator*=(double a){
 //-----------------------------------------------------------------------------
 //! \brief operator: a*y
 //-----------------------------------------------------------------------------
-vectR4 operator*(const double a, const vectR4 y){
-  vectR4 p;
-  int i;
-  for(i=0;i<4;i++)p.put(i,a*y.get(i));
-  return p;
-  }
+vectR4 operator*(const double a, const vectR4 x)
+{
+  vectR4 y;
+  const Eigen::Map< const Vector4d > xx( x.getdata() );
+  Eigen::Map< Vector4d > yy( y.getdataa() );
+  yy = a * xx;
+
+for(int i=0;i<4;i++)y.put(i,a*x.get(i));
+  return y;
+}
 
 //-----------------------------------------------------------------------------
 //! \brief operator: dot product of p and q
 //-----------------------------------------------------------------------------
-double operator^(vectR4 p,vectR4 q){
-  double sum=0;
-  int i;
-  for(i=0;i<4;i++)sum += p.get(i)*q.get(i);
-  return sum;
-  }
+double operator^(vectR4 p,vectR4 q)
+{
+  const  Eigen::Map< const Vector4d > pp( p.getdata() );
+  const  Eigen::Map< const Vector4d > qq( q.getdata() );
+  double innerProduct = pp.adjoint() * qq;
+  return innerProduct;
+}
 
 
 /*=====================================

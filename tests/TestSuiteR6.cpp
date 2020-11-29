@@ -186,8 +186,8 @@ TEST( TestSuiteR6, mpy )
 {
   vectR6 x( sqrt(2.0*2.0/2.0), sqrt(3.0*3.0/2.0), sqrt(5.0*5.0/2.0), sqrt(7.0*7.0/2.0), sqrt(11.0*11.0/2.0), sqrt(13.0*13.0/2.0) ); 
   vectR6 y = x.mpy(sqrt(2));
-  x.list();
-  y.list();
+//x.list();
+//y.list();
   ASSERT_DOUBLE_EQ( y.get(0),  2.0 );
   ASSERT_DOUBLE_EQ( y.get(1),  3.0 );
   ASSERT_DOUBLE_EQ( y.get(2),  5.0 );

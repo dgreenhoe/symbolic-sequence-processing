@@ -7,7 +7,6 @@
 //-----------------------------------------------------------------------------
 class oquad {
   private:
-    double x[4];
     std::vector<double> xx = { 0, 0, 0, 0 };
   public:
     oquad(void);
@@ -20,13 +19,13 @@ class oquad {
     void   list(void) const { list("","");}
     void   list(const char *str) const {list(str,"\n");}
     void   listn(void)const { list("","\n"); }
-    double get(int n) const { return x[n];   }
-    double get1(void) const { return x[0];   };                      //get component x1
-    double get2(void) const { return x[1];   };                      //get component x2
-    double get3(void) const { return x[2];   };                      //get component x3
-    double get4(void) const { return x[3];   };                      //get component x4
-    void   put(double u0, double u1, double u2, double u3){ x[0]=u0; x[1]=u1; x[2]=u2; x[3]=u3; }
-    void   put(int n,double u){ x[n] = u; }
+    double get(int n) const { return xx.at(n); }
+    double get1(void) const { return xx.at(0); };                      //get component x1
+    double get2(void) const { return xx.at(1); };                      //get component x2
+    double get3(void) const { return xx.at(2); };                      //get component x3
+    double get4(void) const { return xx.at(3); };                      //get component x4
+    void   put(double u0, double u1, double u2, double u3); //{ x[0]=u0; x[1]=u1; x[2]=u2; x[3]=u3; }
+    void   put(int n,double u); //{ x[n] = u; }
     void   put(double u);
     void   put(oquad u);
     double max(void) const ;

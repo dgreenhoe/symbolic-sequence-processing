@@ -163,12 +163,12 @@ TEST( TestSuiteR4, mpy )
 {
   vectR4 x( sqrt(2.0*2.0/2.0), sqrt(3.0*3.0/2.0), sqrt(5.0*5.0/2.0), sqrt(7.0*7.0/2.0) );
   vectR4 y = x.mpy(sqrt(2));
-  x.list();
-  y.list();
-  ASSERT_DOUBLE_EQ( y.get(0),  2.0 );
-  ASSERT_DOUBLE_EQ( y.get(1),  3.0 );
-  ASSERT_DOUBLE_EQ( y.get(2),  5.0 );
-  ASSERT_DOUBLE_EQ( y.get(3),  7.0 );
+x.list();
+y.list();
+  ASSERT_DOUBLE_EQ( y.get1(),  2.0 );
+  ASSERT_DOUBLE_EQ( y.get2(),  3.0 );
+  ASSERT_DOUBLE_EQ( y.get3(),  5.0 );
+  ASSERT_DOUBLE_EQ( y.get4(),  7.0 );
 }
 
 //-----------------------------------------------------------------------------
@@ -176,7 +176,7 @@ TEST( TestSuiteR4, mpy )
 //-----------------------------------------------------------------------------
 TEST( TestSuiteR4, add )
 {
-  vectR4 x,y,z;
+  vectR4 x, y, z;
   x.put( 1, 2    , 3    , 4     );
   y.put( 1, 1./2., 1./3., 1./4. );
   z = x + y;
