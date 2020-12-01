@@ -1,3 +1,5 @@
 zip/*
 Build*/*
 trash/*
+fasta/*.gb
+fasta/*.dat
