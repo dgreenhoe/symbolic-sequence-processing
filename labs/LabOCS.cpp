@@ -46,7 +46,7 @@ TEST( LabOCS, wdie )
 //---------------------------------------------------------------------------
 TEST( LabOCS, ndie )
 {
-  const unsigned seed = 0x5EED;
+  const unsigned     seed = 0x5EED;
   lab_die_nonstat34( seed, 1200 ,  120,  15,     "../plots/diedft"  ); // Example 4.7  (DFT analyis of die sequence)
   lab_die_nonstat34( seed, 12000, 1200,  16,     "../plots/diedft"  ); // Example 4.8  (DFT analyis of die sequence)
   lab_die_nonstat34( seed, 12000,  120,  16,     "../plots/diedft"  ); // Example 4.9  (DFT analyis of die sequence)

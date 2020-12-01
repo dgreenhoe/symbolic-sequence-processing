@@ -5,3 +5,8 @@ fasta/*.gb
 fasta/*.dat
 data/*
 plots/*
+pdfplots/*.aux
+pdfplots/*.log
+pdfplots/*.out
+pdfplots/*.pdf
+
