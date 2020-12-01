@@ -71,6 +71,9 @@
       tests/TestSuiteR4.cpp
       tests/TestSuiteR6.cpp
       tests/TestSuiteLarc.cpp
+      labs/LabOCS.cpp
+      labs/LabDNA.cpp
+      labs/LabLarc.cpp
     )
 
  set( SOURCES_CMD
