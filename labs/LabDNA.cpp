@@ -13,9 +13,9 @@
 TEST( LabDNA, prng )
 {
   const unsigned seed = 0x5EED;
-  lab_dna_ocs  (     seed, 16000,                   "plots\\dna"     );
-  lab_dna_nonstatCT( seed, 12000, 1200, 24 , -1, 5, "plots\\dnadft"  );
-  lab_dna_edge(      seed, 12000, 4000, 200, 17,    "plots\\dnahaar" );
+  lab_dna_ocs  (     seed, 16000,                   "../plots/dna"     );
+  lab_dna_nonstatCT( seed, 12000, 1200, 24 , -1, 5, "../plots/dnadft"  );
+  lab_dna_edge(      seed, 12000, 4000, 200, 17,    "../plots/dnahaar" );
 }
 
 //---------------------------------------------------------------------------
@@ -23,7 +23,7 @@ TEST( LabDNA, prng )
 //---------------------------------------------------------------------------
 TEST( LabDNA, mpbacterium )
 {
-  lab_dna_ocs  ( "..\\fasta\\gi880815890_MelissococcusPlutonius.fasta", "plots\\dna_mpbacterium" );
+  lab_dna_ocs  ( "../fasta/gi880815890_MelissococcusPlutonius.fasta", "../plots/dna_mpbacterium" );
 }
 
 //---------------------------------------------------------------------------
@@ -32,9 +32,9 @@ TEST( LabDNA, mpbacterium )
 //---------------------------------------------------------------------------
 TEST( LabDNA, phagelambda )
 {
-  lab_dna_averaging( 1600, "..\\fasta\\NC001416_phagelambda.fasta", "plots\\dna_NC001416_phagelambda" );
-  lab_dna_edge(      1600, "..\\fasta\\NC001416_phagelambda.fasta", "plots\\dna_NC001416_phagelambda" );
-  lab_dna_edge(      4000, "..\\fasta\\NC001416_phagelambda.fasta", "plots\\dna_NC001416_phagelambda" );
+  lab_dna_averaging( 1600, "../fasta/NC001416_phagelambda.fasta", "../plots/dna_NC001416_phagelambda" );
+  lab_dna_edge(      1600, "../fasta/NC001416_phagelambda.fasta", "../plots/dna_NC001416_phagelambda" );
+  lab_dna_edge(      4000, "../fasta/NC001416_phagelambda.fasta", "../plots/dna_NC001416_phagelambda" );
 }
 
 //---------------------------------------------------------------------------
@@ -42,8 +42,8 @@ TEST( LabDNA, phagelambda )
 //---------------------------------------------------------------------------
 TEST( LabDNA, ebola )
 {
-  lab_dna_ocs( "..\\fasta\\AF086833_ebola.fasta", "plots\\dna_ebola"              );
-  lab_dna_dft( "..\\fasta\\AF086833_ebola.fasta", "plots\\dna_AF086833_ebola_dft" );
+  lab_dna_ocs( "../fasta/AF086833_ebola.fasta", "../plots/dna_ebola"              );
+  lab_dna_dft( "../fasta/AF086833_ebola.fasta", "../plots/dna_AF086833_ebola_dft" );
 }
 
 //---------------------------------------------------------------------------
@@ -51,7 +51,7 @@ TEST( LabDNA, ebola )
 //---------------------------------------------------------------------------
 TEST( LabDNA, sars )
 {
-  lab_dna_ocs( "..\\fasta\\NC004718_sars.fasta", "plots\\dna_sars" );
+  lab_dna_ocs( "../fasta/NC004718_sars.fasta", "../plots/dna_sars" );
 }
 
 //---------------------------------------------------------------------------
@@ -59,7 +59,7 @@ TEST( LabDNA, sars )
 //---------------------------------------------------------------------------
 TEST( LabDNA, papaya )
 {
-  lab_dnan_ocs( "..\\fasta\\gi187567196_papaya1446.fasta", "plots\\dna_papaya1446" ); 
+  lab_dnan_ocs( "../fasta/gi187567196_papaya1446.fasta", "../plots/dna_papaya1446" ); 
 }
 
 //-----------------------------------------------------------------------------
@@ -67,7 +67,7 @@ TEST( LabDNA, papaya )
 //-----------------------------------------------------------------------------
 TEST( LabDNA, covid )
 {
-  lab_dna_ocs( "..\\fasta\\GenBank_MT072688-1_SARS-COV-2.fasta", "plots\\dna_SARSCoV2"     );
-  lab_dna_dft( "..\\fasta\\GenBank_MT072688-1_SARS-COV-2.fasta", "plots\\dna_SARSCoV2_dft" ); 
+  lab_dna_ocs( "../fasta/GenBank_MT072688-1_SARS-COV-2.fasta", "../plots/dna_SARSCoV2"     );
+  lab_dna_dft( "../fasta/GenBank_MT072688-1_SARS-COV-2.fasta", "../plots/dna_SARSCoV2_dft" ); 
 }
 
