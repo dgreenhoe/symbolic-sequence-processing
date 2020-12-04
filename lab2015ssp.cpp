@@ -1,9 +1,9 @@
-/*============================================================================
- * Daniel J. Greenhoe
- *============================================================================*/
-/*=====================================
- * headers
- *=====================================*/
+//===============================================================================
+// Daniel J. Greenhoe
+//===============================================================================
+//=======================================
+// headers
+//=======================================
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,10 +39,11 @@
 #include "fileplot.h"
 #include "lab2015ssp.h"
 
-/*-------------------------------------------------------------------------
- * generate plot files for fair die sequence
- *-------------------------------------------------------------------------*/
-int lab_fdie_ocs(const unsigned seed, const long N, const char *basefilename){
+//-----------------------------------------------------------------------------
+//! \brief generate plot files for fair die sequence
+//-----------------------------------------------------------------------------
+int lab_fdie_ocs(const unsigned seed, const long N, const char *basefilename)
+{
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   fdieseq x(N);   //for die sequence
   seqR1 Rxx(2*N+1); //for auto-correlation of x
@@ -108,11 +109,11 @@ int lab_fdie_ocs(const unsigned seed, const long N, const char *basefilename){
   sprintf(buf,"lab_fdie_ocs experiment complete"); printofe(lptr,buf,time1);
   plot_close(lptr,time1);
   return 0;
-  }
+}
 
-/*-------------------------------------------------------------------------
- * generate plot files for real die sequence
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate plot files for real die sequence
+//-----------------------------------------------------------------------------
 int lab_rdie_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   rdieseq x(N);   //for die sequence
@@ -182,9 +183,9 @@ int lab_rdie_ocs(const unsigned seed, const long N, const char *basefilename){
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * generate plot files for spinner sequence
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate plot files for spinner sequence
+//-----------------------------------------------------------------------------
 int lab_spin_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   spinseq x(N);   //for die sequence
@@ -254,9 +255,9 @@ int lab_spin_ocs(const unsigned seed, const long N, const char *basefilename){
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * generate plot files for weighted die sequence
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate plot files for weighted die sequence
+//-----------------------------------------------------------------------------
 int lab_wdie_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   fdieseq x(N);   //for die sequence
@@ -322,9 +323,9 @@ int lab_wdie_ocs(const unsigned seed, const long N, const char *basefilename){
   }
 
 
-/*-------------------------------------------------------------------------
- * generate plot files for weighted real die sequence
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate plot files for weighted real die sequence
+//-----------------------------------------------------------------------------
 int lab_wrdie_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   rdieseq x(N);   //for die sequence
@@ -390,9 +391,9 @@ int lab_wrdie_ocs(const unsigned seed, const long N, const char *basefilename){
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * generate plot files for spinner sequence
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate plot files for spinner sequence
+//-----------------------------------------------------------------------------
 int lab_wspin_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   spinseq x(N);   //for spinner sequence
@@ -458,9 +459,9 @@ int lab_wspin_ocs(const unsigned seed, const long N, const char *basefilename){
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * generate plot files for artificial dna sequence
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate plot files for artificial dna sequence
+//-----------------------------------------------------------------------------
 int lab_dna_ocs(const unsigned seed, const long N, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   dnaseq x(N);   //for die sequence
@@ -526,9 +527,9 @@ int lab_dna_ocs(const unsigned seed, const long N, const char *basefilename){
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * generate plot files for dna sequence read from FASTA file
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate plot files for dna sequence read from FASTA file
+//-----------------------------------------------------------------------------
 int lab_dna_ocs(const char *datafilename, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   const long N=numsym_fasta_file(datafilename);
@@ -596,9 +597,9 @@ int lab_dna_ocs(const char *datafilename, const char *basefilename){
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * generate plot files for scaffold dna sequence read from FASTA file
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate plot files for scaffold dna sequence read from FASTA file
+//-----------------------------------------------------------------------------
 int lab_dnan_ocs(const char *datafilename, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   const long N=numsym_fasta_file(datafilename);
@@ -668,11 +669,11 @@ int lab_dnan_ocs(const char *datafilename, const char *basefilename){
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * generate TeX plot file for the low pass filtering of real die sequence
- * filtered by M tap rectangular filter,
- * and generate TeX plot file
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate TeX plot file for the low pass filtering of real die sequence
+//!        filtered by M tap rectangular filter,
+//!        and generate TeX plot file
+//-----------------------------------------------------------------------------
 int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
 
@@ -976,11 +977,11 @@ int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *bas
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * generate TeX plot file for the high pass filtering of weighted real die sequence
- * filtered by M tap rectangular filter,
- * and generate TeX plot file
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate TeX plot file for the high pass filtering of weighted real die sequence
+//!        filtered by M tap rectangular filter,
+//!        and generate TeX plot file
+//-----------------------------------------------------------------------------
 int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   rdieseq x(M*(N+2)-(M-1));//for real die sequence
@@ -1257,11 +1258,11 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
 
 
 
-/*-------------------------------------------------------------------------
- * generate TeX plot file for the low pass filtering of spinner sequence
- * filtered by M tap rectangular filter,
- * and generate TeX plot file
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate TeX plot file for the low pass filtering of spinner sequence
+//!        filtered by M tap rectangular filter,
+//!        and generate TeX plot file
+//-----------------------------------------------------------------------------
 int lab_spin_lp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   spinseq    x(N+M);        //for die sequence
@@ -1509,11 +1510,11 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * generate TeX plot file for the high pass filtering of weighted real die sequence
- * filtered by M tap rectangular filter scaled to normalized values,
- * and generate TeX plot file
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate TeX plot file for the high pass filtering of weighted real die sequence
+//!        filtered by M tap rectangular filter scaled to normalized values,
+//!        and generate TeX plot file
+//-----------------------------------------------------------------------------
 int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   spinseq x(M*(N+2)-(M-1));   //for spinner sequence
@@ -1789,11 +1790,11 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * generate TeX plot file for the low pass filtering of fair die sequence
- * filtered by M tap rectangular filter,
- * and generate TeX plot file
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate TeX plot file for the low pass filtering of fair die sequence
+//!        filtered by M tap rectangular filter,
+//!        and generate TeX plot file
+//-----------------------------------------------------------------------------
 int lab_fdie_lp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
 
@@ -2048,11 +2049,11 @@ int lab_fdie_lp(const unsigned seed, const long N, const long M, const char *bas
   }
 
 
-/*-------------------------------------------------------------------------
- * generate TeX plot file for the high pass filtering of weighted die sequence
- * filtered by M tap rectangular filter
- * and generate TeX plot file
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief generate TeX plot file for the high pass filtering of weighted die sequence
+//!        filtered by M tap rectangular filter
+//!        and generate TeX plot file
+//-----------------------------------------------------------------------------
 int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   fdieseq x(M*(N+2)-(M-1));   //for fair die sequence
@@ -2329,10 +2330,10 @@ int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *bas
 
 
 
-/*-------------------------------------------------------------------------
- * map nonstationary die sequence into R^1, C^1, and R^6 and 
- * use DFT to analyze
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief map nonstationary die sequence into R^1, C^1, and R^6 and 
+//!        use DFT to analyze
+//-----------------------------------------------------------------------------
 int lab_die_nonstat34(const unsigned seed, const long N, const long M, const int vx, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   const int vA=vx,vB=vx,vD=vx,vE=vx,vF=vx, vC=100-5*vx;
@@ -2506,9 +2507,9 @@ int lab_die_nonstat34(const unsigned seed, const long N, const long M, const int
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * die sequence edge detection
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief die sequence edge detection
+//-----------------------------------------------------------------------------
 int lab_die_edge(const unsigned seed, const long N, const long M, const long Mh, const int vx, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   const long D=10;
@@ -2643,9 +2644,9 @@ int lab_die_edge(const unsigned seed, const long N, const long M, const long Mh,
   }
 
 
-/*-------------------------------------------------------------------------
- * DFT analysis of a DNA sequence
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief DFT analysis of a DNA sequence
+//-----------------------------------------------------------------------------
 int lab_dna_dft(const char *datafilename, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   const long N=numsym_fasta_file(datafilename);
@@ -2763,9 +2764,9 @@ int lab_dna_dft(const char *datafilename, const char *basefilename){
   }
 
 
-/*-------------------------------------------------------------------------
- * DFT analysis of a non-stationary artificial DNA sequence
- *-------------------------------------------------------------------------*/
+//---------------------------------------------------------------------------
+// DFT analysis of a non-stationary artificial DNA sequence
+//---------------------------------------------------------------------------
 int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int vx, const double plotmin, const double plotmax, const char *basefilename){
   time_t time1;time(&time1);   //starting time stamp (passed to plotting routine)
   const int vA=vx,vG=vx,vT=vx, vC=100-3*vx;
@@ -2779,9 +2780,6 @@ int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int
   seqC1   DxC1(N);     //DFT of C^1 sequence mapped from x sequence
   seqC4   DxR4(N);     //DFT of R^4 sequence mapped from x sequence
   seqR1   ymag(N);     //magnitude of DFT sequences
-  //seqR1   mDxR1(N);    //magnitude of DFT of R^1 sequence mapped from x sequence
-  //seqR1   mDxC1(N);    //magnitude of DFT of C^1 sequence mapped from x sequence
-  //seqR1   mDxR4(N);    //magnitude of DFT of R^4 sequence mapped from x sequence
   long n;
   complex ynR1;
   complex ynC1;
@@ -2874,9 +2872,9 @@ int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * dna sequence edge detection
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief dna sequence edge detection
+//-----------------------------------------------------------------------------
 int lab_dna_edge(const unsigned seed, const long N, const long M, const long Mh, const int vx, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   const long D=5;
@@ -3037,9 +3035,9 @@ int lab_dna_edge(const unsigned seed, const long N, const long M, const long Mh,
   return 0;
   }
 
-/*-------------------------------------------------------------------------
- * dna sequence averaging
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief dna sequence averaging
+//-----------------------------------------------------------------------------
 int lab_dna_averaging(const long Mh, const char *datafilename, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   const long D=20;
@@ -3143,9 +3141,9 @@ int lab_dna_averaging(const long Mh, const char *datafilename, const char *basef
   }
 
 
-/*-------------------------------------------------------------------------
- * dna sequence edge detection
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief dna sequence edge detection
+//-----------------------------------------------------------------------------
 int lab_dna_edge(const long Mh, const char *datafilename, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   const long D=20;

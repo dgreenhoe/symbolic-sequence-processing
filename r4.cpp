@@ -219,41 +219,55 @@ double operator^(vectR4 p,vectR4 q)
   return innerProduct;
 }
 
-/*=====================================
+//=====================================
 //! \brief seqR4
- *=====================================*/
+//=====================================
 //-----------------------------------------------------------------------------
 //! \brief constructor initializing seqR1 to 0
 //-----------------------------------------------------------------------------
-seqR4::seqR4(long M){
-  long n;
+seqR4::seqR4(long M)
+{
   N=M;
-  x = (vectR4 *)malloc(N*sizeof(vectR4));
-  for(n=0; n<N; n++)x[n].clear();
-  }
+  //x = (vectR4 *)malloc(N*sizeof(vectR4));
+  x = new vectR4[N];
+  clear();
+}
 
 //-----------------------------------------------------------------------------
 //! \brief constructor initializing seqR1 to <u>
 //-----------------------------------------------------------------------------
-seqR4::seqR4(long M,double u){
-  long n;
+seqR4::seqR4( long M, double u )
+{
+  //long n;
   N=M;
-  x = (vectR4 *)malloc(N*sizeof(vectR4));
-  for(n=0; n<N; n++)x[n].put(u);
-  }
+  //x = (vectR4 *)malloc(N*sizeof(vectR4));
+  x = new vectR4[N];
+  //for(n=0; n<N; n++)x[n].put(u);
+  fill( u );
+}
 
 //-----------------------------------------------------------------------------
-//! \brief fill the seqR1 with a value <u>
+//! \brief Fill the seqR3 with a value 0
 //-----------------------------------------------------------------------------
-void seqR4::fill(double u){
+void seqR4::clear(void)
+{
+  fill( 0.0 );
+}
+
+//-----------------------------------------------------------------------------
+//! \brief fill the seqR4 with a value <u>
+//-----------------------------------------------------------------------------
+void seqR4::fill(double u)
+{
   long n;
   for(n=0; n<N; n++)x[n].put(u);
-  }
+}
 
 //-----------------------------------------------------------------------------
-//! \brief put a single value u=(u1,u2,u3,u4) into the seqR1 x at location n
+//! \brief put a single value u=(u1,u2,u3,u4) into the seqR4 x at location n
 //-----------------------------------------------------------------------------
-int seqR4::put(long n, double u1,double u2,double u3,double u4){
+int seqR4::put(long n, double u1,double u2,double u3,double u4)
+{
   int retval=0;
   if(n<N)x[n].put(u1,u2,u3,u4);
   else{
@@ -261,9 +275,13 @@ int seqR4::put(long n, double u1,double u2,double u3,double u4){
     retval=-1;
     }
   return retval;
-  }
+}
 
-int seqR4::put(long n, vectR4 u){
+//-----------------------------------------------------------------------------
+//! \brief put a single value (u,u,u,u) into the seqR4 x at location n
+//-----------------------------------------------------------------------------
+int seqR4::put(long n, vectR4 u)
+{
   int retval=0;
   if(n<N)x[n].put(u);
   else{
@@ -271,7 +289,7 @@ int seqR4::put(long n, vectR4 u){
     retval=-1;
     }
   return retval;
-  }
+}
 
 //-----------------------------------------------------------------------------
 //! \brief list contents of sequence

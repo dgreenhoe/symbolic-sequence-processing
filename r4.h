@@ -64,10 +64,10 @@ class seqR4 {
     long N;
     vectR4 *x;
   public:
-    seqR4(long M);               //constructor
-    seqR4(long M, double u);     //constructor
-    void fill(double u);              //fill seqR1 with the value <u>
-    void clear(void){fill(0);}        //fill seqR1 with the value 0
+    seqR4(long M);
+    seqR4(long M, double u);
+    void fill(double u);
+    void clear(void);
     int  put(long n, vectR4 xyz);       //put a value <u> at location n in seq.
     int  put(long n, double u1,double u2,double u3,double u4);
     vectR4 get (long n){return x[n].get();}   //get a value from x at location n

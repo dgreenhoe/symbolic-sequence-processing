@@ -59,7 +59,6 @@ class vectR3: public otriple
 class seqR3 {
   private:
     long N;
-    double *x,*y,*z;
     vectR3 *seqr3;
   public:
     seqR3(long M);               //constructor
