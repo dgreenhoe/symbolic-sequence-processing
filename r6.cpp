@@ -218,7 +218,7 @@ double operator^(const vectR6 p, const vectR6 q)
 seqR6::seqR6(const long M)
 {
   N = M;
-  x = (vectR6 *)malloc( N * sizeof(vectR6) );
+  x = new vectR6[N];
   clear();
 }
 
@@ -227,30 +227,29 @@ seqR6::seqR6(const long M)
 //-----------------------------------------------------------------------------
 seqR6::seqR6(const long M, const double u)
 {
-  N=M;
-  x = (vectR6 *)malloc(N*sizeof(vectR6));
+  N = M;
+  x = new vectR6[N];
   fill( u );
 }
 
 //-----------------------------------------------------------------------------
-//! \brief fill the seqR1 with a value <u>
+//! \brief fill the seqR6 with a value <u>
 //-----------------------------------------------------------------------------
 void seqR6::fill(const double u)
 {
-  long n;
-  for(n=0; n<N; n++)x[n].put(u);
+  for(long n=0; n<N; n++) put( n, u );
 }
 
 //-----------------------------------------------------------------------------
-//! \brief fill the seqR1 with a values 0
+//! \brief fill the seqR6 with the value 0
 //-----------------------------------------------------------------------------
 void seqR6::clear(void)
 {
-  fill(0.0);
+  fill( 0.0 );
 }
 
 //-----------------------------------------------------------------------------
-//! \brief put a single value u=(u1,u2,u3,u4,u5,u6) into the seqR1 x at location n
+//! \brief put a single value u=(u1,u2,u3,u4,u5,u6) into the seqR6 x at location n
 //-----------------------------------------------------------------------------
 int seqR6::put(const long n, const double u1, const double u2, const double u3, const double u4, const double u5, const double u6)
 {

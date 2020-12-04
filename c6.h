@@ -59,10 +59,10 @@ class seqC6 {
     long N;
     vectC6 *x;
   public:
-    seqC6(long M);               //constructor
-    seqC6(long M, double u);     //constructor
-    void fill(double u,double v);//fill seqC6 with the value (u,v)
-    void clear(void){fill(0,0);}    //fill seqR1 with the value 0
+    seqC6(long M);
+    seqC6(long M, double u);
+    void fill(double u,double v);
+    void clear(void);
     int  put(long n, vectC6 xyz);       //put a value <u> at location n in seq.
     int  put(long n, double u1,double u2,double u3,double u4,double u5,double u6);
     vectC6 get  (long n){return x[n].get();}   //get a value from x at location n

@@ -228,7 +228,6 @@ double operator^(vectR4 p,vectR4 q)
 seqR4::seqR4(long M)
 {
   N=M;
-  //x = (vectR4 *)malloc(N*sizeof(vectR4));
   x = new vectR4[N];
   clear();
 }
@@ -238,11 +237,8 @@ seqR4::seqR4(long M)
 //-----------------------------------------------------------------------------
 seqR4::seqR4( long M, double u )
 {
-  //long n;
   N=M;
-  //x = (vectR4 *)malloc(N*sizeof(vectR4));
   x = new vectR4[N];
-  //for(n=0; n<N; n++)x[n].put(u);
   fill( u );
 }
 
@@ -259,8 +255,7 @@ void seqR4::clear(void)
 //-----------------------------------------------------------------------------
 void seqR4::fill(double u)
 {
-  long n;
-  for(n=0; n<N; n++)x[n].put(u);
+  for(long n=0; n<N; n++) put( n, u );
 }
 
 //-----------------------------------------------------------------------------

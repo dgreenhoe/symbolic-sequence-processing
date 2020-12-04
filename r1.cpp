@@ -16,39 +16,37 @@
  * constructor initializing seqR1 to 0
  *-------------------------------------------------------------------------*/
 seqR1::seqR1(long M){
-  long n;
-  N=M;
-  x = (double *)malloc(N*sizeof(double));
-  for(n=0; n<N; n++)x[n]=0.0;
+  N = M;
+  x = new double[N];
+  clear();
   }
 
 /*-------------------------------------------------------------------------
  * constructor initializing seqR1 to <u>
  *-------------------------------------------------------------------------*/
 seqR1::seqR1(long M, double u){
-  long n;
-  N=M;
-  x = (double *)malloc(N*sizeof(double));
-  for(n=0; n<N; n++)x[n]=u;
+  N = M;
+  x = new double[N];
+  fill( u );
   }
 
 /*-------------------------------------------------------------------------
  * constructor initializing seqR1 to an array <list>
  *-------------------------------------------------------------------------*/
-seqR1::seqR1(long M, double *list){
-  long n;
-  N=M;
-  x = (double *)malloc(N*sizeof(double));
-  for(n=0; n<N; n++)x[n]=list[n];
-  }
+seqR1::seqR1(long M, double *list)
+{
+  N = M;
+  x = new double[N];
+  for(long n=0; n<N; n++) x[n] = list[n];
+}
 
 /*-------------------------------------------------------------------------
  * fill the seqR1 with a value 0
  *-------------------------------------------------------------------------*/
-void seqR1::clear(void){
-  long n;
-  for(n=0; n<N; n++)x[n]=0;
-  }
+void seqR1::clear(void)
+{
+  fill( 0.0 );
+}
 
 /*-------------------------------------------------------------------------
  * fill the seqR1 with a value <u>

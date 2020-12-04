@@ -17,8 +17,8 @@
 symseq::symseq(long M){
   long n;
   void *memptr;
-  N=M;
-  memptr=malloc(N*sizeof(char));
+  N = M;
+  memptr = new char[N];
   if(memptr==NULL){
     fprintf(stderr,"symseq::symseq memory allocation for %ld elements failed\n",M);
     exit(EXIT_FAILURE);
@@ -30,25 +30,26 @@ symseq::symseq(long M){
 /*-------------------------------------------------------------------------
  * constructor initializing symseq to '.'
  *-------------------------------------------------------------------------*/
-symseq::symseq(const long M,const unsigned seed,const char *symbols){
+symseq::symseq(const long M,const unsigned seed,const char *symbols)
+{
   void *memptr;
   N=M;
-  memptr=malloc(N*sizeof(char));
+  memptr = new char[N];
   if(memptr==NULL){
     fprintf(stderr,"symseq::symseq memory allocation for %ld elements failed\n",M);
     exit(EXIT_FAILURE);
     }
   x = (char *)memptr;
   randomize(seed,symbols);
-  }
+}
 
 /*-------------------------------------------------------------------------
  * fill the symseq with the value '.'
  *-------------------------------------------------------------------------*/
-void symseq::clear(void){
-  long n;
-  for(n=0; n<N; n++) x[n] = '.';
-  }
+void symseq::clear(void)
+{
+  for(long n=0; n<N; n++) x[n] = '.';
+}
 
 /*-------------------------------------------------------------------------
  * get a symbol from the symseq x at location n
@@ -88,13 +89,14 @@ char symseq::get(const long n, const char *range) const
 /*-------------------------------------------------------------------------
  * put a single value from the symseq x at location n
  *-------------------------------------------------------------------------*/
-const void symseq::put(const long n, const char symbol){
+const void symseq::put(const long n, const char symbol)
+{
   if(n<0 || n>=N){//domain check
     fprintf(stderr,"ERROR using symseq::put(n): n=%ld outside the domain [0:%ld] of the sequence.\n",n,N-1);
     exit(EXIT_FAILURE);
     }
   x[n]=symbol;
-  }
+}
 
 /*-------------------------------------------------------------------------
  * put the symbol <symbol> into the sequence <x> 

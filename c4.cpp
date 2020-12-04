@@ -198,21 +198,10 @@ double operator^(vectC4 p,vectC4 q){
  * constructor initializing seqR1 to 0
  *-------------------------------------------------------------------------*/
 seqC4::seqC4(long M){
-  long n;
   N=M;
-  x = (vectC4 *)malloc(N*sizeof(vectC4));
-  for(n=0; n<N; n++)x[n].clear();
+  x = new vectC4[N];
+  clear();
   }
-
-/*-------------------------------------------------------------------------
- * constructor initializing seqR1 to <u>
- *-------------------------------------------------------------------------*/
-//seqC4::seqC4(long M,double ur,double ui){
-//  long n;
-//  N=M;
-//  x = (vectC4 *)malloc(N*sizeof(vectC4));
-//  for(n=0; n<N; n++)x[n].put(ur,ui);
-//  }
 
 /*-------------------------------------------------------------------------
  * fill the seqR1 with a value <u>
