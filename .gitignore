@@ -9,4 +9,5 @@ pdfplots/*.aux
 pdfplots/*.log
 pdfplots/*.out
 pdfplots/*.pdf
-
+html/*
+latex/*
