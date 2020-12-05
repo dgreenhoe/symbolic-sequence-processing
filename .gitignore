@@ -4,10 +4,11 @@ trash/*
 fasta/*.gb
 fasta/*.dat
 data/*
-plots/*
-pdfplots/*.aux
-pdfplots/*.log
-pdfplots/*.out
-pdfplots/*.pdf
+plots/*.tex
+plots/*.aux
+plots/*.log
+plots/*.out
+plots/*.pdf
+plots/*.xlg
 html/*
 latex/*

@@ -289,15 +289,21 @@ int lab_wdie_ocs(const unsigned seed, const long N, const char *basefilename){
   //----------------------------------------------
   sprintf(comment,"length %ld weighted die sequence with weights 5,5,5,5,75,5",N);
   sprintf(filename,"%s_%x_51_seq.tex",basefilename,seed);
-  if(plot_ocs_seq((symseq *)&x, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-
+  if(plot_ocs_seq((symseq *)&x, 0,50, time1, "die", filename, comment,lptr))
+  {
+    fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); 
+    return -1;
+  }
   //----------------------------------------------
   //plot histogram
   //----------------------------------------------
   sprintf(comment,"HISTOGRAM of length %ld weighted die sequence with weights 5,5,5,5,75,5",N);
   sprintf(filename,"%s_%x_%ld_histo.tex",basefilename,seed,N);
-  if(plot_ocs_histo((symseq *)&x, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-
+  if(plot_ocs_histo((symseq *)&x, time1, "die", filename, comment,lptr))
+  {
+    fprintf(stderr,"ERROR using plot_ocs_histo(...)\n");
+    return -1;
+  }
   //----------------------------------------------
   sprintf(buf,"Perform auto-correlation operations...");printofe(lptr,buf,time1);
   //----------------------------------------------
@@ -312,7 +318,11 @@ int lab_wdie_ocs(const unsigned seed, const long N, const char *basefilename){
   Rxx.list(N,N+50,buf,"\n",1,lptr);
   sprintf(comment,"AUTO-CORRELATION of length %ld weighted die sequence with weights 5,5,5,5,75,5",N);
   sprintf(filename,"%s_%x_%ld_auto.tex",basefilename,seed,N);
-  if(plot_ocs_auto(&Rxx, 1, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
+  if(plot_ocs_auto(&Rxx, 1, time1, filename,comment,lptr))
+  {
+    fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); 
+    return -1;
+  }
 
   //----------------------------------------------
   // close log file
@@ -320,7 +330,7 @@ int lab_wdie_ocs(const unsigned seed, const long N, const char *basefilename){
   sprintf(buf,"lab_wdie_ocs experiment complete"); printofe(lptr,buf,time1);
   plot_close(lptr,time1);
   return 0;
-  }
+}
 
 
 //-----------------------------------------------------------------------------
@@ -1070,8 +1080,9 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   sprintf(buf,"done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
-  sprintf(buf,"Perform mapping operations from R^n back to die seqR1 space...");printofe(lptr,buf,time1);
+  sprintf(buf,"Perform mapping operations from R^n back to die seqR1 space...");
   //----------------------------------------------
+  printofe(lptr,buf,time1);
   xR1re=rdie_R1todie_euclid(xR1r);//xR1r mapped back to real die seq. using Euclid
   xR1he=rdie_R1todie_euclid(xR1h);//xR1h mapped back to real die seq. using Euclid
   xR3re=rdie_R3todie_euclid(xR3r);//xR3r mapped back to real die seq. using Euclid
@@ -1839,6 +1850,63 @@ int lab_fdie_lp(const unsigned seed, const long N, const long M, const char *bas
   //----------------------------------------------
   //open log file
   //----------------------------------------------
+
+
+//!!! Experiment: low pass filter length 12000 fair die sequence
+//!!! -----------------------------------------------------------
+//!!! open experiment log file "../plots/fdie_lp_12000m16.xlg"...success.
+//!!! Generate length 12000 die sequence using seed value 0x5eed... [0 seconds elapsed]
+//!!! FFDAEFBAEE DEABCABADC BECCADCCDC AFDBDAAAFC FDFACCACBB
+//!!! CBFBDAFDCF CABCFBDDCA DBEDEAAFFC CAEBDEFDBA ACDBADDBAE
+//!!! ...
+//!!! 
+//!!!  -------------------------------------------------------------------------
+//!!! |  Histogram for sequence [x_n|n=      0-  12015] (length   12016)        |
+//!!! |         A         B         C         D         E         F     extra   |
+//!!! |      1971      2006      2002      2032      2011      1994         0   |
+//!!! | ( 16.40%) ( 16.69%) ( 16.66%) ( 16.91%) ( 16.74%) ( 16.59%)  (  0.00%)  |
+//!!!  -------------------------------------------------------------------------
+//!!! Perform mapping operations from die space to R^n... [0 seconds elapsed]
+//!!! sequence mapped to R^1:
+//!!!        0:    6.000000   6.000000   4.000000   1.000000   5.000000
+//!!!        5:    6.000000   2.000000   1.000000   5.000000   5.000000
+//!!!       10:    4.000000   5.000000   1.000000   2.000000   3.000000
+//!!!       15:    1.000000   2.000000   1.000000   4.000000   3.000000
+//!!!       20:    2.000000   5.000000   3.000000   3.000000   1.000000...
+//!!! sequence mapped to R^6:
+//!!! ( 0.00, 0.00, 0.00, 0.00, 0.00, 1.00) ( 0.00, 0.00, 0.00, 0.00, 0.00, 1.00)
+//!!! ( 0.00, 0.00, 0.00, 1.00, 0.00, 0.00) ( 1.00, 0.00, 0.00, 0.00, 0.00, 0.00)
+//!!! ( 0.00, 0.00, 0.00, 0.00, 1.00, 0.00) ( 0.00, 0.00, 0.00, 0.00, 0.00, 1.00)
+//!!! ( 0.00, 1.00, 0.00, 0.00, 0.00, 0.00) ...
+//!!! Perform filtering operations... [0 seconds elapsed]
+//!!! length 16 rectangular sequence before normalization:       0:    1.000000   1.000000   1.000000   1.000000   1.000000
+//!!!        5:    1.000000   1.000000   1.000000   1.000000   1.000000
+//!!!       10:    1.000000   1.000000   1.000000   1.000000   1.000000
+//!!!       15:    1.000000
+//!!! length 16 Hanning sequence before normalization:       0:    0.000000   0.043227   0.165435   0.345492   0.552264
+//!!!        5:    0.750000   0.904508   0.989074   0.989074   0.904508
+//!!!       10:    0.750000   0.552264   0.345492   0.165435   0.043227
+//!!!       15:    0.000000
+//!!! length 16 rectangular sequence after normalization:       0:    0.062500   0.062500   0.062500   0.062500   0.062500
+//!!!        5:    0.062500   0.062500   0.062500   0.062500   0.062500
+//!!!       10:    0.062500   0.062500   0.062500   0.062500   0.062500
+//!!!       15:    0.062500
+//!!! length 16 Hanning sequence after normalization:       0:    0.000000   0.005764   0.022058   0.046066   0.073635
+//!!!        5:    0.100000   0.120601   0.131877   0.131877   0.120601
+//!!!       10:    0.100000   0.073635   0.046066   0.022058   0.005764
+//!!!       15:    0.000000
+//!!! xR1*r...     12030  xR1*h...     12030  xR6*r...     12030  xR6*h...     12030  done.
+//!!! Perform mapping operations from R^n back to die seqR1 space... [379 seconds elapsed]
+//!!! xR1re
+//!!! xR1he
+//!!! xR6re
+//!!! xR6rl
+//!!! xR6he
+//!!! xR6hl
+//!!! 
+//!!! ERROR using pqtheta(vectR6 p, vectR6 q): |p| = 0.000000
+
+
   printf(         "-----------------------------------------------------------\n");
   sprintf(comment,"Experiment: low pass filter length %ld fair die sequence",N); printf("%s\n",comment);
   printf(         "-----------------------------------------------------------\n");
@@ -1865,27 +1933,29 @@ int lab_fdie_lp(const unsigned seed, const long N, const long M, const char *bas
   //----------------------------------------------
   r=1.0;       
   h.hanning(); 
-  sprintf(buf,"length %ld rectangular sequence before normalization:",M); r.list(buf,"\n",1,lptr);
-  sprintf(buf,"length %ld Hanning sequence before normalization:",M);    h.list(buf,"\n",1,lptr);
+  sprintf(buf,"length %ld rectangular sequence before normalization:\n",M); r.list(buf,"\n",1,lptr);
+  sprintf(buf,"length %ld Hanning sequence before normalization:\n"    ,M); h.list(buf,"\n",1,lptr);
   r.normalize(); 
   h.normalize(); 
-  sprintf(buf,"length %ld rectangular sequence after normalization:",M); r.list(buf,"\n",1,lptr);
-  sprintf(buf,"length %ld Hanning sequence after normalization:",M);    h.list(buf,"\n",1,lptr);
-  printof(lptr,"xR1*r..."); convolve(&xR1, &r, &xR1r); //yR1 = xR1 filtered by r (convolved with r)
-  printof(lptr,"xR1*h..."); convolve(&xR1, &h, &xR1h); //yR1 = xR1 filtered by h (convolved with h)
-  printof(lptr,"xR6*r..."); convolve(&xR6, &r, &xR6r); //yR6 = xR6 filtered by r (convolved with r)
-  printof(lptr,"xR6*h..."); convolve(&xR6, &h, &xR6h); //yR6 = xR6 filtered by h (convolved with h)
-  printof(lptr,"done.\n");
+  sprintf(buf,"length %ld normalized rectangular sequence:\n" ,M); r.list(buf,"\n",1,lptr);
+  sprintf(buf,"length %ld normalized Hanning sequence:\n"     ,M); h.list(buf,"\n",1,lptr);
+  printof(lptr,"  xR1*r..."); convolve(&xR1, &r, &xR1r); printof(lptr,"Done.\n"); //xR1r = xR1 filtered by r (convolved with r)
+  printof(lptr,"  xR1*h..."); convolve(&xR1, &h, &xR1h); printof(lptr,"Done.\n"); //xR1h = xR1 filtered by h (convolved with h)
+  printof(lptr,"  xR6*r..."); convolve(&xR6, &r, &xR6r); printof(lptr,"Done.\n"); //xR6r = xR6 filtered by r (convolved with r)
+  printof(lptr,"  xR6*h..."); convolve(&xR6, &h, &xR6h); printof(lptr,"Done.\n"); //xR6h = xR6 filtered by h (convolved with h)
   //----------------------------------------------
-  printofe(lptr,"Perform mapping operations from R^n back to die seqR1 space...",time1);
+  printofe(lptr,"Perform mapping operations from R^n back to die seqR1 space:",time1);
   //----------------------------------------------
-  printf("xR1re\n"); xR1re=rdie_R1todie_euclid(xR1r);//xR1r mapped back to fair die seq. using Euclid
-  printf("xR1he\n"); xR1he=rdie_R1todie_euclid(xR1h);//xR1h mapped back to fair die seq. using Euclid
-  printf("xR6re\n"); xR6re=fdie_R6todie_euclid(xR6r);//xR6r mapped back to fair die seq. using Euclid
-  printf("xR6rl\n"); xR6rl=fdie_R6todie_larc  (xR6r);//xR6r mapped back to fair die seq. using Lagrange
-  printf("xR6he\n"); xR6he=fdie_R6todie_euclid(xR6h);//xR6h mapped back to fair die seq. using Euclid
-  printf("xR6hl\n"); xR6hl=fdie_R6todie_larc  (xR6h);//xR6h mapped back to fair die seq. using Lagrange
-  printf("done.\n");
+  printof(lptr,"  xR1re..."); xR1re = rdie_R1todie_euclid(xR1r); printof(lptr,"Done.\n"); //xR1r mapped back to fair die seq. using Euclid
+  printof(lptr,"  xR1he..."); xR1he = rdie_R1todie_euclid(xR1h); printof(lptr,"Done.\n"); //xR1h mapped back to fair die seq. using Euclid
+  printof(lptr,"  xR6re..."); xR6re = fdie_R6todie_euclid(xR6r); printof(lptr,"Done.\n"); //xR6r mapped back to fair die seq. using Euclid
+  printof(lptr,"  xR6rl..."); xR6rl = fdie_R6todie_larc  (xR6r); printof(lptr,"Done.\n"); //xR6r mapped back to fair die seq. using Lagrange
+  printof(lptr,"  xR6he..."); xR6he = fdie_R6todie_euclid(xR6h); printof(lptr,"Done.\n"); //xR6h mapped back to fair die seq. using Euclid
+sprintf(buf,"length %ld normalized Hanning sequence h:\n" ,M       ); h.list(   buf,"\n",1,lptr);
+sprintf(buf,"length %ld sequence xR6:\n"                  ,N+M     ); xR6.list( buf,"\n",1,lptr);
+sprintf(buf,"length %ld sequence xR6h = xR6 * h:\n"       ,N+M+M-1 ); xR6h.list(buf,"\n",1,lptr);
+//xR6h.list();
+  printof(lptr,"xR6hl..."); xR6hl = fdie_R6todie_larc  (xR6h); printof(lptr,"Done.\n"); //xR6h mapped back to fair die seq. using Lagrange
   //----------------------------------------------
   //sprintf(buf,"Compare Euclidean and Lagrange mappings after %ld-tap rectangular filtering...\n  ",M);printofe(lptr,buf,time1);
   //----------------------------------------------
