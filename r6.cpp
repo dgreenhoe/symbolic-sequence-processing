@@ -354,7 +354,7 @@ vectR6 operator-(const vectR6 p)
 //! \brief return the angle theta in radians between the two vectors induced by 
 //!        the points <p> and <q> in the space R^6.
 //! \returns On SUCCESS return theta in the closed interval [0:PI];
-//!          On ERROR   return negative value or exit with value EXIT_FAILURE
+//!          On ERROR   exit
 //-----------------------------------------------------------------------------
 double pqtheta(const vectR6 p, const vectR6 q)
 {

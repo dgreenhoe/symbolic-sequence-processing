@@ -93,7 +93,7 @@ int lab_fdie_ocs(const unsigned seed, const long N, const char *basefilename)
   // |      |   |____________switch to turn on counting display
   // |      |________________pointer to output correlation sequence
   // |_______________________input real die sequence
-  sprintf(buf,"done");printofe(lptr,buf,time1);
+  sprintf(buf,"Done");printofe(lptr,buf,time1);
   sprintf(buf,"auto-correlation sequence [r_n|n=N-50...N], where N=%ld:\n",N);
   Rxx.list(N-50,N,buf,"\n",1,lptr);
   sprintf(buf,"auto-correlation sequence [r_n|n=N...N+50], where N=%ld:\n",N);
@@ -165,7 +165,7 @@ int lab_rdie_ocs(const unsigned seed, const long N, const char *basefilename){
   // |      |   |____________switch to turn on counting display
   // |      |________________pointer to output correlation sequence
   // |_______________________input real die sequence
-  sprintf(buf,"done");printofe(lptr,buf,time1);
+  sprintf(buf,"Done");printofe(lptr,buf,time1);
   sprintf(buf,"auto-correlation sequence [r_n|n=N-50...N], where N=%ld:\n",N);
   Rxx.list(N-50,N,buf,"\n",1,lptr);
   sprintf(buf,"auto-correlation sequence [r_n|n=N...N+50], where N=%ld:\n",N);
@@ -237,7 +237,7 @@ int lab_spin_ocs(const unsigned seed, const long N, const char *basefilename){
   // |      |   |____________switch to turn on counting display
   // |      |________________pointer to output correlation sequence
   // |_______________________input real die sequence
-  sprintf(buf,"done");printofe(lptr,buf,time1);
+  sprintf(buf,"Done");printofe(lptr,buf,time1);
   sprintf(buf,"auto-correlation sequence [r_n|n=N-50...N], where N=%ld:\n",N);
   Rxx.list(N-50,N,buf,"\n",1,lptr);
   sprintf(buf,"auto-correlation sequence [r_n|n=N...N+50], where N=%ld:\n",N);
@@ -282,7 +282,7 @@ int lab_wdie_ocs(const unsigned seed, const long N, const char *basefilename){
   //----------------------------------------------
   x.randomize(seed,5,5,5,5,75,5);
   x.histogram(1,lptr);
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   //plot die sequence
@@ -311,7 +311,7 @@ int lab_wdie_ocs(const unsigned seed, const long N, const char *basefilename){
   // |       |   |____________switch to turn on counting display
   // |       |________________pointer to output correlation sequence
   // |________________________input fair die sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
   sprintf(buf,"auto-correlation sequence [r_n|n=N-50...N], where N=%ld:\n",N);
   Rxx.list(N-50,N,buf,"\n",1,lptr);
   sprintf(buf,"auto-correlation sequence [r_n|n=N...N+50], where N=%ld:\n",N);
@@ -384,7 +384,7 @@ int lab_wrdie_ocs(const unsigned seed, const long N, const char *basefilename){
   // |       |   |____________switch to turn on counting display
   // |       |________________pointer to output correlation sequence
   // |________________________input fair die sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
   sprintf(buf,"auto-correlation sequence [r_n|n=N-50...N], where N=%ld:\n",N);
   Rxx.list(N-50,N,buf,"\n",1,lptr);
   sprintf(buf,"auto-correlation sequence [r_n|n=N...N+50], where N=%ld:\n",N);
@@ -452,7 +452,7 @@ int lab_wspin_ocs(const unsigned seed, const long N, const char *basefilename){
   // |       |   |____________switch to turn on counting display
   // |       |________________pointer to output correlation sequence
   // |________________________input fair spinner sequence
-  sprintf(buf,"done");printofe(lptr,buf,time1);
+  sprintf(buf,"Done");printofe(lptr,buf,time1);
   sprintf(buf,"auto-correlation sequence [r_n|n=N-50...N], where N=%ld:\n",N);
   Rxx.list(N-50,N,buf,"\n",1,lptr);
   sprintf(buf,"auto-correlation sequence [r_n|n=N...N+50], where N=%ld:\n",N);
@@ -520,7 +520,7 @@ int lab_dna_ocs(const unsigned seed, const long N, const char *basefilename){
   // |       |   |____________switch to turn on counting display
   // |       |________________pointer to output correlation sequence
   // |________________________input real die sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
   sprintf(buf,"auto-correlation sequence [r_n|n=N-50...N], where N=%ld:\n",N);
   Rxx.list(N-50,N,buf,"\n",1,lptr);
   sprintf(buf,"auto-correlation sequence [r_n|n=N...N+50], where N=%ld:\n",N);
@@ -590,7 +590,7 @@ int lab_dna_ocs(const char *datafilename, const char *basefilename){
   // |       |   |____________switch to turn on counting display
   // |       |________________pointer to output correlation sequence
   // |________________________input real die sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
   sprintf(buf,"auto-correlation sequence [r_n|n=N-50...N], where N=%ld:\n",N);
   Rxx.list(N-50,N,buf,"\n",1,lptr);
   sprintf(buf,"auto-correlation sequence [r_n|n=N...N+50], where N=%ld:\n",N);
@@ -662,7 +662,7 @@ int lab_dnan_ocs(const char *datafilename, const char *basefilename){
   // |       |   |____________switch to turn on counting display
   // |       |________________pointer to output correlation sequence
   // |________________________input real die sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
   sprintf(buf,"auto-correlation sequence [r_n|n=N-50...N], where N=%ld:\n",N);
   Rxx.list(N-50,N,buf,"\n",1,lptr);
   sprintf(buf,"auto-correlation sequence [r_n|n=N...N+50], where N=%ld:\n",N);
@@ -817,7 +817,7 @@ int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *bas
   //  xR3heN.put(n,xR3he.get(n+M-1));
   //  xR3hlN.put(n,xR3hl.get(n+M-1));
   //  }
-  printof(lptr,"done.\n");
+  printof(lptr,"Done.\n");
 
   //----------------------------------------------
   printf("Perform auto-correlation operations...\n");
@@ -831,7 +831,7 @@ int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *bas
   // |            |      |____________switch to turn on counting display
   // |            |___________________pointer to output correlation sequence
   // |________________________________input real die sequence
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(buf,"R^1, rect., Euclidean auto-correlation sequence about N=%ld: ...\n",N);
   RxR1re.list(N-50,N,buf,"\n",1,lptr);
@@ -864,37 +864,37 @@ int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *bas
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR1re, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld real die SEQUENCE filtered in R^1 using %ld tap Hanning filter and mapped backc to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR1he, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld real die SEQUENCE filtered in R^3 using %ld tap rectangular filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR3re, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld real die SEQUENCE filtered in R^3 using %ld tap rectangular filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_larc_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR3rl, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld real die SEQUENCE filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR3he, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld real die SEQUENCE filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_larc_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR3hl, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   //if(xR3re==xR3rl)fprintf(lptr,"Euclidean and Lagrange sequences are identical.\n");
   //else            fprintf(lptr,"Euclidean and Lagrange sequences are different.\n");
@@ -908,37 +908,37 @@ int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *bas
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR1re, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR1he, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^3 using %ld tap rectangular filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR3re, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^3 using %ld tap rectangular filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_larc_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR3rl, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR3he, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_larc_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR3hl, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   //plot autocorrelation tex files
@@ -947,37 +947,37 @@ int lab_rdie_lp(const unsigned seed, const long N, const long M, const char *bas
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR1re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR1he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^3 using %ld tap rectangular filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR3re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^e using %ld tap rectangular filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_larc_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR3rl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR3he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_larc_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR3hl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   // close log file
@@ -1054,21 +1054,21 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   //----------------------------------------------
   x.randomize(seed,5,5,5,5,75,5);
   x.histogram(1,lptr);
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Map from die space ");printofe(lptr,buf,time1);
   //----------------------------------------------
   printf("to R^1..."); xR1=x.dietoR1();  //xR1 = x seqR1 mapped to R^1 sequence
   printf("to R^3..."); xR3=x.dietoR3();  //xR3 = x die seqR1 mapped to R^3 sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Generate filter coefficients...");printofe(lptr,buf,time1);
   //----------------------------------------------
   r=1.0;       r.lptohp(); printf("\n  r_n=");r.list();
   h.hanning(); h.lptohp(); printf("\n  h_n=");h.list();putchar('\n'); 
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Perform filtering operations...");printofe(lptr,buf,time1);
@@ -1077,7 +1077,7 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   printf("xR1*h..."); convolve(&xR1, &h, &xR1h); //xR1h=xR1*h; 
   printf("xR3*r..."); convolve(&xR3, &r, &xR3r); //xR3r=xR3*r; 
   printf("xR3*h..."); convolve(&xR3, &h, &xR3h); //xR3h=xR3*h; 
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Perform mapping operations from R^n back to die seqR1 space...");
@@ -1089,7 +1089,7 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   xR3rl=rdie_R3todie_larc  (xR3r);//xR3r mapped back to real die seq. using Lagrange
   xR3he=rdie_R3todie_euclid(xR3h);//xR3h mapped back to real die seq. using Euclid
   xR3hl=rdie_R3todie_larc  (xR3h);//xR3h mapped back to real die seq. using Lagrange
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Compare Euclidean and Lagrange mappings after %ld-tap rectangular filtering...\n  ",M);printofe(lptr,buf,time1);
@@ -1126,7 +1126,7 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
     xR3heMN.put(n,xR3heM.get(n+1));
     xR3hlMN.put(n,xR3hlM.get(n+1));
     }
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Perform auto-correlation operations...");printofe(lptr,buf,time1);
@@ -1140,7 +1140,7 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   // |             |      |____________switch to turn on counting display
   // |             |___________________pointer to output correlation sequence
   // |_________________________________input real die sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   //plot seqR1 tex files
@@ -1149,37 +1149,37 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR1reM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"length %ld real die SEQUENCE filtered in R^1 using %ld tap Hanning filter and mapped backc to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR1heM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"length %ld real die SEQUENCE filtered in R^3 using %ld tap rectangular filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_euclid_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR3reM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"length %ld real die SEQUENCE filtered in R^3 using %ld tap rectangular filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_larc_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR3rlM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"length %ld real die SEQUENCE filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_euclid_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR3heM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"length %ld real die SEQUENCE filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_larc_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR3hlM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
 
   //----------------------------------------------
@@ -1189,37 +1189,37 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR1reMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR1heMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^3 using %ld tap rectangular filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_euclid_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR3reMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^3 using %ld tap rectangular filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_larc_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR3rlMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_euclid_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR3heMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"HISTOGRAM of length %ld real die seqR1 filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_larc_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR3hlMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   //plot autocorrelation tex files
@@ -1228,37 +1228,37 @@ int lab_wrdie_hp(const unsigned seed, const long N, const long M, const char *ba
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR1re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR1he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^3 using %ld tap rectangular filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_euclid_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR3re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^e using %ld tap rectangular filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_rect%ld_larc_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR3rl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_euclid_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR3he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"AUTO-CORRELATION of length %ld real die seqR1 filtered in R^3 using %ld tap Hanning filter and mapped back to real die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R3_hann%ld_larc_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR3hl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   // close log file
@@ -1327,14 +1327,14 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
   printf("Generate random seqR1 using seed value 0x%4x...",seed);
   //----------------------------------------------
   x.randomize(seed);
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   printf("Perform mapping operations from spinner space to R^n...");
   //----------------------------------------------
   xR1=x.spintoR1();               //xR1 = x seqR1 mapped to R^1 sequence
   xR2=x.spintoR2();               //xR2 = x die seqR1 mapped to R^2 sequence
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   printf("Perform filtering operations...");
@@ -1345,7 +1345,7 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
   printf("xR1*h..."); convolve(&xR1, &h, &xR1h); //xR1h=xR1*h; 
   printf("xR3*r..."); convolve(&xR2, &r, &xR2r); //xR2r=xR2*r; 
   printf("xR3*h..."); convolve(&xR2, &h, &xR2h); //xR2h=xR2*h; 
-  printf("done.\n");
+  printf("Done.\n");
   //----------------------------------------------
   printf("Perform mapping operations from R^n back to die seqR1 space...");
   //----------------------------------------------
@@ -1355,7 +1355,7 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
   xR2rl=spin_R2tospin_larc  (xR2r);//xR2r mapped back to spinner seq. using Lagrange
   xR2he=spin_R2tospin_euclid(xR2h);//xR2h mapped back to spinner seq. using Euclid
   xR2hl=spin_R2tospin_larc  (xR2h);//xR2h mapped back to spinner seq. using Lagrange
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   sprintf(buf,"Compare Euclidean and Lagrange mappings after %ld-tap rectangular filtering...\n  ",M);printofe(lptr,buf,time1);
@@ -1381,7 +1381,7 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
     xR2heN.put(n,xR2he.get(n+M-1));
     xR2hlN.put(n,xR2hl.get(n+M-1));
     }
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   printf("Perform auto-correlation operations...\n");
@@ -1395,7 +1395,7 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
   // |          |      |____________switch to turn on counting display
   // |          |___________________pointer to output correlation sequence
   // |______________________________input spinner sequence
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   //plot seqR1 tex files
@@ -1404,37 +1404,37 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR1re, M-1, M-1+48,time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld spinner SEQUENCE filtered in R^1 using %ld tap Hanning filter and mapped backc to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR1he, M-1, M-1+48,time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld spinner SEQUENCE filtered in R^2 using %ld tap rectangular filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR2re, M-1, M-1+48,time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld spinner SEQUENCE filtered in R^2 using %ld tap rectangular filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_larc_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR2rl, M-1, M-1+48,time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld spinner SEQUENCE filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR2he, M-1, M-1+48,time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld spinner SEQUENCE filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_larc_seq.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR2hl, M-1, M-1+48,time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   //plot histogram tex files
@@ -1443,37 +1443,37 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR1re, M-1, N+M-2, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld spinner seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR1he, M-1, N+M-2, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld spinner seqR1 filtered in R^2 using %ld tap rectangular filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR2re, M-1, N+M-2, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld spinner seqR1 filtered in R^2 using %ld tap rectangular filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_larc_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR2rl, M-1, N+M-2, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld spinner seqR1 filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR2he, M-1, N+M-2, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld spinner seqR1 filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_larc_histo.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR2hl, M-1, N+M-2, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   //plot autocorrelation tex files
@@ -1482,37 +1482,37 @@ int lab_spin_lp(const unsigned seed, const long N, const long M, const char *bas
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR1re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld spinner seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR1he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld spinner seqR1 filtered in R^2 using %ld tap rectangular filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR2re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld spinner seqR1 filtered in R^e using %ld tap rectangular filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_larc_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR2rl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld spinner seqR1 filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR2he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld spinner seqR1 filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_larc_auto.tex",basefilename,N,M);
   printf("Plot file %50s ... ",filename);
   if(plot_ocs_auto(&RxR2hl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   // close log file
@@ -1589,21 +1589,21 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   //----------------------------------------------
   x.randomize(seed,5,5,5,5,75,5);
   x.histogram(1,lptr);
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Map from die space ");printofe(lptr,buf,time1);
   //----------------------------------------------
   printf("to R^1..."); xR1=x.spintoR1();  //xR1 = x seqR1 mapped to R^1 sequence
   printf("to R^2..."); xR2=x.spintoR2();  //xR2 = x die seqR1 mapped to R^2 sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Generate filter coefficients...");printofe(lptr,buf,time1);
   //----------------------------------------------
   r=1.0;       r.lptohp(); printf("\n  r_n=");r.list();
   h.hanning(); h.lptohp(); printf("\n  h_n=");h.list();putchar('\n'); 
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Perform filtering operations...");printofe(lptr,buf,time1);
@@ -1612,7 +1612,7 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   printf("xR1*h..."); convolve(&xR1, &h, &xR1h); //xR1h=xR1*h; 
   printf("xR3*r..."); convolve(&xR2, &r, &xR2r); //xR2r=xR2*r; 
   printf("xR3*h..."); convolve(&xR2, &h, &xR2h); //xR2h=xR2*h; 
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Perform mapping operations from R^n back to die seqR1 space...");printofe(lptr,buf,time1);
@@ -1623,7 +1623,7 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   xR2rl=spin_R2tospin_larc  (xR2r);//xR2r mapped back to spinner seq. using Lagrange
   xR2he=spin_R2tospin_euclid(xR2h);//xR2h mapped back to spinner seq. using Euclid
   xR2hl=spin_R2tospin_larc  (xR2h);//xR2h mapped back to spinner seq. using Lagrange
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Compare Euclidean and Lagrange mappings after %ld-tap rectangular filtering...\n  ",M);printofe(lptr,buf,time1);
@@ -1660,7 +1660,7 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
     xR2heMN.put(n,xR2heM.get(n+1));
     xR2hlMN.put(n,xR2hlM.get(n+1));
     }
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Perform auto-correlation operations...");printofe(lptr,buf,time1);
@@ -1674,7 +1674,7 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   // |            |      |____________switch to turn on counting display
   // |            |___________________pointer to output correlation sequence
   // |________________________________input spinner sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   //plot seqR1 tex files
@@ -1683,37 +1683,37 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR1reM, 0,50, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"length %ld spinner SEQUENCE filtered in R^1 using %ld tap Hanning filter and mapped backc to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR1heM, 0,50, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"length %ld spinner SEQUENCE filtered in R^2 using %ld tap rectangular filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_euclid_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR2reM, 0,50, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"length %ld spinner SEQUENCE filtered in R^2 using %ld tap rectangular filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_larc_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR2rlM, 0,50, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"length %ld spinner SEQUENCE filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_euclid_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR2heM, 0,50, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"length %ld spinner SEQUENCE filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_larc_seq.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR2hlM, 0,50, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
 
   //----------------------------------------------
@@ -1723,37 +1723,37 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR1reMN, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"HISTOGRAM of length %ld spinner seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR1heMN, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"HISTOGRAM of length %ld spinner seqR1 filtered in R^2 using %ld tap rectangular filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_euclid_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR2reMN, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"HISTOGRAM of length %ld spinner seqR1 filtered in R^2 using %ld tap rectangular filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_larc_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR2rlMN, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"HISTOGRAM of length %ld spinner seqR1 filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_euclid_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR2heMN, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"HISTOGRAM of length %ld spinner seqR1 filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_larc_histo.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR2hlMN, time1, "spin", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   //plot autocorrelation tex files
@@ -1762,37 +1762,37 @@ int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *ba
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR1re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"AUTO-CORRELATION of length %ld spinner seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR1he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"AUTO-CORRELATION of length %ld spinner seqR1 filtered in R^2 using %ld tap rectangular filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_euclid_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR2re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"AUTO-CORRELATION of length %ld spinner seqR1 filtered in R^e using %ld tap rectangular filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_rect%ld_larc_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR2rl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"AUTO-CORRELATION of length %ld spinner seqR1 filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_euclid_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR2he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   sprintf(comment,"AUTO-CORRELATION of length %ld spinner seqR1 filtered in R^2 using %ld tap Hanning filter and mapped back to spinner seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R2_hann%ld_larc_auto.tex",basefilename,N,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_auto(&RxR2hl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   // close log file
@@ -1992,7 +1992,7 @@ sprintf(buf,"length %ld sequence xR6h = xR6 * h:\n"       ,N+M+M-1 ); xR6h.list(
   // |          |      |____________switch to turn on counting display
   // |          |___________________pointer to output correlation sequence
   // |______________________________input fair die sequence
-  printofe(lptr,"done.\n",time1);
+  printofe(lptr,"Done.\n",time1);
 
   //----------------------------------------------
   //plot seqR1 tex files
@@ -2001,37 +2001,37 @@ sprintf(buf,"length %ld sequence xR6h = xR6 * h:\n"       ,N+M+M-1 ); xR6h.list(
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR1re, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld fair die SEQUENCE filtered in R^1 using %ld tap Hanning filter and mapped backc to fair die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR1he, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld fair die SEQUENCE filtered in R^6 using %ld tap rectangular filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R6_rect%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR6re, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld fair die SEQUENCE filtered in R^6 using %ld tap rectangular filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R6_rect%ld_larc_seq.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR6rl, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld fair die SEQUENCE filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R6_hann%ld_euclid_seq.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR6he, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"length %ld fair die SEQUENCE filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R6_hann%ld_larc_seq.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_seq((symseq *)&xR6hl, M-1, M-1+48,time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   //plot histogram tex files
@@ -2040,37 +2040,37 @@ sprintf(buf,"length %ld sequence xR6h = xR6 * h:\n"       ,N+M+M-1 ); xR6h.list(
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR1re, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR1he, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^6 using %ld tap rectangular filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R6_rect%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR6re, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^6 using %ld tap rectangular filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R6_rect%ld_larc_histo.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR6rl, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R6_hann%ld_euclid_histo.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR6he, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R6_hann%ld_larc_histo.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_histo((symseq *)&xR6hl, M-1, N+M-2, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   //plot autocorrelation tex files
@@ -2079,37 +2079,37 @@ sprintf(buf,"length %ld sequence xR6h = xR6 * h:\n"       ,N+M+M-1 ); xR6h.list(
   sprintf(filename,"%s_%ld_R1_rect%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_auto(&RxR1re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
   sprintf(filename,"%s_%ld_R1_hann%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_auto(&RxR1he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^6 using %ld tap rectangular filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R6_rect%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_auto(&RxR6re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^e using %ld tap rectangular filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R6_rect%ld_larc_auto.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_auto(&RxR6rl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
   sprintf(filename,"%s_%ld_R6_hann%ld_euclid_auto.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_auto(&RxR6he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
   sprintf(filename,"%s_%ld_R6_hann%ld_larc_auto.tex",basefilename,N,M);
   printf("Plot file %59s ... ",filename);
   if(plot_ocs_auto(&RxR6hl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  printf("done.\n");
+  printf("Done.\n");
 
   //----------------------------------------------
   // close log file
@@ -2124,52 +2124,38 @@ sprintf(buf,"length %ld sequence xR6h = xR6 * h:\n"       ,N+M+M-1 ); xR6h.list(
 //!        filtered by M tap rectangular filter
 //!        and generate TeX plot file
 //-----------------------------------------------------------------------------
-int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *basefilename){
+int lab_wdie_hp(const unsigned seed, const long N, const long M, const char filter, const char *basefilename){
   time_t time1; time(&time1);   //starting time stamp (passed to plotting routine)
   fdieseq x(M*(N+2)-(M-1));   //for fair die sequence
-  seqR1 r(M);              //for M-tap rectangular filter
-  seqR1 h(M);              //for M-tap Hanning filter
+  seqR1 h(M);              //for M-tap filter
 
   seqR1   xR1(M*(N+2)-(M-1)); //for x mapped to R^1
   seqR6 xR6(M*(N+2)-(M-1)); //for x mapped to R^6
 
-  seqR1   xR1r(M*(N+2)); //for xR1 filtered by r
   seqR1   xR1h(M*(N+2)); //for xR1 filtered by h
-  seqR6 xR6r(M*(N+2)); //for xR6 filtered by r
   seqR6 xR6h(M*(N+2)); //for xR6 filtered by h
 
-  fdieseq  xR1re(M*(N+2)); //for xR1r mapped back to die seqR1 using Euclidean metric
   fdieseq  xR1he(M*(N+2)); //for xR1h mapped back to die seqR1 using Euclidean metric
-  fdieseq  xR6re(M*(N+2)); //for xR6r mapped back to die seqR1 using Euclidean metric
   fdieseq  xR6he(M*(N+2)); //for xR6h mapped back to die seqR1 using Euclidean metric
-  fdieseq  xR6rl(M*(N+2)); //for xR6r mapped back to die seqR1 using Lagrange  distance
   fdieseq  xR6hl(M*(N+2)); //for xR6h mapped back to die seqR1 using Lagrange  distance
            
-  fdieseq  xR1reM(N+2); //for xR1re downsampled by factor of M
   fdieseq  xR1heM(N+2); //for xR1he downsampled by factor of M
-  fdieseq  xR6reM(N+2); //for xR6re downsampled by factor of M
   fdieseq  xR6heM(N+2); //for xR6he downsampled by factor of M
-  fdieseq  xR6rlM(N+2); //for xR6rl downsampled by factor of M
   fdieseq  xR6hlM(N+2); //for xR6hl downsampled by factor of M
            
-  fdieseq  xR1reMN(N); //for xR1reM with first and last element removed
   fdieseq  xR1heMN(N); //for xR1heM with first and last element removed
-  fdieseq  xR6reMN(N); //for xR6reM with first and last element removed
   fdieseq  xR6heMN(N); //for xR6heM with first and last element removed
-  fdieseq  xR6rlMN(N); //for xR6rlM with first and last element removed
   fdieseq  xR6hlMN(N); //for xR6hlM with first and last element removed
 
-  seqR1 RxR1re(2*N+1); //for auto-correlation of xR1reMN
   seqR1 RxR1he(2*N+1); //for auto-correlation of xR1heMN
-  seqR1 RxR6re(2*N+1); //for auto-correlation of xR6reMN
   seqR1 RxR6he(2*N+1); //for auto-correlation of xR6heMN
-  seqR1 RxR6rl(2*N+1); //for auto-correlation of xR6rlMN
   seqR1 RxR6hl(2*N+1); //for auto-correlation of xR6hlMN
 
   char comment[2*1024];          //comment to be passed to plotting function
   char buf[2*1024];          //general purpose buffer
   long n;
-  char filename[1024];
+  char filename[256];
+  char filterStr[64];
   FILE *lptr; // pointer to log  file
 
   //----------------------------------------------
@@ -2186,62 +2172,65 @@ int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *bas
   //----------------------------------------------
   x.randomize(seed,5,5,5,5,75,5);
   x.histogram(1,lptr);
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Map from die space ");printofe(lptr,buf,time1);
   //----------------------------------------------
   printf("to R^1..."); xR1=x.dietoR1();  //xR1 = x seqR1 mapped to R^1 sequence
   printf("to R^6..."); xR6=x.dietoR6();  //xR6 = x die seqR1 mapped to R^6 sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Generate filter coefficients...");printofe(lptr,buf,time1);
   //----------------------------------------------
-  r=1.0;       r.lptohp(); printf("\n  r_n=");r.list();
-  h.hanning(); h.lptohp(); printf("\n  h_n=");h.list();putchar('\n'); 
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  switch( filter )
+  {
+    case 'r': 
+      h = 1.0;
+      sprintf( filterStr, "rect" );
+      break;
+    case 'h':
+      h.hanning();
+      sprintf( filterStr, "hann" );
+      break;
+    default:
+      printf("ERROR: Unknown filter type filter='%c'\n", filter);
+      return -1;
+  }
+  h.lptohp(); 
+  printf("\n  h_n=\n");
+  h.list();
+  putchar('\n'); 
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Perform filtering operations...");printofe(lptr,buf,time1);
   //----------------------------------------------
-  printf("xR1*r..."); convolve(&xR1, &r, &xR1r); //xR1r = xR1 filtered by r (convolved with r)
   printf("xR1*h..."); convolve(&xR1, &h, &xR1h); //xR1h = xR1 filtered by h (convolved with h)
-  printf("xR6*r..."); convolve(&xR6, &r, &xR6r); //xR6r = xR6 filtered by r (convolved with r)
   printf("xR6*h..."); convolve(&xR6, &h, &xR6h); //xR6h = xR6 filtered by h (convolved with h)
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Perform mapping operations from R^n back to die seqR1 space...");printofe(lptr,buf,time1);
   //----------------------------------------------
-  xR1re=rdie_R1todie_euclid(xR1r);//xR1r mapped back to fair die seq. using Euclid
-  xR1he=rdie_R1todie_euclid(xR1h);//xR1h mapped back to fair die seq. using Euclid
-  xR6re=fdie_R6todie_euclid(xR6r);//xR6r mapped back to fair die seq. using Euclid
-  xR6rl=fdie_R6todie_larc  (xR6r);//xR6r mapped back to fair die seq. using Lagrange
-  xR6he=fdie_R6todie_euclid(xR6h);//xR6h mapped back to fair die seq. using Euclid
-  xR6hl=fdie_R6todie_larc  (xR6h);//xR6h mapped back to fair die seq. using Lagrange
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  printf("xR1he..."); xR1he=rdie_R1todie_euclid(xR1h); printf("Done.\n"); //xR1h mapped back to fair die seq. using Euclid
+  printf("xR6he..."); xR6he=fdie_R6todie_euclid(xR6h); printf("Done.\n"); //xR6h mapped back to fair die seq. using Euclid
+  printf("xR6hl..."); xR6hl=fdie_R6todie_larc  (xR6h); printf("Done.\n"); //xR6h mapped back to fair die seq. using Lagrange
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
-  sprintf(buf,"Compare Euclidean and Lagrange mappings after %ld-tap rectangular filtering...\n  ",M);printofe(lptr,buf,time1);
+  sprintf(buf,"Compare Euclidean and Lagrange mappings after %ld-tap %s filtering...\n  ",M,filterStr);
   //----------------------------------------------
-  n=cmp(&xR6re,&xR6rl,0,lptr);
-  if(n==0l){sprintf(buf,"Euclidean and Lagrange sequences after using %ld-tap rectangular filter are identical.\n",M);printofe(lptr,buf,time1);}
-  else     {sprintf(buf,"Euclidean and Lagrange sequences after using %ld-tap rectangular filter differ at %ld locations.\n",M,n);printofe(lptr,buf,time1);}
-  //----------------------------------------------
-  sprintf(buf,"Compare Euclidean and Lagrange mappings after %ld-tap Hanning filtering...\n  ",M);printofe(lptr,buf,time1);
-  //----------------------------------------------
+  printofe(lptr,buf,time1);
   n=cmp(&xR6he,&xR6hl,0,lptr);
-  if(n==0l){sprintf(buf,"Euclidean and Lagrange sequences after using %ld-tap Hanning filter are identical.\n",M);printofe(lptr,buf,time1);}
-  else     {sprintf(buf,"Euclidean and Lagrange sequences after using %ld-tap Hanning filter differ at %ld locations.\n",M,n);printofe(lptr,buf,time1);}
+  if(n==0l){sprintf(buf,"Euclidean and Lagrange sequences after using %ld-tap filter are identical.\n",M);printofe(lptr,buf,time1);}
+  else     {sprintf(buf,"Euclidean and Lagrange sequences after using %ld-tap filter differ at %ld locations.\n",M,n);printofe(lptr,buf,time1);}
 
   //----------------------------------------------
   sprintf(buf,"Perform down sampling...\n  "); printofe(lptr,buf,time1);
   //----------------------------------------------
-  printf("xR1re|%ld...",M); downsample(M, &xR1re, &xR1reM);//xR1reM = xR1re downsampled by M
   printf("xR1he|%ld...",M); downsample(M, &xR1he, &xR1heM);//xR1heM = xR1he downsampled by M
-  printf("xR6re|%ld...",M); downsample(M, &xR6re, &xR6reM);//xR6reM = xR6re downsampled by M
-  printf("xR6rl|%ld...",M); downsample(M, &xR6rl, &xR6rlM);//xR6rlM = xR6rl downsampled by M
   printf("xR6he|%ld...",M); downsample(M, &xR6he, &xR6heM);//xR6heM = xR6he downsampled by M
   printf("xR6hl|%ld...",M); downsample(M, &xR6hl, &xR6hlM);//xR6hlM = xR6hl downsampled by M
   sprintf(buf,"\ndone.");printofe(lptr,buf,time1);
@@ -2250,155 +2239,122 @@ int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *bas
   sprintf(buf,"Remove beginning %ld element and ending %ld element transition regions... ",M-1,M);printofe(lptr,buf,time1);
   //----------------------------------------------
   for(n=0;n<N;n++){
-    xR1reMN.put(n,xR1reM.get(n+1));
     xR1heMN.put(n,xR1heM.get(n+1));
-    xR6reMN.put(n,xR6reM.get(n+1));
-    xR6rlMN.put(n,xR6rlM.get(n+1));
     xR6heMN.put(n,xR6heM.get(n+1));
     xR6hlMN.put(n,xR6hlM.get(n+1));
     }
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   sprintf(buf,"Perform auto-correlation operations...");printofe(lptr,buf,time1);
   //----------------------------------------------
-  if(xR1reMN.Rxxo(&RxR1re,1)){fprintf(stderr,"ERROR computing Rxx for x=xR1re.\n"); return -1;} //auto-correlation seqR1 of xR1reMN
   if(xR1heMN.Rxxo(&RxR1he,1)){fprintf(stderr,"ERROR computing Rxx for x=xR1he.\n"); return -1;} //auto-correlation seqR1 of xR1heMN
-  if(xR6reMN.Rxxo(&RxR6re,1)){fprintf(stderr,"ERROR computing Rxx for x=xR6re.\n"); return -1;} //auto-correlation seqR1 of xR6reMN
-  if(xR6rlMN.Rxxo(&RxR6rl,1)){fprintf(stderr,"ERROR computing Rxx for x=xR6rl.\n"); return -1;} //auto-correlation seqR1 of xR6rlMN
   if(xR6heMN.Rxxo(&RxR6he,1)){fprintf(stderr,"ERROR computing Rxx for x=xR6he.\n"); return -1;} //auto-correlation seqR1 of xR6heMN
   if(xR6hlMN.Rxxo(&RxR6hl,1)){fprintf(stderr,"ERROR computing Rxx for x=xR6hl.\n"); return -1;} //auto-correlation seqR1 of xR6hlMN
   // |            |      |____________switch to turn on counting display
   // |            |___________________pointer to output correlation sequence
   // |________________________________input fair die sequence
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   //plot seqR1 tex files
   //----------------------------------------------
-  sprintf(comment,"length %ld fair die SEQUENCE filtered in R^1 using %ld tap Rectangular filter and mapped backc to fair die seqR1 using Euclidean metric",N,M);
-  sprintf(filename,"%s_%ld_R1_rect%ld_euclid_seq.tex",basefilename,N,M);
-  sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_seq((symseq *)&xR1reM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
-
-  sprintf(comment,"length %ld fair die SEQUENCE filtered in R^1 using %ld tap Hanning filter and mapped backc to fair die seqR1 using Euclidean metric",N,M);
-  sprintf(filename,"%s_%ld_R1_hann%ld_euclid_seq.tex",basefilename,N,M);
+  sprintf(comment,"length %ld fair die SEQUENCE filtered in R^1 using %ld tap %s filter and mapped backc to fair die seqR1 using Euclidean metric",N,M,filterStr);
+  sprintf(filename,"%s_%ld_R1_%s%ld_euclid_seq.tex",basefilename,N,filterStr,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_seq((symseq *)&xR1heM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
-  sprintf(comment,"length %ld fair die SEQUENCE filtered in R^6 using %ld tap rectangular filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
-  sprintf(filename,"%s_%ld_R6_rect%ld_euclid_seq.tex",basefilename,N,M);
+  sprintf(comment,"length %ld fair die SEQUENCE filtered in R^6 using %ld tap %s filter and mapped back to fair die seqR1 using Euclidean metric",N,M,filterStr);
+  sprintf(filename,"%s_%ld_R6_%s%ld_euclid_seq.tex",basefilename,N,filterStr,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_seq((symseq *)&xR6reM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  if(plot_ocs_seq((symseq *)&xR6heM, 0,50, time1, "die", filename, comment,lptr))
+  {
+    fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); 
+    return -1;
+  }
+  sprintf(buf,"Done.");
+  printofe(lptr,buf,time1);
 
-  sprintf(comment,"length %ld fair die SEQUENCE filtered in R^6 using %ld tap rectangular filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
-  sprintf(filename,"%s_%ld_R6_rect%ld_larc_seq.tex",basefilename,N,M);
+  sprintf(comment,"length %ld fair die SEQUENCE filtered in R^6 using %ld tap %s filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M,filterStr);
+  sprintf(filename,"%s_%ld_R6_%s%ld_larc_seq.tex",basefilename,N,filterStr,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_seq((symseq *)&xR6rlM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
-
-  sprintf(comment,"length %ld fair die SEQUENCE filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
-  sprintf(filename,"%s_%ld_R6_hann%ld_euclid_seq.tex",basefilename,N,M);
-  sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_seq((symseq *)&xR6heM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
-
-  sprintf(comment,"length %ld fair die SEQUENCE filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
-  sprintf(filename,"%s_%ld_R6_hann%ld_larc_seq.tex",basefilename,N,M);
-  sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_seq((symseq *)&xR6hlM, 0,50, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
-
+  if(plot_ocs_seq((symseq *)&xR6hlM, 0,50, time1, "die", filename, comment,lptr))
+  {
+    fprintf(stderr,"ERROR using plot_ocs_seq(...)\n"); 
+    return -1;
+  }
+  sprintf(buf,"Done.");
+  printofe(lptr,buf,time1);
 
   //----------------------------------------------
   //plot histogram tex files
   //----------------------------------------------
-  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M,1.0);
-  sprintf(filename,"%s_%ld_R1_rect%ld_euclid_histo.tex",basefilename,N,M);
-  sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_histo((symseq *)&xR1reMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
-
-  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
-  sprintf(filename,"%s_%ld_R1_hann%ld_euclid_histo.tex",basefilename,N,M);
+  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^1 using %ld tap %s filter",N,M,filterStr);
+  sprintf(filename,"%s_%ld_R1_%s%ld_euclid_histo.tex",basefilename,N,filterStr,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
   if(plot_ocs_histo((symseq *)&xR1heMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
-  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^6 using %ld tap rectangular filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
-  sprintf(filename,"%s_%ld_R6_rect%ld_euclid_histo.tex",basefilename,N,M);
+  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^6 using %ld tap %s filter and mapped back to fair die seqR1 using Euclidean metric",N,M,filterStr);
+  sprintf(filename,"%s_%ld_R6_%s%ld_euclid_histo.tex",basefilename,N,filterStr,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_histo((symseq *)&xR6reMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  if(plot_ocs_histo((symseq *)&xR6heMN, time1, "die", filename, comment,lptr))
+  {
+    fprintf(stderr,"ERROR using plot_ocs_histo(...)\n");
+    return -1;
+  }
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
-  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^6 using %ld tap rectangular filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
-  sprintf(filename,"%s_%ld_R6_rect%ld_larc_histo.tex",basefilename,N,M);
+  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^6 using %ld tap %s filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M,filterStr);
+  sprintf(filename,"%s_%ld_R6_%s%ld_larc_histo.tex",basefilename,N,filterStr,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_histo((symseq *)&xR6rlMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
-
-  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
-  sprintf(filename,"%s_%ld_R6_hann%ld_euclid_histo.tex",basefilename,N,M);
-  sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_histo((symseq *)&xR6heMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
-
-  sprintf(comment,"HISTOGRAM of length %ld fair die seqR1 filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
-  sprintf(filename,"%s_%ld_R6_hann%ld_larc_histo.tex",basefilename,N,M);
-  sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_histo((symseq *)&xR6hlMN, time1, "die", filename, comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  if(plot_ocs_histo((symseq *)&xR6hlMN, time1, "die", filename, comment,lptr))
+  {
+    fprintf(stderr,"ERROR using plot_ocs_histo(...)\n"); 
+    return -1;
+  }
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   //plot autocorrelation tex files
   //----------------------------------------------
-  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^1 using %ld tap Rectangular filter with each tap set to %.6lf",N,M,1.0);
-  sprintf(filename,"%s_%ld_R1_rect%ld_euclid_auto.tex",basefilename,N,M);
+  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^1 using %ld tap %s filter",N,M,filterStr);
+  sprintf(filename,"%s_%ld_R1_%s%ld_euclid_auto.tex",basefilename,N,filterStr,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_auto(&RxR1re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  if(plot_ocs_auto(&RxR1he, M, time1, filename,comment,lptr))
+  {
+    fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); 
+    return -1;
+  }
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
-  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^1 using %ld tap Hanning filter",N,M);
-  sprintf(filename,"%s_%ld_R1_hann%ld_euclid_auto.tex",basefilename,N,M);
+  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^6 using %ld tap %s filter and mapped back to fair die seqR1 using Euclidean metric",N,M,filterStr);
+  sprintf(filename,"%s_%ld_R6_%s%ld_euclid_auto.tex",basefilename,N,filterStr,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_auto(&RxR1he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  if(plot_ocs_auto(&RxR6he, M, time1, filename,comment,lptr))
+  {
+    fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); 
+    return -1;
+  }
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
-  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^6 using %ld tap rectangular filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
-  sprintf(filename,"%s_%ld_R6_rect%ld_euclid_auto.tex",basefilename,N,M);
+  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^6 using %ld tap %s filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M,filterStr);
+  sprintf(filename,"%s_%ld_R6_%s%ld_larc_auto.tex",basefilename,N,filterStr,M);
   sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_auto(&RxR6re, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
-
-  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^e using %ld tap rectangular filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
-  sprintf(filename,"%s_%ld_R6_rect%ld_larc_auto.tex",basefilename,N,M);
-  sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_auto(&RxR6rl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
-
-  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Euclidean metric",N,M);
-  sprintf(filename,"%s_%ld_R6_hann%ld_euclid_auto.tex",basefilename,N,M);
-  sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_auto(&RxR6he, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
-
-  sprintf(comment,"AUTO-CORRELATION of length %ld fair die seqR1 filtered in R^6 using %ld tap Hanning filter and mapped back to fair die seqR1 using Lagrange arc distance",N,M);
-  sprintf(filename,"%s_%ld_R6_hann%ld_larc_auto.tex",basefilename,N,M);
-  sprintf(buf,"Plot file %50s ... ",filename);printofe(lptr,buf,time1);
-  if(plot_ocs_auto(&RxR6hl, M, time1, filename,comment,lptr)){fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); return -1;}
-  sprintf(buf,"done.");printofe(lptr,buf,time1);
+  if(plot_ocs_auto(&RxR6hl, M, time1, filename,comment,lptr))
+  {
+    fprintf(stderr,"ERROR using plot_ocs_auto(...,%s,...)\n",filename); 
+    return -1;
+  }
+  sprintf(buf,"Done.");printofe(lptr,buf,time1);
 
   //----------------------------------------------
   // close log file
   //----------------------------------------------
   plot_close(lptr,time1);
   return 0;
-  }
-
-
+}
 
 //-----------------------------------------------------------------------------
 //! \brief map nonstationary die sequence into R^1, C^1, and R^6 and 
@@ -2808,7 +2764,7 @@ int lab_dna_dft(const char *datafilename, const char *basefilename){
   sprintf(filename,"%sC1.tex",basefilename);
   plotmax = ceil(10*log10(mDxC1.max(N/10,9*N/10)));
   plot_dft_seq( &mDxC1, 0, N-1, plotmin, plotmax, M,hres1,hres2,hres3, filename, comment);
-  sprintf(buf,"done.");printof(lptr,buf);
+  sprintf(buf,"Done.");printof(lptr,buf);
  
   //----------------------------------------------
   sprintf(buf,"Perform DFT operation R^4-->C^4...\n");printof(lptr,buf);
@@ -2917,7 +2873,7 @@ int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, const int
   ymag.gt(threshold,0,N-1,buf,"\n",lptr);
   sprintf(filename,"%sC1.tex",basefilename);
   plot_dft_seq( &ymag, 0, N/12, plotmin, plotmax, filename, comment);
-  sprintf(buf,"done.");printof(lptr,buf);
+  sprintf(buf,"Done.");printof(lptr,buf);
  
   //----------------------------------------------
   sprintf(buf,"Perform DFT operation R^4-->C^4...\n");printof(lptr,buf);

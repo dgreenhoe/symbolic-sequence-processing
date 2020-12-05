@@ -35,7 +35,7 @@ extern int lab_wrdie_hp(const unsigned seed, const long N, const long M, const c
 extern int lab_wspin_hp(const unsigned seed, const long N, const long M, const char *basefilename);
 extern int lab_spin_lp (const unsigned seed, const long N, const long M, const char *basefilename);
 extern int lab_fdie_lp (const unsigned seed, const long N, const long M, const char *basefilename);
-extern int lab_wdie_hp(const unsigned seed, const long N, const long M, const char *basefilename);
+extern int lab_wdie_hp(const unsigned seed, const long N, const long M, const char filter, const char *basefilename);
 extern int lab_die_nonstat34(const unsigned seed, const long N, const long M, const int vx, const char *basefilename);
 extern int lab_fdie_seq(const unsigned seed, const long start, const long finish, const char *filename);
 extern int lab_die_edge(const unsigned seed, const long N, const long M, const long Mh, const int vx, const char *basefilename);
@@ -44,3 +44,5 @@ extern int lab_dna_nonstatCT(const unsigned seed, const long N, const long M, co
 extern int lab_dna_edge(const unsigned seed, const long N, const long M, const long Mh, const int vx, const char *basefilename);
 extern int lab_dna_edge(const long Mh, const char *datafilename, const char *basefilename);
 extern int lab_dna_averaging(const long Mh, const char *datafilename, const char *basefilename);
+
+

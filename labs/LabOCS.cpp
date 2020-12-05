@@ -35,11 +35,12 @@ TEST( LabOCS, rdie )
 TEST( LabOCS, wdie )
 {
   const unsigned seed = 0x5EED;
-  ASSERT_EQ( lab_wrdie_ocs( seed, 16002,       "../plots/wrdie"   ), 0 ); // Example 3.7  (weighted real die sequence), 3 plots
-  ASSERT_EQ( lab_wdie_ocs ( seed, 16002,       "../plots/wdie"    ), 0 ); // Example 3.8  (weighted die sequence), 3 plots
-  ASSERT_EQ( lab_wrdie_hp(  seed, 1200 ,   50, "../plots/wrdie_hp"), 0 ); // Example 4.4  (high pass filtering weighted real die sequence)
-  ASSERT_EQ( lab_wdie_hp(   seed, 1200 ,   16, "../plots/wdie_hp" ), 0 ); // Example 4.6  (high pass filtering weighted die sequence)     
-  ASSERT_EQ( lab_wdie_hp(   seed, 1200 ,   50, "../plots/wdie_hp" ), 0 ); // Example 4.6  (high pass filtering weighted die sequence)     
+//  ASSERT_EQ( lab_wrdie_ocs( seed, 16002,       "../plots/wrdie"   ), 0 ); // Example 3.7  (weighted real die sequence), 3 plots
+//  ASSERT_EQ( lab_wdie_ocs ( seed, 16002,       "../plots/wdie"    ), 0 ); // Example 3.8  (weighted die sequence), 3 plots
+//  ASSERT_EQ( lab_wrdie_hp(  seed, 1200 ,   50, "../plots/wrdie_hp"), 0 ); // Example 4.4  (high pass filtering weighted real die sequence)
+  ASSERT_EQ( lab_wdie_hp(   seed, 120 ,   16, 'r', "../plots/wdie_hp" ), 0 ); // Example 4.6  (high pass filtering weighted die sequence)     
+//  ASSERT_EQ( lab_wdie_hp(   seed, 1200 ,   16, 'r', "../plots/wdie_hp" ), 0 ); // Example 4.6  (high pass filtering weighted die sequence)     
+//  ASSERT_EQ( lab_wdie_hp(   seed, 1200 ,   50, 'r', "../plots/wdie_hp" ), 0 ); // Example 4.6  (high pass filtering weighted die sequence)     
 }
 
 //---------------------------------------------------------------------------
