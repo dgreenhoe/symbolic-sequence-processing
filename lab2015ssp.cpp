@@ -2216,6 +2216,7 @@ int lab_wdie_hp(const unsigned seed, const long N, const long M, const char filt
   //----------------------------------------------
   printf("xR1he..."); xR1he=rdie_R1todie_euclid(xR1h); printf("Done.\n"); //xR1h mapped back to fair die seq. using Euclid
   printf("xR6he..."); xR6he=fdie_R6todie_euclid(xR6h); printf("Done.\n"); //xR6h mapped back to fair die seq. using Euclid
+xR6h.list();
   printf("xR6hl..."); xR6hl=fdie_R6todie_larc  (xR6h); printf("Done.\n"); //xR6h mapped back to fair die seq. using Lagrange
   sprintf(buf,"Done.");printofe(lptr,buf,time1);
 

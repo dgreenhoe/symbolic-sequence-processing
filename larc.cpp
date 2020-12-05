@@ -95,22 +95,25 @@ double larc_indefint(double rp, double rq, double thetap, double thetaq, double 
 /*-------------------------------------------------------------------------
  * Lagrange arc metric from <p> to <q> in R^2
  *-------------------------------------------------------------------------*/
-double larc_metric(const vectR2 p, const vectR2 q){
+double larc_metric(const vectR2 p, const vectR2 q)
+{
   const double rp  = p.mag();
   const double rq  = q.mag();
-  const double phi = pqtheta(p,q);
   const vectR2  pq; //=p-q;
+  double phi;
   double d;
-  if(rp==0 || rq==0 || phi<=0.0000001){//use Euclidean metric
+//  if(rp==0 || rq==0 || phi<=0.0000001){//use Euclidean metric
+  if(fabs(rp)<1e-6 || fabs(rq)<1e-6 ){//use Euclidean metric
     d = emetric(p,q); 
-    //printf("p=(%.2lf,%.2lf) q=(%.3lf,%.3lf) rq=%lf theta=%.12f PI phi=%.12f PI d=%lf ae\n",p.getx(),p.gety(),q.getx(),q.gety(),q.mag(),pqtheta(p,q)/PI, phi/PI,d);
+    //printf("p=(%.2lf,%.2lf) q=(%.3lf,%.3lf) rq=%lf theta=%.12f PI phi=%.12f PI d=%lf ae\n",p.getx(),p.gety(),q.getx(),q.gety(),q.mag(),pqtheta(p,q)/M_PI, phi/M_PI,d);
     }
   else{//use Lagrange arc length
-    d = larc_arclength(rp, rq, phi);
-    //printf("p=(%.2lf,%.2lf) q=(%.3lf,%.3lf) rq=%lf theta=%.12f PI phi=%.12f PI d=%lf larc\n",p.getx(),p.gety(),q.getx(),q.gety(),q.mag(),pqtheta(p,q)/PI, phi/PI,d);
+    phi = pqtheta(p,q);
+    d   = larc_arclength(rp, rq, phi);
+    //printf("p=(%.2lf,%.2lf) q=(%.3lf,%.3lf) rq=%lf theta=%.12f PI phi=%.12f PI d=%lf larc\n",p.getx(),p.gety(),q.getx(),q.gety(),q.mag(),pqtheta(p,q)/M_PI, phi/M_PI,d);
     }
-  return d/PI;
-  }
+  return d/M_PI;
+}
 
 /*-------------------------------------------------------------------------
  * tau function for larc distance function d(p,q)
@@ -149,7 +152,7 @@ double larc_tau(const double a, const double sigma, const vectR2 p, const vectR2
 double larc_metric(const vectR2 p, const vectR2 q, const long int N){
   larcc arc(p,q);
   double d = arc.arclength(N);
-  double ds=d/PI;
+  double ds=d/M_PI;
   return ds;
   }
 
@@ -164,7 +167,7 @@ double larc_metric(const vectR3 p, const vectR3 q){
   if(rp==0 || rq==0 || tdiff<=0) d = pq.mag();
   else if(rp==rq)                d = rp*tdiff;
   else                           d = larc_arclength(rp, rq, tdiff);
-  return d/PI;
+  return d/M_PI;
   }
 
 /*-------------------------------------------------------------------------
@@ -178,7 +181,7 @@ double larc_metric(const vectR4 p, const vectR4 q){
   if(rp==0 || rq==0 || tdiff<=0) d = pq.mag();
   else if(rp==rq)                d = rp*tdiff;
   else                           d = larc_arclength(rp, rq, tdiff);
-  return d/PI;
+  return d/M_PI;
   }
 
 /*-------------------------------------------------------------------------
@@ -186,13 +189,24 @@ double larc_metric(const vectR4 p, const vectR4 q){
  *-------------------------------------------------------------------------*/
 double larc_metric(const vectR6 p, const vectR6 q){
   const double rp=p.mag(), rq=q.mag();
-  const double tdiff = pqtheta(p,q);
+  double tdiff;
   const vectR6  pq=p-q;
   double d;
-  if(rp==0 || rq==0 || tdiff<=0) d = pq.mag();
-  else if(rp==rq)                d = rp*tdiff;
-  else                           d = larc_arclength(rp, rq, tdiff);
-  return d/PI;
+  if(fabs(rp)<1e-6 || fabs(rq)<1e-6 ) 
+  {
+    d = pq.mag();
+  }
+  else if(rp==rq)  
+  {
+    tdiff = pqtheta(p,q);
+    d = rp*tdiff;
+  }
+  else 
+  {
+    tdiff = pqtheta(p,q);
+    d = larc_arclength(rp, rq, tdiff);
+  }
+  return d/M_PI;
   }
 
 /*-------------------------------------------------------------------------
@@ -289,11 +303,11 @@ int larc_findq(const vectR2 p, const double theta, const double d, const double 
     if(discontinuity){
       fprintf(stderr,"\nWARNING using larc_findq(vectR2 p,...): possible discontinuity,\n");
       fprintf(stderr,"  jumping from d=%lf to d=%lf.\n",discon1,discon2);
-      fprintf(stderr,"  smallesterror=%lf > %lf=maxerror smallestd=%lf bestrq=%lf theta=%.12lf PI phi=%.12lf PI\n",smallesterror,maxerror,bestd,bestrq,theta/PI,phi/PI);
+      fprintf(stderr,"  smallesterror=%lf > %lf=maxerror smallestd=%lf bestrq=%lf theta=%.12lf PI phi=%.12lf PI\n",smallesterror,maxerror,bestd,bestrq,theta/M_PI,phi/M_PI);
       }
     else{
       fprintf(stderr,"\nERROR using larc_findq(vectR2 p,...): no apparent discontinuity but...\n");
-      fprintf(stderr,"  smallesterror=%lf > %lf=maxerror smallestd=%lf bestrq=%lf theta=%.12lf PI phi=%.12lf PI\n",smallesterror,maxerror,bestd,bestrq,theta/PI,phi/PI);
+      fprintf(stderr,"  smallesterror=%lf > %lf=maxerror smallestd=%lf bestrq=%lf theta=%.12lf PI phi=%.12lf PI\n",smallesterror,maxerror,bestd,bestrq,theta/M_PI,phi/M_PI);
       exit(EXIT_FAILURE);
       }
     }
@@ -324,7 +338,7 @@ vectR3 larc_findq(const vectR3 p, const double theta, const double phi, const do
       }
     }
   if(smallesterror>maxerror){
-    fprintf(stderr,"\nERROR using larc_findq(vectR3 p,...):\n  smallesterror=%lf > %lf=maxerror bestrq=%lf theta=%.2lf PI\n",smallesterror,maxerror,bestrq,theta/PI);
+    fprintf(stderr,"\nERROR using larc_findq(vectR3 p,...):\n  smallesterror=%lf > %lf=maxerror bestrq=%lf theta=%.2lf PI\n",smallesterror,maxerror,bestrq,theta/M_PI);
     exit(EXIT_FAILURE);
     }
   return bestq;

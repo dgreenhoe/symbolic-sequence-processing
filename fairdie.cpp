@@ -242,9 +242,9 @@ fdieseq fdie_R6todie_euclid(seqR6 xyz){
   return fdie;
   }
 
-/*-------------------------------------------------------------------------
- * map R^6 values to die face values using Euclidean metric
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//\brief Map R^6 values to die face values using Euclidean metric
+//-----------------------------------------------------------------------------
 fdieseq fdie_R6todie_larc(seqR6 xyz){
   long n;
   int m;
