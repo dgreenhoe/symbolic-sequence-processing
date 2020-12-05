@@ -55,11 +55,8 @@ double larc_arclength(double rp, double rq, double tdiff){
   const double uq= rq*rho*phi+fabs(rho)*sq;
   if(rp==0)    {fprintf(stderr,"\nERROR using larc_arclength(rp,rq,tdiff): rp=%lf\n",      rp);    exit(EXIT_FAILURE);}
   if(rq==0)    {fprintf(stderr,"\nERROR using larc_arclength(rp,rq,tdiff): rp=%lf\n",      rq);    exit(EXIT_FAILURE);}
-  if(tdiff<=0) {fprintf(stderr,"\nERROR using larc_arclength(rp,rq,tdiff): tdiff=%lf\n",   tdiff); exit(EXIT_FAILURE);}
+  if(tdiff<0) {fprintf(stderr,"\nERROR using larc_arclength(rp,rq,tdiff): tdiff=%lf\n",   tdiff); exit(EXIT_FAILURE);}
   if(tdiff>PI) {fprintf(stderr,"\nERROR using larc_arclength(rp,rq,tdiff): tdiff=%lf>PI\n",tdiff); exit(EXIT_FAILURE);}
-  //y = (larc_indefint(rp,rq,0,tdiff,tdiff)-larc_indefint(rp,rq,0,tdiff,0))/tdiff;
-  //y2 = (rho>=0)? (fabs(rho)/(2*phi))*(log( rq*phi+sq)-log( rp*phi+sp))
-  //             : (fabs(rho)/(2*phi))*(log(-rq*phi+sq)-log(-rp*phi+sp));
   if(fabs(rho)<=0.00000000001) y=rp*phi;
   else{
     if(up<=0){fprintf(stderr,"\nERROR using larc_arclength(rp,rq,tdiff): up=%.20lf rp=%lf rho=%lf sp=%lf\n", up,rp,rho,sp);    exit(EXIT_FAILURE);}
@@ -103,15 +100,24 @@ double larc_metric(const vectR2 p, const vectR2 q)
   double phi;
   double d;
 //  if(rp==0 || rq==0 || phi<=0.0000001){//use Euclidean metric
-  if(fabs(rp)<1e-6 || fabs(rq)<1e-6 ){//use Euclidean metric
-    d = emetric(p,q); 
+  if(fabs(rp)<1e-6 || fabs(rq)<1e-6 )
+  {
+    d = emetric(p,q); //use Euclidean metric
     //printf("p=(%.2lf,%.2lf) q=(%.3lf,%.3lf) rq=%lf theta=%.12f PI phi=%.12f PI d=%lf ae\n",p.getx(),p.gety(),q.getx(),q.gety(),q.mag(),pqtheta(p,q)/M_PI, phi/M_PI,d);
-    }
-  else{//use Lagrange arc length
+  }
+  else
+  {
     phi = pqtheta(p,q);
-    d   = larc_arclength(rp, rq, phi);
-    //printf("p=(%.2lf,%.2lf) q=(%.3lf,%.3lf) rq=%lf theta=%.12f PI phi=%.12f PI d=%lf larc\n",p.getx(),p.gety(),q.getx(),q.gety(),q.mag(),pqtheta(p,q)/M_PI, phi/M_PI,d);
+    if( phi<=0.0000001 ) 
+    {
+      d = emetric(p,q); 
     }
+    else
+    {
+      d   = larc_arclength(rp, rq, phi); //use Lagrange arc length
+      //printf("p=(%.2lf,%.2lf) q=(%.3lf,%.3lf) rq=%lf theta=%.12f PI phi=%.12f PI d=%lf larc\n",p.getx(),p.gety(),q.getx(),q.gety(),q.mag(),pqtheta(p,q)/M_PI, phi/M_PI,d);
+    }
+  }
   return d/M_PI;
 }
 
