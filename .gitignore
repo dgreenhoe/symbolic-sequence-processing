@@ -12,3 +12,4 @@ plots/*.pdf
 plots/*.xlg
 html/*
 latex/*
+plotsx/*

@@ -12,7 +12,7 @@
 #include "r1.h"
 
 //-----------------------------------------------------------------------------
-//# \brief constructor initializing seqR1 to 0
+//! \brief Constructor initializing sequence to 0
 //-----------------------------------------------------------------------------
 seqR1::seqR1(long M){
   N = M;
@@ -21,7 +21,7 @@ seqR1::seqR1(long M){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief constructor initializing seqR1 to <u>
+//! \brief Constructor initializing sequence to u
 //-----------------------------------------------------------------------------
 seqR1::seqR1(long M, double u){
   N = M;
@@ -30,7 +30,8 @@ seqR1::seqR1(long M, double u){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief constructor initializing seqR1 to an array <list>
+//! \brief Constructor initializing sequence to an array list
+//! \param[in] list: pointer to array of initialization values
 //-----------------------------------------------------------------------------
 seqR1::seqR1(long M, double *list)
 {
@@ -40,7 +41,7 @@ seqR1::seqR1(long M, double *list)
 }
 
 //-----------------------------------------------------------------------------
-//# \brief fill the seqR1 with a value 0
+//! \brief fill the sequence with a value 0
 //-----------------------------------------------------------------------------
 void seqR1::clear(void)
 {
@@ -48,34 +49,41 @@ void seqR1::clear(void)
 }
 
 //-----------------------------------------------------------------------------
-//# \brief fill the seqR1 with a value <u>
+//! \brief fill the sequence with a value u
+//! \param[in] u : Value to fill sequence with
 //-----------------------------------------------------------------------------
-void seqR1::fill(double u){
+void seqR1::fill(double u)
+{
   long n;
   for(n=0; n<N; n++)x[n]=u;
 }
 
 //-----------------------------------------------------------------------------
-//# \brief fill the seqR1 with Hanning filter coefficients
+//! \brief fill the sequence with Hanning filter coefficients
 //-----------------------------------------------------------------------------
-void seqR1::hanning(void){
+void seqR1::hanning(void)
+{
   long n;
   for(n=0; n<N; n++) x[n]=0.5*(1-cos(2*M_PI*n/(N-1)));
 }
 
 //-----------------------------------------------------------------------------
-//# \brief convert low pass filter to high pass filter
+//! \brief Convert low pass filter to high pass filter
 //-----------------------------------------------------------------------------
-void seqR1::lptohp(void){
+void seqR1::lptohp(void)
+{
   long n;
   double s=1;
   for(n=0; n<N; n++,s*=-1) x[n]*=s;
 }
 
 //-----------------------------------------------------------------------------
-//# \brief put a single value <u> into the seqR1 x at location n
+//! \brief put a single value u into the seqR1 x at location n
+//! \param[in] n : Index value
+//! \param[in] u : Value to be put in sequence at index n
 //-----------------------------------------------------------------------------
-const int seqR1::put(const long n, const double u){
+const int seqR1::put(const long n, const double u)
+{
   if(n<N){
     x[n]=u;
     return 0;
@@ -84,9 +92,13 @@ const int seqR1::put(const long n, const double u){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief put the value <u> into the seqR1 x from location <start> to <end>
+//! \brief Put the value u into the sequence x from location start to end
+//! \param[in] u     : Value to be put in sequence
+//! \param[in] start : Starting index value
+//! \param[in] end   : Ending index value
 //-----------------------------------------------------------------------------
-int seqR1::put(const long start, const long end, const double u){
+int seqR1::put(const long start, const long end, const double u)
+{
   long n;
   int retval=0;
   if(start<0||end>=N||start>end){
@@ -98,7 +110,9 @@ int seqR1::put(const long start, const long end, const double u){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief add a single value <u> into the seqR1 x at location n
+//! \brief add a single value u into the seqR1 x at location n
+//! \param[in] n: Index of sequence
+//! \param[in] u: Add value u to element n of sequence
 //-----------------------------------------------------------------------------
 int seqR1::add(const long n, const double u){
   if(n<N){
@@ -109,7 +123,8 @@ int seqR1::add(const long n, const double u){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief add a single value <u> to every element in the sequence x
+//! \brief add a single value u to every element in the sequence x
+//! \param[in] u: Add value u to each element of sequence
 //-----------------------------------------------------------------------------
 const int seqR1::add(const double u){
   long n;
@@ -118,7 +133,8 @@ const int seqR1::add(const double u){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief get a single value from the seqR1 x at location n
+//! \brief get a single value from the seqR1 x at location n
+//! \param[in] n: sequence index value
 //-----------------------------------------------------------------------------
 double seqR1::get(long n) const
 {
@@ -130,20 +146,22 @@ double seqR1::get(long n) const
 }
 
 //-----------------------------------------------------------------------------
-//# \brief shift seqR1 n elements to the right inserting zeros on the left
-//# example: if x = [ a b c d e f ] (N=6), then shiftR(2) results in
-//#             x = [ 0 0 a b c d ] (N=6).
+//! \brief shift seqR1 n elements to the right inserting zeros on the left
+//! \details example: if x = [ a b c d e f ] (N=6), then shiftR(2) results in
+//!             x = [ 0 0 a b c d ] (N=6).
+//! \param[in] n: number of elements to shift by
 //-----------------------------------------------------------------------------
-void seqR1::shiftR(long n){
+void seqR1::shiftR(long n)
+{
   long m;
   for(m=N-1;m-n>=0;m--)x[m]=x[m-n];
   for(m=0;m<n;m++)     x[m]=0;
 }
 
 //-----------------------------------------------------------------------------
-//# \brief shift seqR1 n elements to the left inserting zeros on the right
-//# example: if x = [ a b c d e f ] (N=6), then shiftL(2) results in
-//#             x = [ c d e f 0 0 ] (N=6).
+//! \brief shift seqR1 n elements to the left inserting zeros on the right
+//! \details example: if x = [ a b c d e f ] (N=6), then shiftL(2) results in
+//!                      x = [ c d e f 0 0 ] (N=6).
 //-----------------------------------------------------------------------------
 void seqR1::shiftL(long n){
   long m;
@@ -152,7 +170,9 @@ void seqR1::shiftL(long n){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief return the maximum value of the seqR1 x
+//! \brief return the maximum value of the seqR1 x
+//! \param[in] start starting index of sequence
+//! \param[in] end   ending index of sequence
 //-----------------------------------------------------------------------------
 double seqR1::max(const long start,const long end) const
 {
@@ -168,7 +188,9 @@ double seqR1::max(const long start,const long end) const
 }
 
 //-----------------------------------------------------------------------------
-//# \brief return the minimum value of the seqR1 x
+//! \brief return the minimum value of the seqR1 x
+//! \param[in] start starting index of sequence
+//! \param[in] end   ending index of sequence
 //-----------------------------------------------------------------------------
 double seqR1::min(const long start,const long end) const
 {
@@ -184,9 +206,10 @@ double seqR1::min(const long start,const long end) const
 }
 
 //-----------------------------------------------------------------------------
-//# \brief return the first argument n yielding the maximum value x_n of the seqR1 x
+//! \brief return the first argument n yielding the maximum value x_n of the seqR1 x
 //-----------------------------------------------------------------------------
-long seqR1::argmax(void){
+long seqR1::argmax(void)
+{
   long n,arg;
   double u,max;
   max=x[0];
@@ -201,9 +224,10 @@ long seqR1::argmax(void){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief return the first argument n yielding the minimum value x_n of the seqR1 x
+//! \brief return the first argument n yielding the minimum value x_n of the seqR1 x
 //-----------------------------------------------------------------------------
-long seqR1::argmin(void){
+long seqR1::argmin(void)
+{
   long n,arg;
   double u,min;
   min=x[0];
@@ -218,17 +242,17 @@ long seqR1::argmin(void){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief return the lp norm of the seqR1 x
-//# reference: Giles (1987), page 9, 1.18 Example.
-//#   John Robilliard Giles (1987)
-//#   Introduction to the Analysis of Metric Spaces. 
-//#   Number 3 in Australian Mathematical Society lecture series. 
-//#   Cambridge University Press, Cambridge, ISBN 0521359287. 
-//#   https://books.google.com/books?vid=ISBN0521359287&pg=PA9
+//! \brief return the lp norm of the seqR1 x
+//! \details References: Giles (1987), page 9, 1.18 Example.
+//!   John Robilliard Giles (1987)
+//!   Introduction to the Analysis of Metric Spaces. 
+//!   Number 3 in Australian Mathematical Society lecture series. 
+//!   Cambridge University Press, Cambridge, ISBN 0521359287. 
+//!   https://books.google.com/books?vid=ISBN0521359287&pg=PA9
+//! \param[in] r: norm parameter
 //-----------------------------------------------------------------------------
-double seqR1::norm(
-  double r  //# \param[in] r: norm parameter
-){
+double seqR1::norm( double r )
+{
   long n;
   double u,y=0;
   for(n=0;n<N;n++){
@@ -239,9 +263,9 @@ double seqR1::norm(
 }
 
 //-----------------------------------------------------------------------------
-//# \brief return the Euclidean norm of the seqR1 x
-//# equivalent to norm(2), see above, but possibly more efficient
-//# reference: Giles (1987), page 3, 1.6 Examples.
+//! \brief return the Euclidean norm of the seqR1 x
+//!        equivalent to norm(2), see above, but possibly more efficient
+//! \reference: Giles (1987), page 3, 1.6 Examples.
 //-----------------------------------------------------------------------------
 double seqR1::norm(void)
 {
@@ -255,9 +279,9 @@ double seqR1::norm(void)
 }
 
 //-----------------------------------------------------------------------------
-//# \brief return the supremum norm of the seqR1 x
-//# equivalent to norm(+infty), see above
-//# reference: Giles (1987), page 5, 1.9 Examples.
+//! \brief return the supremum norm of the seqR1 x
+//!        equivalent to norm(+infty), see above
+//!        reference: Giles (1987), page 5, 1.9 Examples.
 //-----------------------------------------------------------------------------
 double seqR1::supnorm(void)
 {
@@ -271,8 +295,8 @@ double seqR1::supnorm(void)
 }
 
 //-----------------------------------------------------------------------------
-//# \brief return the infinimum norm of the seqR1 x
-//# equivalent to norm(-infty), see above
+//! \brief return the infinimum norm of the seqR1 x 
+//!        equivalent to norm(-infty), see above
 //-----------------------------------------------------------------------------
 double seqR1::infnorm(void)
 {
@@ -287,12 +311,12 @@ double seqR1::infnorm(void)
 
 //-----------------------------------------------------------------------------
 //! \brief fill the seqR1 with pseudo-random numbers 
-//! uniformly distributed in the closed interval [0:1]
-//! using seed value <seed>
+//!        uniformly distributed in the closed interval [0:1]
+//!        using seed value <seed>
+//! \param[in] seed: pseudo-random generator seed value
 //-----------------------------------------------------------------------------
-void seqR1::randomize(
-  unsigned seed //! \param[in] seed: pseudo-random generator seed value
-){
+void seqR1::randomize( unsigned seed )
+{
   double r;
   srand(seed);
   for(long n=0; n<N; n++){
@@ -305,12 +329,12 @@ void seqR1::randomize(
 //! \brief fill the seqR1 with pseudo-random integers
 //!        uniformly distributed in the closed interval [min:max]
 //!        using seed value <seed>
+//! \param[in] seed: pseudo-random generator seed value
+//! \param[in] min:  minimum value
+//! \param[in] max:  maximum value
 //-----------------------------------------------------------------------------
-void seqR1::randomize(
-  unsigned seed, //! \param[in] seed: pseudo-random generator seed value
-  int      min , //! \param[in] min:  minimum value
-  int      max   //! \param[in] max:  maximum value
-){
+void seqR1::randomize(unsigned seed, int min , int max )
+{
   int r;
   unsigned u;
   int  order=abs(max-min)+1;
@@ -340,17 +364,17 @@ void seqR1::round(void)
 
 //-----------------------------------------------------------------------------
 //! \brief Print contents of sequence to stream <*ptr> 
-//! first printing <*str1>, 
-//! followed by the sequence [x_n|n=start...end]
-//! followed by the <*str2>
+//!        first printing <*str1>, 
+//!        followed by the sequence [x_n|n=start...end]
+//!        followed by the <*str2>
+//! \param[in]  start: sequence starting index value
+//! \param[in]  end  : sequence ending index value
+//! \param[in]  str1 : string to print before the sequence
+//! \param[in]  str2 : string to print after the sequence
+//! \param[out] ptr  : output string
 //-----------------------------------------------------------------------------
-void seqR1::list(
-  const long  start, //! \param[in]  start: sequence starting index value
-  const long  end  , //! \param[in]  end  : sequence ending index value
-  const char *str1 , //! \param[in]  str1 : string to print before the sequence
-  const char *str2 , //! \param[in]  str2 : string to print after the sequence
-  FILE       *ptr    //! \param[out] ptr  : output string
-){
+void seqR1::list( const long  start, const long  end, const char *str1, const char *str2, FILE *ptr )
+{
   long n,m;
   if(ptr!=NULL){
     if(strlen(str1)>0)fprintf(ptr,"%s",str1);
@@ -366,7 +390,9 @@ void seqR1::list(
 }
 
 //-----------------------------------------------------------------------------
-//# \brief list contents of rdieseq in a format convenient for LaTeX typesetting
+//! \brief List contents of sequence in a format convenient for LaTeX typesetting
+//! \param[in] start: starting index of sequence
+//! \param[in] end:   ending index of sequence
 //-----------------------------------------------------------------------------
 void seqR1::listx(long start, long end)
 {
@@ -378,7 +404,9 @@ void seqR1::listx(long start, long end)
 
 
 //-----------------------------------------------------------------------------
-//# \brief list contents of seqR1 in long format
+//! \brief List contents of seqR1 in long format
+//! \param[in] start: starting index of sequence
+//! \param[in] end:   ending index of sequence
 //-----------------------------------------------------------------------------
 void seqR1::listL(void)
 {
@@ -390,7 +418,9 @@ void seqR1::listL(void)
 }
 
 //-----------------------------------------------------------------------------
-//# \brief list contents of seqR1 using 1 digit per element
+//! \brief List contents of seqR1 using 1 digit per element
+//! \param[in] start: starting index of sequence
+//! \param[in] end:   ending index of sequence
 //-----------------------------------------------------------------------------
 void seqR1::list1(long start, long end)
 {
@@ -403,9 +433,12 @@ void seqR1::list1(long start, long end)
 }
 
 //-----------------------------------------------------------------------------
-//# \brief list contents of seqR1 using integer format
+//! \brief List contents of seqR1 using integer format
+//! \param[in] start: starting index of sequence
+//! \param[in] end:   ending index of sequence
 //-----------------------------------------------------------------------------
-void seqR1::listi(long start, long end){
+void seqR1::listi(long start, long end)
+{
   long n,m;
   for(n=start,m=1; n<=end; n++,m++){
     printf("%.0lf ",get(n));
@@ -415,9 +448,10 @@ void seqR1::listi(long start, long end){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief Normalize sequence
+//! \brief Normalize sequence
 //-----------------------------------------------------------------------------
-double seqR1::normalize(void){
+double seqR1::normalize(void)
+{
   long n;
   double sum,scale;
   for(n=0,sum=0;n<N;n++) sum += fabs(x[n]);
@@ -428,7 +462,8 @@ double seqR1::normalize(void){
 
 
 //-----------------------------------------------------------------------------
-//# \brief return the largest pair of values in the seqR1 as measured by norm()
+//! \brief Return the largest pair of values in the seqR1 as measured by norm()
+//! \returns Largest value 
 //-----------------------------------------------------------------------------
 double seqR1::max(const int mode) const
 {
@@ -451,7 +486,13 @@ double seqR1::max(const int mode) const
 }
 
 //-----------------------------------------------------------------------------
-//# \brief list all values (n,x_n) such that x_n >= u
+//! \brief List all values (n,x_n) such that x_n > <threshold>
+//! \param[in]  threshold : threshold above which a value will be listed
+//! \param[in]  start     : starting index of sequence
+//! \param[in]  end       : ending index of sequence
+//! \param[in]  str1      : String to print before listing
+//! \param[in]  str2      : String to print after listing
+//! \param[out] ptr       : Pointer to output file
 //-----------------------------------------------------------------------------
 long seqR1::gt(const double threshold,const long start, const long end, const char *str1, const char *str2, FILE *ptr){
   long n;
@@ -477,7 +518,13 @@ long seqR1::gt(const double threshold,const long start, const long end, const ch
 }
 
 //-----------------------------------------------------------------------------
-//# \brief list all values (n,x_n) such that x_n >= u
+//! \brief List all values (n,x_n) such that x_n >= <threshold>
+//! \param[in]  threshold : threshold above which a value will be listed
+//! \param[in]  start     : starting index of sequence
+//! \param[in]  end       : ending index of sequence
+//! \param[in]  str1      : String to print before listing
+//! \param[in]  str2      : String to print after listing
+//! \param[out] ptr       : Pointer to output file
 //-----------------------------------------------------------------------------
 long seqR1::gte(const double threshold,const long start, const long end, const char *str1, const char *str2, FILE *ptr){
   long n;
@@ -506,17 +553,19 @@ long seqR1::gte(const double threshold,const long start, const long end, const c
 }
 
 //-----------------------------------------------------------------------------
-//# \brief list contents of seqR1 using 1 digit per element
+// \brief List contents of seqR1 using 1 digit per element
 //-----------------------------------------------------------------------------
-void seqR1::test(void)
-{
-  printf("seqR1::test N=%ld x[0,1,2] = %lf %lf %lf ...\n",N,x[0],x[1],x[2]);
-}
+//void seqR1::test(void)
+//{
+//  printf("seqR1::test N=%ld x[0,1,2] = %lf %lf %lf ...\n",N,x[0],x[1],x[2]);
+//}
 
 //-----------------------------------------------------------------------------
-//# \brief operator seqR1 x = seqR1 y
+//! \brief operator seqR1 x = seqR1 y
+//! \param[in] y: Set sequence x to sequence y
 //-----------------------------------------------------------------------------
-void seqR1::operator=(seqR1 y){
+void seqR1::operator=(seqR1 y)
+{
   const long M=y.getN();
   long n;
   if(N!=M){
@@ -527,17 +576,20 @@ void seqR1::operator=(seqR1 y){
 }
  
 //-----------------------------------------------------------------------------
-//# \brief element in seqR1 x = p
+//! \brief element in seqR1 x = p
+//! \param[in] p: Set each element in sequence x to the value p
 //-----------------------------------------------------------------------------
-void seqR1::operator=(const double p){
+void seqR1::operator=(const double p)
+{
   long n;
   for(n=0;n<N;n++)x[n]=p;
 }
  
 //-----------------------------------------------------------------------------
-//# \brief operator: return x += y where y is another seqR1 of length M
+//! \brief operator: return x += y where y is another seqR1 of length M
 //-----------------------------------------------------------------------------
-void seqR1::operator+=(seqR1 y){
+void seqR1::operator+=(seqR1 y)
+{
   long n,M=y.N,NM;
   if(N<=M)NM=N;
   else    NM=M;
@@ -545,9 +597,10 @@ void seqR1::operator+=(seqR1 y){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief operator: return x -= y where y is another seqR1 of length M
+//! \brief operator: return x -= y where y is another seqR1 of length M
 //-----------------------------------------------------------------------------
-void seqR1::operator-=(seqR1 y){
+void seqR1::operator-=(seqR1 y)
+{
   long n,NM;
   const long M=y.getN();
   if(N<=M)NM=N;
@@ -556,9 +609,11 @@ void seqR1::operator-=(seqR1 y){
 }
 
 //-----------------------------------------------------------------------------
-//# \brief operator: return x = alpha*x where alpha is a constant
+//! \brief operator: return x = alpha*x where alpha is a constant
+//! \param[in] alpha: Multiply each element in sequence x by the value alpha
 //-----------------------------------------------------------------------------
-void seqR1::operator*=(double alpha){
+void seqR1::operator*=(double alpha)
+{
   long n;
   for(n=0;n<N;n++)x[n]*=alpha;
 }
