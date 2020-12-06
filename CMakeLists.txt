@@ -65,13 +65,13 @@
 #--------------------------------------
  set( SOURCES_TARGET
       main.cpp
-      ##tests/TestSuiteMisc.cpp
-      ##tests/TestSuiteR2.cpp
-      ##tests/TestSuiteR3.cpp
-      ##tests/TestSuiteR4.cpp
-      ##tests/TestSuiteR6.cpp
-      ##tests/TestSuiteLarc.cpp
-      ##labs/LabOCS.cpp
+      tests/TestSuiteMisc.cpp
+      tests/TestSuiteR2.cpp
+      tests/TestSuiteR3.cpp
+      tests/TestSuiteR4.cpp
+      tests/TestSuiteR6.cpp
+      tests/TestSuiteLarc.cpp
+      labs/LabOCS.cpp
       labs/LabDNA.cpp
       labs/LabLarc.cpp
     )

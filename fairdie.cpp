@@ -1,9 +1,9 @@
 /*============================================================================
- * Daniel J. Greenhoe
- * routines for Real Die fdieseqs
+//! \brief Daniel J. Greenhoe
+//! \brief routines for Real Die fdieseqs
  *============================================================================*/
 /*=====================================
- * headers
+//! \brief headers
  *=====================================*/
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,9 +22,9 @@
 #include "die.h"
 #include "fairdie.h"
 
-/*-------------------------------------------------------------------------
- * display real die metric table
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief display real die metric table
+//-----------------------------------------------------------------------------
 int fdieseq::metrictbl(void){
   char a,b;
   for(a='A';a<='F';a++){
@@ -35,9 +35,9 @@ int fdieseq::metrictbl(void){
   }
 
 
-/*-------------------------------------------------------------------------
- * autocorrelation Rxx of a fair die seqR1 x with 2N offset
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief autocorrelation Rxx of a fair die seqR1 x with 2N offset
+//-----------------------------------------------------------------------------
 int fdieseq::Rxxo(seqR1 *rxx, const int showcount) const
 {
   const long N=getN();
@@ -47,9 +47,9 @@ int fdieseq::Rxxo(seqR1 *rxx, const int showcount) const
   return rval;
 }
 
-/*-------------------------------------------------------------------------
- * autocorrelation Rxx of a fair die seqR1 x
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief autocorrelation Rxx of a fair die seqR1 x
+//-----------------------------------------------------------------------------
 int fdieseq::Rxx(seqR1 *rxx, const int showcount) const
 {
   long m;
@@ -68,9 +68,9 @@ int fdieseq::Rxx(seqR1 *rxx, const int showcount) const
   return rval;
 }
 
-/*-------------------------------------------------------------------------
- * autocorrelation Rxx(m)
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief autocorrelation Rxx(m)
+//-----------------------------------------------------------------------------
 double fdieseq::Rxx(const long m) const
 {
   const long mm=labs(m);
@@ -91,12 +91,12 @@ double fdieseq::Rxx(const long m) const
 
 //
 
-/*=====================================
- * operators
- *=====================================*/
-/*-------------------------------------------------------------------------
- * operator fdieseq x = dieseq y
- *-------------------------------------------------------------------------*/
+//=====================================
+//! \brief operators
+//=====================================
+//-----------------------------------------------------------------------------
+//! \brief operator fdieseq x = dieseq y
+//-----------------------------------------------------------------------------
 void fdieseq::operator=(dieseq y){
   long n;
   const long N=getN();
@@ -108,9 +108,9 @@ void fdieseq::operator=(dieseq y){
   for(n=0;n<N;n++)put(n,y.get(n));
   }
 
-/*-------------------------------------------------------------------------
- * map die face values to R^6 sequence
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief map die face values to R^6 sequence
+//-----------------------------------------------------------------------------
 seqR6 fdieseq::dietoR6(void){
   const long N=getN();
   long n;
@@ -119,12 +119,12 @@ seqR6 fdieseq::dietoR6(void){
   return seq6;
   }
 
-/*=====================================
- * external operations
- *=====================================*/
-/*-------------------------------------------------------------------------
- * map R^6 values to die face values using scaled Euclidean metric
- *-------------------------------------------------------------------------*/
+//=====================================
+//! \brief external operations
+//=====================================
+//-----------------------------------------------------------------------------
+//! \brief map R^6 values to die face values using scaled Euclidean metric
+//-----------------------------------------------------------------------------
 fdieseq fdie_R6todie_ae(seqR6 seq){
   long n;
   int m;
@@ -161,9 +161,9 @@ fdieseq fdie_R6todie_ae(seqR6 seq){
   return fdie;
   }
 
-/*-------------------------------------------------------------------------
- * map R^6 values to die face values and (0,0,0) using Lagrange Arc metric
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief map R^6 values to die face values and (0,0,0) using Lagrange Arc metric
+//-----------------------------------------------------------------------------
 fdieseq fdie_R6todie0_ae(seqR6 xyz){
   long n;
   int m;
@@ -202,9 +202,9 @@ fdieseq fdie_R6todie0_ae(seqR6 xyz){
   return fdie;
   }
 
-/*-------------------------------------------------------------------------
- * map R^6 values to die face values using Euclidean metric
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief map R^6 values to die face values using Euclidean metric
+//-----------------------------------------------------------------------------
 fdieseq fdie_R6todie_euclid(seqR6 xyz){
   const long N=xyz.getN();
   long n;
@@ -280,9 +280,9 @@ fdieseq fdie_R6todie_larc(seqR6 xyz){
   return fdie;
   }
 
-/*-------------------------------------------------------------------------
- * map R^6 values to die face and (0,0,0) values using Euclidean metric
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief map R^6 values to die face and (0,0,0) values using Euclidean metric
+//-----------------------------------------------------------------------------
 fdieseq fdie_R6todie0_euclid(seqR6 xyz){
   long n;
   int m;
@@ -333,10 +333,9 @@ fdieseq fdie_R6todie0_euclid(seqR6 xyz){
   return fdie;
   }
 
-
-/*-------------------------------------------------------------------------
- * map R^1 values to die face values using Euclidean metric
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief map R^1 values to die face values using Euclidean metric
+//-----------------------------------------------------------------------------
 fdieseq fdie_R1todie_euclid(seqR1 xyz){
   long n;
   long N=xyz.getN();
@@ -354,19 +353,21 @@ fdieseq fdie_R1todie_euclid(seqR1 xyz){
   return fdie;
   }
 
-/*-------------------------------------------------------------------------
- * real die metric d(a,b)
- *   d(a,b) | 0    A    B    C    D    E     F   (b)
- *   -------|-------------------------------------
- *      a= 0| 0    1    1    1    1    1    1
- *      a= A| 1    0    1    1    1    1    1
- *      a= B| 1    1    0    1    1    1    1
- *      a= C| 1    1    1    0    1    1    1
- *      a= D| 1    1    1    1    0    1    1
- *      a= E| 1    1    1    1    1    0    1
- *      a= F| 1    1    1    1    1    1    0
- * On success return d(a,b). On error return -1.
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief real die metric d(a,b)
+//! \code
+//!    d(a,b) | 0    A    B    C    D    E     F   (b)
+//!    -------|-------------------------------------
+//!       a= 0| 0    1    1    1    1    1    1
+//!       a= A| 1    0    1    1    1    1    1
+//!       a= B| 1    1    0    1    1    1    1
+//!       a= C| 1    1    1    0    1    1    1
+//!       a= D| 1    1    1    1    0    1    1
+//!       a= E| 1    1    1    1    1    0    1
+//!       a= F| 1    1    1    1    1    1    0
+//! \endcode
+//! \returns On success return d(a,b). On error return -1.
+//-----------------------------------------------------------------------------
 double fdie_metric(char a, char b){
   int ra=die_dietoR1(a);
   int rb=die_dietoR1(b);
@@ -381,16 +382,16 @@ double fdie_metric(char a, char b){
   else if(ra==0)    d= 1.0;
   else if(rb==0)    d= 1.0;
   else              d= 1.0;
-    
+
   return d;
   }
 
-/*-------------------------------------------------------------------------
- * real die metric p(x,y) where x and y are fdie sequences computed as
- * p(x,y) = d(x0,y0) + d(x1,y1) + d(x2,y2) + ... + d(x{N-1},y{N-1})
- * where d(a,b) is defined above.
- * On success return d(x,y). On error return -1.
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief real die metric p(x,y) where x and y are fdie sequences computed as
+//!        p(x,y) = d(x0,y0) + d(x1,y1) + d(x2,y2) + ... + d(x{N-1},y{N-1})
+//!        where d(a,b) is defined above.
+//! \returns On success return d(x,y). On error return -1.
+//-----------------------------------------------------------------------------
 double fdie_metric(fdieseq x, fdieseq y){
   double rval,d;
   long n;

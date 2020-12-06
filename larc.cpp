@@ -1,26 +1,28 @@
-/*============================================================================
- * Daniel J. Greenhoe
- * routines for Lagrange arcs
- * Largrange arcs are defined here in a manner analogous to 
- * Lagrange polynomial interpolation. 
- * Langrange polynomial interpolation is typically defined using 
- * Cartesian coordinates in the R^2 plane. 
- * Here, "Lagrange arcs" use basically the same idea, but are defined using
- * polar coordinates in the R^2 plane:
- *         y
- *         |   o p        Let (rp,tp) be the polar location of point p.
- *         |  /           where rp is the Euclidean distance from (0,0) to p 
- *         | /            and tp is radian measure from the x-axis to p.
- *         |/tp           Let (rq,tq) be the polar location of point q.
- * --------|---------- x  The "Lagrange arc" r(theta) is defined here as
- *         |\tq                          theta -tq        theta -tp
- *         | \            r(theta) = rp ----------- + rq -----------
- *         |  o q                          tp-tq            tq-tp
- *         |              
- *============================================================================*/
-/*=====================================
- * headers
- *=====================================*/
+//=============================================================================
+// Daniel J. Greenhoe
+//! \brief Routines for Lagrange arcs
+//! \detailed Largrange arcs are defined here in a manner analogous to 
+//! Lagrange polynomial interpolation. 
+//! Langrange polynomial interpolation is typically defined using 
+//! Cartesian coordinates in the R^2 plane. 
+//! Here, "Lagrange arcs" use basically the same idea, but are defined using
+//! polar coordinates in the R^2 plane:
+//! \code
+//!         y
+//!         |   o p        Let (rp,tp) be the polar location of point p.
+//!         |  /           where rp is the Euclidean distance from (0,0) to p 
+//!         | /            and tp is radian measure from the x-axis to p.
+//!         |/tp           Let (rq,tq) be the polar location of point q.
+//! --------|---------- x  The "Lagrange arc" r(theta) is defined here as
+//!         |\tq                          theta -tq        theta -tp
+//!         | \            r(theta) = rp ----------- + rq -----------
+//!         |  o q                          tp-tq            tq-tp
+//!         |              
+//! \endcode
+//=============================================================================
+//=====================================
+// headers
+//=====================================
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -33,18 +35,19 @@
 #include "euclid.h"
 #include "larc.h"
 
-/*-------------------------------------------------------------------------
- * path length s of Lagrange arc from a point p at polar coordinate (rp,tp)
- *                                   to point q at polar coordinate (rq,tq).
- *            __tq             __tq
- *           |                |              (   dr    )^2
- *    s =    |  ds dtheta =   |   sqrt(r^2 + (-------- )    )  dtheta
- *         __|tp            __|tp            ( dtheta  )
- *
- * reference: Paul Dawkins, 
- *   http://tutorial.math.lamar.edu/Classes/CalcII/PolarArcLength.aspx 
- *   https://books.google.com/books?id=b4ksCQAAQBAJ&pg=PA533
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Path length s of Lagrange arc from a point p at polar coordinate (rp,tp)
+//!                                  to point q at polar coordinate (rq,tq).
+//! \code
+//!            __tq             __tq
+//!           |                |              (   dr    )^2
+//!    s =    |  ds dtheta =   |   sqrt(r^2 + (-------- )    )  dtheta
+//!         __|tp            __|tp            ( dtheta  )
+//! \endcode
+//! reference: Paul Dawkins, 
+//!   http://tutorial.math.lamar.edu/Classes/CalcII/PolarArcLength.aspx 
+//!   https://books.google.com/books?id=b4ksCQAAQBAJ&pg=PA533
+//-----------------------------------------------------------------------------
 double larc_arclength(double rp, double rq, double tdiff){
   double y;
   const double phi=fabs(tdiff);
@@ -66,17 +69,17 @@ double larc_arclength(double rp, double rq, double tdiff){
   return y;
   }
 
-/*-------------------------------------------------------------------------
- * indefinite integral for arc length 
- * reference: http://integral-table.com/
- *            http://integral-table.com/downloads/integral-table.pdf 
- *            indefinite integral (37)
- *            accessed 2015 September 19 12:29PM UTC
- * Note: This function should be viewed as DEPRECATED 
- * (that is, don't use it for general computations),
- * However, this function is still useful for testing and verification of 
- * larc_metric(vectR2 p, vectR2 q).
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief indefinite integral for arc length 
+//!  reference: http://integral-table.com/
+//!             http://integral-table.com/downloads/integral-table.pdf 
+//!             indefinite integral (37)
+//!             accessed 2015 September 19 12:29PM UTC
+//!  Note: This function should be viewed as DEPRECATED 
+//!  (that is, don't use it for general computations),
+//!  However, this function is still useful for testing and verification of 
+//!  larc_metric(vectR2 p, vectR2 q).
+//-----------------------------------------------------------------------------
 double larc_indefint(double rp, double rq, double thetap, double thetaq, double theta){
   double ra = (rp-rq);
   double rb = (rq*thetap-rp*thetaq);
@@ -89,9 +92,9 @@ double larc_indefint(double rp, double rq, double thetap, double thetaq, double 
   return y;
   }
 
-/*-------------------------------------------------------------------------
- * Lagrange arc metric from <p> to <q> in R^2
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Lagrange arc metric from <p> to <q> in R^2
+//-----------------------------------------------------------------------------
 double larc_metric(const vectR2 p, const vectR2 q)
 {
   const double rp  = p.mag();
@@ -121,19 +124,19 @@ double larc_metric(const vectR2 p, const vectR2 q)
   return d/M_PI;
 }
 
-/*-------------------------------------------------------------------------
- * tau function for larc distance function d(p,q)
- * tau(a,sigma;p,q,r) := 2sigma[ 1/2 d^a(p,r) + 1/2 d^a(r,q) ]^(1/a)
- * reference:
- *   Daniel J. Greenhoe (2016)
- *   "Properties of distance spaces with power triangle inequalities"
- *   Carpathian Mathematical Publications, volume 8, number 1, pages 51--82
- *   doi 10.15330/cmp.8.1.51-82,
- *   http://www.journals.pu.if.ua/index.php/cmp/article/view/483
- *   https://peerj.com/preprints/2055/
- *   https://www.researchgate.net/publication/281831459
- *   section 4: Distance spaces with power triangle inequalities
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief tau function for larc distance function d(p,q)
+//!  tau(a,sigma;p,q,r) := 2sigma[ 1/2 d^a(p,r) + 1/2 d^a(r,q) ]^(1/a)
+//!  reference:
+//!    Daniel J. Greenhoe (2016)
+//!    "Properties of distance spaces with power triangle inequalities"
+//!    Carpathian Mathematical Publications, volume 8, number 1, pages 51--82
+//!    doi 10.15330/cmp.8.1.51-82,
+//!    http://www.journals.pu.if.ua/index.php/cmp/article/view/483
+//!    https://peerj.com/preprints/2055/
+//!    https://www.researchgate.net/publication/281831459
+//!    section 4: Distance spaces with power triangle inequalities
+//-----------------------------------------------------------------------------
 double larc_tau(const double a, const double sigma, const vectR2 p, const vectR2 q, const vectR2 r){
   double dpr, drq;
   double tau;
@@ -143,18 +146,18 @@ double larc_tau(const double a, const double sigma, const vectR2 p, const vectR2
   return tau;
   }
  
-/*-------------------------------------------------------------------------
- * Lagrange metric from <p> to <q> computed numerically with resolution <N>.
- * Note: This function should be viewed as DEPRECATED 
- * (that is, don't use it for general computations),
- * but instead it is strongly recommended to use larc_metric(vectR2 p, vectR2 q).
- * The function larc_metric(vectR2 p, vectR2 q) uses a closed form solution 
- * (from an integral lookup table).
- * This function uses a numeric estimation 
- * (by an approximated summation along the arc path).
- * However, this function is still useful for testing and verification of 
- * larc_metric(vectR2 p, vectR2 q).
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Lagrange metric from <p> to <q> computed numerically with resolution <N>.
+//!  Note: This function should be viewed as DEPRECATED 
+//!  (that is, don't use it for general computations),
+//!  but instead it is strongly recommended to use larc_metric(vectR2 p, vectR2 q).
+//!  The function larc_metric(vectR2 p, vectR2 q) uses a closed form solution 
+//!  (from an integral lookup table).
+//!  This function uses a numeric estimation 
+//!  (by an approximated summation along the arc path).
+//!  However, this function is still useful for testing and verification of 
+//!  larc_metric(vectR2 p, vectR2 q).
+//-----------------------------------------------------------------------------
 double larc_metric(const vectR2 p, const vectR2 q, const long int N){
   larcc arc(p,q);
   double d = arc.arclength(N);
@@ -162,9 +165,9 @@ double larc_metric(const vectR2 p, const vectR2 q, const long int N){
   return ds;
   }
 
-/*-------------------------------------------------------------------------
- * Lagrange arc metric from <p> to <q> in R^3
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Lagrange arc metric from <p> to <q> in R^3
+//-----------------------------------------------------------------------------
 double larc_metric(const vectR3 p, const vectR3 q){
   const double rp=p.mag(), rq=q.mag();
   const double tdiff = pqtheta(p,q);
@@ -176,9 +179,9 @@ double larc_metric(const vectR3 p, const vectR3 q){
   return d/M_PI;
   }
 
-/*-------------------------------------------------------------------------
- * Lagrange arc metric from <p> to <q> in R^3
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Lagrange arc metric from <p> to <q> in R^3
+//-----------------------------------------------------------------------------
 double larc_metric(const vectR4 p, const vectR4 q){
   const double rp=p.mag(), rq=q.mag();
   const double tdiff = pqtheta(p,q);
@@ -190,9 +193,9 @@ double larc_metric(const vectR4 p, const vectR4 q){
   return d/M_PI;
   }
 
-/*-------------------------------------------------------------------------
- * Lagrange arc metric from <p> to <q> in R^6
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Lagrange arc metric from <p> to <q> in R^6
+//-----------------------------------------------------------------------------
 double larc_metric(const vectR6 p, const vectR6 q){
   const double rp=p.mag(), rq=q.mag();
   double tdiff;
@@ -215,9 +218,9 @@ double larc_metric(const vectR6 p, const vectR6 q){
   return d/M_PI;
   }
 
-/*-------------------------------------------------------------------------
- * path length of arc computed using numeric integration
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief path length of arc computed using numeric integration
+//-----------------------------------------------------------------------------
 double larcc::arclength(long int N){
   double sum=0;
   double rp=p.mag(),     rq=q.mag();
@@ -243,18 +246,18 @@ double larcc::arclength(long int N){
   return sum;
   }
 
-/*-------------------------------------------------------------------------
- * find the point (x(t),y(t)) on the Lagrange arc larc(p,q) at parameter <theta>
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief find the point (x(t),y(t)) on the Lagrange arc larc(p,q) at parameter <theta>
+//-----------------------------------------------------------------------------
 vectR2  larcc::xy(double theta){
   double rt=r(theta);
   vectR2 pt(rt*cos(theta),rt*sin(theta));
   return pt;
   }
 
-/*-------------------------------------------------------------------------
- * return r(theta) for Lagrange arc(p,q)
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief return r(theta) for Lagrange arc(p,q)
+//-----------------------------------------------------------------------------
 double  larcc::r(double theta){
   double rp=p.mag(); 
   double rq=q.mag(); 
@@ -264,17 +267,17 @@ double  larcc::r(double theta){
   return r;
   }
 
-/*-------------------------------------------------------------------------
- * Find a point q in R^2 orientated <phi> with respect to <p> 
- * that is within a <maxerror> distance <d> from the point <p>.
- * Search for this point q using <N> search locations
- * over a radial distance from <p> of <minrq> to <maxrq>. 
- * If a solution is found, place the point q at <*q> and return 1.
- * If a solution is not found and an apparent discontinuity occurred in 
- * in the search, issue a warning and return 0.
- * If a solution is not found and a discontinuity apparently did NOT occur
- * in the search, issue an ERROR message and exit.
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Find a point q in R^2 orientated <phi> with respect to <p> 
+//!  that is within a <maxerror> distance <d> from the point <p>.
+//!  Search for this point q using <N> search locations
+//!  over a radial distance from <p> of <minrq> to <maxrq>. 
+//!  If a solution is found, place the point q at <*q> and return 1.
+//!  If a solution is not found and an apparent discontinuity occurred in 
+//!  in the search, issue a warning and return 0.
+//!  If a solution is not found and a discontinuity apparently did NOT occur
+//!  in the search, issue an ERROR message and exit.
+//-----------------------------------------------------------------------------
 int larc_findq(const vectR2 p, const double theta, const double d, const double minrq, const double maxrq, const double maxerror, const long N, vectR2 *q){
   double rq,dd,ddprev,errord,bestrq,bestd,phi,smallesterror,discon1,discon2;
   vectR2 qq,bestq;
@@ -321,11 +324,11 @@ int larc_findq(const vectR2 p, const double theta, const double d, const double 
   return retval;
   }
 
-/*-------------------------------------------------------------------------
- * Find the polar length of a point q with radial measure tq that is a 
- * distance <d> from the point <p> with polar coordinates (rp,tp)
- * using search resolution <N>
- *-------------------------------------------------------------------------*/
+//-----------------------------------------------------------------------------
+//! \brief Find the polar length of a point q with radial measure tq that is a 
+//!  distance <d> from the point <p> with polar coordinates (rp,tp)
+//!  using search resolution <N>
+//-----------------------------------------------------------------------------
 vectR3 larc_findq(const vectR3 p, const double theta, const double phi, const double d, const double minrq, const double maxrq, const double maxerror, const long int N){
   double rq,dd,errord,bestrq;
   vectR3 bestq(0,0,0);

@@ -18,6 +18,9 @@
 
 //-----------------------------------------------------------------------------
 //! List value of opair
+//! \param[in]  str1 : string to print before the sequence
+//! \param[in]  str2 : string to print after the sequence
+//! \param[out] ptr  : output string
 //-----------------------------------------------------------------------------
 void opair::list(const char *str1, const char *str2, FILE *ptr) const
 {
@@ -53,6 +56,7 @@ double vectR2::theta(void) const
 
 //-----------------------------------------------------------------------------
 //! \brief Operator to rotate vector R2 [x,y] counter-clockwise by <phi> radians
+//! \param[in]  phi: angle to rotate vector by
 //-----------------------------------------------------------------------------
 void vectR2::operator&=(const double phi)
 {
@@ -66,6 +70,7 @@ void vectR2::operator&=(const double phi)
 //=====================================
 //-----------------------------------------------------------------------------
 //! \brief Constructor initializing seqR1 to 0s
+//! \param[in]  M: Length of sequence
 //-----------------------------------------------------------------------------
 seqR2::seqR2(const long M)
 {
@@ -75,7 +80,9 @@ seqR2::seqR2(const long M)
 }
 
 //-----------------------------------------------------------------------------
-// constructor initializing seqR1 to <u>
+//! \brief constructor initializing seqR1 to u
+//! \param[in]  M: Length of sequence
+//! \param[in]  u: Initialization value
 //-----------------------------------------------------------------------------
 seqR2::seqR2(long M, double u)
 {
@@ -89,7 +96,7 @@ seqR2::seqR2(long M, double u)
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Fill the seqR1 with a value 0
+//! \brief Fill the sequence with a value 0
 //-----------------------------------------------------------------------------
 void seqR2::clear(void)
 {
@@ -97,7 +104,7 @@ void seqR2::clear(void)
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Fill the seqR1 with a value <u>
+//! \brief Fill the sequence with a value <u>
 //-----------------------------------------------------------------------------
 void seqR2::fill(double u)
 {
@@ -106,7 +113,7 @@ void seqR2::fill(double u)
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Fill the seqR1 with (x_0, x_1, x_2, ...)
+//! \brief Fill the sequence with (x_0, x_1, x_2, ...)
 //!        where x_n = x_{n-1} + (dx,dy)
 //-----------------------------------------------------------------------------
 void seqR2::inc(double x0, double y0,double dx, double dy)
@@ -120,7 +127,7 @@ void seqR2::inc(double x0, double y0,double dx, double dy)
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Put an order pair (u,v) into the seqR1 x at location n
+//! \brief Put an order pair (u,v) into the sequence x at location n
 //-----------------------------------------------------------------------------
 int seqR2::put(long n, double u, double v)
 {
@@ -134,7 +141,7 @@ int seqR2::put(long n, double u, double v)
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Put an R2 vector xyz into the seqR1 x at location n
+//! \brief Put an R2 vector xyz into the sequence x at location n
 //-----------------------------------------------------------------------------
 int seqR2::put(long n, vectR2 xya)
 {
@@ -148,7 +155,7 @@ int seqR2::put(long n, vectR2 xya)
 }
 
 //-----------------------------------------------------------------------------
-//! Get a single value from the seqR1 x at location n
+//! Get a single value from the sequence x at location n
 //-----------------------------------------------------------------------------
 vectR2 seqR2::get(const long n) const
 {
@@ -159,7 +166,7 @@ vectR2 seqR2::get(const long n) const
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Get a single value from the seqR1 x element x at location n
+//! \brief Get a single value from the sequence x element x at location n
 //-----------------------------------------------------------------------------
 double seqR2::getx(const long n) const
 {
@@ -170,7 +177,7 @@ double seqR2::getx(const long n) const
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Get a single value from the seqR1 x element y at location n
+//! \brief Get a single value from the sequence x element y at location n
 //-----------------------------------------------------------------------------
 double seqR2::gety(const long n) const
 {
@@ -223,7 +230,7 @@ void seqR2::list1(long start, long end) const
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Return the largest pair of values in the seqR1 as measured by norm()
+//! \brief Return the largest pair of values in the sequence as measured by norm()
 //-----------------------------------------------------------------------------
 double seqR2::norm(const long n) const
 {
@@ -232,7 +239,7 @@ double seqR2::norm(const long n) const
 }
 
 //-----------------------------------------------------------------------------
-//! \brief Return the largest pair of values in the seqR1 as measured by norm()
+//! \brief Return the largest pair of values in the sequence as measured by norm()
 //-----------------------------------------------------------------------------
 vectR2 seqR2::max(const int verbose) const
 {

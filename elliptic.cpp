@@ -68,11 +68,11 @@ int ellipsec::findt_dfroms(const double s, const double d, const int direction, 
 
 //-----------------------------------------------------------------------------
 //! \brief Compute a given x, y, and b
-//!
+//! \code
 //!   x^2    y^2                        x
 //!   ---  + ---  = 1  ==>  a = ----------------
 //!   a^2    b^2                 sqrt(1-y^2/b^2)     
-//!
+//! \endcode
 //! \returns Return 1 if successful, 0 if error
 //-----------------------------------------------------------------------------
 int ellipsec::setab_givenxyb( const vectR2 p, const double bb)
