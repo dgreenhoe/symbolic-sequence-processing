@@ -14,12 +14,17 @@ DIRSTY      = ../../common/sty
 #--------------------------------------
 GRP_DIE =                                                \
   $(DIRPLOTS)/diedftC1_1525_1200m120.pdf                 \
+  $(DIRPLOTS)/diedftC1_1620_12000m120.pdf                \
   $(DIRPLOTS)/diedftC1_1620_12000m1200.pdf               \
   $(DIRPLOTS)/diedftR1_1525_1200m120.pdf                 \
+  $(DIRPLOTS)/diedftR1_1620_12000m120.pdf                \
   $(DIRPLOTS)/diedftR1_1620_12000m1200.pdf               \
   $(DIRPLOTS)/diedftR6_1525_1200m120.pdf                 \
-  $(DIRPLOTS)/diedftR6_1620_12000m1200.pdf
-
+  $(DIRPLOTS)/diedftR6_1620_12000m120.pdf                \
+  $(DIRPLOTS)/diedftR6_1620_12000m1200.pdf               \
+  $(DIRPLOTS)/diehaarC1_12000m4000_h200_1050_D10.pdf     \
+  $(DIRPLOTS)/diehaarR1_12000m4000_h200_1050_D10.pdf     \
+  $(DIRPLOTS)/diehaarR6_12000m4000_h200_1050_D10.pdf     \
 
 GRP_FDIE =                                               \
   $(DIRPLOTS)/fdie_5eed_16002_auto.pdf                   \
@@ -142,16 +147,7 @@ GRP_WDIE =                                               \
   $(DIRPLOTS)/wdie_hp_1200_R6_rect50_euclid_seq.pdf      \
   $(DIRPLOTS)/wdie_hp_1200_R6_rect50_larc_auto.pdf       \
   $(DIRPLOTS)/wdie_hp_1200_R6_rect50_larc_histo.pdf      \
-  $(DIRPLOTS)/wdie_hp_1200_R6_rect50_larc_seq.pdf        \
-  $(DIRPLOTS)/wdie_hp_120_R1_rect16_euclid_auto.pdf      \
-  $(DIRPLOTS)/wdie_hp_120_R1_rect16_euclid_histo.pdf     \
-  $(DIRPLOTS)/wdie_hp_120_R1_rect16_euclid_seq.pdf       \
-  $(DIRPLOTS)/wdie_hp_120_R6_rect16_euclid_auto.pdf      \
-  $(DIRPLOTS)/wdie_hp_120_R6_rect16_euclid_histo.pdf     \
-  $(DIRPLOTS)/wdie_hp_120_R6_rect16_euclid_seq.pdf       \
-  $(DIRPLOTS)/wdie_hp_120_R6_rect16_larc_auto.pdf        \
-  $(DIRPLOTS)/wdie_hp_120_R6_rect16_larc_histo.pdf       \
-  $(DIRPLOTS)/wdie_hp_120_R6_rect16_larc_seq.pdf
+  $(DIRPLOTS)/wdie_hp_1200_R6_rect50_larc_seq.pdf
 
 GRP_WRDIE =                                              \
   $(DIRPLOTS)/wrdie_5eed_16002_auto.pdf                  \
@@ -180,9 +176,63 @@ GRP_SPIN =                                               \
   $(DIRPLOTS)/spin_5eed_16002_auto.pdf                   \
   $(DIRPLOTS)/spin_5eed_16002_histo.pdf                  \
   $(DIRPLOTS)/spin_5eed_51_seq.pdf                       \
+  $(DIRPLOTS)/spin_lp_12000_R1_hann16_euclid_auto.pdf    \
+  $(DIRPLOTS)/spin_lp_12000_R1_hann16_euclid_histo.pdf   \
+  $(DIRPLOTS)/spin_lp_12000_R1_hann16_euclid_seq.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R1_hann50_euclid_auto.pdf    \
+  $(DIRPLOTS)/spin_lp_12000_R1_hann50_euclid_histo.pdf   \
+  $(DIRPLOTS)/spin_lp_12000_R1_hann50_euclid_seq.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R1_rect16_euclid_auto.pdf    \
+  $(DIRPLOTS)/spin_lp_12000_R1_rect16_euclid_histo.pdf   \
+  $(DIRPLOTS)/spin_lp_12000_R1_rect16_euclid_seq.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R1_rect50_euclid_auto.pdf    \
+  $(DIRPLOTS)/spin_lp_12000_R1_rect50_euclid_histo.pdf   \
+  $(DIRPLOTS)/spin_lp_12000_R1_rect50_euclid_seq.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann16_euclid_auto.pdf    \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann16_euclid_histo.pdf   \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann16_euclid_seq.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann16_larc_auto.pdf      \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann16_larc_histo.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann16_larc_seq.pdf       \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann50_euclid_auto.pdf    \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann50_euclid_histo.pdf   \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann50_euclid_seq.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann50_larc_auto.pdf      \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann50_larc_histo.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R2_hann50_larc_seq.pdf       \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect16_euclid_auto.pdf    \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect16_euclid_histo.pdf   \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect16_euclid_seq.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect16_larc_auto.pdf      \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect16_larc_histo.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect16_larc_seq.pdf       \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect50_euclid_auto.pdf    \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect50_euclid_histo.pdf   \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect50_euclid_seq.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect50_larc_auto.pdf      \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect50_larc_histo.pdf     \
+  $(DIRPLOTS)/spin_lp_12000_R2_rect50_larc_seq.pdf       \
   $(DIRPLOTS)/wspin_5eed_16002_auto.pdf                  \
   $(DIRPLOTS)/wspin_5eed_16002_histo.pdf                 \
-  $(DIRPLOTS)/wspin_5eed_51_seq.pdf
+  $(DIRPLOTS)/wspin_5eed_51_seq.pdf                      \
+  $(DIRPLOTS)/wspin_hp_1200_R1_hann50_euclid_auto.pdf    \
+  $(DIRPLOTS)/wspin_hp_1200_R1_hann50_euclid_histo.pdf   \
+  $(DIRPLOTS)/wspin_hp_1200_R1_hann50_euclid_seq.pdf     \
+  $(DIRPLOTS)/wspin_hp_1200_R1_rect50_euclid_auto.pdf    \
+  $(DIRPLOTS)/wspin_hp_1200_R1_rect50_euclid_histo.pdf   \
+  $(DIRPLOTS)/wspin_hp_1200_R1_rect50_euclid_seq.pdf     \
+  $(DIRPLOTS)/wspin_hp_1200_R2_hann50_euclid_auto.pdf    \
+  $(DIRPLOTS)/wspin_hp_1200_R2_hann50_euclid_histo.pdf   \
+  $(DIRPLOTS)/wspin_hp_1200_R2_hann50_euclid_seq.pdf     \
+  $(DIRPLOTS)/wspin_hp_1200_R2_hann50_larc_auto.pdf      \
+  $(DIRPLOTS)/wspin_hp_1200_R2_hann50_larc_histo.pdf     \
+  $(DIRPLOTS)/wspin_hp_1200_R2_hann50_larc_seq.pdf       \
+  $(DIRPLOTS)/wspin_hp_1200_R2_rect50_euclid_auto.pdf    \
+  $(DIRPLOTS)/wspin_hp_1200_R2_rect50_euclid_histo.pdf   \
+  $(DIRPLOTS)/wspin_hp_1200_R2_rect50_euclid_seq.pdf     \
+  $(DIRPLOTS)/wspin_hp_1200_R2_rect50_larc_auto.pdf      \
+  $(DIRPLOTS)/wspin_hp_1200_R2_rect50_larc_histo.pdf     \
+  $(DIRPLOTS)/wspin_hp_1200_R2_rect50_larc_seq.pdf
 
 GRP_DNA =                                                \
   $(DIRPLOTS)/dnadftC1.pdf                               \
