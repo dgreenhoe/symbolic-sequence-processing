@@ -19,7 +19,7 @@
 #--------------------------------------
 # Project
 #--------------------------------------
- project( opseq
+ project( ssp
           VERSION     0
           DESCRIPTION "Symbolic Sequence Processing"
          #HOMEPAGE    https://github.com/dgreenhoe/
@@ -49,13 +49,13 @@
  set( FLAGS_COMPILE
       #-v
       -Wall
-      -Werror
+      #-Werror
     )
 
  set( FLAGS_LINK
       #-v
       -Wall
-      -Werror
+      #-Werror
       #-lgtest -lgtest_main
     )
 
