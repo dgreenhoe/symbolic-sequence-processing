@@ -1,19 +1,18 @@
-%============================================================================
-% Daniel J. Greenhoe
-% Readme file for Github project 
-% https://github.com/dgreenhoe/symbolic-sequence-processing.git
-%============================================================================
+# Readme file for Symbolic Sequence Processing repository
 
-%--------------------------------------
-% Project Desription
-%--------------------------------------
+### Daniel J. Greenhoe
+### https://github.com/dgreenhoe/symbolic-sequence-processing.git
+
+
+## Project Desription
+
 This project is C++ code to support symbolic sequence processing, 
 as described in the paper Greenhoe(2016).
 Below is an abstract for that paper:
 
-%--------------------------------------
-% Abstract for Greenhoe(2016)
-%--------------------------------------
+
+## Abstract for Greenhoe(2016)
+
 A real-valued random variable X is a measurable function that maps from a 
 probability space (Omega,E,P) to (R,<=,d,+,.,B) 
 where B is the usual Borel sigma-algebra on the "real line" (X,<=,d,+,.), 
@@ -42,13 +41,12 @@ The ordered set and distance space components of Y allow one to preserve the ord
 inherent in the underlying stochastic process, which in turn likely provides a less distorted (as compared to the real line) 
 framework for analysis and sequence processing. 
 
-%--------------------------------------
-% References
-%--------------------------------------
-Greenhoe(2015): Greenhoe, Daniel J.,
-"Order and metric geometry compatible stochastic processing", 
-2015 February 19, https://doi.org/10.7287/peerj.preprints.844v1
+## References
 
-Greenhoe(2016): Greenhoe, Daniel J.,
-"Order and Metric Compatible Symbolic Sequence Processing",
-2016 May 18, https://doi.org/10.7287/peerj.preprints.2052v1
+  * Greenhoe(2015): Greenhoe, Daniel J.,
+    "Order and metric geometry compatible stochastic processing", 
+    2015 February 19, https://doi.org/10.7287/peerj.preprints.844v1
+
+  * Greenhoe(2016): Greenhoe, Daniel J.,
+    "Order and Metric Compatible Symbolic Sequence Processing",
+    2016 May 18, https://doi.org/10.7287/peerj.preprints.2052v1
